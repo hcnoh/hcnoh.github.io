@@ -20,11 +20,14 @@ permalink: /2018-09-09-effective-python-way01
 - 커맨드 라인 상에서 사용되는 기본 파이썬의 버전 확인: `--version` 플래그를 이용
 - 파이썬 3는 특별히 `python 3` 명령 사용
 - 파이썬 2.7의 버전 확인:
+
 ```bash
 >>> python --version
 Python 2.7.8
 ```
+
 - 파이썬 3의 버전 확인:
+
 ```bash
 >>> python3 --version
 Python 3.4.2
