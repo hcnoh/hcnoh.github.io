@@ -29,5 +29,5 @@ permalink: /about-me.html
 ## Projects
 - [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
 
-* *
+* * *
 [Go to the Home Page]({{ site.url }}{{ site.baseurl }})
