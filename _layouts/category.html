@@ -3,7 +3,9 @@ layout: default
 ---
 
 {% for tag in site.categories %}
-  <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
+  <h1>
+    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
+  </h1>
   <ul class="post-list">
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
@@ -13,9 +15,9 @@ layout: default
         {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
         <span class="post-meta">{{ post.date | date: date_format }}</span>
 
-        <h2>
+        <h3>
           <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        </h2>
+        </h3>
 
       </li>
     
