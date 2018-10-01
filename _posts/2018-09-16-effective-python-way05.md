@@ -147,7 +147,7 @@ print(a)
   - 단숫 객체 복제/shallow copy의 차이점:
     - 복합 객체(`list`)는 별도 생성
     - 내용물은 원본 객체의 내용물을 참조
-    - 슬라이싱도 Shallow copy이므로 `mutable`한 item에서는 문제가 
+    - 슬라이싱도 Shallow copy이므로 `mutable`한 item에서는 문제가 발생
 
 ```python
 import copy
