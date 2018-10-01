@@ -79,7 +79,7 @@ Home-page: https://www.tensorflow.org/
 Author: Google Inc.
 Author-email: opensource@google.com
 License: Apache 2.0
-Location: /home/hcnoh/wavenet-venv/lib/python3.5/site-packages
+Location: /home/hcnoh/tensorflow/lib/python3.5/site-packages
 Requires: tensorboard, grpcio, setuptools, protobuf, six, gast, termcolor, wheel, numpy, absl-py, astor
 Required-by:
 ```
