@@ -3,9 +3,9 @@ layout: default
 ---
 
 {% for tag in site.categories %}
-  <h1>
+  <h2>
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
-  </h1>
+  </h2>
   <ul class="post-list">
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
