@@ -39,9 +39,11 @@ Middle two: ["d", "e"]
 ```python
 first_twenty_items = a[:20]
 last_twenty_items = a[-20:]
-{% endhighlight %}
+```
+
 - 인덱스 직접 접근은 경계를 벗어날 수 없음
-{% highlight python %}
+
+```python
 a[20]
 
 >>>
