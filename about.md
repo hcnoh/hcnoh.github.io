@@ -27,6 +27,7 @@ permalink: /about-me.html
 - Tools & Libraries: Tensorflow, Keras, Git
 
 ## Projects
-- [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
- 
+- [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)\
+\
+\
 [Go to the Home Page]({{ site.url }}{{ site.baseurl }})
