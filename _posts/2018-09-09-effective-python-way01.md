@@ -75,3 +75,5 @@ sys.version_info(major=3, minor=4, micro=2, releaselevel='final', serial=0)
 
 ## GIL이란? (멀티스레드?)
 - 추가 예정
+
+[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
