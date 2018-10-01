@@ -1,6 +1,6 @@
-title: Cayman Blog Theme
-description: Cayman Blog Theme is a clean, responsive blogging theme for Jekyll and GitHub Pages, with social/SEO features.
-show_downloads: true
+title: Hyungcheol Noh's Blog
+description: This is my blog page for organizing machine learning studies and personal projects.
+show_downloads: false
 
 baseurl: "/blog_temp" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
 url: "https://hcnoh.github.io" # change this to the base hostname & protocol for your site
@@ -21,8 +21,8 @@ twitter:
 #  site:
 facebook:
   #publisher: 100002031927279
-  #profile_id: 100002031927279
-  app_id: 100002031927279
+  profile_id: 100002031927279
+  #app_id: 100002031927279
   authors: Hyungcheol Noh
 disqus:
   shortname: hcnoh
