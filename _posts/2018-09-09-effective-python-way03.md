@@ -113,3 +113,5 @@ with open("/tmp/random.bin", "wb) as f:
 
 ## 바이너리 vs 유니코드
 - 추가 예정
+
+[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
