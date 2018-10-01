@@ -12,12 +12,12 @@ layout: default
     
       <li>
 
-        {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        @{% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+        @<span class="post-meta">{{ post.date | date: date_format }}</span>
 
-        <h3>
+        <h2>
           <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        </h3>
+        </h2>
 
       </li>
       <hr size="5" noshade>
