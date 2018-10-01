@@ -16,7 +16,7 @@ layout: default
         <span class="post-meta">{{ post.date | date: date_format }}</span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}<span class="entry-date"><time class="post-meta">{{ post.date | date: date_format }}</time></a>
+          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}<span class="entry-date"><span class="post-meta">{{ post.date | date: date_format }}</span></a>
         </h2>
 
       </li>
