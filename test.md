@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: Test
 tagline: A few more words about this theme
 permalink: /test.html
 ---
