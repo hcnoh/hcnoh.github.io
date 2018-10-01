@@ -7,7 +7,7 @@ categories:
 - 이펙티브 파이썬 스터디
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
-permalink: /2018-09-09-effective-python-way01.html
+permalink: /2018-09-09-effective-python-way01
 ---
 
 앞으로 스터디에서 다를 예제들의 파이썬 버전은 파이썬 3.4가 될 것이다. 또한 파이썬 2.7과의 비교를 위한 예제들 역시 제공될 것이다.
