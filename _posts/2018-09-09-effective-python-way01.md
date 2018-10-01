@@ -33,7 +33,7 @@ Python 3.4.2
 ## 파이썬 런타임 버전 확인:
 - 런타임에 사용중인 파이썬 버전 확인: 파이썬 내장 `sys` 모듈
 - 이것을 이용하여 런타임마다 모듈 임포트를 다르게 설정해줄 수 있음
-```Python
+```ruby
 import sys
 print(sys.version_info)
 print(sys.version)
