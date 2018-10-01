@@ -33,9 +33,11 @@ permalink: /2018-09-09-effective-python-way02
 ```python
 b = a[3:5]    # 리스트 인덱스에는 스페이스를 사용하지 않음
 b = a[3: 5]   # 틀린 예시
-{% endhighlight %}
+```
+
 - 변수 할당 앞뒤에 스페이스 하나만 사용:
-{% highlight python %}
+
+```python
 a = b     # "=" 앞뒤로 스페이스 하나만 사용
 a=b       # 틀린 예시
 ```
