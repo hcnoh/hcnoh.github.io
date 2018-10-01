@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-tagline: A few more words about this theme
+tagline: Some description about Hyungcheol
 permalink: /about-me.html
 ---
 
