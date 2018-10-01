@@ -1,11 +1,9 @@
 ---
-layout: page
+layout: about
 title: About Me
 tagline: Some description about Hyungcheol
 permalink: /about-me.html
 ---
-
-![](https://github.com/hcnoh/blog_temp/blob/master/assets/img/blog-author.jpg)
 
 ## About Me
 잡다한 잡다한 지식들을 정리해놓는 것을 즐기는 머신러닝 엔지니어입니다 :)
@@ -30,7 +28,3 @@ permalink: /about-me.html
 
 ## Projects
 - [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
-
-* * *
-
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
