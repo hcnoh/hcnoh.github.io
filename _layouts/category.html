@@ -10,11 +10,6 @@ layout: default
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
     
-    <li>
-      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
-      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date: date_format }}" itemprop="datePublished">{{ post.date | date: "%B %d, %Y" }}</time></a>
-    </li>
-    
       <li>
 
         {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
