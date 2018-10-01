@@ -4,7 +4,7 @@ title: "WAY 1. 사용중인 파이썬의 버전을 알자"
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories: 이펙티브 파이썬 스터디
 image: /thumbnail-mobile.png
-author: "Bart Simpson"
+author: "Hyungcheol Noh"
 permalink: /2018-09-09-effective-python-way01.html
 ---
 
