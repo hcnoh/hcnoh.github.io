@@ -34,41 +34,48 @@ permalink: /2018-09-09-effective-python-way03
 이 두 경우에서 서로간의 변환 및 입력값과 스크립트 내부에서 사용되는 타입이 일치하게 하기 위해서는 `로 8비트 값 <=> 유니코드 문자`로의 변환이 가능한 헬퍼 함수가 필요하다.
 
 - 파이썬 3: str, bytes => bytes
-{% highlight python %}
+
+```python
 def to_str(bytes_or_str):
     if isinstance(bytes_or_str, bytes):
         value = bytes_or_str.decode("utf-8")
     else:
         value = bytes_or_str
     return value  # str 인스턴스
-{% endhighlight %}
+```
+
 - 파이썬 3: str, bytes => str
-{% highlight python %}
+
+```python
 def to_bytes(bytes_or_str):
     if isinstance(bytes_r_str, str):
         value = bytes_or_str.encode("utf-8")
     else:
         value = bytes_or_str
     return value  # bytes 인스턴스
-{% endhighlight %}
+```
+
 - 파이썬 2: unicode, str => unicode
-{% highlight python %}
+
+```python
 def to_unicode(unicode_or_str):
     if isinstance(unicode_or_str, str):
         value = unicode_or_str.decode("utf-8")
     else:
         value = unicode_or_str
     return value  # unicode 인스턴스
-{% endhighlight %}
+```
+
 - 파이썬 2: unicode, str => str
-{% highlight python %}
+
+```python
 def to_str(unicode_or_str):
     if isinstance(unicode_or_str, unicode):
         value = unicode_or_str.encode("utf-8")
     else:
         value = unicode_or_str
     return value  # str 인스턴스
-{% endhighlight %}
+```
 
 파이썬에서 문자 시퀀스를 처리할 때 중대한 이슈 두 가지가 있다.
 
@@ -86,18 +93,22 @@ def to_str(unicode_or_str):
 - 파이썬 3에서는 `utf-8` 인코딩 사용
 
 다음의 코드는 파이썬 2에서는 잘 동작하지만, 파이썬 3에서는 동작하지 않는다.
-{% highlight python %}
+
+```python
 with open("/tmp/random.bin", "w") as f:
     f.write(os.urandom(10))
 
 >>>
 TypeError: must be str, not bytes
-{% endhighlight %}
+```
+
 에러의 원인은 파이썬 3의 open은 encoding이라는 파라미터를 받아야 하기 때문이다. 파이썬 2와는 다르게 파이썬 3의 open은 바이너리가 아닌 인코딩 값을 받기 때문에 인코딩 방법을 명시해줘야 하기 때문이다. 이 코드가 동작하기 위해서는 다음처럼 수정해주면 된다.
-{% highlight python %}
+
+```python
 with open("/tmp/random.bin", "wb) as f:
     f.write(os.urandom(10))
-{% endhighlight %}
+```
+
 즉 위처럼 문자 쓰기 모드 `w`가 아니라 바이너리 쓰기 모드인 `wb`로 설정해주면 파이썬 2에서처럼 잘 동작한다는 것을 확인할 수 있다. 읽기 모드에서도 마찬가지로 `r`, `rb`가 사용된다.
 
 ## 바이너리 vs 유니코드
