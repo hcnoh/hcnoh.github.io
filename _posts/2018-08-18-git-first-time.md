@@ -122,8 +122,9 @@ Merge made by the 'recursive' strategy.
  README.md | 2 ++
  1 file changed, 2 insertions(+)
  create mode 100644 README.md
-{% endhighlight %}
-{% highlight bash %}
+```
+
+```bash
 >>> git push origin master
 Username for 'https://github.com': hcnoh
 Password for 'https://hcnoh@github.com':
