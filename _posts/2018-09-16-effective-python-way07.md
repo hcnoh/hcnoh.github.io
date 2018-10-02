@@ -75,4 +75,3 @@ print(chile_len_set)
 {8, 5, 7}
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
