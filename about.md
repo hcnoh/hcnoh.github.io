@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About Me
-tagline: Create a contact form and you are good to go
+tagline: Some description about Hyungcheol
 permalink: /about
 ---
 
