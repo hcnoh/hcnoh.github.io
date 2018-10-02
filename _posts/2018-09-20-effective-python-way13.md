@@ -73,4 +73,3 @@ def divide_json(path):
         handle.close()                                # 항상 실행됨
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
