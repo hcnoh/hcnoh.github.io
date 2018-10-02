@@ -201,4 +201,3 @@ sleep
 4
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
