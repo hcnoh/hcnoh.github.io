@@ -92,4 +92,3 @@ print(filtered)
     - 조건 두 개, 로프 두 개, 혹은 조건 한 개 + 루프 한 개 정도가 적당함
     - 더 복잡해지면 헬퍼 함수 활용 (WAY 16. 리스트를 반환하는 대신 제너레이터를 고려하자)
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
