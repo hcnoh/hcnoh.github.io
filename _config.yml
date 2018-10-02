@@ -2,7 +2,7 @@ title: Hyungcheol Noh's Blog
 description: This is my blog page for organizing machine learning studies and personal projects.
 show_downloads: false
 
-baseurl: "/blog_temp" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
+baseurl: "" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
 url: "https://hcnoh.github.io" # change this to the base hostname & protocol for your site
 
 google_analytics:
