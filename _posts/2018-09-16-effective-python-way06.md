@@ -79,5 +79,3 @@ a[2:2:-2]   # []
 - 내장 모듈 itertolls의 islice 메서드를 사용할 수 있음
   - start, end, stride를 두 단계로 나눠서 실행할 시간 및 메모리가 충분하지 않은 경우 유용
   - start, end, stride에 음수 값을 허용하지 않음
-
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
