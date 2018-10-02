@@ -6,7 +6,7 @@ permalink: /about
 ---
 
 ## About Me
-잡다한 잡다한 지식들을 정리해놓는 것을 즐기는 머신러닝 엔지니어입니다 :)
+잡다한 지식들을 정리해놓는 것을 즐기는 머신러닝 엔지니어입니다 :)
 
 ## Employment and Career
 - 현재 TmaxData에서 AI 비서 음성인식 및 합성 기술 연구 (병역특례)
