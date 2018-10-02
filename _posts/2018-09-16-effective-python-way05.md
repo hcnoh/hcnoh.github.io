@@ -205,4 +205,3 @@ print(a)
 [1, [1, 2, 3]]
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
