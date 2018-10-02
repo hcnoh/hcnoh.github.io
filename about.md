@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: about
 title: About Me
 tagline: Some description about Hyungcheol
 permalink: /about
