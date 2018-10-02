@@ -109,4 +109,3 @@ print(list(zipped))
 [(1, 4), (2, 5), (3, 6), (0, 7)]
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
