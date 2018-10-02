@@ -95,4 +95,3 @@ hcnoh@svr /home/hcnoh tensorflow
 hcnoh@svr /home/hcnoh
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
