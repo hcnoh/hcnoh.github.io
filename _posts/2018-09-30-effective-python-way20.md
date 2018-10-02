@@ -56,6 +56,7 @@ log("Hi again!")
 - 위와 같이 기본 인수로 `None`을 사용하는 방법은 인수가 `mutable`할 때 특히 중요함
 - `JSON` 데이터로 인코드된 값을 로드하는 예제
     - 데이터 디코딩 실패: 빈 딕셔너리 반환
+
 ```python
 def decode(data, default={}):       # 기본 인수 값은 모듈이 로드될 때 딱 한 번만 평가
     try:
