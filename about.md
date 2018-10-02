@@ -29,4 +29,9 @@ permalink: /about
 ## Projects
 - [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
 
+## Contact
+- email: rhc0624@gmail.com
+- [Facebook](https://www.facebook.com/profile.php?id=100002031927279)
+- [Linkedin](https://www.linkedin.com/in/hyungcheol-noh-a9aa58142/)
+
 [Go to the Home Page]({{ site.url }}{{ site.baseurl }})
