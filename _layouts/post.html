@@ -19,7 +19,7 @@ layout: default
     {{ content }}
   </div>
   
-  <p><a href="https://hcnoh.github.io/blog_temp">Go to the Home Page</a></p>
+  <p><a href={{ site.url }}{{ site.baseurl }}>Go to the Home Page</a></p>
 
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
