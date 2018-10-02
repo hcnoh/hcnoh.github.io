@@ -28,6 +28,8 @@ permalink: /about
 
 ## Projects
 - [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
+- [wavenet-vocoder-tensorflow](https://github.com/hcnoh/wavenet-vocoder-tensorflow)
+- [tacotron-tensorflow](https://github.com/hcnoh/tacotron-tensorflow)
 
 ## Contact
 - email: rhc0624@gmail.com
