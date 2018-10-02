@@ -77,3 +77,35 @@ print("Bar", bar)
 Foo: {"stuff": 5, "meep": 1}        # 둘이 같은 딕셔너리
 Bar: {"stuff": 5, "meep": 1}
 ```
+
+- 키워드 인수의 기본 값을 `None`으로 수정, 함수의 `docstring`에 동작을 문서화
+
+```python
+def decode(data, default=None):
+    """Load JSON data from a string.
+    
+    Args:
+        data: JSON data to decode.
+        default: Value to return if decoding fails.
+            Defaults to an empty dictionary.
+    """
+    if default is None:
+        default = {}
+    try:
+        return json.loads(data)
+    except ValueError:
+        return default
+
+foo = decode("bad data")
+foo["stuff"] = 5
+bar = decode("also bad")
+bar["meep"] = 1
+
+assert foo is not bar               # 둘이 다른 딕셔너리
+print("Foo:", foo)
+print("Bar", bar)
+
+>>>
+Foo: {"stuff": 5}        # 둘이 다른 딕셔너리
+Bar: {"meep": 1}
+```
