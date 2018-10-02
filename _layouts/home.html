@@ -11,6 +11,8 @@ layout: default
   <div>&nbsp;</div>
 
   <ul class="post-list">
+    for(i=0;i<10;i++){
+                       
     <li>
 
       {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
@@ -23,6 +25,7 @@ layout: default
       <span>{{ site.posts[0].excerpt | markdownify | truncatewords: 30 }}</span>
 
     </li>
+  }
   </ul>
 
 </div>
