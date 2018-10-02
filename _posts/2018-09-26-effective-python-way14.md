@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "WAY 1. 사용중인 파이썬의 버전을 알자"
-date: 2018-09-09 20:3:59
+title: "WAY 14. None을 반환하기보다는 예외를 일으키자"
+date: 2018-09-26 17:39:13
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
 - 이펙티브 파이썬 스터디
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
-permalink: /2018-09-09-effective-python-way01
+permalink: /2018-09-26-effective-python-way14
 ---
 
 ## 자연스럽지 않은 None 사용
