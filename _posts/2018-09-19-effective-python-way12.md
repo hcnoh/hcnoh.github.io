@@ -107,4 +107,3 @@ def coprime(a, b):
 ## else 블록을 쓰지 말아야 하는 이유
 - `else` 블록을 사용한 표현의 장점 < 코드를 이해하려는 사람들이 받을 부담감
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
