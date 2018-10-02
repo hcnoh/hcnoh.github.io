@@ -138,4 +138,3 @@ me.print_name("hyungcheol_noh")
 >>> my name is hyungcheol_noh
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
