@@ -11,23 +11,24 @@ layout: default
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
     
-      <!--<li>-->
+      <li>
 
-        <!--{% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}-->
-        <!--<span class="post-meta">{{ post.date | date: date_format }}</span>-->
+        {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
 
         <h2>
           <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        <h2>
+        </h2>
 
-      <!--</li>-->
-      <!--<hr size="5" noshade>-->
+        <hr size="3" noshade>
+
+      </li>
     
     {% endfor %}
     {% assign pages_list = nil %}
     {% assign group = nil %}
   </ul>
-  <hr size="5" noshade>
+  <!--<hr size="5" noshade>-->
 {% endfor %}
 
 <article>
