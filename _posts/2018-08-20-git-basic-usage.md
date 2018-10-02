@@ -219,5 +219,3 @@ remote: Resolving deltas: 100% (66/66), done.
 To https://github.com/hcnoh/wavenet-tensorflow-2.git
  * [new branch]     master -> master
 ```
-
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
