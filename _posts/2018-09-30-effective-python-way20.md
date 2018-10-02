@@ -106,6 +106,6 @@ print("Foo:", foo)
 print("Bar", bar)
 
 >>>
-Foo: {"stuff": 5}        # 둘이 다른 딕셔너리
+Foo: {"stuff": 5}                   # 둘이 다른 딕셔너리
 Bar: {"meep": 1}
 ```
