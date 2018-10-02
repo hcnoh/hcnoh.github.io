@@ -52,3 +52,27 @@ log("Hi again!")
 2014-11-15 21:10:10.4772303: Hi there!      # 타임스탬프 다르게 출력
 2014-11-15 21:10:10.5773395: Hi again!
 ```
+
+- 위와 같이 기본 인수로 `None`을 사용하는 방법은 인수가 `mutable`할 때 특히 중요함
+- `JSON` 데이터로 인코드된 값을 로드하는 예제
+    - 데이터 디코딩 실패: 빈 딕셔너리 반환
+```python
+def decode(data, default={}):       # 기본 인수 값은 모듈이 로드될 때 딱 한 번만 평가
+    try:
+        return json.loads(data)
+    except ValueError:
+        return default
+
+foo = decode("bad data")            # 기본 인수값으로 딕셔너리를 모든 decode 호출에서 공유
+foo["stuff"] = 5
+bar = decode("also bad")            # 기본 인수값으로 딕셔너리를 모든 decode 호출에서 공유
+bar["meep"] = 1
+
+assert foo is bar                   # 둘이 같은 딕셔너리
+print("Foo:", foo)
+print("Bar", bar)
+
+>>>
+Foo: {"stuff": 5, "meep": 1}        # 둘이 같은 딕셔너리
+Bar: {"stuff": 5, "meep": 1}
+```
