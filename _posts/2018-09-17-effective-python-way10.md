@@ -50,4 +50,3 @@ for i, flavor in enumerate(flavor_list, 1)
 4: strawberry
 ```
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
