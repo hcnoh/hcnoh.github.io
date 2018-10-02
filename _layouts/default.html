@@ -49,6 +49,12 @@
     {% if page.layout == 'page' %}
       {% assign page-tagline = page.tagline | escape %}
     {% endif %}
+    {% if page.layout == 'about' %}
+      {% assign page-tagline = page.tagline | escape %}
+    {% endif %}
+    {% if page.layout == 'category' %}
+      {% assign page-tagline = page.tagline | escape %}
+    {% endif %}
     {% if page.layout == 'post' %}
       {% assign page-tagline = page.tagline | escape  %}
     {% endif %}
