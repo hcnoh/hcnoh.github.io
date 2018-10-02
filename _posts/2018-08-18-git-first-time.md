@@ -141,5 +141,5 @@ To https://github.com/hcnoh/wavenet-tensorflow.git
 initial  model.py  README.md
 ```
 
-![image](/assets/img/2018-08-18-git-first-time/11.png)
+![](https://github.com/hcnoh/blog_temp/blob/master/assets/img/2018-08-18-git-first-time/01.png)
 로컬 및 origin이 동기화가 제대로 된 것을 확인할 수 있다.
