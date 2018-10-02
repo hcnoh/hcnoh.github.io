@@ -141,7 +141,6 @@ To https://github.com/hcnoh/wavenet-tensorflow.git
 >>> ls
 initial  model.py  README.md
 ```
-![](https://guides.github.com/activities/hello-world/branching.png)
 
 ![](/assets/img/2018-08-18-git-first-time/01.png)
 
