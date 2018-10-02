@@ -11,7 +11,6 @@ layout: default
   <div>&nbsp;</div>
 
   <ul class="post-list">
-    for(i=0;i<10;i++){
                        
     <li>
 
@@ -25,7 +24,55 @@ layout: default
       <span>{{ site.posts[0].excerpt | markdownify | truncatewords: 30 }}</span>
 
     </li>
-  }
+    <li>
+
+      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+      <span class="post-meta">{{ site.posts[1].date | date: date_format }}</span>
+
+      <h2>
+        <a class="post-link" href="{{ site.posts[1].url | relative_url }}" title="{{ site.posts[1].title }}">{{ site.posts[1].title | escape }}</a>
+      </h2>
+
+      <span>{{ site.posts[1].excerpt | markdownify | truncatewords: 30 }}</span>
+
+    </li>
+    <li>
+
+      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+      <span class="post-meta">{{ site.posts[2].date | date: date_format }}</span>
+
+      <h2>
+        <a class="post-link" href="{{ site.posts[2].url | relative_url }}" title="{{ site.posts[2].title }}">{{ site.posts[2].title | escape }}</a>
+      </h2>
+
+      <span>{{ site.posts[2].excerpt | markdownify | truncatewords: 30 }}</span>
+
+    </li>
+    <li>
+
+      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+      <span class="post-meta">{{ site.posts[3].date | date: date_format }}</span>
+
+      <h2>
+        <a class="post-link" href="{{ site.posts[3].url | relative_url }}" title="{{ site.posts[3].title }}">{{ site.posts[3].title | escape }}</a>
+      </h2>
+
+      <span>{{ site.posts[3].excerpt | markdownify | truncatewords: 30 }}</span>
+
+    </li>
+    <li>
+
+      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+      <span class="post-meta">{{ site.posts[4].date | date: date_format }}</span>
+
+      <h2>
+        <a class="post-link" href="{{ site.posts[4].url | relative_url }}" title="{{ site.posts[4].title }}">{{ site.posts[0].title | escape }}</a>
+      </h2>
+
+      <span>{{ site.posts[4].excerpt | markdownify | truncatewords: 30 }}</span>
+
+    </li>
+
   </ul>
 
 </div>
