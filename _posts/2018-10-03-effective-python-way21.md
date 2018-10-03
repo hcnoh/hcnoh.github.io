@@ -30,8 +30,13 @@ def safe_division(number, divisor, ignore_overflow, ignore_zero_division):
             raise
 
 result = save_division(1, 10**500, True, False)
-print(result)
+print(result)                                     # 오버플로우를 무시하교 0을 반환
+result = safe_divisoion(1, 0, False, True)
+print(result)                                     # 0으로 나누면서 일어나는 오류를 무시하고 무한대를 반환
 
 >>>
 0.0
+inf
 ```
+
+- 위 예제의 단점은 두 불 인수의 위치를 혼동하기 쉽다는 점
