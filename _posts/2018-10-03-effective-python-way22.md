@@ -105,4 +105,22 @@ class WeightedGradebook(object):
         by_subject = self._grades[name]
         grade_list = by_subject.setdefault(subject, [])
         grade_list.append((score, weight))
+    
+    def average_grade(self, name):
+        by_subject = selff._grades[name]
+        score_sum, score_count = 0, 0
+        for subject, scores in by_subject.items():
+            subject_avg, total_weight = 0, 0
+            for score, weight in scores:
+                # ...
+        return score_sum / score_count
+
+book.report_grade("Albert Einstein", "Math", 80, 0.10)
 ```
+
+- `average_grade` 메서드가 매우 복잡해짐
+- 클래스 사용 방법 역시 복잡함
+  - 위치 인수에 있는 숫자들이 무엇을 의미하는지도 명확하지 않음
+> - 이렇게 복잡한 경우에는 딕셔너리와 튜플 대신 클래스의 계층 구조를 사용하는 것이 좋음
+>   - 내장 딕셔너리와 튜플 타입을 사용하면 내부 관리용으로 층층이 타입 추가가 용이
+>   - 하지만 계층이 여러 계층으로 중첩하면(즉, 딕셔너리를 담은 딕셔너리는 쓰지 말아야 함) 코드 가독성 및 유지보수에 문제가 생김
