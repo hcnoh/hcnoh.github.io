@@ -10,8 +10,8 @@ layout: default
   <!--<ul class="post-list">-->
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
-      &emsp;
-      <li>
+
+      <li style="margin-bottom: -0.7rem;">
 
         {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
         
