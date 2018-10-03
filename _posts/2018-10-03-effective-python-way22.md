@@ -72,3 +72,34 @@ book.report_grade("Albert Einstein", "Math", 65)
 book.report_grade("Albert Einstein", "Gym", 90)
 book.report_grade("Albert Einstein", "Gym", 95)
 ```
+
+- `setdefault()` 메서드:
+  - `key`를 입력받아 해당되는 `value` 반환, `key`가 없으면 두 번째 인자를 `default`로 반환
+  - 예제
+  
+```python
+dict = {"Name": "Zara", "Age": 7}
+print("Value: %s" % dict.setdefault("Age", None))
+print("Value: %s" % dict.setdefault("Sex", None))
+
+>>>
+Value: 7
+Value: None
+```
+
+- 각 점수가 차지하는 비중을 매겨서 평균을 구할 수 있는 클래스 예제
+  - 과목(`key`)을 성적(`value`)에 매핑하지 않고, 성적과 비중을 담은 튜플(`score`, `weight`)에 매핑
+
+```python
+class WeightedGradebook(object):
+    def __init__(self):
+        self._grades = {}
+    
+    def add_student(self, name):
+        self._grades[name] = {}
+    
+    def report_grade(self, name, subject, score, weight):
+        by_subject = self._grades[name]
+        grade_list = by_subject.setdefault(subject, [])
+        grade_list.append((score, weight))
+```
