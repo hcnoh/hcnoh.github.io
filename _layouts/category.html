@@ -16,10 +16,10 @@ layout: default
         {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
         <span class="post-meta">{{ post.date | date: date_format }}</span>
 
-        <h2>
-          <!--<a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>-->
-          <href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        </h2>
+        <!--<h2>
+          <!--<a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
+        </h2>-->
+        <a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
 
         <hr size="3" noshade>
 
