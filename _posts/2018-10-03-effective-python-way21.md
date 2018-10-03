@@ -100,3 +100,20 @@ safe_division(1, 10**500, True, False)  # 위치 인수를 사용하는 함수 �
 >>>
 TypeError: save_division() takes 2 positional arguments but 4 were given
 ```
+
+## 파이썬2의 키워드 전용 인수
+- 키워드 전용 인수를 지정하는 명시적인 문법은 없음
+  - `**` 연산자를 사용하여 올바르지 않은 함수 호출을 할 때 `TypeError`를 일으키는 방법을 사용할 수 있음
+
+```python
+# 파이썬2
+def print_args(*args, **kwargs):          # *args: 가변 개수의 위치 인수
+    print "Positional:", args             # **kwargs: 가변 개수의 키워드 인수
+    print "Keyword:", kwargs
+
+print_args(1, 2, foo="bar", stuff="meep")
+
+>>>
+Positional: (1, 2)
+Keyword: {"foo": "bar", "stuff:" "meep"}
+```
