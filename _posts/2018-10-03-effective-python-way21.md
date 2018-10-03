@@ -95,10 +95,19 @@ def safe_division(number, divisor, *, ignore_overflow=False, ignore_zero_divisio
         else:
             raise
 
-safe_division(1, 10**500, True, False)  # 위치 인수를 사용하는 함수 호출은 동작하지 않음
+safe_division(1, 10**500, True, False)          # 위치 인수를 사용하는 함수 호출은 동작하지 않음
 
 >>>
 TypeError: save_division() takes 2 positional arguments but 4 were given
+```
+
+```python
+safe_division(1, 0, ignore_zero_division=True)  # 키워드 인수와 그 기본값은 잘 동작
+
+try:
+    safe_division_c(1, 0)
+except ZeroDivisionError:
+    pass
 ```
 
 ## 파이썬2의 키워드 전용 인수
