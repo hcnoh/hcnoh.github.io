@@ -10,7 +10,7 @@ layout: default
   <!--<ul class="post-list">-->
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
-    
+      &emsp;
       <li>
 
         {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
@@ -19,6 +19,7 @@ layout: default
         <!--<h2>
           <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
         </h2>-->
+        
         <a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
         &emsp;
         <span class="post-meta">{{ post.date | date: date_format }}</span>
