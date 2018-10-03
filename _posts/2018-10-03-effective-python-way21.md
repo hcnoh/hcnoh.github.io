@@ -76,6 +76,27 @@ inf
 save_difision(1, 10***500, True, False)
 ```
 
+## 파이썬3의 키워드 전용 인수
 > - 호출하는 쪽에서 의도를 명확히 드러내도록 강제하는 방법:
 >   - 파이썬3에서의 키워드 전용 인수(`keyord-only argument`)로 정의할 수 있음
-  
+
+```python
+def safe_division(number, divisor, *, ignore_overflow=False, ignore_zero_division=False):
+    try:
+        return number/ divisor
+    except OverflowError:
+        if ignore_overflow:
+            return 0
+        else:
+            raise
+    except ZeroDivisionError:
+        if ignore_zero_division:
+            return float("int")
+        else:
+            raise
+
+safe_division(1, 10**500, True, False)  # 위치 인수를 사용하는 함수 호출은 동작하지 않음
+
+>>>
+TypeError: save_division() takes 2 positional arguments but 4 were given
+```
