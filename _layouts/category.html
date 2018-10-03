@@ -7,7 +7,7 @@ layout: default
     <!--<span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>-->
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | none }}</span>
   </h2>
-  <ul class="post-list">
+  <!--<ul class="post-list">-->
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
     
@@ -30,7 +30,7 @@ layout: default
     {% endfor %}
     {% assign pages_list = nil %}
     {% assign group = nil %}
-  </ul>
+  <!--</ul>-->
   <!--<hr size="5" noshade>-->
 {% endfor %}
 
