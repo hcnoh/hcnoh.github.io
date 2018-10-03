@@ -126,3 +126,26 @@ print_args(1, 2, foo="bar", stuff="meep")
 Positional: (1, 2)
 Keyword: {"foo": "bar", "stuff:" "meep"}
 ```
+
+- 파이썬2에서 키워드 인수를 처리하는 방법
+  - `**kwargs`를 받게 만들어서 키워드 전용 인수를 받게 함
+  - 그 다음 `pop` 메서드로 `kwargs` 딕셔너리에서 원하는 키워드 인수를 꺼냄
+  - 마지막으로 `kwargs`에 더는 남아있는 키워드가 없음을 확인
+
+```python
+# 파이썬2
+def safe_division(number, divisor, **kwargs):
+    ignore_overflow = kwargs.pop("ignore_overflow", False)
+    ignore_zero_div = kwargs.pop("ignore_zero_division", False)
+    if kwargs:
+        raise TypeError("Unexpected **kwargs: %r" % kwargs)
+    # ...
+```
+
+- 이제 키워드 인수를 넘기든 안 넘기든 함수 호출 가능
+
+```python
+safe_division(1, 10)
+safe_division(1, 0, ignore_zero_division=True)
+safe_division(1, 10**500, ignore_overflow=True)
+```
