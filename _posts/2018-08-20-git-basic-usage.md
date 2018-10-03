@@ -10,7 +10,7 @@ author: "Hyungcheol Noh"
 permalink: /2018-08-20-git-basic-usage
 ---
 
-저번 Git 포스팅을 통해서 Git을 맨 처음 사용하였다면 이번에는 Git을 사용하기 위하여 필요한 기초개념 및 사용법들을 정리하여 필요할때 찾아볼 수 있도록 포스팅을 계획하였다. 링크: [이전 포스팅 링크](https://hcnoh.github.io/git-first-time/)
+저번 Git 포스팅을 통해서 Git을 맨 처음 사용하였다면 이번에는 Git을 사용하기 위하여 필요한 기초개념 및 사용법들을 정리하여 필요할때 찾아볼 수 있도록 포스팅을 계획하였다. 링크: [이전 포스팅 링크](https://hcnoh.github.io/2018-08-18-git-first-time)
 
 이번 포스팅은 다음의 링크들을 참고하여 작성하였다:
 - [출처 1](https://rogerdudler.github.io/git-guide/index.ko.html)  
