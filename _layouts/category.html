@@ -7,32 +7,24 @@ layout: default
     <!--<span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>-->
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | none }}</span>
   </h2>
-  <!--<ul class="post-list">-->
-    {% assign pages_list = tag[1] %}
-    {% for post in pages_list reversed %}
+  {% assign pages_list = tag[1] %}
+  {% for post in pages_list reversed %}
 
-      <li>
+    <li style="margin-bottom: -3.0rem;">
 
-        {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
         
+      <a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
+      &emsp;
+      <span class="post-meta">{{ post.date | date: date_format }}</span>
 
-        <!--<h2>
-          <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        </h2>-->
-        
-        <a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
-        &emsp;
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+      <hr size="3" noshade>
 
-        <hr size="3" noshade>
-
-      </li>
+    </li>
     
-    {% endfor %}
-    {% assign pages_list = nil %}
-    {% assign group = nil %}
-  <!--</ul>-->
-  <!--<hr size="5" noshade>-->
+  {% endfor %}
+  {% assign pages_list = nil %}
+  {% assign group = nil %}
 {% endfor %}
 
 <article>
