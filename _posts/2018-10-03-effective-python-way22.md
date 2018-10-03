@@ -10,6 +10,9 @@ author: "Hyungcheol Noh"
 permalink: /2018-10-03-effective-python-way22
 ---
 
+이번 포스팅은 다음의 링크를 참고하여 작성하였다.
+- [출처 1](https://www.tutorialspoint.com/python/dictionary_setdefault.htm)
+
 ## 딕셔너리 타입의 유용함
 - 객체의 수명이 지속되는 동안 동적인 내부 상태를 관리하는 용도로 유용
   - 동적인 상황? 예상지 못한 식별자들을 관리해야 하는 상황
