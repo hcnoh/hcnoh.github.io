@@ -24,7 +24,7 @@ permalink: /about
 ## Skills
 - Languages: Korean, English
 - Programming Languages: Python, Matlab, Latex
-- Tools & Libraries: Tensorflow, Keras, Git
+- Tools & Libraries: TensorFlow, Keras, Git
 
 ## Projects
 - [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
