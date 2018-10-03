@@ -149,3 +149,17 @@ safe_division(1, 10)
 safe_division(1, 0, ignore_zero_division=True)
 safe_division(1, 10**500, ignore_overflow=True)
 ```
+
+```python
+safe_division(1, 0, False, True)      # 키워드 전용 인수를 위치로 넘기면 에러
+
+>>>
+TypeError: safe_division() takes 2 positional arguments but 4 were given
+```
+
+```python
+safe_division(0, 0, unexpected=True)  # 원치 않는 키워드 인수를 넘겨도 에러
+
+>>>
+TypeError: Unexpected **kwargs: {"unexpected": True}
+```
