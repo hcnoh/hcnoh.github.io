@@ -13,7 +13,7 @@ permalink: /2018-10-03-effective-python-way22
 ## 딕셔너리 타입의 유용함
 - 객체의 수명이 지속되는 동안 동적인 내부 상태를 관리하는 용도로 유용
   - 동적인 상황? 예상지 못한 식별자들을 관리해야 하는 상황
-- 이름을 모르는 학생 집단의 성적을 기록하기 위한 예제
+- 이름을 모르는 학생 집단의 성적을 기록하기 위한 클래스 예제
 
 ```python
 class SimpleGradebook(object):
@@ -33,4 +33,9 @@ class SimpleGradebook(object):
 book = SimpleGradebook()
 book.add_student("Isaac Newton")
 book.report_grade("Isaac Newton", 90)
+print(book.average_grade("Isaac Newton"))
+
+>>>
+90.0
 ```
+
