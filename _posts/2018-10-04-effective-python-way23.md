@@ -126,5 +126,15 @@ class BettercountMissing(object):
 
 counter = BetterCountMissing()
 counter()
-assert callable(counter)
+assert callable(counter)                  # callable 메서드는 True 반환
+
+counter = BetterCountMissing()
+result = defaultdict(counter, current)    # __call__이 필요
+for key, amount in increments:
+    result[key] += amount
+assert counter.added == 2
 ```
+
+- `__call__` 메서드는 후크처럼 함수 인수를 사용하기 적합한 위치에 클래스의 인스턴스를 사용할 수 있다는 사실을 드러냄
+- 이 코드를 처음 보는 사람을 클래스의 주요 동작을 책임지는 진입점으로 안내하는 역할도 함
+  - 클래스의 목적이 상태 보존 클로저로 동작하는 것이라는 강력한 힌트를 
