@@ -20,7 +20,7 @@ permalink: /2018-10-04-effective-python-way23
 names = ["Socrates", "Archimedes", "Plato", "Aristotle"]
 names.sort(key=lambda x: len(x))
 print(names)
-global
+nonlocal
 >>>
 ["Plato", "Socrates", "Aristotle", "Archimedes"]
 ```
