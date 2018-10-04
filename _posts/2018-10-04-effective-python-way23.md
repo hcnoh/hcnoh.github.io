@@ -77,4 +77,33 @@ assert count == 2
 
 - 위의 예제에서 `defaultdict`는 `missing` 후크가 상태를 유지한다는 사실은 모름
   - 하지만 `increment_with_report`의 결과는 잘 나옴
-  - 간단한 함수를 인터페이스용으로 사용할 때 얻을 수 있는 
+  - 간단한 함수를 인터페이스용으로 사용할 때 얻을 수 있는 이점
+- 하지만 위의 에제는 상태가 없는 함수의 예제보다 이해하기 어렵다는 단점
+  - 보존할 상태를 캡슐화하는 작은 클래스를 정의하는 방법
+
+```python
+class CountMissing(object):
+    def __init__(self):
+        self.added = 0
+    
+    def missing(self):
+        self.added += 1
+        return 0
+```
+
+- 다른 언어라면 이제 `CountMissing`의 인터페이스를 수용하도록 `defaultdict`를 수정해야 함
+- 하지만 파이썬에서는 일급 함수 덕분에 객체로 `CountMissing.missing` 메서드를 직접 참조하여 후크로 넘길 수 있음
+
+```python
+counter = CountMissing()
+result = defaultdict(counter.missing, current)    # 메서드 직접 참조
+
+for key, amount in increments:
+    result[key] += amount
+assert counter.added == 2
+```
+
+- 위의 예제는 `increment_with_report` 함수를 사용한 방법보다 명확
+- 하지만 여전히 `CountMissing` 클래스 자체만으로는 용도를 이해하기 어려움
+  - `defaultdict`와 연계하여 사용한 예를 보기 전까지는 이해하기 어려움
+  
