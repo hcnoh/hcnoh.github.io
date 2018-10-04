@@ -107,7 +107,24 @@ for key, amount in increments:
 assert counter.added == 2
 ```
 
+## Callable한 클래스 인스턴스를 이용한 후크 예제
 - 위의 예제는 `increment_with_report` 함수를 사용한 방법보다 명확
 - 하지만 여전히 `CountMissing` 클래스 자체만으로는 용도를 이해하기 어려움
   - `defaultdict`와 연계하여 사용한 예를 보기 전까지는 이해하기 어려움
-  
+- `__call__`이라는 특별한 메서드를 정의하여 상황을 명확하게 구현 가능
+  - `__call__`: 객체를 함수처럼 호출할 수 있게 해줌
+  - 내장 함수 `callable`이 이런 인스턴스에 대해서 `True`를 반환하게 해줌
+
+```python
+class BettercountMissing(object):
+    def __init__(self):
+        self.added = 0
+        
+    def __call__(self):
+        self.added += 1
+        return 0
+
+counter = BetterCountMissing()
+counter()
+assert callable(counter)
+```
