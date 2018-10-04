@@ -22,7 +22,7 @@ class InputData(object):          # 서브클래스에서 정의해야 하는 re
     def read(self):
         raise NotImplementedError
 
-clas PathInputData(InputData):    # 디스크에 있는 파일에서 데이터를 읽어오도록 구현한 InputData의 서브클래스
+class PathInputData(InputData):    # 디스크에 있는 파일에서 데이터를 읽어오도록 구현한 InputData의 서브클래스
     def __init__(self, path):
         super().__init__()
         self.path = path
