@@ -199,7 +199,7 @@ class Student(object):
         self._subjects = {}
         
     def subject(self, name):
-        if name i\not in self._subjects:
+        if name not in self._subjects:
             self._subjects[name] = Subject()
         return self._subjects[name]
     
