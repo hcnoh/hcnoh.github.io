@@ -160,3 +160,13 @@ average_grade = total / total_weight
 import collections
 Grade = collections.namedtuple("Grade", ("score", "weight"))
 ```
+
+- `namedtuple`의 특징:
+  - `immutable data class`는 위치 인수나 키워드 인수로 생성 가능
+  - 필드는 이름이 붙은 속성으로 접근 가능:
+    - 나중에 요구 사항이 또 변하면 단순 데이터 컨테이너에 동작을 추가해야 할 때 `namedtuple`에서 직접 작성한 클래스로 쉽게 변경 가능
+- `namedtuple`의 제약:
+  - 기본 인수 값 설정 불가능:
+    - 따라서 속성이 많아지면 다루기 힘들어 짐
+    - 속성을 사용할 때는 클래스를 직접 정의하는 것이 나을 수 있음
+    
