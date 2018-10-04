@@ -10,6 +10,7 @@ author: "Hyungcheol Noh"
 permalink: /2018-10-04-effective-python-way23
 ---
 
+## 후크 기능이란?
 - 파이썬 내장 API의 상당수는 함수를 넘겨서 동작을 자동화하는 기능 존재: 후크(`hook`) 기능
 - `list` 타입의 `sort` 메서드 예시
   - 정렬에 기준이 되는 `key` 인수를 입력 받음
@@ -24,6 +25,7 @@ print(names)
 ["Plato", "Socrates", "Aristotle", "Archimedes"]
 ```
 
+## 파이썬에서의 후크
 - 다른 언어에서 후크는 추상 클래스로 정의할 수 있음
 - 파이썬의 후크:
   - 인수와 반환 값을 잘 정의해놓은 단순히 상태가 없는 함수
@@ -52,6 +54,7 @@ Key added
 After: {"orange": 9, "green": 12, "blue": 20, "red": 5}
 ```
 
+## 상태 보존 클로저를 이용한 후크 예제
 - 기본값 후크를 `defaultdict`에 넘겨서 찾을 수 없는 키의 총 개수를 세기를 원함
   - 상태 보존 클로저를 사용함으로서 구현
   - 상태 보존 클로저를 기본값 후크로 사용하는 헬퍼 함수 구현
@@ -75,6 +78,7 @@ result, count = increment_with_report(current, increments)
 assert count == 2
 ```
 
+## 상태를 캡슐화하는 클래스를 이용한 후크 예제
 - 위의 예제에서 `defaultdict`는 `missing` 후크가 상태를 유지한다는 사실은 모름
   - 하지만 `increment_with_report`의 결과는 잘 나옴
   - 간단한 함수를 인터페이스용으로 사용할 때 얻을 수 있는 이점
