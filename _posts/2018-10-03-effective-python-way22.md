@@ -107,7 +107,7 @@ class WeightedGradebook(object):
         grade_list.append((score, weight))
     
     def average_grade(self, name):
-        by_subject = selff._grades[name]
+        by_subject = self._grades[name]
         score_sum, score_count = 0, 0
         for subject, scores in by_subject.items():
             subject_avg, total_weight = 0, 0
@@ -127,3 +127,15 @@ book.report_grade("Albert Einstein", "Math", 80, 0.10)
 >   - 하지만 계층이 여러 계층으로 중첩되면(즉, 딕셔너리를 담은 딕셔너리는 쓰지 말아야 함) 코드 가독성 및 유지보수에 문제가 생김
 
 ## 클래스 리팩토링
+- 의존 관계에서 가장 아래에 있는 성적부터 고려:
+  - 성적은 변하지 않으니 튜플을 사용하는 것이 더 적절해 보임
+  - 리스트 안에 성적을 기록하기 위해 (`score`, `weight`) 튜플을 사용
+
+```python
+grades = []
+grades.append((95, 0.45))
+# ...
+total = sum(score * weight for score, weight in grades)
+total_weight = sum(weight for _, weight in grades)
+average_grade = total / total_weight
+```
