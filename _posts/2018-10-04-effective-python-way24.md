@@ -13,4 +13,20 @@ permalink: /2018-10-04-effective-python-way24
 ## 다형성
 - 파이썬은 객체/클래스가 다형성을 지원
 - 다형성이란?
-  - 계층 구조에 속한 여러 클래스가 자체의 메서드를 독립적인 버전으로 구현하는 
+  - 계층 구조에 속한 여러 클래스가 자체의 메서드를 독립적인 버전으로 구현하는 방식
+- 맵리듀스(MapReduce) 구현
+  - 입력 데이터를 표현할 공통 클래스 필요
+
+```python
+class InputData(object):          # 서브클래스에서 정의해야 하는 read 메서드가 있는 입력 데이터 클래스
+    def read(self):
+        raise NotImplementedError
+
+clas PathInputData(InputData):    # 디스크에 있는 파일에서 데이터를 읽어오도록 구현한 InputData의 서브클래스
+    def __init__(self, path):
+        super().__init__()
+        self.path = path
+    
+    def read(self):
+        return open(self.path).read()
+```
