@@ -169,4 +169,72 @@ Grade = collections.namedtuple("Grade", ("score", "weight"))
   - 기본 인수 값 설정 불가능:
     - 따라서 속성이 많아지면 다루기 힘들어 짐
     - 속성을 사용할 때는 클래스를 직접 정의하는 것이 나을 수 있음
+  - 인스턴스의 속성 값을 여전히 숫자로 된 인덱스 및 순회 방법으로 접근 가능
+    - 의도와 다르게 외부로 사용되었을 경우에는 수정이 더 어려워 질 수 있음
+    - `namedtuple` 인스턴스를 사용하는 방식을 모두 제어할 수 없다면 클래스를 직접 정의하는 것이 좋음
+
+- `namedtuple`을 이용하여 성적들을 담은 단일 과목을 표현하는 클래스를 작성할 수 있음
+
+```python
+class Subject(object):
+    def __init__(self):
+        self._grades = []
+        
+    def report_grade(self, score, weight):
+        self._grades.append(Grade(score, weight))
     
+    def average_grade(self):
+        total, total_weight = 0, 0
+        for grade in self._grades:
+            total += grade.score * grade.weight
+            total_weight += grade.weight
+        return total / total_weight
+```
+
+- `namedtuple`을 이용하여 한 학생이 공부한 과목들을 표현하는 클래스 작성
+
+```python
+class Student(object):
+    def __init__(self):
+        self._subjects = {}
+        
+    def subject(self, name):
+        if name i\not in self._subjects:
+            self._subjects[name] = Subject()
+        return self._subjects[name]
+    
+    def average_grade(self):
+        total, count = 0, 0
+        for subject in self._subjects.values():
+            total += subject.average_grade()
+            count += 1
+        return total / count
+```
+
+- `namedtuple`을 이용하여 학생의 이름을 키로 사용해 동적으로 모든 학생을 담을 컨테이너 작성
+
+```python
+class Gradebook(object):
+    def __init__(self):
+        self._students = {}
+    
+    def student(self, name):
+        if name not in self._students:
+            self._students[name] = Student()
+        return self._students[name]
+```
+
+- 세 코드를 합치면 이전에 구현한 코드보다 두 배는 길지만 가독성은 훨씬 좋음
+- 또한 이 클래스들을 사용하는 방식도 훨씬 명확하고 확장이 쉬움
+
+```python
+book = Gradebook()
+albert = book.student("Albert Einstein")
+math = albert.subject("Math")
+math.report_grade(80, 0.10)
+# ...
+print(albert.average_grade())
+
+>>>
+81.5
+```
