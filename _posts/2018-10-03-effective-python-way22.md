@@ -139,3 +139,24 @@ total = sum(score * weight for score, weight in grades)
 total_weight = sum(weight for _, weight in grades)
 average_grade = total / total_weight
 ```
+
+- 일반 튜플은 위치에 의존: 수정이 복잡함
+- 튜플에서 세 번째 값을 `_`로 받아서 그냥 무시하도록 하는 예제(관례적으로 사용하지 않는 변수는 `_`을 사용)
+
+```python
+grades = []
+grades.append((95, 0.45, "Great job"))
+# ...
+total = sum(score * weight for score, weight, _ in grades)
+total_weight = sum(weight for _, weight, _ in grades)
+average_grade = total / total_weight
+```
+
+- 튜플을 점점 더 길게 확장하는 방식은 좋지 않음: 다른 방법 고려
+- `collections` 모듈의 `namedtuple` 타입을 활용할 수 있음
+  - `namedtuple`을 사용하면 작은 `immutable data class`를 쉽게 정의 가능
+
+```python
+import collections
+Grade = collections.namedtuple("Grade", ("score", "weight"))
+```
