@@ -70,4 +70,11 @@ def increment_with_report(current, increments):
         result[key] += amount
     
     return result, added_count
+
+result, count = increment_with_report(current, increments)
+assert count == 2
 ```
+
+- 위의 예제에서 `defaultdict`는 `missing` 후크가 상태를 유지한다는 사실은 모름
+  - 하지만 `increment_with_report`의 결과는 잘 나옴
+  - 간단한 함수를 인터페이스용으로 사용할 때 얻을 수 있는 
