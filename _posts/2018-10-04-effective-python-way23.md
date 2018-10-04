@@ -51,3 +51,23 @@ Key added
 Key added
 After: {"orange": 9, "green": 12, "blue": 20, "red": 5}
 ```
+
+- 기본값 후크를 `defaultdict`에 넘겨서 찾을 수 없는 키의 총 개수를 세기를 원함
+  - 상태 보존 클로저를 사용함으로서 구현
+  - 상태 보존 클로저를 기본값 후크로 사용하는 헬퍼 함수 구현
+
+```python
+def increment_with_report(current, increments):
+    added_count = 0
+    
+    def missing():
+        nonlocal added_count    # 상태 보존 클로저
+        added_count += 1
+        return 0
+        
+    result = defaultdict(missing, current)
+    for key, amount in increments:
+        result[key] += amount
+    
+    return result, added_count
+```
