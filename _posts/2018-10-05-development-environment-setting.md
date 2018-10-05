@@ -19,7 +19,9 @@ The program 'python' can be found in the following packages:
  * python-minimal
  * python3
 Try: sudo apt install <selected package>
+```
 
+```bash
 >>> python3 --version
 Python 3.5.2
 ```
@@ -112,6 +114,9 @@ Extracting templates from packages: 100%
 >>> pip --version
 The program 'pip' is currently not installed. You can install it by typing:
 sudo apt install python-pip
+```
+
+```bash
 >>> pip3 --version
 pip 8.1.1 from /usr/lib/python3/dist-packages (python 3.5)
 ```
@@ -137,8 +142,11 @@ Traceback (most recent call last):
   File "/usr/bin/pip3", line 9, in <module>
     from pip import main
 ImportError: cannot import name 'main'
+```
+
+```bash
 >>> pip --version
 pip 18.0 from /home/hcnoh/.local/lib/python3.5/site-packages/pip (python 3.5)
 ```
 
-아마도 업데이트 이후에는 `pip3`를 쓸 필요없이 바로 `pip`을 쓰면 되는 것 같다.
+아마도 업데이트 이후에는 `pip3`를 쓸 필요없이 바로 `pip`을 쓰면 되는 것 같다. 원하는대로 설치가 되었다.
