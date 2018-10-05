@@ -23,3 +23,5 @@ Try: sudo apt install <selected package>
 >>> python3 --version
 Python 3.5.2
 ```
+
+파이썬2는 깔려있지 않지만 파이썬3는 깔려있는 것으로 확인된다. `3.5.2` 버전을 사용할 것이기 때문에 진행하도록 한다.
