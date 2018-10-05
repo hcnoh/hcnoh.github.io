@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "개발 환경 세팅"
+title: "[Ubuntu 16.04] 개발 환경 세팅"
 date: 2018-10-05 18:49:38
-tagline: "Window 10 및 Ubuntu 16.04에서 TensorFlow 개발 환경 세팅 방법 정리"
+tagline: "Ubuntu 16.04에서 TensorFlow 개발을 위한 Tmux 및 zshell 세팅 방법 정리"
 categories:
 - Ubuntu 16.04
 image: /thumbnail-mobile.png
@@ -567,3 +567,8 @@ removed directory 'fonts/Meslo Dotted'
 removed directory 'fonts'
 ```
 
+![](/assets/img/2018-10-05-development-environment-setting/06.png)
+
+설치가 완료되면 글자가 더이상 깨지지않고 잘 나오는 것을 확인할 수 있다.
+
+이렇게 개발 환경 세팅이 완료되었다.
