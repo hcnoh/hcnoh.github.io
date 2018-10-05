@@ -514,4 +514,15 @@ Switched to theme `wook' (current session, and future sessions)
 
 ![](/assets/img/2018-10-05-development-environment-setting/03.png)
 
-이제 기본값으로 `zshell`이 설정되었지만 `tmux`를 실행하면 여전히 `zshell`이 등장하지 않는다.
+이제 기본값으로 `zshell`이 설정되었지만 `tmux`를 실행하면 여전히 `zshell`이 등장하지 않는다. [여기](https://stackoverflow.com/questions/23318284/change-tmux-default-to-zsh)에서 해답을 얻었다. `.tmux.conf` 파일에서 `default shell`에 대한 내용을 추가하는 것이다. 먼저 다음의 명령을 통해 `.tmux.conf` 파일을 실행하자.
+
+```bash
+>>> vi .tmux.conf
+```
+
+파일의 맨 밑에 다음과 같이 추가해주자.
+
+```shell
+# set shell
+set -g default-shell /bin/zsh
+```
