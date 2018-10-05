@@ -137,7 +137,7 @@ You should consider upgrading via the 'pip install --upgrade pip' command.
 뭔가 좀 이상하다. 다시 버전 확인을 해본다.
 
 ```bash
->>> pip3 version
+>>> pip3 --version
 Traceback (most recent call last):
   File "/usr/bin/pip3", line 9, in <module>
     from pip import main
