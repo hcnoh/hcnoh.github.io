@@ -33,3 +33,9 @@ Python 3.5.2
 The program 'pip' is currently not installed. You can install it by typing:
 sudo apt install python-pip
 ```
+
+에러 메시지를 보니 `apt-get`을 통하여 `pip`을 설치할 수 있는 모양이다. `apt-get`을 이용하여 `pip`을 설치해보자. 우리는 파이썬3를 사용하기 때문에 다음과 같은 명령을 사용하였다. 단, `sudo` 권한이 없으면 설치가 불가능할 것이다.
+
+```bash
+>>> sudo apt-get install python3-pip
+```
