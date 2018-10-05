@@ -11,3 +11,12 @@ permalink: /2018-10-05-development-environment-setting
 ---
 
 ## Window Bash 이용
+먼저 파이썬이 설치되어 있는지 확인해 본다.
+
+```bash
+>>> python --version
+The program 'python' can be found in the following packages:
+ * python-minimal
+ * python3
+Try: sudo apt install <selected package>
+```
