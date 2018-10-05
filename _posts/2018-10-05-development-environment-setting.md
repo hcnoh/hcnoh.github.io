@@ -510,4 +510,8 @@ Switched to theme `wook' (current session, and future sessions)
 
 ![](/assets/img/2018-10-05-development-environment-setting/02.png)
 
-`tmux`도 제대로 실행이 되었다. 하지만 기능이 원하는대로 적용이 되지 않은 듯 하다. 다시 `dotfiles update`와 `exec zsh`을 실행해본다.
+`tmux`도 제대로 실행이 되었다. 하지만 기능이 원하는대로 적용이 되지 않은 듯 하다. 다시 `dotfiles update`와 `exec zsh`을 실행한 후에 터미널을 다시 실행해본다.
+
+![](/assets/img/2018-10-05-development-environment-setting/03.png)
+
+이제 기본값으로 `zshell`이 설정되었지만 `tmux`를 실행하면 여전히 `zshell`이 등장하지 않는다.
