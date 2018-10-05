@@ -419,9 +419,21 @@ Setting up libutempter-dev:amd64 (1.1.6-3) ...
 ... (생략)
 ```
 
+그 다음으로 다음의 명령을 수행한다. 그러면 `zshell`이 실행될 것이다.
+
 ```bash
 >>> exec zsh
+... (생략)
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 0), reused 2 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+Checking connectivity... done.
+-- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
 ```
+
+
 
 ```bash
 >>> dotfiles update
