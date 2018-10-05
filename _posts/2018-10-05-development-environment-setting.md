@@ -442,6 +442,32 @@ Checking connectivity... done.
 zsh: correct tmux to tmuxp [nyae]? 
 ```
 
+해결하기 위해서 일단 `dotfiles`를 업데이트해주자.
+
+```bash
+>>> dotfiles update
+...(생략)
+Executing: # Create ~/.gitconfig.secret and user configuration
+
+    [!!!] Please configure git user name and email:
+        git config --file ~/.gitconfig.secret user.name "(YOUR NAME)"
+        git config --file ~/.gitconfig.secret user.email "(YOUR EMAIL)"
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ You have  2 warnings or errors --- check the logs!   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   ~/.tmux/plugins/tpm/bin/install_plugins
+   # Create ~/.gitconfig.secret and user configuration
+
+
+- Please restart shell (e.g. `exec zsh`) if necessary.
+- To install some packages locally (e.g. neovim, tmux), try `dotfiles install`
++ git stash pop
+No stash found.
+[*] dotfiles is up-to-date (71b71e1).
+```
+
 ```bash
 >>> dotfiles update
 ```
