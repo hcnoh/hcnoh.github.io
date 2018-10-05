@@ -469,5 +469,45 @@ No stash found.
 ```
 
 ```bash
->>> dotfiles update
+>>> dotfiles install tmux
+...(생략)
+make  install-exec-hook
+make[2]: Entering directory '/tmp/hyungcheol/tmux/tmux-2.5'
+if test xmdoc = xmdoc; then \
+	sed -e "s|@SYSCONFDIR@|/etc|g" ./tmux.1 \
+		>./tmux.1.mdoc; \
+else \
+	sed -e "s|@SYSCONFDIR@|/etc|g" ./tmux.1| \
+		gawk -f./mdoc2man.awk >./tmux.1.man; \
+fi
+/bin/mkdir -p /home/hyungcheol/.local/share/man/man1
+/usr/bin/install -c -m 644 ./tmux.1.mdoc \
+	/home/hyungcheol/.local/share/man/man1/tmux.1
+make[2]: Leaving directory '/tmp/hyungcheol/tmux/tmux-2.5'
+make[1]: Nothing to be done for 'install-data-am'.
+make[1]: Leaving directory '/tmp/hyungcheol/tmux/tmux-2.5'
+tmux 2.5
+[*] Installation successful. You may need to run `exec zsh` to reflect changes in PATH.
 ```
+
+```bash
+>>> exec zsh
+Initializing zgen plugins ...
+For style globbing-ext, went for fallback style double-quoted-argument
+For style here-string-text, went for fallback style subtle-bg
+For style here-string-var, went for fallback style back-or-dollar-double-quoted-argument
+For style subcommand, went for fallback style reserved-word
+Missing style: single-sq-bracket
+Missing style: double-sq-bracket
+Missing style: double-paren
+Switched to theme `wook' (current session, and future sessions)
+-- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
+```
+
+```bash
+>>> tmux
+```
+
+![](/assets/img/2018-10-05-development-environment-setting/02.png)
+
+`tmux`도 제대로 실행이 되었다.
