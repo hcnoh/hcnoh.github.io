@@ -25,3 +25,11 @@ Python 3.5.2
 ```
 
 파이썬2는 깔려있지 않지만 파이썬3는 깔려있는 것으로 확인된다. `3.5.2` 버전을 사용할 것이기 때문에 진행하도록 한다.
+
+`pip`이 설치되어 있는지 확인해보자. `pip freeze` 명령을 통해서 `pip`으로 관리되고 있는 패키지들의 목록을 확인할 수 있다.
+
+```bash
+>>> pip freeze
+The program 'pip' is currently not installed. You can install it by typing:
+sudo apt install python-pip
+```
