@@ -150,3 +150,68 @@ pip 18.0 from /home/hcnoh/.local/lib/python3.5/site-packages/pip (python 3.5)
 ```
 
 아마도 업데이트 이후에는 `pip3`를 쓸 필요없이 바로 `pip`을 쓰면 되는 것 같다. 원하는대로 설치가 되었다.
+
+## Virtualenv 설치
+`virtualenv` 설치는 생각보다 간단하지는 않았다. 다음의 명령을 먼저 시도해보았다.
+
+```bash
+>>> pip install virtualenv
+Collecting virtualenv
+  Using cached https://files.pythonhosted.org/packages/b6/30/96a02b2287098b23b875bc8c2f58071c35d2efe84f747b64d523721dc2b5/virtualenv-16.0.0-py2.py3-none-any.whl
+Installing collected packages: virtualenv
+Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/virtualenv.py'
+Consider using the `--user` option or check the permissions.
+```
+
+```bash
+>>> sudo pip install virtualenv
+sudo: pip: command not found
+```
+
+둘다 되지 않는다. 이유가 뭘까? [여기](https://www.reddit.com/r/learnpython/comments/8qwui6/could_not_install_packages_due_to_an/)에서 힌트를 얻어서 다음의 명령을 시도하였다.
+
+```bash
+>>> pip install --user virtualenv
+Collecting virtualenv
+  Using cached https://files.pythonhosted.org/packages/b6/30/96a02b2287098b23b875bc8c2f58071c35d2efe84f747b64d523721dc2b5/virtualenv-16.0.0-py2.py3-none-any.whl
+Installing collected packages: virtualenv
+Successfully installed virtualenv-16.0.0
+```
+
+제대로 된 것 같다. `pip freeze`를 통해서 마지막으로 확인해보자.
+
+```bash
+>>> pip freeze
+blinker==1.3
+chardet==2.3.0
+cloud-init==18.3
+command-not-found==0.3
+configobj==5.0.6
+cryptography==1.2.3
+idna==2.0
+Jinja2==2.8
+jsonpatch==1.10
+jsonpointer==1.9
+language-selector==0.1
+MarkupSafe==0.23
+oauthlib==1.0.3
+prettytable==0.7.2
+pyasn1==0.1.9
+pycurl==7.43.0
+pygobject==3.20.0
+PyJWT==1.3.0
+pyserial==3.0.1
+python-apt==1.1.0b1+ubuntu0.16.4.2
+python-debian==0.1.27
+python-systemd==231
+PyYAML==3.11
+requests==2.9.1
+six==1.10.0
+ssh-import-id==5.5
+ufw==0.35
+unattended-upgrades==0.1
+urllib3==1.13.1
+virtualenv==16.0.0
+```
+
+맨 밑에 `virtualenv==16.0.0`이 보인다. 제대로 설치가 되었다.
