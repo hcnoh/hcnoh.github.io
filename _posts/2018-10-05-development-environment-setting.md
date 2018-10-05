@@ -526,3 +526,9 @@ Switched to theme `wook' (current session, and future sessions)
 # set shell
 set -g default-shell /bin/zsh
 ```
+
+![](/assets/img/2018-10-05-development-environment-setting/04.png)
+
+모든 `tmux` 세션을 종료한 후 터미널을 재시작하고 `tmux`를 실행하면 이제 `zshell`로 실행되는 것을 확인할 수 있을 것이다.
+
+
