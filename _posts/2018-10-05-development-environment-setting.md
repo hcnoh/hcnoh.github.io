@@ -310,3 +310,35 @@ Resolving deltas: 100% (3384/3384), done.
 Checking connectivity... done.
 Submodule path 'zsh/zplug': checked out 'cd82438f89f3d17351bc78cdd424558552e3fb3c'
 ```
+
+```bash
+>>> cd ~/.dotfiles && python3 install.py
+...(생략)
+Executing: # Create ~/.gitconfig.secret and user configuration
+
+    [!!!] Please configure git user name and email:
+        git config --file ~/.gitconfig.secret user.name "(YOUR NAME)"
+        git config --file ~/.gitconfig.secret user.email "(YOUR EMAIL)"
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ You have  3 warnings or errors --- check the logs!   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   # Update zgen modules and cache (the init file)
+   # Change default shell to zsh
+   # Create ~/.gitconfig.secret and user configuration
+
+
+- Please restart shell (e.g. `exec zsh`) if necessary.
+- To install some packages locally (e.g. neovim, tmux), try `dotfiles install`
+```
+
+중간에 `sudo` 계정의 패스워드를 입력하라고 한 번 뜨는데 입력해주면 잘 설치가 되는 듯 하다. 다음의 명령을 실행해보자.
+
+```bash
+>>> exec zsh
+```
+
+```bash
+>>> dotfiles update
+```
