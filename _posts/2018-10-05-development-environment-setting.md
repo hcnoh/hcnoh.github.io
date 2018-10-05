@@ -19,4 +19,7 @@ The program 'python' can be found in the following packages:
  * python-minimal
  * python3
 Try: sudo apt install <selected package>
+
+>>> python3 --version
+Python 3.5.2
 ```
