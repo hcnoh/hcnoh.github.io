@@ -290,4 +290,23 @@ Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.32.2-1ubuntu1.5) ...
 Processing triggers for dbus (1.10.6-1ubuntu3.3) ...
 ```
 
-좀 시간이 걸렸으나 무사히 깔린 것 같다.
+좀 시간이 걸렸으나 무사히 깔린 것 같다. 마지막으로 확인해보자.
+
+```bash
+>>> git --version
+git version 2.7.4
+```
+
+## Dotfiles 세팅
+[이 곳](https://github.com/wookayin/dotfiles)의 `dotfiles`를 이용하였다. 다음을 통해서 먼저 `git clone`을 해온다.
+
+```bash
+>>> git clone --recursive https://github.com/wookayin/dotfiles.git ~/.dotfiles
+... (생략)
+remote: Enumerating objects: 5448, done.
+remote: Total 5448 (delta 0), reused 0 (delta 0), pack-reused 5448
+Receiving objects: 100% (5448/5448), 1.09 MiB | 594.00 KiB/s, done.
+Resolving deltas: 100% (3384/3384), done.
+Checking connectivity... done.
+Submodule path 'zsh/zplug': checked out 'cd82438f89f3d17351bc78cdd424558552e3fb3c'
+```
