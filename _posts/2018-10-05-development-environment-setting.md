@@ -275,3 +275,19 @@ virtualenv==16.0.0
 ```
 
 `numpy==1.15.2`가 보인다. 제대로 설치가 되었다.
+
+## Git 설치
+다음의 명령을 시도해본다.
+
+```bash
+>>> sudo apt install git-all
+... (생략)
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+Processing triggers for systemd (229-4ubuntu21.4) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for ufw (0.35-0ubuntu2) ...
+Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.32.2-1ubuntu1.5) ...
+Processing triggers for dbus (1.10.6-1ubuntu3.3) ...
+```
+
+좀 시간이 걸렸으나 무사히 깔린 것 같다.
