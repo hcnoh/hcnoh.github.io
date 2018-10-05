@@ -38,7 +38,7 @@ sudo apt install python-pip
 
 ```bash
 >>> sudo apt-get install python3-pip
-... 생략
+... (생략)
 E: Failed to fetch http://archive.ubuntu.com/ubuntu/pool/main/l/linux/linux-libc-dev_4.4.0-131.157_amd64.deb  404  Not Found [IP: 91.189.88.149 80]
 
 E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
@@ -103,5 +103,42 @@ Get:1 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 binutils amd64 
 Get:2 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-libc-dev amd64 4.4.0-137.163 [850 kB]
 Fetched 3,160 kB in 15s (199 kB/s)
 Extracting templates from packages: 100%
-...생략
+... (생략)
 ```
+
+이번에는 에러가 나지 않는다. 아마 잘 설치가 된 듯 하다. `pip --version` 명령을 통해서 설치가 제대로 되었는지 확인해보자.
+
+```bash
+>>> pip --version
+The program 'pip' is currently not installed. You can install it by typing:
+sudo apt install python-pip
+>>> pip3 --version
+pip 8.1.1 from /usr/lib/python3/dist-packages (python 3.5)
+```
+
+파이썬3이기 때문에 앞으로는 `pip` 명령 대신에 `pip3` 명령을 사용해야 하는 듯 하다. `pip3` 업데이트를 한 번 해준다.
+
+```bash
+>>> pip3 install --upgrade pip
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/5f/25/e52d3f31441505a5f3af41213346e5b6c221c9e086a166f3703d2ddaf940/pip-18.0-py2.py3-none-any.whl (1.3MB)
+    100% |████████████████████████████████| 1.3MB 1.2MB/s
+Installing collected packages: pip
+Successfully installed pip-8.1.1
+You are using pip version 8.1.1, however version 18.0 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+```
+
+뭔가 좀 이상하다. 다시 버전 확인을 해본다.
+
+```bash
+>>> pip3 version
+Traceback (most recent call last):
+  File "/usr/bin/pip3", line 9, in <module>
+    from pip import main
+ImportError: cannot import name 'main'
+>>> pip --version
+pip 18.0 from /home/hcnoh/.local/lib/python3.5/site-packages/pip (python 3.5)
+```
+
+아마도 업데이트 이후에는 `pip3`를 쓸 필요없이 바로 `pip`을 쓰면 되는 것 같다.
