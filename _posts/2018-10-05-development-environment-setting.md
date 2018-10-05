@@ -531,26 +531,39 @@ set -g default-shell /bin/zsh
 
 모든 `tmux` 세션을 종료한 후 터미널을 재시작하고 `tmux`를 실행하면 이제 `zshell`로 실행되는 것을 확인할 수 있을 것이다.
 
-이제 글자가 깨지는 것을 방지하기 위해서 폰트를 설치해준다.
+![](/assets/img/2018-10-05-development-environment-setting/05.png)
+
+이제 글자가 깨지는 것을 방지하기 위해서 폰트를 설치해준다. 다음의 작업을 순서대로 따라하면 된다.
 
 ```bash
->>> sudo apt-get install fonts-powerline
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following NEW packages will be installed:
-  fonts-powerline
-0 upgraded, 1 newly installed, 0 to remove and 637 not upgraded.
-2 not fully installed or removed.
-Need to get 4,572 B of archives.
-After this operation, 21.5 kB of additional disk space will be used.
-Get:1 http://kr.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 fonts-powerline all 2.3-1ubuntu0 [4,572 B]
-Fetched 4,572 B in 0s (18.3 kB/s)           
-Selecting previously unselected package fonts-powerline.
-(Reading database ... 241017 files and directories currently installed.)
-Preparing to unpack .../fonts-powerline_2.3-1ubuntu0_all.deb ...
-Unpacking fonts-powerline (2.3-1ubuntu0) ...
-Processing triggers for fontconfig (2.11.94-0ubuntu1.1) ...
-Setting up runit (2.1.2-3ubuntu1) ...
-... (생략)
+>>> git clone https://github.com/powerline.fonts.git --depth=1
+Cloning into 'fonts'...
+remote: Enumerating objects: 310, done.
+remote: Counting objects: 100% (310/310), done.
+remote: Compressing objects: 100% (236/236), done.
+remote: Total 310 (delta 76), reused 256 (delta 71), pack-reused 0
+Receiving objects: 100% (310/310), 10.34 MiB | 1.64 MiB/s, done.
+Resolving deltas: 100% (76/76), done.
+Checking connectivity... done.
 ```
+
+```bash
+>>> cd fonts
+>>> ./install.sh
+Copying fonts...
+Resetting font cache, this may take a moment...
+Powerline fonts installed to /home/hyungcheol/.local/share/fonts
+```
+```bash
+>>> cd ..
+>>> rm -rf fonts
+... (생략)
+removed 'fonts/Meslo Dotted/Meslo LG L DZ Italic for Powerline.ttf'
+removed 'fonts/Meslo Dotted/Meslo LG S DZ Italic for Powerline.ttf'
+removed 'fonts/Meslo Dotted/Meslo LG S DZ Regular for Powerline.ttf'
+removed 'fonts/Meslo Dotted/fonts.scale'
+removed 'fonts/Meslo Dotted/LICENSE.txt'
+removed directory 'fonts/Meslo Dotted'
+removed directory 'fonts'
+```
+
