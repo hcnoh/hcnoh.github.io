@@ -433,7 +433,9 @@ Checking connectivity... done.
 -- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
 ```
 
+![](/assets/img/2018-10-05-development-environment-setting/01.png)
 
+`zshell`
 
 ```bash
 >>> dotfiles update
