@@ -22,3 +22,10 @@ permalink: /2018-10-05-ubuntu-hostname
 ```bash
 >>> vi /etc/hostname
 ```
+
+## hostname 변경
+- 다음의 명령을 통해 `hostname`을 `new_host_name`으로 변경 가능하고 재부팅하면 적용이 됨
+
+```python
+>>> hostnamectl set-hostname new_host_name
+```
