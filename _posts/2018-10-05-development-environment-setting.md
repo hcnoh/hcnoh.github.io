@@ -435,7 +435,12 @@ Checking connectivity... done.
 
 ![](/assets/img/2018-10-05-development-environment-setting/01.png)
 
-`zshell`
+`zshell`이 제대로 실행이 된 모습이다. `tmux`를 실행해봤으나 실행이 제대로 되지 않는다.
+
+```bash
+>>> tmux
+zsh: correct tmux to tmuxp [nyae]? 
+```
 
 ```bash
 >>> dotfiles update
