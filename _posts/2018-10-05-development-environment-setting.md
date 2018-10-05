@@ -403,7 +403,12 @@ Executing: # Create ~/.gitconfig.secret and user configuration
 - To install some packages locally (e.g. neovim, tmux), try `dotfiles install`
 ```
 
-중간에 `sudo` 계정의 패스워드를 입력하라고 한 번 뜨는데 입력해주면 잘 설치가 되는 듯 하다. 다음의 명령을 실행해보자.
+중간에 `sudo` 계정의 패스워드를 입력하라고 한 번 뜨는데 입력해주면 잘 설치가 되는 듯 하다. 하지만 아직 끝난 것이 아니다. 다음의 명령을 실행해보자.
+
+```bash
+>>> cd ~/.dotfiles/etc
+>>> ./ubuntu-setup.sh install_all
+```
 
 ```bash
 >>> exec zsh
