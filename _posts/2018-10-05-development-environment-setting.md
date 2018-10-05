@@ -215,3 +215,63 @@ virtualenv==16.0.0
 ```
 
 맨 밑에 `virtualenv==16.0.0`이 보인다. 제대로 설치가 되었다.
+
+## numpy 설치
+다음의 명령을 먼저 시도해본다.
+
+```bash
+>>> pip install numpy
+Collecting numpy
+  Downloading https://files.pythonhosted.org/packages/75/22/355e68c80802d6f488223788fbda75c1daab83c3ef609153676c1f17be5f/numpy-1.15.2-cp35-cp35m-manylinux1_x86_64.whl (13.8MB)
+    100% |████████████████████████████████| 13.8MB 1.8MB/s
+Installing collected packages: numpy
+Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: '/usr/local/lib/python3.5/dist-packages/numpy'
+Consider using the `--user` option or check the permissions.
+```
+
+아까랑 같은 에러가 뜬다. 다시 `virtualenv`를 설치했을 때처럼 `--user` 옵션을 걸어준다.
+
+```bash
+>>> pip install --user numpy
+Collecting numpy
+  Using cached https://files.pythonhosted.org/packages/75/22/355e68c80802d6f488223788fbda75c1daab83c3ef609153676c1f17be5f/numpy-1.15.2-cp35-cp35m-manylinux1_x86_64.whl
+Installing collected packages: numpy
+Successfully installed numpy-1.15.2
+```
+
+```bash
+>>> pip freeze
+blinker==1.3
+chardet==2.3.0
+cloud-init==18.3
+command-not-found==0.3
+configobj==5.0.6
+cryptography==1.2.3
+idna==2.0
+Jinja2==2.8
+jsonpatch==1.10
+jsonpointer==1.9
+language-selector==0.1
+MarkupSafe==0.23
+numpy==1.15.2
+oauthlib==1.0.3
+prettytable==0.7.2
+pyasn1==0.1.9
+pycurl==7.43.0
+pygobject==3.20.0
+PyJWT==1.3.0
+pyserial==3.0.1
+python-apt==1.1.0b1+ubuntu0.16.4.2
+python-debian==0.1.27
+python-systemd==231
+PyYAML==3.11
+requests==2.9.1
+six==1.10.0
+ssh-import-id==5.5
+ufw==0.35
+unattended-upgrades==0.1
+urllib3==1.13.1
+virtualenv==16.0.0
+```
+
+`numpy==1.15.2`가 보인다. 제대로 설치가 되었다.
