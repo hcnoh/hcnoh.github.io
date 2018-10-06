@@ -47,11 +47,19 @@ Consider using the `--user` option or check the permissions.
 파이썬3의 가상환경을 만드는 명령은 다음과 같다.
 
 ```bash
->>> virtualenv -p python3 tensorflow
+>>> virtualenv -p python3 env_name
 ```
 
 문제는 이러한 방식으로 만들게 되면 이 가상환경들은 아무 패키지도 포함하지 않은 빈 가상환경이 된다. 아마 기본 파이썬에 설치되어있는 `site-packages`를 모두 가져오고 싶을 수 있다. 다음의 명령을 통해서 `site-packages`를 모두 포함한 파이썬3의 가상환경을 만들 수 있다.
 
 ```bash
 >>> virtualenv --system-site-packages -p python3 env_name
+```
+
+또 한가지 주의할 점은 위의 명령들을 통해서 가상환경을 만들게 되면 가상환경을 담은 디렉토리가 현재 내가 터미널 상에서 위치하고 있는 디렉토리 내부에 만들어진다는 점이다. 즉, 현재 내가 `/home/hyungcheol`에 위치해 있었다면 가상환경이 담긴 디렉토리의 경로는 `/home/hyungcheol/env_name`이 될 것이다.
+
+어쨌든 내가 만든 가상환경이 담긴 디렉토리의 경로만 정확하게 알고 있다면 다음의 명령을 통해서 가상환경을 실행할 수 있다.
+
+```bash
+>>> source /home/hyungcheol/env_name/bin/activate
 ```
