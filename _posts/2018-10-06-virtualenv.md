@@ -58,6 +58,7 @@ Consider using the `--user` option or check the permissions.
 
 또 한가지 주의할 점은 위의 명령들을 통해서 가상환경을 만들게 되면 가상환경을 담은 디렉토리가 현재 내가 터미널 상에서 위치하고 있는 디렉토리 내부에 만들어진다는 점이다. 즉, 현재 내가 `/home/hyungcheol`에 위치해 있었다면 가상환경이 담긴 디렉토리의 경로는 `/home/hyungcheol/env_name`이 될 것이다.
 
+## 가상환경 실행/종료
 어쨌든 내가 만든 가상환경이 담긴 디렉토리의 경로만 정확하게 알고 있다면 다음의 명령을 통해서 가상환경을 실행할 수 있다.
 
 ```bash
@@ -67,3 +68,13 @@ Consider using the `--user` option or check the permissions.
 ![](/assets/img/2018-10-06-virtualenv/01.png)
 
 터미널 상에서 확인할 수 있듯이 가상환경 `env_name`이 제대로 실행되었다.
+
+가상환경 종료는 간단하게 `deactivate` 명령을 통해서 수행할 수 있다.
+
+```
+>>> deactivate
+```
+
+![](/assets/img/2018-10-06-virtualenv/02.png)
+
+종료가 된 것을 확인할 수 있다.
