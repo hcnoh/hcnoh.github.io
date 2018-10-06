@@ -184,7 +184,8 @@ class GenericWorker(object):
     @classmethod
     def create_workers(cls, input_class, config):
         workers = []
-        for input_data in input_class.generate_inputs(config)
-            workers.append(cls(input_data))
+        for input_data in input_class.generate_inputs(config)   # 클래스 다형성
+            workers.append(cls(input_data))                     # create_workers가 __init__ 메서드를 직접 사용하지 않고 GenericWorker를 생성 => cls를 호출함으로써 가능
         return workers
 ```
+
