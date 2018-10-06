@@ -101,3 +101,29 @@ def execute(workers):
     return first.result
 ```
 
+- 마지막으로 단계별로 실행하려고 `mapreduce` 함수에서 모든 조각을 연결
+
+```python
+def mapreduce(data_dir):
+    inputs = generate_inputs(data_dir)
+    workers = create_workers(inputs)
+    return execute(workers)
+```
+
+- 위의 과정들을 테스트하기 위한 코드
+
+```python
+from tempfile import TemporaryDirectory
+
+def write_test_files(tmpdir):
+    # ...
+
+with TemporaryDirectory() as tmpdir
+    write_test_files(tmpdir)
+    result = mapreduce(tmpdir)
+
+print("There are", result, "lines")
+
+>>>
+There are 4360 lines
+```
