@@ -11,7 +11,7 @@ permalink: /2018-10-06-virtualenv
 ---
 
 ## Virtualenv란?
-한 컴퓨터에서 여러 프로젝트를 관리하다보면 프로젝트마다 패키지를 따로 관리할 필요성을 느끼게 된다. 파이썬은 이러한 가상 환경 기능을 수행할 수 있는 패키지를 따로 제공하는데 이것이 `virtualenv`이다.
+한 컴퓨터에서 여러 프로젝트를 관리하다보면 프로젝트마다 패키지를 따로 관리할 필요성을 느끼게 된다. 파이썬에서는 가상환경 기능을 통해서 프로젝트마다 따로 패키지를 관리할 수 있다. 파이썬에서 제공하고 있는 가상환경 관리 패키지가 바로 `virtualenv`이다.
 
 ## Virtualenv 설치
 `virtualenv`는 다음의 명령을 통해서 설치가 가능하다.
@@ -33,4 +33,25 @@ Consider using the `--user` option or check the permissions.
 
 ```bash
 >>> pip install --user virtualenv
+```
+
+## Virtualenv를 이용하여 가상환경 만들기
+파이썬2의 가상환경을 만드는 명령은 다음과 같다.
+
+```bash
+>>> virtualenv env_name
+```
+
+위의 명령을 통해서 `env_name`이라는 이름의 파이썬2 가상환경을 만들 수 있다.
+
+파이썬3의 가상환경을 만드는 명령은 다음과 같다.
+
+```bash
+>>> virtualenv -p python3 tensorflow
+```
+
+문제는 이러한 방식으로 만들게 되면 이 가상환경들은 아무 패키지도 포함하지 않은 빈 가상환경이 된다. 아마 기본 파이썬에 설치되어있는 `site-packages`를 모두 가져오고 싶을 수 있다. 다음의 명령을 통해서 `site-packages`를 모두 포함한 파이썬3의 가상환경을 만들 수 있다.
+
+```bash
+>>> virtualenv --system-site-packages -p python3 env_name
 ```
