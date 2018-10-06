@@ -63,3 +63,7 @@ Consider using the `--user` option or check the permissions.
 ```bash
 >>> source /home/hyungcheol/env_name/bin/activate
 ```
+
+![](/assets/img/2018-10-06-virtualenv/01.png)
+
+터미널 상에서 확인할 수 있듯이 가상환경 `env_name`이 제대로 실행되었다.
