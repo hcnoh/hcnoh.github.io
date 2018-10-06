@@ -65,4 +65,23 @@ class LineCountWorker(Worker):
 - 이런 식으로 구현을 한다면 잘 동작할 듯 해도 문제점이 발생
   - 적절히 인터페이스를 설계하고 추상화한 클래스
   - 하지만 객체를 생성한 후에나 유용
-  - 무엇으로 객체를 만들고 맵리듀스를 
+  - 무엇으로 객체를 만들고 맵리듀스를 조율?
+
+- 헬퍼 함수로 직접 객체를 만들고 연결하는 방법
+  - 디렉토리의 내용을 나열하고 그 안에 있는 각 파일로 `PathInputData` 인스턴스를 생성하는 코드
+
+```python
+def generate_inputs(data_dir):
+    for name in os.listdir(data_dir):
+        yield PathInputData(os.path.join(data_dir, name))
+```
+
+- `generate_inputs` 함수에서 반환한 `InputData` 인스턴스를 사용하는 `LineCountWorker` 인스턴스 생성
+
+```python
+def create_workers(input_list):
+    workers = []
+    for input_data in input_list:
+        workers.append(LineCountWorker(input_data))
+    return workers
+```
