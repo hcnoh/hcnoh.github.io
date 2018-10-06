@@ -152,6 +152,19 @@ class GenericInputData(object):
         raise NotImplementedError
         
     @classmethod
-    def generate_inputs(cls, config):
-        raise NotImplementedError
+    def generate_inputs(cls, config):     # GenericInputData를 구현하는 서브클래스가 해석할 설정 파라미터들을 담은 딕셔너리를 입력 받음
+        raise NotImplementedError         # 입력 파일들을 얻어올 디렉터리를 config로 알아냄
+```
+
+```python
+class PathInputData(GenericInputData):
+  # ...
+  def read(self):
+      return open(self.path).read()
+  
+  @classmethod
+  def generate_inputs(cls, config):
+      data_dir = config["data_dir"]
+      for name in os.listdir(data_dir):
+          yield cls(os.path.join(data_dir, name))
 ```
