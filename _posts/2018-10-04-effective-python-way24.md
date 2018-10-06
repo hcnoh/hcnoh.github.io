@@ -187,5 +187,23 @@ class GenericWorker(object):
         for input_data in input_class.generate_inputs(config)   # 클래스 다형성
             workers.append(cls(input_data))                     # create_workers가 __init__ 메서드를 직접 사용하지 않고 GenericWorker를 생성 => cls를 호출함으로써 가능
         return workers
+
+class LineCountWorker(GenericWorker):
+    # ...
 ```
+
+- `mapreduce` 함수를 완전히 범용적으로 재작성
+
+```python
+def mapreduce(worker_class, input_class, config):               # 범용적으로 동작하기 위해 이전보다 더 많은 파라미터를 요구함
+    workers = worker_class.create_workers(input_class, config)
+    return execute(workers)
+
+with TemporaryDirectory() as tmpdir:
+    write_test_files(tmpdir)
+    config = {"data_dir": tmpdir}
+    result = mapreduce(LineCountWorker, PathInputData, config)
+```
+
+- 이제 `GenericInputData`와 `GenericWorker`의 다른 서브클래스를 원하는 대로 만들어도 글루 코드(glue code)를 작성할 필요가 없음
 
