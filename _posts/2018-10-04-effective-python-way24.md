@@ -85,3 +85,19 @@ def create_workers(input_list):
         workers.append(LineCountWorker(input_data))
     return workers
 ```
+
+- 그 다음, `map` 단계를 여러 스레드로 나눠서 이 `Worker` 인스턴스들을 실행
+- 그런 다음 `reduce`를 반복적으로 호출하여 결과를 최종값 하나로 합침
+
+```python
+def execute(workers):
+    threads = [Thread(target=w.map) for w in workers]
+    for thread in threads: thread.start()
+    for thread in threads: thread.join()
+    
+    first, rest = workers[0], workers[1:]
+    for worker in rest:
+        first.reduce(worker)
+    return first.result
+```
+
