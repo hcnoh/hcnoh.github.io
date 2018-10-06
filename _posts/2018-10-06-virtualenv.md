@@ -71,7 +71,7 @@ Consider using the `--user` option or check the permissions.
 
 가상환경 종료는 간단하게 `deactivate` 명령을 통해서 수행할 수 있다.
 
-```
+```bash
 >>> deactivate
 ```
 
