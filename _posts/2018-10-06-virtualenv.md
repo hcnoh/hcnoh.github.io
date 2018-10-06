@@ -78,3 +78,29 @@ Consider using the `--user` option or check the permissions.
 ![](/assets/img/2018-10-06-virtualenv/02.png)
 
 종료가 된 것을 확인할 수 있다.
+
+## pip 패키지 관리
+`virtualenv`를 통해서 현재 가상환경에 설치된 `pip` 패키지들을 따로 관리할 수 있다. 먼저 현재 가상환경에 설치된 `pip` 패키지들의 보기위해서는 현재 가상환경이 실행되고 있는 상태에서 다음의 명령을 수행하면 된다.
+
+```bash
+>>> pip freeze
+apturl==0.5.2
+beautifulsoup4==4.4.1
+blinker==1.3
+Brlapi==0.6.4
+... (생략)
+```
+
+이 목록을 따로 뽑아내서 다른 가상환경으로 옮길수도 있다. 일단 목록을 뽑아내서 `txt` 파일로 저장하는 방법은 다음과 같다.
+
+```bash
+>>> pip freeze > requirements.txt
+```
+
+이렇게하면 현재 가상환경의 `pip` 패키지 목록이 `requirements.txt`로 저장이 된다.
+
+또한 현재의 가상환경에 방금 뽑아낸 패키지 목록을 일괄적으로 설치하는 방법은 다음과 같다.
+
+```bash
+>>> pip install -r requirements.txt
+```
