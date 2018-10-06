@@ -137,3 +137,21 @@ There are 4360 lines
 - 즉, 객체를 생성하는 범용적인 방법이 필요
   - 다른 언어에서는 생성자 다형성을 이용할 수 있음
     - `InputData` 서브클래스에서 특별한 생성자를 제공 => 맵리듀스를 조율하는 헬퍼 메서드가 범용적으로 사용할 수 있게함
+    - 파이썬은 단일 생성자 메서드만을 제공하기 때문에 이 방법을 사용할 수 없음
+
+## 클래스 메서드 다형성
+- 위의 문제들을 해결하기 위한 가장 좋은 방법은 `@classmethod` 다형성을 이용하는 것
+- `@classmethod` 다형성?
+  - `InputData.read`에 사용한 인스턴스 메서드 다형성과 거의 같음
+  - 하지만 `@classmethod` 다형성은 생성된 객체만이 아니라 전체 클래스에 적용됨
+- 맵리듀스 예제에 적용
+
+```python
+class GenericInputData(object):
+    def read(self):
+        raise NotImplementedError
+        
+    @classmethod
+    def generate_inputs(cls, config):
+        raise NotImplementedError
+```
