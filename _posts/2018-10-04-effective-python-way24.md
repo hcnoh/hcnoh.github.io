@@ -166,5 +166,25 @@ class PathInputData(GenericInputData):
   def generate_inputs(cls, config):
       data_dir = config["data_dir"]
       for name in os.listdir(data_dir):
-          yield cls(os.path.join(data_dir, name))
+          yield cls(os.path.join(data_dir, name))   # PathInputData 클래스 인스턴스 생성
+```
+
+- 마찬가지의 방법으로 `GenericWorker` 클래스에 `create_workers` 헬퍼를 작성
+
+
+```python
+class GenericWorker(object):
+    # ...
+    def map(self):
+        raise NotImplementedError
+    
+    def reduce(self, other):
+        raise NotImplementedError
+    
+    @classmethod
+    def create_workers(cls, input_class, config):
+        workers = []
+        for input_data in input_class.generate_inputs(config)
+            workers.append(cls(input_data))
+        return workers
 ```
