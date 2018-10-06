@@ -30,3 +30,39 @@ class PathInputData(InputData):   # 디스크에 있는 파일에서 데이터�
     def read(self):
         return open(self.path).read()
 ```
+
+- 위의 예제에서 `PathInputData`같은 `InputData`의 서브클래스는 몇 개든 있을 수 있음
+  - 따라서 각 서브클래스에서는 처리할 바이트 데이터를 반환하는 표준 인터페이스인 `read`를 구현할 것임
+  
+- 맵리듀스 작업 클래스
+
+```python
+class Worker(object):
+    def __init__(self, input_data)
+        self.input_data = input_data
+        self.result = None
+    
+    def map(self):
+        raise NotImplementedError
+        
+    def reduce(self, other):
+        raise NotImplementedError
+
+```
+
+- 다음은 적용하려는 특정 맵리듀스 함수를 구현한 `Worker`의 구체 서브클래스
+
+```python
+class LineCountWorker(Worker):
+    def map(self):
+        data = self.input_data.read()
+        self.result = data.count("\n")
+    
+    def reduce(self, other):
+        self.result += other.result
+```
+
+- 이런 식으로 구현을 한다면 잘 동작할 듯 해도 문제점이 발생
+  - 적절히 인터페이스를 설계하고 추상화한 클래스
+  - 하지만 객체를 생성한 후에나 유용
+  - 무엇으로 객체를 만들고 맵리듀스를 
