@@ -104,3 +104,5 @@ Brlapi==0.6.4
 ```bash
 >>> pip install -r requirements.txt
 ```
+
+이렇게 해주면 `requirements.txt`에 정리된 패키지 목록이 일괄적으로 현재의 가상환경에 설치가 된다. 이러한 방식을 통해서 가상환경의 `pip` 패키지들을 손쉽게 관리할 수 있다.
