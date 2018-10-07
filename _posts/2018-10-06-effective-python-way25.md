@@ -131,7 +131,7 @@ class PlusTwoCorrect(MyBaseClass):
         super(PlusTwoCorrect, self).__init__(value)
         self.value += 2
 
-class GoodWay(timesFiveCorrect, PlusTwoCorrect):
+class GoodWay(TimesFiveCorrect, PlusTwoCorrect):
     def __init__(self, value):
         super(GoodWay, self).__init__(value)
 
@@ -140,4 +140,21 @@ print "Should be 5 * (5 + 2) = 35 and is", foo.value
 
 >>>
 Should be 5 * (5 + 2) = 35 and is 35
+```
+
+- 이 순서는 뒤에서 시작함
+- 순서를 바꾸는 방법은? 없음
+    - `MRO`가 정의하는 순서와 일치
+- `MRO` 순서는 `mro`라는 클래스 메서드로 확인 가능
+
+```python
+from pprint import pprint
+pprint(GoodWay.mro())
+
+>>>
+[<class "__main__.GoodWay">,
+<class "__main__.TimesFiveCorrect">,
+<class "__main__.PlusTwoCorrect">,
+<class "__main__.MyBaseClass">,
+<class "object">]
 ```
