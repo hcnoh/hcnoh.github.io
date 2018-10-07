@@ -107,3 +107,37 @@ Should be (5 * 5) + 2 = 27 but is 7
 
 - 이런 문제가 발생하는 이유:
     - 두 번째 부모 클래스의 생성자 `PlusTwo.__init__`를 호출하는 코드 => `MyBaseClass.__init__`가 두 번째 호출될 때 `self.value`를 다시 5로 리셋
+
+## 파이썬2의 해결 방법
+- 파이썬 2.2에서는 이 문제를 해결하기 위해서:
+    - `super`라는 내장 함수를 추가
+    - 메서드 해석 순서(`MRO, Method Resolution Order`)를 정의
+        - `MRO`는 어떤 슈퍼클래스부터 초기화하는지를 정함(예를 들면 깊이 우선, 왼쪽에서 오른쪽으로)
+        - 또한 다이아몬드 계층 구조에 있는 공통 슈퍼클래스를 단 한 번만 실행하게 해줌
+
+```python
+# 파이썬2
+class MyBaseClass(object):
+    def __init__(self, value):
+        self.value = value
+        
+class TimesFiveCorrect(MyBaseClass):
+    def __init__(self, value):
+        super(TimesFiveCorrect, self).__init__(value)
+        self.value *= 5
+
+class PlusTwoCorrect(MyBaseClass):
+    def __init__(self, value):
+        super(PlusTwoCorrect, self).__init__(value)
+        self.value += 2
+
+class GoodWay(timesFiveCorrect, PlusTwoCorrect):
+    def __init__(self, value):
+        supper(GoodWay, self).__init__(value)
+
+foo = GoodWay(5)
+print "Should be 5 * (5 + 2) = 35 and is", foo.value
+
+>>>
+Should be 5 * (5 + 2) = 35 and is 35
+```
