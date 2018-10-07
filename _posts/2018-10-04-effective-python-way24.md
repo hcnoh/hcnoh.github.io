@@ -130,9 +130,9 @@ print("There are", result, "lines")
 There are 4360 lines
 ```
 
-- 위의 과정에는 문제가 몇 가지 있음
-  - `mapreduce` 함수가 전혀 범용적이지 않음
-    - 다른 `InputData`나 `Worker` 서브클래스를 작성한다면 `generate_inputs`, `create_workers`, `mapreduce` 함수를 알맞게 다시 작성해야 함
+>- 위의 과정에는 문제가 몇 가지 있음
+>  - `mapreduce` 함수가 전혀 범용적이지 않음
+>    - 다른 `InputData`나 `Worker` 서브클래스를 작성한다면 `generate_inputs`, `create_workers`, `mapreduce` 함수를 알맞게 다시 작성해야 함
 
 - 즉, 객체를 생성하는 범용적인 방법이 필요
   - 다른 언어에서는 생성자 다형성을 이용할 수 있음
@@ -140,7 +140,7 @@ There are 4360 lines
     - 파이썬은 단일 생성자 메서드만을 제공하기 때문에 이 방법을 사용할 수 없음
 
 ## 클래스 메서드 다형성
-- 위의 문제들을 해결하기 위한 가장 좋은 방법은 `@classmethod` 다형성을 이용하는 것
+>- 위의 문제들을 해결하기 위한 가장 좋은 방법은 `@classmethod` 다형성을 이용하는 것
 - `@classmethod` 다형성?
   - `InputData.read`에 사용한 인스턴스 메서드 다형성과 거의 같음
   - 하지만 `@classmethod` 다형성은 생성된 객체만이 아니라 전체 클래스에 적용됨
