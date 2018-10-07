@@ -106,4 +106,4 @@ Should be (5 * 5) + 2 = 27 but is 7
 ```
 
 - 이런 문제가 발생하는 이유:
-    - 두 번 부모 클래스의 생성자 `PlusTwo.__init__`를 호출하는 코드 => `MyBaseClass.__init__`가 두 번째 호출될 때 `self.value`를 다시 5로 리셋
+    - 두 번째 부모 클래스의 생성자 `PlusTwo.__init__`를 호출하는 코드 => `MyBaseClass.__init__`가 두 번째 호출될 때 `self.value`를 다시 5로 리셋
