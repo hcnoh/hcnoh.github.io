@@ -164,3 +164,8 @@ pprint(GoodWay.mro())
     2. 이 생성자는 `TimesFivecorrect.__init__`를 호출
     3. 이는 `PlusTwoCorrect.__init__`를 호출
     4. 이는 다시 `MyBaseClass.__init__`를 호출
+
+- 호출이 다이아몬드의 꼭대기에 도달하면, 모든 초기화 메서드는 실제 `__init__` 함수가 호출된 순서의 역순으로 실행됨
+    1. `MyBaseClass.__init__`는 5라는 값을 `value`에 할당
+    2. `PlusTwoCorrect.__init__`는 2를 더해서 `value`가 7이 됨
+    3. `TimesFivecorrect.__init__`는 그 값을 5와 곱하여 `value`는 35가 됨
