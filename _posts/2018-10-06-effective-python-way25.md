@@ -169,3 +169,25 @@ pprint(GoodWay.mro())
     1. `MyBaseClass.__init__`는 5라는 값을 `value`에 할당
     2. `PlusTwoCorrect.__init__`는 2를 더해서 `value`가 7이 됨
     3. `TimesFivecorrect.__init__`는 그 값을 5와 곱하여 `value`는 35가 됨
+
+- `super`에는 두 가지 문제가 존재:
+    - 문법이 장황:
+        - 현재 정의하는 클래스, `self` 객체, 메서드 이름(보통 `__init__`)과 모든 인수를 설정해줘야 함
+    - `super`를 호출하면서 현재 클래스의 이름을 지정해야 함
+        - 클래스의 이름을 변경(클래스 계층 구조를 개선할 때 아주 흔히 하는 조치임)하면 `super`를 호출하는 모든 코드를 수정해야 함
+        
+## 파이썬3의 해결 방법
+- 파이썬3에서는 `super`를 인수 없이 호출하면 `__class__`와 `self`를 인수로 넘겨서 호출한 것으로 처리하여 이 문제를 해결
+- 어쨌든 파이썬3에서는 항상 `super`를 사용해야 함: 명확하고 간결하며 항상 제대로 동작하기 때문
+
+```python
+class Explicit(MyBaseClass):
+    def __init__(self, value):
+        super(__class__, self).__init__(value * 2)
+
+class Implicit(MyBaseClass):
+    def __init__(self, value):
+        super().__init__(value * 2)
+
+assert Explicit(10).value == Implicit(10).value
+```
