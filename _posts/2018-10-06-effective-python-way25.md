@@ -10,6 +10,7 @@ author: "Hyungcheol Noh"
 permalink: /2018-10-06-effective-python-way25
 ---
 
+## 부모 클래스의 생성자 호출 문제
 - 기존에는 자식 클래스에서 부모 클래스의 `__init__` 메서드를 직접 호출하는 방법으로 부모 클래스를 초기화
 
 ```python
@@ -51,9 +52,10 @@ First ordering is (5 * 2) + 5 = 15
 ```
 
 - 다음은 같은 부모 클래스들을 다른 순서로 정의한 것
+    - 이 클래스의 동작은 부모 클래스를 정의한 순서와 일치하지 않음
 
 ```python
-class AnotherWay(MyBaseClass, PlusFive, TimesTwo):
+class AnotherWay(MyBaseClass, PlusFive, TimesTwo):  # 부모 클래스들을 다른 순서로 정의
     def __init__(self, value):
         MyBaseClass.__init__(self, value)
         TimesTwo.__init__(self)
@@ -65,3 +67,6 @@ print("Second ordering still is", bar.value)
 >>>
 Second ordering still is 15
 ```
+
+## 다이아몬드 상속에서의 문제
+- 다이아몬드 상속(diamond inheritance)은 서브클래스가 게층 구조에서 같은 슈퍼클래스를 둔 서로 다른 두 클래스에서 상속받을 때 발생
