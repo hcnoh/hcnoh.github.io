@@ -69,4 +69,38 @@ Second ordering still is 15
 ```
 
 ## 다이아몬드 상속에서의 문제
-- 다이아몬드 상속(diamond inheritance)은 서브클래스가 게층 구조에서 같은 슈퍼클래스를 둔 서로 다른 두 클래스에서 상속받을 때 발생
+- 다이아몬드 상속(diamond inheritance):
+    - 서브클래스가 게층 구조에서 같은 슈퍼클래스를 둔 서로 다른 두 클래스에서 상속받을 때 발생
+    - 공통 슈퍼클래스의 `__init__` 메서드를 여러 번 실행하게 함 => 예상치 못한 동작을 일으킴
+- 문제 예시: `MyBaseClass`에서 상속받는 자식 클래스 두 개
+
+```python
+class MyBaseClass(object):
+    def __init__(self, value):
+        self.value = value
+
+class TimesFive(MyBaseClass):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        self.value *= 5
+
+class PlusTwo(MyBaseClass):
+    def __init__(self, value):
+        MyBaseClass.__init__(self, value)
+        self.value += 2
+```
+
+- 다음으로 이 두 클래스 모두에서 상속받는 자식 클래스를 정의: MyBaseClass를 다이아몬드의 꼭대기로 만듦
+
+```python
+class ThisWay(TimesFive, PlusTwo):
+    def __init__(self, value):
+        TimesFive.__init__(self, value)
+        PlusTwo.__init__(self, value)
+
+foo = ThisWay(5)
+print("Should be (5 * 5) + 2 = 27 but is", foo.value)
+
+>>>
+Should be (5 * 5) + 2 = 27 but is 7
+```
