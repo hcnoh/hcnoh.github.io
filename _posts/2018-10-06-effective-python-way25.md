@@ -158,3 +158,9 @@ pprint(GoodWay.mro())
 <class '__main__.MyBaseClass'>,
 <class 'object'>]
 ```
+
+- 호출 순서
+    1. `GoodWay(5)`를 호출하면
+    2. 이 생성자는 `TimesFivecorrect.__init__`를 호출
+    3. 이는 `PlusTwoCorrect.__init__`를 호출
+    4. 이는 다시 `MyBaseClass.__init__`를 호출
