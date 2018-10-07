@@ -133,7 +133,7 @@ class PlusTwoCorrect(MyBaseClass):
 
 class GoodWay(timesFiveCorrect, PlusTwoCorrect):
     def __init__(self, value):
-        supper(GoodWay, self).__init__(value)
+        super(GoodWay, self).__init__(value)
 
 foo = GoodWay(5)
 print "Should be 5 * (5 + 2) = 35 and is", foo.value
