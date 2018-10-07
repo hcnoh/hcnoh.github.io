@@ -38,7 +38,7 @@ class PlusFive(object):
         self.value += 5
 
 class OneWay(MyBaseClass, TimesTwo, PlusFive):      # 이 클래스의 인스턴스를 생성하면 부모 클래스의 순서와 일치하는 결과가 생성
-    def__init__(self, value):
+    def __init__(self, value):
         MyBaseClass.__init__(self, value)
         TimesTwo.__init__(self)
         PlusFive.__init__(self)
