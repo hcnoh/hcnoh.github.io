@@ -5,6 +5,9 @@ date: 2018-08-18 14:13:35
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
 - Git
+tags:
+- git
+- linux
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-08-18-git-first-time
