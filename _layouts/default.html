@@ -55,6 +55,9 @@
     {% if page.layout == 'category' %}
       {% assign page-tagline = page.tagline | escape %}
     {% endif %}
+    {% if page.layout == 'tags' %}
+      {% assign page-tagline = page.tagline | escape %}
+    {% endif %}
     {% if page.layout == 'post' %}
       {% assign page-tagline = page.tagline | escape  %}
     {% endif %}
