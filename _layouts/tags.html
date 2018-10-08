@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+{% for tag in site.categories %}
+  <h2>
+    <!--<span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>-->
+    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | none }}</span>
+  </h2>
+  {% assign pages_list = tag[1] %}
+  {% for post in pages_list reversed %}
+
+    <li>
+
+      {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+        
+      <a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title | escape }}</a>
+      &emsp;
+      <span class="post-meta">{{ post.date | date: date_format }}</span>
+
+      <hr size="3" noshade>
+
+    </li>
+    
+  {% endfor %}
+  {% assign pages_list = nil %}
+  {% assign group = nil %}
+{% endfor %}
+
+<article>
+
+  <div>
+    {{ content }}
+    <p><a href={{ site.url }}{{ site.baseurl }}>Go to the Home Page</a></p>
+  </div>
+  
+</article>
