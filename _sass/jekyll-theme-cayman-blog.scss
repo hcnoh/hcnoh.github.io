@@ -449,7 +449,7 @@ a {
   }
   &:hover {
     text-decoration: none;
-    background: $theme-color;
+    background: $section-headings-color;
     color: $white;
   }
   @include transition(all .1s ease-in-out);
