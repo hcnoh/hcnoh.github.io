@@ -139,3 +139,18 @@ class JsonMixin(object):
 - `JsonMixin` 클래스가 어떻게 인스턴스 메서드와 클래스 메서드를 둘 다 정의하는지 주목:
   - 클래스에 `to_dict` 메서드가 있고
   - 해당 클래스의 `__init__` 메서드에서 키워드 인수를 받음
+- 이 믹스인을 이용하면 짧은 반복 코드로 `JSON`으로 직렬화하고 `JSON`에서 역직렬화하는 유틸리티 클래스의 계층 구조를 간단하게 생성할 수 있음
+  - 데이터센터 토폴로지를 구성하는 부분들을 표현하는 데이터 클래스의 계층 예제
+
+```python
+class DatacenterRack(ToDictMixin, JsonMixin):
+    def __init__(self, switch=None, machines=None):
+        self.switch = Switch(**switch)
+        self.machines = [Machine(**kwargs) for kwargs in machines]
+
+class Switch(ToDictMixin, JsonMixin):
+    # ...
+
+class Machine(ToDictMixin, JsonMixin):
+    # ...
+```
