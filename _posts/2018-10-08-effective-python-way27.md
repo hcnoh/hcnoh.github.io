@@ -130,3 +130,82 @@ assert foo.get_value() == 5
 ```
 
 - 나중에 클래스의 계층이 변경되면 `MyIntegerSubclass` 같은 클래스는 비공개 참조가 더는 유효하지 않게 되어 제대로 동작하지 않음
+  - `MyIntegerSubclass` 클래스의 직계 부모인 `MyClass`에 `MyBaseClass`라는 또다른 부모 클래스를 추가
+
+```python
+class MyBaseClass(object):
+    def __init__(self, value):
+        self.__value = value    # __value가 속한 곳이 새로운 부모클래스로 변경
+    # ...
+    
+class MyClass(MyBaseClass):
+    # ...
+
+class MyIntegerSubclass(MyClass):
+    def get_value(self):
+        return int(self._MyClass__value)
+
+foo = MyIntegerSubclass(5)
+foo.get_value()                 # 더 이상 동작하지 않음
+
+>>>
+AttributeError: "MyIntegerSubclass" object has no attribute "_MyClass_value"
+```
+
+- 일반적으로 보호 속성을 사용하여 서브클래스가 더 많은 일을 할 수 있게 하는 편이 나음
+  - 각각의 보호 필드를 문서화 => 서브클래스에서 내부 API 중 어느 것을 쓸 수 있고 어느 것을 그대로 둬야 하는지 설명
+
+```python
+class MyClass(object):
+    def __init__(self, value):
+        # 사용자가 객체에 전달한 값을 저장한다.
+        # 문자열로 강제할 수 있는 값이어야 하며,
+        # 객체에 할당하고 나면 불변으로 취급해야 한다.
+        self._value = value
+
+```
+
+- 비공개 속성을 사용할지 진지하게 고민할 시점: 서브클래스와 이름이 충돌할 염려
+
+```python
+class ApiClass(object):
+    def __init__(self):
+        self._value = 5
+    
+    def get(self):
+        return self._value
+        
+class Child(ApiClass):
+    def __init__(self):
+        super().__init__()
+        self._value = "hello"   # 자식 클래스가 부모 클래스에서 이미 정의한 속성을 정의할 때 충돌 발생
+
+a = Child()
+print(a.get(), "and", a._value, "should be different")
+
+>>>
+hello and hello should be different
+```
+
+- 이런 충돌은 속성 이름이 `value`처럼 아주 일반적일 때 일어날 확률이 높음:
+  - 부모 클래스에서 비공개 속성을 사용하여 자식 클래스와 속성 이름이 겹치지 않도록 함
+
+```python
+class ApiClass(object):
+    def __init__(self):
+        self.__value = 5
+    
+    def get(self):
+        return self.__value
+
+class Child(ApiClass):
+    def __init__(self):
+        super().__init__()
+        self._value = "hello"   # OK
+
+a = child()
+print(a.get(), "and", a._value, "are different")
+
+>>>
+5 and hello are different
+```
