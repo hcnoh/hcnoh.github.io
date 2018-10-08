@@ -14,3 +14,14 @@ permalink: /2018-10-08-effective-python-way27
 - 클래스 속성의 가시성(`visibility`):
   - 공개(`public`)
   - 비공개(`private`)
+
+```python
+class MyObject(object):
+    def __init__(self):
+        self.public_field = 5
+        self.__private_field = 10
+    
+    def get_private_field(self):
+        return self.__private_field
+```
+
