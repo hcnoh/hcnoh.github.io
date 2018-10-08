@@ -449,7 +449,7 @@ a {
   }
   &:hover {
     text-decoration: none;
-    background: $body-link-color;
+    background: rgba($section-headings-color, 0.3);
     color: $body-link-color;
   }
 }
