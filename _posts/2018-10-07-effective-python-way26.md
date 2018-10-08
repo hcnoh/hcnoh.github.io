@@ -30,7 +30,7 @@ permalink: /2018-10-07-effective-python-way26
   - 이 기능을 모든 클래스에서 사용할 수 있게 범용으로 작성하기를 원함
 
 ```python
-class ToDictMixin(object):
+class ToDictMixin(object):          # 딕셔너리로 변환하는 기능을 포함하는 믹스인
     def to_dict(self):
         return self._traverse_dict(self.__dict__)
     
@@ -56,14 +56,14 @@ class ToDictMixin(object):
 - 다음은 바이너리 트리(`binary tree`)를 딕셔너리로 표현하려고 믹스인을 사용하는 예제 클래스
 
 ```python
-class BinaryTree(ToDictMixin):
+class BinaryTree(ToDictMixin):      # 믹스인을 상속받아서 믹스인이 제공하는 추가적인 메서드를 사용할 수 있음
     def __init__(self, value, left=None, right=None):
         self.value = value
         self.left = left
         self.right = right
 
 tree = BinaryTree(10, left=BinaryTree(7, right=BinaryTree(9)), right=BinaryTree(13, left=BinaryTree(11)))
-print(tree.to_dict())
+print(tree.to_dict())               # 믹스인이 제공하는 추가적인 메서드 사용
 
 >>>
 {"left": {"left": None, "right": {"left": None, "right": None, "value": 9}, "value": 7}, "right": {"left": {"left": None, "right": None, "value": 11}, "right": None, "value": 13}, "value": 10}
