@@ -76,3 +76,19 @@ AttributeError: "MyChildObject" object has no attribute "_MyChildObject__private
 - 비공개 속성은 간단하게 속성 이름을 변환하는 방식으로 구현
   1. 파이썬 컴파일러(`이 표현이 맞는지?`)가 `MyChildObject.get_private_field` 같은 메서드에서 비공개 속성에 접근하는 코드를 발견
   2. 코드를 변경: `__private_field` => `_MyChildObject__private_field`
+- 즉, 위의 예제에서는 `__private_field`의 실제 이름은 `_MyParent)bject__private_field`가 됨
+- 따라서 자식 클래스에서 부모의 비공개 속성에 접근하는 동작은 단순히 변환된 속성 이름이 일치하지 않아서 실패
+- 아래와 같은 방식을 사용하면 어떤 클래스의 비공개 속성이든 쉽게 접근 가능
+
+```python
+assert baz._MyParentObject__private_field == 71
+```
+
+- 객체의 속성 딕셔너리를 들여다보면 실제로 비공개 속성이 변환 후의 이름으로 저장되어 있음을 확인 가능
+
+```python
+print(baz.__dict__)
+
+>>>
+{"_MyparentObject__private_field": 71}
+```
