@@ -24,7 +24,9 @@ layout: default
     {{ content }}
   </div>
   
-  <p><a href="{{ site.baseurl }}{{ site.category }}#{{ page.category[0] | slugify }}">Go to the Category</a></p>
+  {% for tag in page.category %}
+    <p><a href="{{ site.baseurl }}{{ site.category }}#{{ page.category[0] | slugify }}">Go to the Category</a></p>
+  {% endfor %}
 
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
