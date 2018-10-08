@@ -135,3 +135,7 @@ class JsonMixin(object):
     def to_json(self):
         return json.dumps(self.to_dict())
 ```
+
+- `JsonMixin` 클래스가 어떻게 인스턴스 메서드와 클래스 메서드를 둘 다 정의하는지 주목:
+  - 클래스에 `to_dict` 메서드가 있고
+  - 해당 클래스의 `__init__` 메서드에서 키워드 인수를 받음
