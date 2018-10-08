@@ -87,11 +87,16 @@ class BinaryTreeWithParent(BinaryTree):
   - `_traverse` 메서드를 오버라이드해서 부모를 탐색하지 않고 부모의 숫자 값만 꺼내오게 만든 예제
 
 ```python
-def _traverse(self, key, value):
-    if (isinstance(value, BinaryTreeWithParent) and key == "parent"):
-        return value.value      # 순환 방지
-    else:
-        return super()._traverse(key, value)
+class BinaryTreeWithParent(BinaryTree):
+    def __init__(self, value, left=None, right=None, parent=None):
+        super().__init__(value, left=left, right=right)
+        self.parent = parent
+        
+    def _traverse(self, key, value):
+        if (isinstance(value, BinaryTreeWithParent) and key == "parent"):
+            return value.value      # 순환 방지
+        else:
+            return super()._traverse(key, value)
 
 root = BinaryTreeWithParent(10)
 root.left = BinaryTreeWithParent(7, parent=root)
