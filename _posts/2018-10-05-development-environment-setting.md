@@ -5,6 +5,12 @@ date: 2018-10-05 18:49:38
 tagline: "Ubuntu 16.04에서 TensorFlow 개발을 위한 Tmux 및 zshell 세팅 방법 정리"
 categories:
 - Ubuntu 16.04
+tags:
+- linux
+- tensorflow
+- tmux
+- zshell
+- vim
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-10-05-development-environment-setting
