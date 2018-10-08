@@ -440,11 +440,11 @@ a {
   margin-right: .5rem;
   border-radius: 4px;
   color: $section-headings-color;
-  font-family: $font-sans;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 90%;
   &:before {
     content: "\f02b";
-    font-family: $font-font-awesome;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-right: .5em;
   }
   &:hover {
