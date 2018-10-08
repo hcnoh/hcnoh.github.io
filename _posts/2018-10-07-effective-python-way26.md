@@ -81,3 +81,15 @@ class BinaryTreeWithParent(BinaryTree):
         super().__init__(value, left=left, right=right)
         self.parent = parent
 ```
+
+- 해결책?
+  - `BinaryTreeWithParent` 클래스에서 `ToDictMixin._traverse` 메서드를 오버라이드해서 믹스인이 순환에 빠지지 않도록 필요한 값만 처리하게 하는 것
+  - `_traverse` 메서드를 오버라이드해서 부모를 탐색하지 않고 부모의 숫자 값만 꺼내오게 만든 예제
+
+```python
+def _traverse(self, key, value):
+    if (isinstance(value, BinaryTreeWithParent) and key == "parent"):
+        return value.value      # 순환 방지
+    else:
+        return super()._traverse(key, value)
+```
