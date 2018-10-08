@@ -22,7 +22,7 @@ layout: default
     {% endfor %}
     {% endif %}
     {{ content }}
-    {% for tag in page.category %}
+    {% for tag in page.categories %}
       <p><a href="{{ site.baseurl }}{{ site.category_page }}#{{ tag | slugify }}">Go to the Category</a></p>
     {% endfor %}
   </div>
