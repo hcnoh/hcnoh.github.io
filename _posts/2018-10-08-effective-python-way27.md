@@ -92,3 +92,25 @@ print(baz.__dict__)
 >>>
 {"_MyparentObject__private_field": 71}
 ```
+
+- 파이썬에서 비공개 속성용 문법이 가시성을 엄격하게 강제하지 않는 이유?
+  - 파이썬에서 자주 인용되는 좌우명: "우리 모두 성인이라는 사실에 동의합니다"
+    - 개방으로 얻는 장점이 폐쇄로 얻는 단점보다 크다는 믿음 반영
+
+## 비공개 속성의 효용성
+- 파이썬에서는 특정 기능들("WAY 32. 지연 속성에는 `__getattr__`, `__getattribute__`, `__setattr__`을 사용하자" 참고)이 있으면 어ㅗㄴ제든 객체의 내부를 조작할 수 있음
+  - 비공개 속성에 접근하는 것을 막는 것이 무슨 가치가 있음?
+- 무분별하게 객체의 내부에 접근하는 위험을 최소화하기 위해 스타일 가이드에 정의된 명명 관례를 따름
+  - `_protected_field` 처럼 앞에 밑줄 한 개를 붙인 필드는 보호(`protected`) 필드로 취급 => 신중히 다뤄야 함을 의미
+- 하지만 파이썬을 처음 접하는 많은 프로그래머가 서브클래스나 외부에서 접근하면 안 되는 내부 API를 비공개 필드로 나타냄
+
+```python
+class MyClass(object):
+    def __init__(self, value):
+        self.__value = value
+    
+    def get_value(self):
+        return str(self.__value)
+
+foo = MyClass(5)
+```
