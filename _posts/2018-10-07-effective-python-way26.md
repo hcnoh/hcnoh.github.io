@@ -120,3 +120,18 @@ print(my_tree.to_dict())      # 무한 루프를 돌지 않음
 >>>
 {"name": "foobar", "tree_with_parent": {"left": None, "parent": 7, "right": None, "value": 9}}
 ```
+
+- 믹스인 조합도 가능
+  - 어떤 클래스에도 동작하는 범용 `JSON` 직렬화를 제공하는 믹스인이 필요
+  - 이 믹스인은 클래스에 `to_dict` 메서드(`ToDictMixin` 클래스에서 제공할 수도 있고 그렇지 않을 수도 있음)가 있다고 가정하고 만들면 됨
+  
+```python
+class JsonMixin(object):
+    @classmethod
+    def from_json(cls, data):
+        kwargs = json.loads(data)
+        return cls(**kwargs)
+    
+    def to_json(self):
+        return json.dumps(self.to_dict())
+```
