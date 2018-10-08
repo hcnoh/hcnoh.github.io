@@ -68,3 +68,16 @@ print(tree.to_dict())               # 믹스인이 제공하는 추가적인 메
 >>>
 {"left": {"left": None, "right": {"left": None, "right": None, "value": 9}, "value": 7}, "right": {"left": {"left": None, "right": None, "value": 11}, "right": None, "value": 13}, "value": 10}
 ```
+
+## 믹스인의 장점
+- 범용 기능을 교체할 수 있게 만듦
+  - 필요할 때 동작을 오버라이드 할 수 있음
+- 부모 노드에 대한 참조를 저장하는 `BinaryTree`의 서브클래스
+  - 이 순환 참조(`circular reference`)는 `ToDictMixin.to_dict`의 기본 구현이 무한 루프에 빠지게 만듦
+  
+```python
+class BinaryTreeWithParent(BinaryTree):
+    def __init__(self, value, left=None, right=None, parent=None):
+        super().__init__(value, left=left, right=right)
+        self.parent = parent
+```
