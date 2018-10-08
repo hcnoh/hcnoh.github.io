@@ -113,4 +113,18 @@ class MyClass(object):
         return str(self.__value)
 
 foo = MyClass(5)
+assert foo.get_value() == "5"
+```
+
+- 위의 방식은 잘못됨:
+  - 누군가 클래스에 새 동작을 추가하거나 기존 메서드의 결함을 해결하기 위하여 서브클래스를 만들 것임
+  - 비공개 속성을 선택하면 서브클래스의 오버라이드(`override`)와 확장(`extension`)을 다루기 어렵고 불안정
+  
+```python
+class MyIntegerSubclass(MyClass):
+    def get_value(self):
+        return int(self._MyClass__value)
+
+foo = MyIntegerSubclass(5)
+assert foo.get_value() == 5
 ```
