@@ -22,11 +22,10 @@ layout: default
     {% endfor %}
     {% endif %}
     {{ content }}
+    {% for tag in page.category %}
+      <p><a href={{ site.baseurl }}{{ site.category_page }}#{{ tag | slugify }}>Go to the Category</a></p>
+    {% endfor %}
   </div>
-  
-  {% for tag in page.category %}
-    <p><a href={{ site.baseurl }}{{ site.category_page }}#{{ tag | slugify }}>Go to the Category</a></p>
-  {% endfor %}
 
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
