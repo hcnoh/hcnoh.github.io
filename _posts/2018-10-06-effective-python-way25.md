@@ -90,7 +90,7 @@ class PlusTwo(MyBaseClass):
         self.value += 2
 ```
 
-- 다음으로 이 두 클래스 모두에서 상속받는 자식 클래스를 정의: MyBaseClass를 다이아몬드의 꼭대기로 만듦
+- 다음으로 이 두 클래스 모두에서 상속받는 자식 클래스를 정의: `MyBaseClass`를 다이아몬드의 꼭대기로 만듦
 
 ```python
 class ThisWay(TimesFive, PlusTwo):
