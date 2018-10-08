@@ -52,3 +52,19 @@ class ToDictMixin(object):
         else:
             return value
 ```
+
+- 다음은 바이너리 트리(`binary tree`)를 딕셔너리로 표현하려고 믹스인을 사용하는 예제 클래스
+
+```python
+class BinaryTree(ToDictMixin):
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+tree = BinaryTree(10, left=BinaryTree(7, right=BinaryTree(9)), right=BinaryTree(13, left=BinaryTree(11)))
+print(tree.to_dict())
+
+>>>
+{"left": {"left": None, "right": {"left": None, "right": None, "value": 9}, "value": 7}, "right": {"left": {"left": None, "right": None, "value": 11}, "right": None, "value": 13}, "value": 10}
+```
