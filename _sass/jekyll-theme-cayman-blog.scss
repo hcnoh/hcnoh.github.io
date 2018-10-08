@@ -450,7 +450,7 @@ a {
   &:hover {
     text-decoration: none;
     background: $section-headings-color;
-    color: $white;
+    color: $body-link-color;
   }
   @include transition(all .1s ease-in-out);
 }
