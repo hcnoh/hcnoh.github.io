@@ -5,6 +5,8 @@ date: 2018-10-05 17:43:12
 tagline: "Ubuntu 16.04에서 hostname 확인 및 변경하는 방법 정리"
 categories:
 - Ubuntu 16.04
+tags:
+- linux
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-10-05-ubuntu-hostname
