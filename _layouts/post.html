@@ -16,6 +16,9 @@ layout: default
   </header> -->
 
   <div itemprop="articleBody">
+    {% for tag in site.tags %}
+      <a class="post-tag">#{{ tag[0] }}</a>
+    {% endfor %}
     {{ content }}
   </div>
   
