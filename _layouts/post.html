@@ -24,7 +24,7 @@ layout: default
     {{ content }}
   </div>
   
-  <p><a href=https://hcnoh.github.io/category>Go to the Category</a></p>
+  <p><a href={{ site.baseurl }}{{ site.category }}#{{ page.category[0] | slugify }}>Go to the Category</a></p>
 
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
