@@ -123,8 +123,10 @@ assert foo.get_value() == "5"
 ```python
 class MyIntegerSubclass(MyClass):
     def get_value(self):
-        return int(self._MyClass__value)
+        return int(self._MyClass__value)    # 꼭 필요하다면 여전히 비공개 필드에 접근 가능
 
 foo = MyIntegerSubclass(5)
 assert foo.get_value() == 5
 ```
+
+- 나중에 클래스의 계층이 변경되면 `MyIntegerSubclass` 같은 클래스는 비공개 참조가 더는 유효하지 않게 되어 제대로 동작하지 않음
