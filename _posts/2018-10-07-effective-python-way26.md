@@ -153,4 +153,20 @@ class Switch(ToDictMixin, JsonMixin):
 
 class Machine(ToDictMixin, JsonMixin):
     # ...
+
+# 데이터가 직렬화와 역직렬화를 통해 원래 상태가 되는지 검증
+serialized = """{
+    "switch": {"ports": 5, "speed": 1e9},
+    "machines": [
+        {"cores": 8, "ram": 32e9, "disk": 5e12},
+        {"cores": 4, "ram": 16e9, "disk": 1e12},
+        {"cores": 2, "ram": 4e9, "disk": 500e9}
+    ]
+}"""
+
+deserialized = DatacenterRack.from_json(serialized)
+roundtrip = deserialized.to_json()
+assert json.loads(serialized) == json.loads(roundtrip)
 ```
+
+
