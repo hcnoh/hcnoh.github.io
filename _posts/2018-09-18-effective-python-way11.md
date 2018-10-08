@@ -5,6 +5,8 @@ date: 2018-09-18 18:48:37
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
 - 이펙티브 파이썬 스터디
+tags:
+- python
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-09-18-effective-python-way11
