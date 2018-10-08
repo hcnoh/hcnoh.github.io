@@ -5,6 +5,10 @@ date: 2018-09-17 1:28:2
 tagline: "Virtualenv를 이용하여 TensorFlow 설치하는 방법 정리"
 categories:
 - TensorFlow
+tags:
+- tensorflow
+- virtualenv
+- linux
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-09-17-tensorflow-installation
