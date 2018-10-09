@@ -145,3 +145,13 @@ class FixedResistance(Resistor):
             raise AttributeError("Can't set attribute")
         self._ohms = ohms
 ```
+
+- 이 객체를 생성하고 나서 프로퍼티에 할당하려고 하면 예외가 발생
+
+```python
+r4 = FixedResistance(1e3)
+r4.ohms = 2e3
+
+>>>
+AttributeError: Can't set attribute
+```
