@@ -158,7 +158,7 @@ Tree has 7 nodes
   - `list`나 `tuple` 같은 시퀀스 타입에서 기대할 `count`와 `index` 메서드가 빠졌음
   - 즉, 커스텀 컨테이너 타입을 정의하는 일은 보기보다 어려움
   
-## collections.abc 모듈을 이요하여 커스텀 컨테이너 정의
+## collections.abc 모듈을 이용하여 커스텀 컨테이너 정의
 - `collections.abc` 모듈?
   - 각 컨테이너 타입에 필요한 일반적인 메서드를 모두 제공하는 추상 기반 클래스들을 정의
   - 이 추상 기반 클래스들에서 상속받아 서브클래스를 만들다가 깜빡 잊고 필수 메서드를 구현하지 않으면, 모듈이 뭔가 잘못되었다고 알려줌
@@ -174,3 +174,21 @@ foo = BadType()
 >>>
 TypeError: Can't instantiate abstract class BadType with abstract methods __getitem__, __len__
 ```
+
+```python
+class BetterNode(SequenceNode, Sequence):
+    pass
+    
+tree = BetterNode(
+    # ...
+)
+
+print("Index of 7 is", tree.index(7))
+print("Count of 10 is", tree.count(10))
+
+>>>
+Index of 7 is 3
+Index of 10 is 1
+```
+
+- `Set`과 `MutableMapping`처럼 파이썬의 관례에 맞춰 구현해야 하는 특별한 메서드가 많은 더 복잡한 타입을 정의할 때 이런 추상 기반 클래스를 사용하는 이점은 더욱 커짐
