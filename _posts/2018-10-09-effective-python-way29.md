@@ -76,8 +76,17 @@ class VoltageResistance(Resistor):
     def voltage(self):
         return self._voltage
         
-    @voltage.setter
+    @voltage.setter                     # voltage에 맞게 current 프로퍼티를 업데이트하게끔 setter 메서드 설정
     def voltage(self, voltage):
         self._voltage = voltage
         self.current = self._voltage / self.ohms
+
+r2 = VoltageResistance(1e3)
+print("Before: %5r amps" % r2.current)
+r2.voltage = 10                         # voltage에 할당 => setter 메서드 실행
+print("After: %5r amps" % r2.current)
+
+>>>
+Before: 0 amps
+After: 0.001 amps
 ```
