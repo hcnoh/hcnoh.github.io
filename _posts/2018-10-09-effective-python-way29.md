@@ -47,6 +47,7 @@ r0.set_ohms(r0.get_ohms() + 5e3)
 - 기능을 캡슐화하고 사용법을 검증하고 경계를 정의하기 쉽게 해줌
 >- 이런 요소는 클래스가 시간이 지나면서 발전하더라도 호출하는 쪽 코드를 절대 망가뜨리지 않도록 설계할 때 중요한 목표가 됨
 
+## property 메서드
 - 파이썬에서는 명시적인 게터/세터를 구현할 일이 거의 없음
     - 대신 항상 간단한 공개 속성부터 구현하기 시작해야 함
 
@@ -155,3 +156,36 @@ r4.ohms = 2e3
 >>>
 AttributeError: Can't set attribute
 ```
+
+- `@propert` 메서드의 단점
+    - 속성에 대응하는 메서드를 서브클래스에서만 공유할 수 있다는 점:
+        - 서로 관련이 없는 클래스는 같은 구현을 공유하지 못함
+    - 하지만 파이썬은 재사용 가능한 프로퍼티 로직을 비롯해 다른 많은 쓰임새를 가능하게 하는 디스크립터(`descriptor`)도 지원
+
+- 마지막으로 `@property` 메서드로 세터와 게터를 구현할 떄 예상과 다르게 동작하지 않게 해야 함
+    - 예를 들면 게터 프로퍼티 메서드에 다른 속성을 설정하지 말아야 함
+
+```python
+class MysteriousResistor(Resistor):
+    @property
+    def ohms(self):
+        self.voltage = self._ohms * self.current    # self._ohms를 제외한 다른 속성을 설정 => 이상 동작 발생
+        return self._ohms
+    #...
+
+r7 = MysteriousResistor(10)
+r7.current = 0.01
+print("Before: %5r" % r7.voltage)
+r7.ohms
+print("After: %5r" % r7.voltage)
+
+>>>
+Before: 0
+After: 0.1
+```
+
+- 최선의 정책
+    - `@property.setter` 메서드에서만 관련 객체의 상태를 수정하는 것
+    - 호출하는 쪽이 객체에서 일어날 것이라고 예측하지 못할 만한 다른 부작용은 모두 피해야 함
+        - 사용자는 다른 파이썬 객체가 그럿듯이 클래스의 속성이 빠르고 쉬울 것이라고 기대할 것임
+        - 복잡하고 느린 작업은 일반 메서드로 하는 것이 좋음
