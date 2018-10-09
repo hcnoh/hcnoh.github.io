@@ -5,6 +5,7 @@ layout: default
 {% for tag in site.tags %}
   <a href="#{{ tag[0] | slugify }}" class="post-tag">#{{ tag[0] }}</a>
 {% endfor %}
+<hr size="3" noshade>
 
 {% for tag in site.tags %}
   <h2>
