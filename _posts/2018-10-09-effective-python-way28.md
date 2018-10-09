@@ -175,6 +175,9 @@ foo = BadType()
 TypeError: Can't instantiate abstract class BadType with abstract methods __getitem__, __len__
 ```
 
+- 앞에서 다룬 `SequenceNode`처럼 추상 기반 클래스가 요구하는 메서드를 모두 구현:
+  - 별도 작업없이 클래스가 `index`, `count` 같은 부가적인 메서들를 모두 제공
+
 ```python
 class BetterNode(SequenceNode, Sequence):
     pass
