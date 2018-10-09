@@ -16,7 +16,7 @@ permalink: /2018-10-09-effective-python-way28
 - 파이썬 프로그래밍의 대부분: 데이터를 담은 클래스들을 정의, 이 객체들이 연계되는 방법을 명시
 - 모든 파이썬 클래스는 일종의 컨테이너:
   - 속성/기능을 함께 캡슐화
-- 파이썬은 데이터 관리용 내장 컨테이너 타입(리스트, 튜플, 세트, 딕셔너리)도 제공
+- 파이썬은 데이터 관리용 내장 `컨테이너 타입(리스트, 튜플, 세트, 딕셔너리)`도 제공
 
 ## 내장 컨테이너 타입 상속
 - 시퀀스(`sequence`)처럼 쓰임새가 간단한 클래스를 설계할 때는 파이썬의 내장 `list` 타입에서 상속받으려고 하는 것이 당연
@@ -51,6 +51,7 @@ After pop: ["a", "b", "a", "c", "b", "a"]
 Frequency: {"a": 3, "c": 1, "b": 2}
 ```
 
+## 시퀀스 시맨틱을 갖는 커스텀 컨테이너의 정의
 - `list`의 서브클래스는 아니지만 인덱스로 접근할 수 있게 해서 `list`처럼 보이는 객체를 제공하고 싶은 경우
   - 바이너리 트리 클래스에 (`list`나 `tuple` 같은) 시퀀스 시맨틱을 제공
 
@@ -91,3 +92,69 @@ class IndexableNode(BinaryNode):
             raise IndexError("Index out of range")
         return found.value
 ```
+
+- 이 바이너리 트리는 평소처럼 생성하면 됨
+
+```python
+tree = IndexableNode(
+    10,
+    left=IndexableNode(
+        5,
+        left=IndexableNode(2),
+        right=IndexableNode(
+            6, right=IndexableNode(7))),
+    right=IndexableNode(
+        15, left=IndexableNode(11)))
+```
+
+- 트리 탐색은 물론이고 `list`처럼 접근할 수도 있음
+
+```python
+print("LBR =", tree.left.right.right.value)
+print("Index 0 =", tree[0])
+print("Index 1 =", tree[1])
+print("l1 is the tree?", l1 in tree)
+print("l7 is the tree?", l7 in tree)
+print("Tree is", list(tree))
+
+>>>
+LBR = 7
+Index 0 = 2
+Index 1 = 5
+l1 in the tree? True
+l7 in the tree? False
+Tree is [2, 5, 6, 7, 10 ,11, 15]
+```
+
+- 여기에는 이것만을 가지고도 기대하는 시퀀스 시맨틱을 모두 제공하지 못함
+  - 예를 들면 `len`
+
+```python
+len(tree)
+
+>>>
+TypeError: object of type "IndexableNode" has no len()
+```
+
+- 내장 함수 `len`을 쓰려면 커스텀 시퀀스 타입에 맞게 구현한 `__len__`이라는 또 다른 특별한 메서드가 필요
+
+```python
+class SequenceNode(IndexableNode):
+    def __len__(self):
+        _, count = self._search(0, None)
+        return count
+
+tree = SequenceNode(
+    # ...
+)
+
+print("Tree has %d nodes" % len(tree))
+
+>>>
+Tree has 7 nodes
+```
+
+- 아직도 부족함:
+  - `list`나 `tuple` 같은 시퀀스 타입에서 기대할 `count`와 `index` 메서드가 빠졌음
+  - 즉, 커스텀 컨테이너 타입을 정의하는 일은 보기보다 어려움
+  
