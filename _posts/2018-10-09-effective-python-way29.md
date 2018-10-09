@@ -88,5 +88,60 @@ print("After: %5r amps" % r2.current)
 
 >>>
 Before: 0 amps
-After: 0.001 amps
+After: 0.01 amps
+```
+
+- 다음은 모든 저항값이 0옴보다 큼을 보장하는 클래스
+
+```python
+class BoundedResistance(Resistor):
+    def __init__(self, ohms):
+        super().__init__(ohms)
+        
+    @property
+    def ohms(self):
+        return self._ohms
+        
+    @ohms.setter
+    def ohms(self, ohms):
+        if ohms <= 0:
+            raise ValueError("%f ohms must be > 0" % ohms)
+        self._ohms = ohms
+```
+
+- 속성에 올바르지 않은 저항값을 할당하면 예외 발생
+
+```python
+r3 = BoundedResistance(1e3)
+r3.ohms = 0
+
+>>>
+ValueError: 0.000000 ohms must be > 0
+```
+
+- 생성자에 올바르지 않은 값을 넘겨도 예외 발생
+    - `BoundedResistance.__init__`가 `self.ohms = -5`를 할당하는 `Resistor.__init__`를 호출하기 때문
+        - 여기에서 `BoundedResistance`의 `@ohms.setter` 메서드가 호출되어 검증 코드가 실행됨
+
+```python
+BoundedResistance(-5)
+
+>>>
+ValueError: -5.000000 ohms must be > 0
+```
+
+- 부모 클래스의 속성을 불변(`immutable`)으로 만드는 데도 `@property`를 사용할 수 있음
+
+```python
+class FixedResistance(Resistor):
+    # ...
+    @property
+    def ohms(self):
+        return self._ohms
+        
+    @ohms.setter
+    def ohms(self, ohms):
+        if hasattr(self, "_ohms"):
+            raise AttributeError("Can't set attribute")
+        self._ohms = ohms
 ```
