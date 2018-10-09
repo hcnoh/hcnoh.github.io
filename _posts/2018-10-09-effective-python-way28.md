@@ -16,7 +16,7 @@ permalink: /2018-10-09-effective-python-way28
 - 파이썬 프로그래밍의 대부분: 데이터를 담은 클래스들을 정의, 이 객체들이 연계되는 방법을 명시
 - 모든 파이썬 클래스는 일종의 컨테이너:
   - 속성/기능을 함께 캡슐화
-- 파이썬은 데이터 관리용 내장 `컨테이너 타입(리스트, 튜플, 세트, 딕셔너리)`도 제공
+- 파이썬은 데이터 관리용 `내장 컨테이너 타입(리스트, 튜플, 세트, 딕셔너리)`도 제공
 
 ## 내장 컨테이너 타입 상속
 - 시퀀스(`sequence`)처럼 쓰임새가 간단한 클래스를 설계할 때는 파이썬의 내장 `list` 타입에서 상속받으려고 하는 것이 당연
@@ -158,3 +158,19 @@ Tree has 7 nodes
   - `list`나 `tuple` 같은 시퀀스 타입에서 기대할 `count`와 `index` 메서드가 빠졌음
   - 즉, 커스텀 컨테이너 타입을 정의하는 일은 보기보다 어려움
   
+## collections.abc 모듈을 이요하여 커스텀 컨테이너 정의
+- `collections.abc` 모듈?
+  - 각 컨테이너 타입에 필요한 일반적인 메서드를 모두 제공하는 추상 기반 클래스들을 정의
+  - 이 추상 기반 클래스들에서 상속받아 서브클래스를 만들다가 깜빡 잊고 필수 메서드를 구현하지 않으면, 모듈이 뭔가 잘못되었다고 알려줌
+
+```python
+from collections.abc import Sequence
+
+class BadType(Sequence):
+    pass
+
+foo = BadType()
+
+>>>
+TypeError: Can't instantiate abstract class BadType with abstract methods __getitem__, __len__
+```
