@@ -17,6 +17,8 @@ permalink: /2018-10-09-effective-python-way28
 - 모든 파이썬 클래스는 일종의 컨테이너:
   - 속성/기능을 함께 캡슐화
 - 파이썬은 데이터 관리용 내장 컨테이너 타입(리스트, 튜플, 세트, 딕셔너리)도 제공
+
+## 내장 컨테이너 타입 상속
 - 시퀀스(`sequence`)처럼 쓰임새가 간단한 클래스를 설계할 때는 파이썬의 내장 `list` 타입에서 상속받으려고 하는 것이 당연
   - 멤버의 빈도를 세는 메서드를 추가로 갖춘 커스텀 리스트 타입 예제
   
@@ -25,10 +27,26 @@ class FrequencyList(list):
     def __init__(self, members):
         super().__init__(members)
         
-    def frequence(self):
+    def frequency(self):
         counts = {}
         for item in self:
             counts.setdefault(item, 0)
             counts[item] += 1
         return counts
+```
+
+- `FrequencyList`는 `list`의 표준 기능을 모두 갖춰서 파이썬 프로그래머에게 익숙한 시맨틱(`semantic`)을 유지
+- 또한 추가한 메서드로 필요한 커스텀 동작을 더할 수 있음
+
+```python
+foo = FrequencyList(["a", "b", "a", "c", "b", "a", "d"])
+print("Length is", len(foo))
+foo.pop()
+print("After pop:", repr(foo))
+print("Frequency:", foo.frequency())
+
+>>>
+Length is 7
+After pop: ["a", "b", "a", "c", "b", "a"]
+Frequency: {"a": 3, "c": 1, "b": 2}
 ```
