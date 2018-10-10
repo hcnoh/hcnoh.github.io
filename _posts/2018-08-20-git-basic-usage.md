@@ -97,7 +97,7 @@ Initialized empty Git repository in /home/hcnoh/wavenet-tensorflow/.git/
 >>> git remote -v
 ```
 
-## 작업 내용 Push
+## 작업 내용 Push/Pull
 먼저 로컬 repo는 git이 관리하는 세 그룹으로 나뉘어져 있다는 점을 알고 넘어가자. 첫 번째 그룹은 Working directory은 실제 파일들로 이루어져 있으며, 두 번째 그룹인 Index는 준비 영역(staging area)의 역할을 한다. 마지막인 HEAD는 최종 확정본(commit)을 나타내게 된다.
 
 먼저 변경된 파일을 Index에 추가하는 과정이 필요하다. 다음의 명령어를 통해 추가할 수 있다.
@@ -120,16 +120,24 @@ Initialized empty Git repository in /home/hcnoh/wavenet-tensorflow/.git/
 
 이 과정까지 끝내면 작업 내용이 HEAD에 반영이 되는 것이다.
 
-하지만 실제로 remote repo에 반영하기 위해서는 push를 해주어야 한다. 다음의 명령어를 타이핑한다.
+하지만 실제로 remote repo에 반영하기 위해서는 `push`를 해주어야 한다. 다음의 명령어를 타이핑한다.
 
 ```bash
 >>> git push origin master
 ```
 
-이 명령은 origin 서버에 master branch로 push하라는 명령이다. master branch가 아닌 다른 branch로 push하기를 원한다면 master를 원하는 branch 이름으로 바꿔주면 된다.
+이 명령은 origin 서버에 master branch로 `push`하라는 명령이다. master branch가 아닌 다른 branch로 `push`하기를 원한다면 master를 원하는 branch 이름으로 바꿔주면 된다.
+
+반대로 origin 서버에서 로컬 repo로 불러오는 명령이 있다. 기본적으로 Git을 이용한 작업을 시작할 때 다음의 명령을 꼭 수행해주고 시작해야 한다.
+
+```bash
+>>> git pull origin master
+```
+
+사용법은 `push`와 동일하다. origin 서버에 master branch로부터 `pull`하라는 명령이다.
 
 ## Git commit 취소
-위에서 commit 명령을 통해서 remote repo에 반영하기 전에 HEAD에 먼저 반영을 한다고 하였다. 하지만 가끔 실수로 commit을 하던가 아니면 commit 단계에서의 어떤 문제로 인하여 push가 안되는 경우가 생길 수 있다. 이 경우에는 commit을 취소하여 문제를 해결하는 방법이 있을 수 있다.
+위에서 `commit` 명령을 통해서 remote repo에 반영하기 전에 HEAD에 먼저 반영을 한다고 하였다. 하지만 가끔 실수로 `commit`을 하던가 아니면 commit 단계에서의 어떤 문제로 인하여 `push`가 안되는 경우가 생길 수 있다. 이 경우에는 `commit`을 취소하여 문제를 해결하는 방법이 있을 수 있다.
 
 ```bash
 >>> git push origin master
@@ -149,35 +157,35 @@ To https:// github.com/hcnoh/wavenet-tensorflow
  error: failed to push some refs to 'https://github.com/hcnoh/wavenet-tensorflow'
 ```
 
-push를 한 경우 다음과 같은 에러가 발생하였다. 어떤 파일의 용량이 219MB의 크기를 가지고있고 이것은 제한 용량을 초과하기 때문에 push가 되지 않는 것이다. 이 경우 저 파일을 지우고 다시 commit을 하더라도 이전에 commit한 것들이 여전히 push에 반영되기 때문에 같은 에러가 발생할 것이다. 이 경우에는 이전에 해놓은 commit들을 삭제해야 한다.
+`push`를 한 경우 다음과 같은 에러가 발생하였다. 어떤 파일의 용량이 219MB의 크기를 가지고있고 이것은 제한 용량을 초과하기 때문에 push가 되지 않는 것이다. 이 경우 저 파일을 지우고 다시 `commit`을 하더라도 이전에 `commit`한 것들이 여전히 `push`에 반영되기 때문에 같은 에러가 발생할 것이다. 이 경우에는 이전에 해놓은 `commit`들을 삭제해야 한다.
 
-commit을 취소하는 명령들은 다음과 같다.
+`commit`을 취소하는 명령들은 다음과 같다.
 
-- 최종 commit을 취소하되 파일은 복구/삭제하지 않는 명령
+- 최종 `commit`을 취소하되 파일은 복구/삭제하지 않는 명령
 
 ```bash
 >>> git reset HEAD^
 ```
 
-- 최종 commit을 취소하고 파일도 복구/삭제
+- 최종 `commit`을 취소하고 파일도 복구/삭제
 
 ```bash
 >>> git reset --hard HEAD^
 ```
 
-- 최종 commit을 n개 취소하되 파일은 복구/삭제하지 않는 명령
+- 최종 `commit`을 n개 취소하되 파일은 복구/삭제하지 않는 명령
 
 ```bash
 >>> git reset HEAD~n
 ```
 
-- 최종 commit을 n개 취소하고 파일도 복구/삭제
+- 최종 `commit`을 n개 취소하고 파일도 복구/삭제
 
 ```bash
 >>> git reset --hard HEAD~n
 ```
 
-## Git origin 변경/추가
+## Git origin 변경/추가/
 위에서 git의 remote repo의 이름을 origin으로 설정하였다. 이 이름을 바꾸고 싶으면 다음과 같은 명령을 수행하면 된다.
 
 ```bash
@@ -221,4 +229,10 @@ Total 120 (delta 66), reused 0 (delta 0)
 remote: Resolving deltas: 100% (66/66), done.
 To https://github.com/hcnoh/wavenet-tensorflow-2.git
  * [new branch]     master -> master
+```
+
+만약 기존에 있던 origin을 삭제하기를 원한다면 `git remote rm` 명령을 사용하면 된다. origin_github를 삭제하고 싶은 경우 다음과 같은 명령을 사용하면 된다.
+
+```bash
+>>> git remote rm github_origin
 ```
