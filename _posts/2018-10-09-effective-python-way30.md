@@ -12,7 +12,7 @@ author: "Hyungcheol Noh"
 permalink: /2018-10-09-effective-python-way30
 ---
 
-## @properpty 데코레이터
+## @properpty 데코레이터의 필요성
 - `@property` 데코레이터(`decorator`):
   - 더 간결한 방식으로 인스턴스의 속성에 접근할 수 있음
   - 단순 숫자 속성을 즉석에서 계산하는 방식으로 변경:
@@ -95,7 +95,8 @@ Not enough for 3 quota
 Bucket(quota=1)
 ```
 
-- 이러한 구현의 문제점:
+## @properpty 데코레이터를 이용한 구현
+- 위와 같은 구현의 문제점:
   - 0까지 도달하면 `deduct`가 항상 `False`를 반환
   - 이때 `deduct`를 호출하는 쪽이 중단된 이유가 `Bucket`의 할당량이 소진되어서인지 아니면 처음부터 `Bucket`에 할당량이 없어서인지 알 수 없음
 - 문제를 수정하기 위해서:
