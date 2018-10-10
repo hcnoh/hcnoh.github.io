@@ -13,12 +13,45 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
 ---
 
 ## 경로 관련
-- home 경로: `~`
-- 바로 상위 경로: `..`
-- 현재 경로: `.`
+- home 경로:
+
+```bash
+>>> ~
+```
+
+- 바로 상위 경로:
+
+```bash
+>>> ..
+```
+
+- 현재 경로:
+
+```bash
+>>> .
+```
 
 ## 압축 파일 관련
-- zip 압축 풀기: `unzip file_name.zip`
-- 특정 폴더로 zip 압축 풀기: `unzip file_name.zip -d ./target`
-- 현재 폴더에 있는 내용 zip 압축 하기: `zip test.zip ./*`
-- 하위 폴더까지 전부 압축: `zip -r test.zip ./*`
+- zip 압축 풀기:
+
+```bash
+>>> unzip file_name.zip
+```
+
+- 특정 폴더로 zip 압축 풀기:
+
+```bash
+unzip file_name.zip -d ./target
+```
+
+- 현재 폴더에 있는 내용 zip 압축 하기:
+
+```bash
+zip test.zip ./*
+```
+
+- 하위 폴더까지 전부 압축:
+
+```bash
+zip -r test.zip ./*
+```
