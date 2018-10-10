@@ -132,3 +132,34 @@ class Bucket(object):
             assert self.max_quota >= self.quota_consumed
             self.quota_consumed += delta
 ```
+
+- 앞에서의 데모 코드를 다시 실행
+
+```python
+bucket = Bucket(60)
+print("Initial", bucket)
+fill(bucket, 100)
+print("filled", bucket)
+
+if deduct(bucket, 99):
+    print("Had 99 quota")
+else:
+    print("Not enougn for 99 quota")
+
+print("Now", bucket)
+
+if deduct(bucket, 3):
+    print("Had 3 quota")
+else:
+    print("Not enough for 3 quota")
+
+print("Still", bucket)
+
+>>>
+Initial Bucket(max_quota=0, quota_consumed=0)
+Filled Bucket(max_quota=100, quota_consumed=0)
+Had 99 quota
+Now Bucket(max_quota=100, quota_consumed=99)
+Not enough for 3 quota
+Still Bucket(max_quota=100, quota_consumed=99)
+```
