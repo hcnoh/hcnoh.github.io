@@ -98,4 +98,21 @@ Bucket(quota=1)
 - 이러한 구현의 문제점:
   - 0까지 도달하면 `deduct`가 항상 `False`를 반환
   - 이때 `deduct`를 호출하는 쪽이 중단된 이유가 `Bucket`의 할당량이 소진되어서인지 아니면 처음부터 `Bucket`에 할당량이 없어서인지 알 수 없음
+- 문제를 수정하기 위해서:
+  - 클래스에서 기간 동안 발생한 `max_quota`와 `quota_consumed`의 변경을 추적하도록 수정
 
+```python
+class Bucket(object):
+    def __init__(self, period):
+        self.period_delta = timedelta(seconds=period)
+        self.reset_time = datetime.now()
+        self.max_quota = 0
+        self.quota_consumed = 0
+    
+    def __repr__(self):
+        return ("Bucket(max_quota=%d, quota_consumed=%d)" % (self.max_quota, self.quota_consumed))
+    
+    @property
+    def quota(self):    # 새 속성들을 이용하여 실시간으로 현재 할당량의 수준을 계산
+        return self.max_quota - self.quota_consumed
+```
