@@ -53,7 +53,7 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
   - 예제: 현재 위치에 있는 `dir_name`라는 디렉토리를 `home`으로 복사
 
 ```bash
->>> cp -r dir_name ~/dir_name
+>>> cp -r ./dir_name ~/dir_name
 ```
 
 ## zip 압축 파일 관련
