@@ -34,7 +34,29 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
 >>> mkdir ./temp
 ```
 
-## 압축 파일 관련
+## 파일/디렉토리 생성, 이동, 삭제
+- 디렉토리 생성: `mkdir`
+  - 예제: `dir_name`라는 이름의 디렉토리 생성
+
+```bash
+>>> mkdir dir_name
+```
+
+- 파일 및 디렉토리 삭제: `rm -rf`
+  - 예제: `dir_name`라는 디렉토리와 하위 디렉토리 및 파일 전부 삭제
+
+```bash
+>>> rm -rf dir_name
+```
+
+- 파일 및 디렉토리 복사: `cp -r`
+  - 예제: 현재 위치에 있는 `dir_name`라는 디렉토리를 `home`으로 복사
+
+```bash
+>>> cp -r dir_name ~/dir_name
+```
+
+## zip 압축 파일 관련
 - zip 압축 풀기:
 
 ```bash
