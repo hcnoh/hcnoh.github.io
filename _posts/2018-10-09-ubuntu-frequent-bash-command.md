@@ -28,9 +28,10 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
 ```
 
 - 현재 경로:
+  - 예제: 현재 디렉토리에 `temp`라는 이름의 디렉토리 생성
 
 ```bash
->>> .
+>>> mkdir ./temp
 ```
 
 ## 압축 파일 관련
