@@ -134,7 +134,7 @@ Initialized empty Git repository in /home/hcnoh/wavenet-tensorflow/.git/
 >>> git pull origin master
 ```
 
-사용법은 `push`와 동일하다. origin 서버에 master branch로부터 `pull`하라는 명령이다.
+사용법은 `push`와 동일하다. origin 서버의 master branch로부터 `pull`하라는 명령이다.
 
 ## Git commit 취소
 위에서 `commit` 명령을 통해서 remote repo에 반영하기 전에 HEAD에 먼저 반영을 한다고 하였다. 하지만 가끔 실수로 `commit`을 하던가 아니면 commit 단계에서의 어떤 문제로 인하여 `push`가 안되는 경우가 생길 수 있다. 이 경우에는 `commit`을 취소하여 문제를 해결하는 방법이 있을 수 있다.
