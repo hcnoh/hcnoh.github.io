@@ -66,6 +66,7 @@ print(bucket)
 >>>
 Bucket(quota=100)
 ```
+
 - 그러고 나서 필요한 양만큼 빼봄
 
 ```python
@@ -79,3 +80,22 @@ print(bucket)
 Had 99 quota
 Bucket(quota=1)
 ```
+
+- 이용할 수 있는 양보다 더 많이 빼려고 시도
+
+```python
+if deduct(bucket, 3):
+    print("Nad 3 quota")
+else:
+    print("Not enough for 3 quota")
+print(bucket)
+
+>>>
+Not enough for 3 quota
+Bucket(quota=1)
+```
+
+- 이러한 구현의 문제점:
+  - 0까지 도달하면 `deduct`가 항상 `False`를 반환
+  - 이때 `deduct`를 호출하는 쪽이 중단된 이유가 `Bucket`의 할당량이 소진되어서인지 아니면 처음부터 `Bucket`에 할당량이 없어서인지 알 수 없음
+
