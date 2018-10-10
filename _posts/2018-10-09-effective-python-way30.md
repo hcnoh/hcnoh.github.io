@@ -66,3 +66,16 @@ print(bucket)
 >>>
 Bucket(quota=100)
 ```
+- 그러고 나서 필요한 양만큼 빼봄
+
+```python
+if deduct(bucket, 99):
+    print("Had 99 quota")
+else:
+    print("Not enough fo 99 quota")
+print(bucket)
+
+>>>
+Had 99 quota
+Bucket(quota=1)
+```
