@@ -115,4 +115,20 @@ class Bucket(object):
     @property
     def quota(self):    # 새 속성들을 이용하여 실시간으로 현재 할당량의 수준을 계산
         return self.max_quota - self.quota_consumed
+    
+    @quota.setter       # quota 속성이 할당을 받는 순간에 fill과 deduct에서 사용하는 이 클래스의 현재 인터페이스와 일치하는 특별한 동작을 하게 만듦
+    def quota(self, amount):
+        delta = self.max_quota - amount
+        if amount == 0:
+            # 새 기간의 할당량을 리셋함
+            self.quota_consumed = 0
+            self.max_quota = 0
+        elif delta < 0:
+            # 새 기간의 할당량을 채움
+            assert self.quota_consumed == 0
+            self.max_quota = amount
+        else:
+            # 기간 동안 할당량을 소비함
+            assert self.max_quota >= self.quota_consumed
+            self.quota_consumed += delta
 ```
