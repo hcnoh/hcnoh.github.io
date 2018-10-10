@@ -55,3 +55,14 @@ def deduct(bucket, amount):
     bucket.quota -= amout
     return True
 ```
+
+- 먼저 양동이를 채워봄
+
+```python
+bucket = Bucket(60)
+fill(bucket, 100)
+print(bucket)
+
+>>>
+Bucket(quota=100)
+```
