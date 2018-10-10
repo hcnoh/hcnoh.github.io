@@ -30,8 +30,12 @@ class Bucket(object):
         
     def __repr__(self):
         return "Bucket(quota=%d)" % self.quota
+```
 
-def fill(bucket, amount):     # 구멍 난 양동이(leaky bucket) 알고리즘은 양동이를 채울 때마다 할당량이 다음 기간으로 넘어가지 않게 하는 식으로 
+- 구멍 난 양동이(leaky bucket) 알고리즘은 양동이를 채울 때마다 할당량이 다음 기간으로 넘어가지 않게 하는 식으로 동작
+
+```python
+def fill(bucket, amount):
     now = datetime.now()
     if now - bucket.reset_time > bucket.period_delta:
         bucket.quota = 0
