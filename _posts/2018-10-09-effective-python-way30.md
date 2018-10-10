@@ -42,3 +42,16 @@ def fill(bucket, amount):
         bucket.reset_time = now
     bucket.quota += amount
 ```
+
+- 할당량을 소비하는 쪽에서는 매번 사용할 양을 뺄 수 있는지부터 확인해야 함
+
+```python
+def deduct(bucket, amount):
+    now = datetime.now()
+    if now - bucket.reset_time > bucket.period_delta:
+        return False
+    if bucket.quota - amount < 0:
+        return False
+    bucket.quota -= amout
+    return True
+```
