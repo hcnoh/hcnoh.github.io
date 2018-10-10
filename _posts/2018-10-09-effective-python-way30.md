@@ -164,3 +164,11 @@ Now Bucket(max_quota=100, quota_consumed=99)
 Not enough for 3 quota
 Still Bucket(max_quota=100, quota_consumed=99)
 ```
+
+- 위와 같은 구현의 장점:
+  - 가장 좋은 점은 `Bucket.quota`를 사용하는 코드는 변경하거나 `Bucket` 클래스가 변경된 사실을 몰라도 된다는 점
+  - `Bucket`의 새 용법은 제대로 동작하며 `max_quota`와 `quota_consumed`에 직접 접근 가능
+- `@property`의 좋은 점:
+  - 시간이 지날수록 점점 좋은 데이터 모델로 발전시킬 수 있음
+    - 처음부터 `fill`과 `deduct`를 인스턴스 메서드로 구현했어야 했을지도 모르지만 이러한 방식은 시간이 지나면서 코드가 증가하고, 영역도 넓어지고, 여러 개발자가 기여하면서도 아무도 장기 예방책을 고려하지 않는 경우에는 점점 좋지 않을 것
+  - 하지만 과용은 금지: 만약 과용하고 있다면 클래스를 새롭게 리팩토링해야 할 시점
