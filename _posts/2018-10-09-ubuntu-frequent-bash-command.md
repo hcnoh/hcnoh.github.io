@@ -56,6 +56,14 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
 >>> cp -r ./dir_name ~/dir_name
 ```
 
+- 파일 및 디렉토리 이동: `mv`
+  - `mv`를 이용하여 이름 변경도 가능
+  - 예제 `./temp`의 디렉토리를 `./temp_`으로 이름 변경
+
+```bash
+>>> mv ./temp ./temp_
+```
+
 ## zip 압축 파일 관련
 - zip 압축 풀기:
 
