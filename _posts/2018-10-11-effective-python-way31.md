@@ -176,7 +176,7 @@ First 75 is wrong
   - `Exam` 클래스를 처음 정의할 때 한 번만 생성!
   - `Exam` 인스턴스를 생성할 때마다 생성되지 않음!
 
-- 문제 해결을 위해 각 `Exam` 인스턴스별로 값을 추적하는 `Grade` 클래스 작성
+- 두 번째 시도: 문제 해결을 위해 각 `Exam` 인스턴스별로 값을 추적하는 `Grade` 클래스 작성
 
 ```python
 class Grade(object):
@@ -192,3 +192,8 @@ class Grade(object):
             raise ValueError("Grade must be between 0 and 100")
         self._values[instance] = value
 ```
+
+- 위의 예제도 문제가 있음:
+  - 메모리 누수 문제:
+    - `_values` 딕셔너리는 프로그램의 수명 동안 `__set__`에 전달된 모든 `Exam` 인스턴스의 참조를 저장
+    - 결국 인스턴스의 참조 개수가 절대로 0이 되지 않아 가비지 컬렉터가 정리되지 못하게 됨
