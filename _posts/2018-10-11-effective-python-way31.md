@@ -31,4 +31,51 @@ class Homework(object):
         if not (0 <= value <= 100):
             raise ValueError("Grade must be between 0 and 100")
         self._grade = value
+
+galileo = Homework()    # 쉽게 사용 가능
+galileo.grade = 95
 ```
+
+- 학생들의 시험 성적을 매기는 경우: 시험은 여러 과목, 과목별로 점수
+
+```python
+class Exam(object):
+    def __init__(self):
+        self._writing_grade = 0
+        self._math_grade = 0
+    
+    @staticmethod
+    def _check_grade(value):
+        if not (0 <= value <= 100):
+            raise ValueError("Grade must be between 0 and 100")
+```
+
+- 이런 식의 구현은 코드가 너무 장황해짐:
+  - 시험 영역마다 새 `@property`와 관련 검증이 필요하기 때문
+  - 즉, 범용성이 좋지 못함
+
+```python
+    @property
+    def writing_grade(self):
+        return self._writing_grade
+        
+    @writing_grade.setter
+    def writing_grade(self, value):
+        self._check_grade(value)
+        self._writing_grade = value
+    
+    @property
+    def math_grade(self):
+        return self._math_grade
+    
+    @math_grade.setter
+    def math_grade(self, value):
+        self._check_grade(value)
+        self._math_grade = value
+```
+
+- 위와 다르게 과제와 시험 이외의 항목에도 북분율 검증을 재사용하고 싶다면:
+  - 디스크립터 이용
+
+## 디스크립터 프로토콜(descriptor protocol)
+- 속성에 대한 접근을 언어에서 해석할 
