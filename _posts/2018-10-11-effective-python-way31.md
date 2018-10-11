@@ -148,6 +148,7 @@ class Grade(object):
   - 여러 `Exam` 인스턴스에 있는 여러 속성에 접근하는 것은 제대로 동작하지 않음
   
 ```python
+# 하나의 인스턴스에 접근
 first_exam = Exam()
 first_exam.writing_grade = 82
 first_exam.science_grade = 99
@@ -158,3 +159,19 @@ print("Science", first_exam.science_grade)
 Writing 82
 Science 99
 ```
+
+```python
+# 여러개의 인스턴스에 접근
+second_exam = Exam()
+second_exam.writing_grade = 75
+print("Second", second_exam.writing_grade, "is right")
+print("First", first_exam.writing_grade, "is wrong")
+
+>>>
+Second 75 is right
+First 75 is wrong
+```
+
+- 즉, 한 `Grade` 인스턴스가 모든 `Exam` 인스턴스의 `writing_grade` 클래스 속성으로 공유됨
+  - `Exam` 클래스를 처음 정의할 때 한 번만 생성!
+  - `Exam` 인스턴스를 생성할 때마다 생성되지 않음!
