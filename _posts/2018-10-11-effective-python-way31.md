@@ -125,3 +125,36 @@ print(Exam.__dict__["writing_grade"]).__get__(exam, Exam)
 
 - 이런 방식의 동작을 간단히 설명하면:
   - `Exam` 인스턴스에 `writing_grade` 속성이 없으면 파이썬은 대신 `Exam` 클래스의 속성을 이용
+
+## 디스크립터 구현
+- 첫 번째 시도:
+
+```python
+class Grade(object):
+    def __init__(self):
+        self._value = 0
+    
+    def __get__(self, instance, instance_type):
+        return self._value
+    
+    def __set__(self, instance, value):
+        if not (0 <= value <= 100):
+            raise ValueError("Grade must be between 0 and 100")
+        self._value = value
+```
+
+- 위의 시도는 잘못됨:
+  - 하나의 `Exam` 인스턴스에 있는 여러 속성에 접근하는 것은 잘 동작
+  - 여러 `Exam` 인스턴스에 있는 여러 속성에 접근하는 것은 제대로 동작하지 않음
+  
+```python
+first_exam = Exam()
+first_exam.writing_grade = 82
+first_exam.science_grade = 99
+print("Writing", first_exam.writing_grade)
+print("Science", first_exam.science_grade)
+
+>>>
+Writing 82
+Science 99
+```
