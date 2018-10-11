@@ -78,4 +78,49 @@ class Exam(object):
 >  - 디스크립터 이용
 
 ## 디스크립터 프로토콜(descriptor protocol)
-- 속성에 대한 접근을 언어에서 해석할 
+>- 속성에 대한 접근을 언어에서 해석할 방법을 정의
+>  - 디스크립터를 이용하면 한 클래스의 서로 다른 속성에 같은 로직을 재사용할 수 있음
+- `__get__`/`__set__` 메서드 제공:
+  - 반복 코드 없이도 성적 검증 동작을 재사용할 수 있게 해줌
+- 믹스인보다 좋은 방법
+- 디스크립터 속성에 접근할 때 파이썬이 무슨 일을 하는지 이해하기 위한 예제
+
+```python
+class Grade(object):      # Grade 클래스는 디스크립터 프로토콜을 구현
+    def __get__(*args, **kwargs):
+        # ...
+    
+    def __set__(*args, **kwargs):
+        # ...
+
+class Exam(object):       # Grade 인스턴스를 클래스 속성으로 포함하는 새로은 Exam 클래스 정의
+    # 클래스 속성
+    math_grade = Grade()
+    writing_grade = Grade()
+    science_grade = Grade()
+
+# 프로퍼티 할당
+exam = Exam()
+exam.writing_grade = 40
+```
+
+- 위의 프로퍼티 할당 부분은 다음과 같이 해석됨:
+
+```python
+Exam.__dict__["writing_grade"].__set__(exam, 40)
+```
+
+- 이번에는 다음과 같이 프로퍼티를 얻어옴
+
+```python
+print(exam.writing_grade)
+```
+
+- 위의 코드는 다음과 같이 해석됨:
+
+```python
+print(Exam.__dict__["writing_grade"]).__get__(exam, Exam)
+```
+
+- 이런 방식의 동작을 간단히 설명하면:
+  - `Exam` 인스턴스에 `writing_grade` 속성이 없으면 파이썬은 대신 `Exam` 클래스의 속성을 이용
