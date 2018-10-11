@@ -175,3 +175,20 @@ First 75 is wrong
 - 즉, 한 `Grade` 인스턴스가 모든 `Exam` 인스턴스의 `writing_grade` 클래스 속성으로 공유됨
   - `Exam` 클래스를 처음 정의할 때 한 번만 생성!
   - `Exam` 인스턴스를 생성할 때마다 생성되지 않음!
+
+- 문제 해결을 위해 각 `Exam` 인스턴스별로 값을 추적하는 `Grade` 클래스 작성
+
+```python
+class Grade(object):
+    def __init__(self):
+        self._values = {}
+        
+    def __get__(self, instance, instance_type):
+        if instance is None: return self
+        return self._values.get(instance, 0)
+    
+    def __set__(self, instance, value):
+        if not (0 <= value <= 100):
+            raise ValueError("Grade must be between 0 and 100")
+        self._values[instance] = value
+```
