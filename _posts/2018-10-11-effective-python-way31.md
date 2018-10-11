@@ -197,3 +197,31 @@ class Grade(object):
   - 메모리 누수 문제:
     - `_values` 딕셔너리는 프로그램의 수명 동안 `__set__`에 전달된 모든 `Exam` 인스턴스의 참조를 저장
     - 결국 인스턴스의 참조 개수가 절대로 0이 되지 않아 가비지 컬렉터가 정리되지 못하게 됨
+  - 파이썬 내장 모듈 `weakref`를 이용하여 이 문제 해결
+    - `_values`에 사용한 간단한 딕셔너리를 대체할 수 있는 `WeakKeyDictionary`라는 특별한 클래스를 제공
+  - `WeakKeydictionary`:
+    - 런타임에 마지막으로 남은 `Exam` 인스턴스의 참조를 갖고 있다는 사실을 알면 키 집합에서 `Exam` 인스턴스를 제거함
+    - 파이썬이 대신 참조를 관리해주고 모든 `Exam` 인스턴스가 더는 사용되지 않으면 `_values` 딕셔너리가 비어 있게 함
+    
+  ```python
+  class Grade(object):
+      def __init__(self):
+          self._values = WeekKeyDictionary()
+      #...
+  
+  class Exam(object):
+      math_grade = Grade()
+      writing_grade = Grade()
+      science_grade = Grade()
+  
+  first_exam = Exam()
+  first_exam.writing_grade = 82
+  second_exam = Exam()
+  second_exam.writing_grade = 75
+  print("First", first_exam.writing_grade, "is right")
+  print("Second", second_exam.writing_grade, "is right")
+  
+  >>>
+  First 82 is right
+  Second 75 is right
+  ```
