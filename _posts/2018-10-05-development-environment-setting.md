@@ -611,3 +611,19 @@ See ":help feature-compile"
 Run :checkhealth for more info
 [*] Installation successful. You may need to run `exec zsh` to reflect changes in PATH.
 ```
+
+그 다음을 `exec zsh` 명령을 통해서 `zshell`을 재시작한다.
+
+```bash
+>>> exec zsh
+Initializing zgen plugins ...
+For style globbing-ext, went for fallback style double-quoted-argument
+For style here-string-text, went for fallback style subtle-bg
+For style here-string-var, went for fallback style back-or-dollar-double-quoted-argument
+For style subcommand, went for fallback style reserved-word
+Missing style: single-sq-bracket
+Missing style: double-sq-bracket
+Missing style: double-paren
+Switched to theme `wook' (current session, and future sessions)
+-- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
+```
