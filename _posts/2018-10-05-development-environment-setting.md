@@ -628,8 +628,17 @@ Switched to theme `wook' (current session, and future sessions)
 -- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
 ```
 
-그 다음으로 다시 한 번 `dotfiles update` 명령을 실행한다.
+이제 `vim`을 실행해본다.
+
+![](/assets/img/2018-10-05-development-environment-setting/08.png)
+
+더 이상해졌다. [링크](https://github.com/wookayin/dotfiles/pull/9)를 통해서 확인한 결과, 터미널이 24비트 색상을 지원하지 않는 경우에 발생하는 문제라고 한다. [링크](https://github.com/wookayin/dotfiles/pull/9)를 참고하여서 `~/.vimrc` 파일의 맨 밑에 다음을 추가해주었다.
 
 ```bash
->>> dotfiles update
+set notermguicolor
 ```
+
+![](/assets/img/2018-10-05-development-environment-setting/09.png)
+
+제대로 나온다. 글자가 조금 깨지는 듯 하지만 이유는 추후에 알아내서 포스팅하도록 하겠다.
+
