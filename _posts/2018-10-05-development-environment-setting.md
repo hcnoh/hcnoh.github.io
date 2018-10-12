@@ -627,3 +627,9 @@ Missing style: double-paren
 Switched to theme `wook' (current session, and future sessions)
 -- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
 ```
+
+그 다음으로 다시 한 번 `dotfiles update` 명령을 실행한다.
+
+```bash
+>>> dotfiles update
+```
