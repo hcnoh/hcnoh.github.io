@@ -578,3 +578,36 @@ removed directory 'fonts'
 설치가 완료되면 글자가 더이상 깨지지않고 잘 나오는 것을 확인할 수 있다.
 
 이렇게 개발 환경 세팅이 완료되었다.
+
+## 문제 해결: vim 색상 적용 문제
+
+`vim` 색상이 아래처럼 제대로 나오지 않는 경우 문제 해결 방법을 정리하였다.
+
+![](/assets/img/2018-10-05-development-environment-setting/07.png)
+
+먼저 `dotfiles update` 명령을 실행해본다.
+
+```bash
+>>> dotfiles update
+```
+
+아마 `neovim`을 설치하라고 나올 것이다. `neovim`은 `dotfiles install neovim` 명령을 통해서 설치가 가능하다.
+
+```bash
+>>> dotfiles install neovim
+... (생략)
+NVIM v0.3.2-671-g384770556
+Build type: RelWithDebInfo
+LuaJIT 2.0.5
+Compilation: /usr/bin/gcc-5 -Wconversion -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1 -O2 -g -DMIN_LOG_LEVEL=3 -Og -g -Wall -Wextra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wvla -fstack-protector-strong -fdiagnostics-color=auto -Wno-array-bounds -DINCLUDE_GENERATED_DECLARATIONS -D_GNU_SOURCE -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_UNIBI_HAS_VAR_FROM -I/home/travis/build/neovim/bot-ci/build/neovim/build/config -I/home/travis/build/neovim/bot-ci/build/neovim/src -I/home/travis/build/neovim/bot-ci/build/neovim/.deps/usr/include -I/usr/include -I/home/travis/build/neovim/bot-ci/build/neovim/build/src/nvim/auto -I/home/travis/build/neovim/bot-ci/build/neovim/build/include
+Compiled by travis@travis-job-3150864c-8c48-4f93-b409-0d73d1b696d3
+
+Features: +acl +iconv +jemalloc +tui 
+See ":help feature-compile"
+
+   system vimrc file: "$VIM/sysinit.vim"
+  fall-back for $VIM: "/share/nvim"
+
+Run :checkhealth for more info
+[*] Installation successful. You may need to run `exec zsh` to reflect changes in PATH.
+```
