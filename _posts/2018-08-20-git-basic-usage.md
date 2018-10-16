@@ -185,7 +185,7 @@ To https:// github.com/hcnoh/wavenet-tensorflow
 >>> git reset --hard HEAD~n
 ```
 
-## Git origin 변경/추가/
+## Git origin 변경/추가/삭제
 위에서 git의 remote repo의 이름을 origin으로 설정하였다. 이 이름을 바꾸고 싶으면 다음과 같은 명령을 수행하면 된다.
 
 ```bash
