@@ -199,14 +199,14 @@ class Grade(object):
     - 결국 인스턴스의 참조 개수가 절대로 0이 되지 않아 가비지 컬렉터가 정리되지 못하게 됨
   - 파이썬 내장 모듈 `weakref`를 이용하여 이 문제 해결
     - `_values`에 사용한 간단한 딕셔너리를 대체할 수 있는 `WeakKeyDictionary`라는 특별한 클래스를 제공
-  - `WeakKeydictionary`:
+  - `WeakKeyDictionary`:
     - 런타임에 마지막으로 남은 `Exam` 인스턴스의 참조를 갖고 있다는 사실을 알면 키 집합에서 `Exam` 인스턴스를 제거함
     - 파이썬이 대신 참조를 관리해주고 모든 `Exam` 인스턴스가 더는 사용되지 않으면 `_values` 딕셔너리가 비어 있게 함
     
   ```python
   class Grade(object):
       def __init__(self):
-          self._values = WeekKeyDictionary()
+          self._values = WeakKeyDictionary()    # WeakKeyDictionary 사용
       #...
   
   class Exam(object):
