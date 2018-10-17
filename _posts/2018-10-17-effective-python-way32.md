@@ -27,3 +27,38 @@ class LazyDB(object):
         return value
 ```
 
+- 존재하지 않는 속성인 `foo`에 접근하는 경우:
+    - 파이썬이 `__getattr__` 메서드를 호출 => 인스턴스 딕셔너리 `__dict__`를 변경
+    
+```python
+data = LazyDB()
+print("Before:", data.__dict__)
+print("foo:", data.foo)
+print("After:", data.__dict__)
+
+>>>
+Before: {"exists": 5}
+foo: Value for foo
+After: {"exists": 5, "foo": "Value for foo"}
+```
+
+- `__getattr__`이 실제 호출되는 시점을 보여주기 위하여 `LazyDB`에 로깅을 추가
+    - 또한 무한 반복을 피하기 위하여 `super().__getattr__()`로 실제 프로퍼티 값을 얻어오는 부분을 추가
+
+```python
+class LoggingLazyDB(LazyDB):
+    def __getattr__(self, name):
+        print("Called __getattr__(%s)" % name)
+        return super().__getattr__(name)
+
+data = LoggingLazyDB()
+print("exists:", data.exists)
+print("foo:", data.foo)
+print("foo:", data.foo)
+
+>>>
+exists: 5
+Called __getattr__(foo)
+foo: Value for foo
+foo: Value for foo
+```
