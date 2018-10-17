@@ -148,3 +148,20 @@ foo exists: True
 After: {"exists": 5, "foo": "Value for foo"}
 foo exists: True
 ```
+
+- 위의 예제에서 `__getattr__`은 한 번만 호출
+- 반면 `__getattribute__`를 구현한 클래스인 경우:
+    - `hasattr`이나 `getattr`을 호출할 때마다 `__getattribute__`가 실행됨
+    
+```python
+data = ValidatingDB()
+print("foo exists:", hasattr(data, "foo"))
+print("foo exists:", hasattr(data, "foo"))
+
+>>>
+Called __getattribute__(foo)
+foo exists: True
+Called __getattribute__(foo)
+foo exists: True
+```
+
