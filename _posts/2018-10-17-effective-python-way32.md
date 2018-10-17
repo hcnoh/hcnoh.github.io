@@ -129,3 +129,22 @@ data.bad_name
 >>>
 AttributeError: bad_name is missing
 ```
+
+- 파이썬 코드로 범용적인 기능 구현:
+    - 내장 함수 `hasattr`로 프로퍼티가 있는지 확인 => 내장 함수 `getattr`로 프로퍼티 값을 가져옴
+    - 이 함수들도 `__getattr__`을 호출하기 전에 인스턴스 딕셔너리에서 속성 이름을 찾음
+
+```python
+data = LoggingLazyDB()
+print("Before:", data.__dict__)
+print("foo exists:", hasattr(data, "foo"))
+print("After:", data.__dict__)
+print("foo exists:", hasattr(data, "foo"))
+
+>>>
+Before: {"exists": 5}
+Called __getattr__(foo)
+foo exists: True
+After: {"exists": 5, "foo": "Value for foo"}
+foo exists: True
+```
