@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ubuntu SSH 사용법"
-date: 2018-10-11 13:45:17
+date: 2018-10-11 13:43:08
 tagline: "Ubuntu에서 네트워크 접속 방법인 SSH 사용법 정리"
 categories:
 - Ubuntu 16.04
