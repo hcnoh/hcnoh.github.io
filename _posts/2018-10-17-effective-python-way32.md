@@ -112,3 +112,20 @@ foo: Value for foo
 Called __getattribute__(foo)
 foo: Value for foo
 ```
+
+- 동적으로 접근한 프로퍼티가 존재하지 않아야 하는 경우:
+    - `AttributeError`를 일으켜 `__getattr__`, `__getattribute__`에 속성이 없는 경우의 파이썬 표준 동작이 일어나게 함
+    
+```python
+class MissingPropertyDB(object):
+    def __getattr__(self, name):
+        if name == "bad_name":
+            raise AttributeError("%s is missing" % name)
+        # ...
+
+data = MissingPropertyDB()
+data.bad_name
+
+>>>
+AttributeError: bad_name is missing
+```
