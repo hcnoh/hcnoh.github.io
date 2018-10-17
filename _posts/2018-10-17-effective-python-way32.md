@@ -80,3 +80,35 @@ foo: Value for foo
     - 사용자가 다음 번에 속성에 접근할 때는 대응하는 데이터베이스의 로우가 여전히 유효한지, 트랜잭션이 여전히 열려 있는지 알고 싶은 경우
     - `__getattr__` 후크는 기존 속성에 빠르게 접근하기 위하여 객체의 인스턴스 딕셔너리를 사용 => 이 작업에 믿고 쓸 수 없음
     - 파이썬에서 이러한 쓰임새를 고려하여 `__getattribute__`라는 또 다른 후크를 제공
+- `__getattribute__`
+    - 객체의 속성에 접근할 때마다 호출: 해당 속성이 속성 딕셔너리에 있건 없건 호출
+        - 이러한 특징을 이용하여 속성에 접근할 때마다 전역 트랜잭션 상태를 확인하는 작업 등에 사용 가능
+- 여기서는 `__getattribute__`가 호출될 때마다 로그를 남기려고 `validatingDB`를 정의
+
+```python
+class ValidatingDB(object):
+    def __init__(self):
+        self.exists = 5
+        
+    def __getattribute__(self, name):
+        print("Called __getattribute__(%s)" % name)
+        try:
+            return super().__getattribute__(name)
+        except AttributeError:
+            value = "Value for %s" % name
+            setattr(self, name, value)
+            return value
+
+data = ValidatingDB()
+print("exists:", data.exists)
+print("foo:", data.foo)
+print("foo:", data.foo)
+
+>>>
+Called __getattribute__(exists)
+exists: 5
+Called __getattribute__(foo)
+foo: Value for foo
+Called __getattribute__(foo)
+foo: Value for foo
+```
