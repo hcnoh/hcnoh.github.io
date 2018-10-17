@@ -74,7 +74,7 @@ class Exam(object):
         self._math_grade = value
 ```
 
->- 위와 다르게 과제와 시험 이외의 항목에도 북분율 검증을 재사용하고 싶다면:
+>- 위와 다르게 과제와 시험 이외의 항목에도 백분율 검증을 재사용하고 싶다면:
 >  - 디스크립터 이용
 
 ## 디스크립터 프로토콜(descriptor protocol)
