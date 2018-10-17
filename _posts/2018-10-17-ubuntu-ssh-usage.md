@@ -13,6 +13,10 @@ permalink: /2018-10-17-ubuntu-ssh-usage
 ---
 
 이번 포스팅은 다음의 링크들을 참고하여서 작성하였다:
-[링크1](http://programmingskills.net/archives/315)
+- [링크1](http://programmingskills.net/archives/315)
 
 ## 아이디와 비밀번호로 접속
+
+```bash
+>>> ssh id@server_ip_address -p port_number
+```
