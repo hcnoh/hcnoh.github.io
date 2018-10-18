@@ -15,6 +15,7 @@ permalink: /2018-10-17-ubuntu-ssh-usage
 이번 포스팅은 다음의 링크들을 참고하여서 작성하였다:
 - [링크1](http://programmingskills.net/archives/315)
 - [링크2](https://www.yongbok.net/blog/%EB%A6%AC%EB%88%85%EC%8A%A4-ssh-%ED%8C%8C%EC%9D%BC-%EC%A0%84%EC%86%A1-scp/)
+- [링크3](http://faq.hostway.co.kr/?mid=Linux_ETC&page=8&document_srl=1426)
 
 ## 아이디와 비밀번호로 접속
 - 로컬에서 서버로 접속하는 방법
@@ -33,4 +34,5 @@ permalink: /2018-10-17-ubuntu-ssh-usage
 
 - `SCP` 옵션 종류
   - `-P`: 포트 번호
+  - `-p`: 원본파일 수정/사용시간 및 권한을 유지함 (대소문자 구분해야 함을 주의)
   - `-r`: 디렉토리의 하위 파일까지 모두 전송
