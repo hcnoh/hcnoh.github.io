@@ -98,3 +98,19 @@ class BetterSerializable(object):
         # ...
 ```
 
+- 그 다음으로 클래스 이름을 해당 클래스의 객체 생성자에 매핑하고 이 매핑을 관리
+- 범용 `deserialize` 함수는 `register_class`에 넘긴 클래스가 어떤 것이든 제대로 동작
+
+```python
+registry = {}
+
+def register_class(target_class):
+    registry[target_class.__name__] = target_class
+    
+def deserialize(data):
+    params = json.loads(data)
+    name = params["class"]
+    target_class = registry[name]
+    return target_class(*params["args"])
+```
+
