@@ -76,8 +76,7 @@ class MyClassInPython2(object):
 ```python
 class ValidatePolygon(type):
     def __new__(meta, name, bases, class_dict):
-        # 추상 Polygon 클래스는 검증하지 않음
-        if bases != (object,):
+        if bases != (object,): # 추상 Polygon 클래스는 검증하지 않음
             if class_dict["sides"] < 3:
                 raise ValueError("Polygons need 3+ sides")
         return type.__new__(meta, name, bases, class_dict)
