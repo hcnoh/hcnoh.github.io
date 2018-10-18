@@ -41,7 +41,7 @@ class MyClass(object, metaclass=Meta):
 
 ```python
 >>>
-(<class '__main__.Meta'>,
+(<class "__main__.Meta">,
 "MyClass",
 (<class "object">,),
 {"__module__": "__main__",
