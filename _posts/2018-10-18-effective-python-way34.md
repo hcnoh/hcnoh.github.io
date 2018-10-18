@@ -76,3 +76,25 @@ Before: BetterPoint2D(5, 3)
 Serialized: {"args": [5, 3]}
 After: BetterPoint2D(5, 3)
 ```
+
+- 이 방법의 문제점?
+  - 직렬화된 데이터에 대응하는 타입을 미리 알고 있을 때만 동작
+  - 우리가 원하는 것:
+    - `JSON`으로 직렬화되는 클래스를 많이 갖추고
+    - 그 중 어떤 클래스든 대응하는 파이썬 객체로 역직렬화하는 공통 함수를 하나만 두기를 원함
+
+- 그렇게 만들기 위해서는 직렬화할 객체의 클래스 이름을 `JSON` 데이터에 포함하면 됨
+
+```python
+class BetterSerializable(object):
+    def __init__(self, *args):
+        self.args = args
+        
+    def serialize(self):
+        return json.dumps({"class": self.__class__.__name__,
+                           "args": self.args})
+    
+    def __repr__(self):
+        # ...
+```
+
