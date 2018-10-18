@@ -81,4 +81,10 @@ class ValidatePolygon(type):
             if class_dict["sides"] < 3:
                 raise ValueError("Polygons need 3+ sides")
         return type.__new__(meta, name, bases, class_dict)
+
+class Polygon(object, metaclass=ValidatePolygon):
+    sides = None # 서브클래스에서 설정함
+    
+    @classmethod
+    def interior_angles
 ```
