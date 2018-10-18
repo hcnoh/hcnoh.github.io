@@ -65,3 +65,20 @@ class MyClassInPython2(object):
         # ...
 ```
 
+## 클래스의 파라미터 검증
+- 클래스가 정의되기 전에 클래스의 모든 파라미터를 검증하려면:
+  - `Meta.__new__` 메서드에 기능을 추가하면 됨
+
+- 여러 면으로 이루어진 다각형을 어떤 타입이든 표현하고 싶은 경우:
+  - 검증용 메타클래스를 정의 => 다각형 클래스 계층의 기반 클래스에 사용
+  - 기반 클래스에는 같은 검증을 적용하지 말아야 한다는 점 유의
+
+```python
+class ValidatePolygon(type):
+    def __new__(meta, name, bases, class_dict):
+        # 추상 Polygon 클래스는 검증하지 않음
+        if bases != (object,):
+            if class_dict["sides"] < 3:
+                raise ValueError("Polygons need 3+ sides")
+        return type.__new__(meta, name, bases, class_dict)
+```
