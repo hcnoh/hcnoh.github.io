@@ -207,3 +207,30 @@ Finally: {"foo": 7}
 - 객체의 속성에 접근할 때마다 호출된다는 점
     - 문제는 원하지 않는 경우에도 호출됨
 - 문제가 되는 예시: 객체의 속성에 접근하면 실제로 연관 딕셔너리에서 키를 찾게 하고 싶은 경우
+
+```python
+class BrokenDictionaryDB(object):
+    def __init__(self, data):
+        self._data = {}
+    
+    def __getattribute__(self, name):
+        print("Called __getattribute__(%s)" % name)
+        return self._data[name]
+```
+
+- 위와 같이 구현하면 파이썬이 스택의 한계에 도달할 때까지 재귀 호출을 하게 됨
+
+```python
+data = BrokenDictionaryDB({"foo": 3})
+data.foo
+
+>>>
+Called __getattribute__(foo)
+Called __getattribute__(_data)
+Called __getattribute__(_data)
+...
+Traceback ...
+RuntimeError: maximum recursion depth exceeded
+```
+
+- `__getattribute__`가 `self._data`에 접근 => `__getattribute__`가 다시 실행 => 다시 `self._data`에 접근 => ...
