@@ -91,3 +91,22 @@ class Polygon(object, metaclass=ValidatePolygon):
 class Triangle(Polygon):
     sides = 3
 ```
+
+- 면이 세 개 미만인 다각형을 정의하려고 하면 => 검증 코드가 `class` 문의 본문이 끝나자마자 `class` 문을 실패하게 함
+- 즉, 프로그램이 실행을 시작하지도 못함
+
+```python
+print("Before class")
+class Line(Polygon):
+    print("Before sides")
+    sides = 1
+    print("After sides")
+print("After class")
+
+>>>
+Before class
+Before sides
+After sides
+Traceback ...
+ValueError: Polygons need 3+ sides
+```
