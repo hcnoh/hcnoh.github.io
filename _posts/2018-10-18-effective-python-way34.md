@@ -30,7 +30,7 @@ class Serializable(object):
         return json.dumps({"args": self.args})
 ```
 
-- 이 클래스를 이용: `Point2D`처럼 간단한 불변 자료 구조를 문자열로 쉽게 직렬화
+- 이 클래스를 이용: `Point2D`처럼 간단한 불변 자료 구조를 문자열로 쉽게 직렬화: `Point2D` 객체 => `JSON`
 
 ```python
 class Point2D(Serializable):
@@ -51,4 +51,13 @@ Object: Point2D(5, 3)
 Serialized: {"args": [5, 3]}
 ```
 
+- 이 `JSON` 문자열을 역직렬화: `JSON` => `Point2D` 객체
+- 역직렬화하는 또 다른 클래스 정의
 
+```python
+class Deserializable(Serializable):
+    @classmethod
+    def deserialize(cls, json_data):
+        params = json.loads(json_data)
+        return cls(*params["args"])
+```
