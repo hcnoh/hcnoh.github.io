@@ -187,4 +187,23 @@ class LoggingSavingDB(SavingDB):
     def __setattr__(self, name, value):
         print("Called __setattr__(%s, %r)" % (name, value))
         super().__setattr__(name, value)
+
+data = LoggingSavingDB()
+print("Before:", data.__dict__)
+data.foo = 5
+print("After:", data.__dict__)
+data.foo = 7
+print("Finally:", data.__dict__)
+
+>>>
+Before: {}
+Called __setattr__(foo, 5)
+After: {"foo": 5}
+Called __setattr__(foo, 7)
+Finally: {"foo": 7}
 ```
+
+## __getattribute__/__setattr__의 문제점
+- 객체의 속성에 접근할 때마다 호출된다는 점
+    - 문제는 원하지 않는 경우에도 호출됨
+- 문제가 되는 예시: 객체의 속성에 접근하면 실제로 연관 딕셔너리에서 키를 찾게 하고 싶은 경우
