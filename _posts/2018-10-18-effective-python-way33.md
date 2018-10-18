@@ -87,4 +87,8 @@ class Polygon(object, metaclass=ValidatePolygon):
     
     @classmethod
     def interior_angles
+        return (cls.sides - 2) * 180
+    
+class Triangle(Polygon):
+    sides = 3
 ```
