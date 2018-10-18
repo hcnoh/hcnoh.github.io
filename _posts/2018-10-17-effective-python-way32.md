@@ -134,7 +134,6 @@ AttributeError: bad_name is missing
 
 - 파이썬 코드로 범용적인 기능 구현:
     - 내장 함수 `hasattr`로 프로퍼티가 있는지 확인 => 내장 함수 `getattr`로 프로퍼티 값을 가져옴
-    - 이 함수들도 `__getattr__`을 호출하기 전에 인스턴스 딕셔너리에서 속성 이름을 찾음
 
 ```python
 data = LoggingLazyDB()
