@@ -29,3 +29,26 @@ class Serializable(object):
     def serialize(self):
         return json.dumps({"args": self.args})
 ```
+
+- 이 클래스를 이용: `Point2D`처럼 간단한 불변 자료 구조를 문자열로 쉽게 직렬화
+
+```python
+class Point2D(Serializable):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.x = x
+        self.y = y
+        
+    def __repr__(self):
+        return `Point2D(%d, %d)` % (self.x, self.y)
+
+point = Point2D(5, 3)
+print("Object: ", point)
+print("Serialized:", point.serialize())
+
+>>>
+Object: Point2D(5, 3)
+Serialized: {"args": [5, 3]}
+```
+
+
