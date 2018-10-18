@@ -104,7 +104,7 @@ class BetterSerializable(object):
 ```python
 registry = {}
 
-def register_class(target_class):
+def register_class(target_class):     # 클래스 이름을 해당 클래스의 객체 생성자에 매핑
     registry[target_class.__name__] = target_class
     
 def deserialize(data):
