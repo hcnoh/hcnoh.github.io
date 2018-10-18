@@ -160,3 +160,23 @@ class Meta(type):
 class RegisteredSerializable(BetterSerializable, metaclass=Meta):
     pass
 ```
+
+- `RegisteredSerializable`의 서브클래스를 정의할 때 `register_class`가 호출되어 `deserialize`가 항상 기대한 대로 동작할 것이라고 확신할 수 있음
+
+```python
+class Vector3D(RegisteredSerializable):
+    def __init__(self, x, y, x):
+        super().__init__(x, y, z)
+        self.x, self.y, self.z = x, y, z
+
+v3 = Vector3D(10, -7, 3)
+print("Before:", v3)
+data = v3.serialize()
+print("Serialized:", data)
+print("After:", deserialize(data))
+
+>>>
+Before: Vector3D(10, -7, 3)
+Serialized: {"class": "Vector3D", "args": [10, -7, 3]}
+After: Vector3D(10, -7, 3)
+```
