@@ -107,10 +107,56 @@ registry = {}
 def register_class(target_class):     # 클래스 이름을 해당 클래스의 객체 생성자에 매핑
     registry[target_class.__name__] = target_class
     
-def deserialize(data):
+def deserialize(data):                # 범용 deserialize 함수
     params = json.loads(data)
     name = params["class"]
     target_class = registry[name]
     return target_class(*params["args"])
 ```
 
+- 추후에 역직렬화할 법한 모든 클래스에 `register_class`를 호출 => `deserialize`가 항상 제대로 동작하게끔 만들 수 있음
+
+```python
+class EvenBetterPoint2D(BetterSerializable):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.x = x
+        self.y = y
+        
+register_class(EvenBetterPoint2D)     # 클래스에 register_class를 호출 => deserialize가 동작하게 할 수 있는 목록에 추가
+```
+
+- 이제 어떤 클래스든 임의의 `JSON` 문자열을 역직렬화할 수 있음
+
+```python
+point = EvenBetterPoint2D(5, 3)
+print("Before:", point)
+data = point.serialize()
+print("Serialized:", data)
+after = deserialize(data)
+print("After:", after)
+
+>>>
+Before: EvenBetterPoint2D(5, 3)
+Serialized: {"class": "EvenBetterPoint2D", "args": [5, 3]}
+After: EvenBetterPoint2D(5, 3)
+```
+
+- 이 방법의 문제:
+  - `register_class`를 호출하는 것을 매번 해줘야 함
+  - 등록을 잊은 클래스의 객체를 런타임에 역직렬화하려 할 때 코드가 중단되는 원인
+
+- 프로그래머가 의도한 대로 `BetterSerializable`을 사용하고 모든 경우에 `register_class`가 호출된다고 확신할 수 있으려면?
+  - 메타클래스를 이용하여 서브클래스가 정의될 때 `class` 문을 가로채는 방법으로 만들 수 있음
+  - 메타클래스로 클래스 본문이 끝나자마자 새 타입을 등록하면 됨
+  
+```python
+class Meta(type):
+    def __new__(meta, name, bases, class_dict):
+        cls = type.__new__(meta, name, bases, class_dict)
+        register_class(cls)
+        return cls
+
+class RegisteredSerializable(BetterSerializable, metaclass=Meta):
+    pass
+```
