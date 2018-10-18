@@ -247,3 +247,5 @@ class DictionaryDB(object):
         data_dict = super().__getattribute__("_data")
         return data_dict[name]
 ```
+
+- 마찬가지 이유로 `__setattr__` 메서드에서도 `super().__setattr__`을 사용해야 함
