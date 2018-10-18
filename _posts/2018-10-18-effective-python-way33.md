@@ -50,3 +50,18 @@ class MyClass(object, metaclass=Meta):
 "stuff": 123})
 ```
 
+## 파이썬2에서의 문법
+- 약간 다르게 `__metaclass__` 클래스 속성으로 메타클래스를 지정
+- 하지만 `Meta.__new__` 인터페이스는 동일
+
+```python
+# 파이썬2
+class Meta(type):
+    def __new__(meta, name, bases, class_dict):
+        # ...
+        
+class MyClassInPython2(object):
+    __metaclass__ = meta
+        # ...
+```
+
