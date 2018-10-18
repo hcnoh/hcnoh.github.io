@@ -234,3 +234,16 @@ RuntimeError: maximum recursion depth exceeded
 ```
 
 - `__getattribute__`가 `self._data`에 접근 => `__getattribute__`가 다시 실행 => 다시 `self._data`에 접근 => ...
+
+>- 해결책?
+>    - 인스턴스에서 `super().__getattribute__` 메서드로 인스턴스 속성 딕셔너리에서 값을 얻어오는 것
+    
+```python
+class DictionaryDB(object):
+    def __init__(self, data):
+        self._data = data
+    
+    def __getattribute__(self, name):
+        data_dict = super().__getattribute__("_data")
+        return data_dict[name]
+```
