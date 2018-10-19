@@ -26,10 +26,12 @@ class Field(object):
     def __get__(self, instance, instance_type):
         if instance is None:
             return self
-        return getattr(instance, self.internal_name, "")
+        return getattr(instance, self.internal_name, "")    # instance의 self.internal_name라는 이름의 속성을 반환, 
+                                                            # 만약 그러한 속성이 없으면 ""을 반환
+                                                            # 즉, getattr(instance, self.internal_name) => instance.self.internal_name
         
     def __set__(self, instance, value):
-        setattr(instance, self.internal_name, value)
+        setattr(instance, self.internal_name, value)        # instance의 self.internal_name라는 이름의 속성에 value로 할당
 ```
 
 - `Field` 디스크립터에 저장할 칼럼 이름이 있으면 =>
