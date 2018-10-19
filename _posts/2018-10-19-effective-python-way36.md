@@ -90,3 +90,22 @@ print("Finished in %.3f seconds" % (end - start))
 Finished in 0.177 seconds
 ```
 
+## 파이프
+- 파이프(`pipe`):
+  - 파이썬에서 데이터를 서브프로세스로 보낸 다음 서브프로세스의 결과를 받아올 수 있게 해줌
+  - 다른 프로그램을 활용하여 작업을 병렬로 수행할 수 있음
+-데이터 암호화 예제
+  - `openssl` 명령줄 도구 사용
+
+```python
+def run_openssl(data):
+    env = os.environ.copy()
+    env["password"] = b'\xe24U\n\xd0Ql3S\x11'
+    proc = subprocess.Popen(["openssl", "enc", "-des3", "-pass", "env:password"],
+                             env=env,
+                             stdin=subprocess.PIPE,
+                             stdout=subprocess.PIPE)
+    proc.stdin.write(data)
+    proc.stdin.flush()    # 자식 프로세스가 입력을 반드시 받게 함
+    return proc
+```
