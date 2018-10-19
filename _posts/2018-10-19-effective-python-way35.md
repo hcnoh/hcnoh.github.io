@@ -58,4 +58,22 @@ Before: "" {}
 After: "Euclid" {"_first_name": "Euclid"}
 ```
 
-  
+- 책에서는 중복되는 것이 마음에 들지 않는다고 주장: 무엇이 중복되는지 정확히 이해가 되지는 않음
+  - 이미 클래스 문 본문에서 `Field` 객체를 생성하여 `Customer.first_name`에 할당할 때 필드의 이름을 선언함
+  - 즉, 필드 이름(여기서는 `first_name`)을 `Field` 생성자에도 넘기고 싶지 않음
+
+## 메타클래스를 이용하여 중복성을 제거
+- 메타클래스를 이용 => 클래스 본문이 끝나자마자 원하는 동작을 처리
+  - 필드 이름을 수동으로 여러 번 지정하지 않고,
+  - 메타클래스를 사용하여 `Field.name`/`Field.internal_name`을 디스크립터에 자동으로 할당
+
+```python
+class Meta(type):
+    def __new__(meta, name, bases, class_dict):
+        for key, value in class_dict.items():
+            if isinstance(value, Field):      # value 인스턴스가 Field 클래스인 경우
+                value.name = key
+                value.internal_name = "_" + key
+        cls = type.__new__(meta, name, bases, class_dict)
+        return cls
+```
