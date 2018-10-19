@@ -31,3 +31,16 @@ class Field(object):
     def __set__(self, instance, value):
         setattr(instance, self.internal_name, value)
 ```
+
+- `Field` 디스크립터에 저장할 칼럼 이름이 있으면 =>
+  - 내장 함수 `setattr`과 `getattr`을 사용하여 모든 인스턴스별 상태를 인스턴스 딕셔너리에 보호 필드로 직접 저장
+  
+```python
+class Customer(object):
+    # 클래스 속성
+    first_name = Field("first_name")
+    last_name = Field("last_name")
+    prefix = Field("prefix")
+    suffix = Field("suffix")
+```
+  
