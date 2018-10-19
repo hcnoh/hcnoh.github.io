@@ -91,4 +91,11 @@ class DatabaseRow(object, metaclass=Meta):
   - 더는 생성자에 인수를 넘길 필요가 없음
   - 대신 필드 스크립터의 속성은 `Meta.__new__` 메서드로 설정됨
 
-
+```python
+class Field(object):
+    def __init__(self):
+        # 메타클래스가 이 속성들을 할당함
+        self.name = None
+        self.internal_name = None
+    # ...
+```
