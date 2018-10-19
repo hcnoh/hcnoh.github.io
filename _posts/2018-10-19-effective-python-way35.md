@@ -37,10 +37,21 @@ class Field(object):
   
 ```python
 class Customer(object):
-    # 클래스 속성
+    # 클래스 속성 => 클래스에 종속되어 인스턴스들이 모두 공유하는 속성들
     first_name = Field("first_name")
     last_name = Field("last_name")
     prefix = Field("prefix")
     suffix = Field("suffix")
+
+# Field 디스크립터가 인스턴스 딕셔너리 __dict__를 기대한 대로 수정하는 방식 확인
+foo = Customer()
+print("Before:", repr(foo.first_name), foo.__dict__)
+foo.first_name = "Euclid"
+print("After:", repr(foo.first_name), foo.__dict__)
+
+>>>
+Before: "" {}
+After: "Euclid" {"_first_name": "Euclid"}
 ```
+
   
