@@ -77,3 +77,16 @@ for _ in range(10):
     proc = run_sleep(0.1)
     procs.append(proc)
 ```
+
+- 이후에는 `communicate` 메서드로 자식 프로세스들이 I/O를 마치고 종료하기를 기다림
+
+```python
+for proc in procs:
+    proc.communicate()
+end = time()
+print("Finished in %.3f seconds" % (end - start))
+
+>>>
+Finished in 0.177 seconds
+```
+
