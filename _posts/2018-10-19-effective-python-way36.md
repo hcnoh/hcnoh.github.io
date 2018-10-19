@@ -36,7 +36,7 @@ permalink: /2018-10-19-effective-python-way36
   - `communicate` 메서드: 자식 프로세스의 출력을 읽어옴, 자식 프로세스가 종료할 때까지 대기
 
 ```python
-proc = subprocess.Popen(["echo", "Hello from the child!"],
+proc = subprocess.Popen(["echo", "Hello from the child!"],  # 이 부분 확인 필요: 쉘 스크립트
                         stdout=subprocess.PIPE)
 out, err = proc.communicate()
 print(out.decode("utf-8"))
@@ -45,4 +45,19 @@ print(out.decode("utf-8"))
 Hello from the child!
 ```
 
+- 자식 프로세스는 부모 프로세스와 파이썬 인터프리터와는 독립적으로 실행
+- 자식 프로세스의 상태는 파이썬이 다른 작업을 하는 동안 주기적으로 폴링(`polling`)됨
 
+```python
+proc = subprocess.Popen(["sleep", "0.3"])
+while proc.poll() is None:
+    print("Working...")
+    # 시간이 걸리는 작업 몇 개를 수행함
+    # ...
+print("Exit status", proc.poll())
+
+>>>
+Working...
+Working...
+Exit status 0
+```
