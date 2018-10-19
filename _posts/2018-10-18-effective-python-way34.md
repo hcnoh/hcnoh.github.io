@@ -57,7 +57,7 @@ Serialized: {"args": [5, 3]}
 
 ```python
 class Deserializable(Serializable):
-    @classmethod
+    @classmethod    # 역직렬화를 수행하는 클래스 메서드
     def deserialize(cls, json_data):
         params = json.loads(json_data)
         return cls(*params["args"])
