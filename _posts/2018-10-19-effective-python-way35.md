@@ -119,3 +119,5 @@ print("After:", repr(foo.first_name), foo.__dict__)
 Before: "" {}
 After: "Euler" {"_first_name": "Euler"}
 ```
+
+- 이런 식으로 메타클래스와 디스크립터를 연계하여 사용하면 메모리 누수 및 `weakref` 모듈을 모두 피할 수 있음: 확인 필요
