@@ -61,3 +61,19 @@ Working...
 Working...
 Exit status 0
 ```
+
+- 부모에서 자식 프로세스를 떼어냄 => 부모 프로세스가 자유롭게 여러 자식 프로세스를 병렬로 실행할 수 있음
+- 자식 프로세스를 떼어내려면?
+  - 모든 자식 프로세스를 먼저 시작하면 됨
+
+```python
+def run_sleep(period):
+    proc = subprocess.Popen(["sleep", str(period)])
+    return proc
+
+start = time()
+procs = []
+for _ in range(10):
+    proc = run_sleep(0.1)
+    procs.append(proc)
+```
