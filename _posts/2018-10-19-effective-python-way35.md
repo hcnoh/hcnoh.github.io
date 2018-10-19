@@ -99,3 +99,22 @@ class Field(object):
         self.internal_name = None
     # ...
 ```
+
+- 이제 중복이 발생하지 않음
+
+```python
+class Bettercustomer(DatabaseRow):
+    first_name = Field()
+    last_name = Field()
+    prefix = Field()
+    suffix = Field()
+
+foo = Bettercustomer()
+print("Before:", repr(foo.first_name), foo.__dict__)
+foo.first_name = "Euler"
+print("After:", repr(foo.first_name), foo.__dict__)
+
+>>>
+Before: "" {}
+After: "Euler" {"_first_name": "Euler"}
+```
