@@ -32,6 +32,8 @@ class Field(object):
         
     def __set__(self, instance, value):
         setattr(instance, self.internal_name, value)        # instance의 self.internal_name라는 이름의 속성에 value로 할당
+                                                            # 즉, setattr(instance, self.internal_name, value)
+                                                            #                   => instance.self.internal_name = value
 ```
 
 - `Field` 디스크립터에 저장할 칼럼 이름이 있으면 =>
