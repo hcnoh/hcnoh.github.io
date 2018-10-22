@@ -131,5 +131,17 @@ for proc in procs:
 
 >>>
 b'o4,G\x91\x95\xfe\xa0\xaa\xb7'
+b'\x0b\x01\\\xb1\xb7\xfb\xb2C\xe1b'
+b'ds\xc5\xf4;j\x1f\xd0c-'
 ```
 
+- 한 자식 프로세스의 결과를 다른 프로세스의 입력으로 연결 => 병렬 프로세스 체인(`chain`)을 생성할 수도 있음
+- 자식 프로세스를 시작하여 `md5` 명령줄 도구에서 입력 스트림을 소비하는 함수 예제
+
+```python
+def run_md5(input_stdin):
+    proc = subprocess.Popen(["md5"],
+                            stdin=input_stdin,
+                            stdout=subprocess.PIPE)
+    return proc
+```
