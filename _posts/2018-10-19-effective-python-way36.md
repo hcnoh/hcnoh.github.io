@@ -175,3 +175,21 @@ b'7a1822875dcf9650a5a71e5e41e77bf3'
 b'd41d8cd98f00b204e9800998ecf8427e'
 b'1720f581cfdc448b6273048d42621100'
 ```
+
+- 자식 프로세스가 종료되지 않거나 입력 또는 출력 파이프에서 블록될 염려가 있다면
+  - `communicate` 메서드에 `timeout` 파라미터를 넘겨야 함
+  - 이렇게 하면 자식 프로세스가 일정한 시간 내에 응답하지 않을 때 예외가 일어나서 오동작하는 자식 프로세스를 종료할 기회를 얻음
+  
+```python
+proc = run_sleep(10)
+try:
+    proc.communicate(timeout=0.1)
+except subprocess.TimeoutExpired:
+    proc.terminate()
+    proc.wait()
+
+print("Exit status", proc.poll())
+
+>>>
+Exit status -15
+```
