@@ -94,7 +94,7 @@ Finished in 0.177 seconds
 - 파이프(`pipe`):
   - 파이썬에서 데이터를 서브프로세스로 보낸 다음 서브프로세스의 결과를 받아올 수 있게 해줌
   - 다른 프로그램을 활용하여 작업을 병렬로 수행할 수 있음
--데이터 암호화 예제
+- 데이터 암호화 예제
   - `openssl` 명령줄 도구 사용
 
 ```python
@@ -109,3 +109,27 @@ def run_openssl(data):
     proc.stdin.flush()    # 자식 프로세스가 입력을 반드시 받게 함
     return proc
 ```
+
+- 위의 예제에서는 파이프로 암호화 함수에 임의의 바이트를 전달
+  - 하지만 실전에서는 사용자 입력, 파일 핸들, 네트워크 소켓 등을 전달할 것
+
+```python
+procs = []
+for _ in range(3):
+    data = os.urandom(10)     # 임의의 바이트 전달
+    proc = run_openssl(data)
+    procs.append(proc)
+```
+
+- 자식 프로세스는 병렬로 실행되고 입력을 소비함
+- 다음 예제에서는 자식 프로세스가 종료할 때까지 대기하고 최종 결과를 받음
+
+```python
+for proc in procs:
+    out, err = proc.communicate()
+    print(out[-10:])
+
+>>>
+b'o4,G\x91\x95\xfe\xa0\xaa\xb7'
+```
+
