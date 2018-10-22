@@ -193,3 +193,6 @@ print("Exit status", proc.poll())
 >>>
 Exit status -15
 ```
+
+- `timeout` 파라미터는 파이썬 3.3과 그 이후 버전에서 사용할 수 있음
+  - 이전 버전에서 I/O 타임아웃을 강제하려면 내장 모듈 `select`를 `proc.stdin, proc.stdout, proc.strderr`에 사용해야 함
