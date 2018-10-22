@@ -145,3 +145,33 @@ def run_md5(input_stdin):
                             stdout=subprocess.PIPE)
     return proc
 ```
+
+- 이제 데이터를 암호화하는 `openssl` 프로세스 집합과 암호화된 결과를 `md5`로 해시(`hash`)하는 프로세스 집합을 시작
+
+```python
+input_procs = []
+hash_procs = []
+for _ in range(3):
+    data = os.urandom(10)
+    proc = run_openssl(data)
+    input_procs.append(proc)
+    hash_proc = run_md5(proc.stdout)
+    hash_procs.append(hash_proc)
+```
+
+- 일단 자식 프로세스들이 시작 => 이들 사이의 I/O는 자동으로 일어남 => 그냥 기다리면 됨
+
+```python
+for proc in input_procs:
+    proc.communicate()
+    
+for proc in hash_procs:
+    out, err = proc.communicate()
+    print(out.strip())
+
+>>>
+
+b'7a1822875dcf9650a5a71e5e41e77bf3'
+b'd41d8cd98f00b204e9800998ecf8427e'
+b'1720f581cfdc448b6273048d42621100'
+```
