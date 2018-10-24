@@ -98,3 +98,6 @@ After:
 Error log here
 ```
 
+## with 타깃 사용
+- `with` 문에 전달되는 컨텍스트 매니저에서 객체를 반환할 수도 있음
+  - 이 객체는 복합문(`compound statement`)의 `as` 부분에 있는 지역 변수에 할당
