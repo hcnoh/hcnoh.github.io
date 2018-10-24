@@ -78,3 +78,23 @@ def debug_logging(level):
   - `with` 블록에서 일어나는 모든 예외를 `yield` 표현식이 다시 일으킴 => 헬퍼 함수로 처리 가능
 - 자세한 동작 원리는 Better way 40 "많은 함수를 동시에 실행하려면 코루틴을 고려하자"를 참고
 
+- 이제 같은 로깅 함수를 `debug_logging` 컨텍스트에서 호출
+  - 이번에는 `with` 블록 안에 있는 디버크 메시지가 모두 화면에 출력
+  - 같은 함수를 `with` 블록 내부에서 실행하면 디버깅 메시지가 출력되지 않음
+
+```python
+with debug_logging(logging.DEBUG):
+    print("Inside:")
+    my_function()
+print("After:")
+my_function()
+
+>>>
+Inside:
+some debug data
+Error log here
+More debug data
+After:
+Error log here
+```
+
