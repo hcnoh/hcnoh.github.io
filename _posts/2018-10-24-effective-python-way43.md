@@ -74,3 +74,7 @@ def debug_logging(level):
         logger.setLevel(old_level)
 ```
 
+- `yield` 표현식 => `with` 블록의 내용이 실행되는 지점
+  - `with` 블록에서 일어나는 모든 예외를 `yield` 표현식이 다시 일으킴 => 헬퍼 함수로 처리 가능
+- 자세한 동작 원리는 Better way 40 "많은 함수를 동시에 실행하려면 코루틴을 고려하자"를 참고
+
