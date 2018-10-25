@@ -15,5 +15,45 @@ permalink: /2018-10-25-effective-python-way44
 ## 내장 모듈 pickle
 - 직렬화(파이썬 객체 => 바이트 스트림) 또는 역직렬화(바이트 스트림 => 파이썬 객체)하는데 사용
 - `pickle`을 사용할 때 주의사항:
-  - 신뢰할 수 없는 부분과 통신하는 데 사용하면 
+  - 신뢰할 수 없는 부분과 통신하는 데 사용하면 안됨
+- `pickle`의 문제점:
+  - `pickle` 모듈의 직렬화 포맷은 설계 관점에서 안전하지 못함
+    - 직렬화한 데이터는 원래의 파이썬 객체를 재구성하는 데 필요한 프로그램을 담기 때문 => `pickle` 페이로드(`payload`)
+    - `pickle` 페이로드는 파이썬 프로그램에서 해당 페이로드를 역직렬화하는 부분을 망가뜨릴 수 있음
+  - `json` 모듈은 설계 관점에서는 안전
+    - 직렬화된 `JSON` 데이터는 객체 계층에 대한 간단한 설명을 포함
+    - `JSON` 데이터를 역직렬화한다고 해서 파이썬 프로그램이 추가적인 위협에 노출되지는 않음
+    - 따라서 서로 신뢰하지 않는 프로그램이나 사람 간에 통신할 목적으로 사용 가능
+- 게임에서 플레이어의 진행 상태를 파이썬 객체로 표현하려는 경우:
+  - 게임 상태: 플레이어의 레벨, 남은 생명 수
 
+```python
+class GameState(object):
+    def __init__(self):
+        self.level = 0
+        self.lives = 4
+# 프로그램은 게임이 실행 중일 때 이 객체를 수정
+state = GameState()
+state.level += 1 # 플레이어가 레벨을 통과함
+state.lives -= 1 # 플레이어가 재도전해야 함
+```
+
+- 사용자가 게임을 끝냄 => 게임의 상태를 파일에 저장해서 나중에 제개할 수 있게 함 => `pickle` 모듈 이용
+
+```python
+# GameState 객체를 파일에 직접 덤프하는 코드
+state_path = "/tmp/game_state.bin"
+with open(state_path, "wb") as f:
+    pickle.dump(state, f)
+```
+
+- 나중에 파일을 로드하고 직렬화한 적이 없는 것처럼 `GameState` 객체를 복원
+
+```python
+with open(state_path, "rb") as f:
+    state_after = pickle.load(f)
+print(state_after.__dict__)
+
+>>>
+{"lives": 3, "level": 1}
+```
