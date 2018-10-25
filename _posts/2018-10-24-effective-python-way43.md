@@ -131,6 +131,7 @@ def log_level(level, name):
 ```
 
 - `with` 블록에서 로깅 심각성 수준을 충분히 낮게 설정 => `as` 타깃으로 `debug` 같은 로깅 메서드를 호출하면 출력이 나옴
+- 기본 프로그램 로거(`logger`)의 기본 로깅 심각성 수준은 `WARNING` => `logging` 모듈을 직접 사용하면 아무것도 출력되지 않음
 
 ```python
 with log_level(logging.DEBUG, "my-log") as logger:
@@ -139,4 +140,17 @@ with log_level(logging.DEBUG, "my-log") as logger:
 
 >>>
 this is my message!
+```
+
+- `with` 문이 종료된 후에 `my-log`라는 `Logger`의 디버그 로깅 메서드를 호출 => 아무것도 출력되지 않음
+  - 이유? 기본 로깅 심각성 수준으로 되돌아갔기 때문
+- 물론 오류 로그 메시지는 항상 출력됨
+
+```python
+logger = logging.getLogger("my-log")
+logger.debug("Debug will not print")
+logger.error("EError will print")
+
+>>>
+Error will print
 ```
