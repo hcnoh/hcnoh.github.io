@@ -130,4 +130,13 @@ def log_level(level, name):
         logger.setLevel(old_level)
 ```
 
+- `with` 블록에서 로깅 심각성 수준을 충분히 낮게 설정 => `as` 타깃으로 `debug` 같은 로깅 메서드를 호출하면 출력이 나옴
 
+```python
+with log_level(logging.DEBUG, "my-log") as logger:
+    logger.debug("This is my message!")
+    logging.debug("This will not print")
+
+>>>
+this is my message!
+```
