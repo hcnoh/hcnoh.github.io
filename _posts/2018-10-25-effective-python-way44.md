@@ -57,3 +57,50 @@ print(state_after.__dict__)
 >>>
 {"lives": 3, "level": 1}
 ```
+
+- 위 방법의 문제점:
+  - 시간이 지남에 따라 게임의 기능을 확장하기 어려움
+- 플레이어가 포인트를 쌓아가게 하고 싶은 경우
+  - 플레이어의 포인트를 추적 => `GameState` 클래스에 새로운 필드를 추가
+
+```python
+class GameState(object):
+    def __init__(self):
+        # ...
+        self.points = 0
+```
+
+- `pickle`로 `GameState` 클래스의 새로운 버전을 직렬화하는 기능은 이전과 동일하게 동작
+- 하지만 오래 전에 저장된 `GameState` 객체를 이용하여 게임을 재개할 수는 없음
+
+```python
+state = GameState()
+serialized = pickle.dumps(state)
+state_after = pickle.loads(serialized)
+print(state_after.__dict__)
+
+>>>
+{"lives": 4, "level": 0, "points": 0} # 직렬화는 잘 동작
+```
+
+```python
+with open(state_path, "rb") as f:
+    state_after = pickle.load(f)
+print(state_after.__dict__)
+
+>>>
+{"lives": 3, "level": 1}  # points 속성이 빠짐
+```
+
+- 또한 위에서 반환된 객체가 새로 만든 `GameState` 클래스의 인스턴스
+
+```python
+assert isinstance(state_after, GameState)
+```
+
+- 위의 상황에서 봤을때 `pickle`을 단순한 용도 이상으로 사용하게되면 모듈의 기능이 망가짐
+- 내장 모듈 `copyreg`를 이용하면 이 문제를 간단히 해결할 수 있음
+
+## 내장 모듈 copyreg
+- 파이썬 객체를 직렬화할 함수를 등록 => `pickle`의 동작을 제어 => `pickle`을 더 신뢰할 수 있게 만듦
+
