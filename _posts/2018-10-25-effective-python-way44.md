@@ -208,7 +208,7 @@ def pickle_game_state(game_state):
 
 ```python
 def unpickle_game_state(kwargs):
-    version = kwargs.pop("version", 1)
+    version = kwargs.pop("version", 1)  # version 인수를 pop하고 없으면 1로 디폴트
     if version == 1:
         kwargs.pop("lives")
     return GameState(**kwargs)
@@ -225,4 +225,33 @@ print(state_after.__dict__)
 {"magic": 5, "level": 0, "points": 1000}
 ```
 
+## 안정적인 임포트 경로
+- `pickle`을 사용하다 부딪힐 만한 또 다른 문제
+  - 클래스의 이름을 변경하면 기능이 망가짐
+- `GameState` 클래스의 이름을 `BetterGameState`로 변경 => 프로그램 전체에서 이전 클래스를 삭제하기를 원함
+
+```python
+class BetterGameState(object):
+    def __init__(self, level=0, points=0, magic=5):
+        # ...
+```
+
+- `GameState` 객체를 역직렬화하려고 해보면? 실패
+
+```python
+pickle.loads(serialized)
+
+>>>
+AttributeError: Can't get attribute "GameState" on <module "__main__" from "my_code.py">
+```
+
+- 이러한 예외가 발생하는 이유?
+  - 직렬화된 객체의 클래스를 임포트할 경로가 피클 데이터에 인코드되어 있기 때문
+
+```python
+print(serialized[:25])
+
+>>>
+b'\x80\x03c__main__\nGameState\nq\x00)'
+```
 
