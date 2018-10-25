@@ -149,7 +149,7 @@ this is my message!
 ```python
 logger = logging.getLogger("my-log")
 logger.debug("Debug will not print")
-logger.error("EError will print")
+logger.error("Error will print")
 
 >>>
 Error will print
