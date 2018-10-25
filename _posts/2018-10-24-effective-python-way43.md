@@ -101,3 +101,33 @@ Error log here
 ## with 타깃 사용
 - `with` 문에 전달되는 컨텍스트 매니저에서 객체를 반환할 수도 있음
   - 이 객체는 복합문(`compound statement`)의 `as` 부분에 있는 지역 변수에 할당
+  - 이 기능을 통하여 `with` 블록 안에 있는 코드에서 직접 컨텍스트와 상호작용 가능
+
+- 파일에 쓰기를 수행한 후 해당 파일을 항상 올바르게 닫음을 보장하고 싶은 경우:
+  - `with` 문에 `open`을 전달하면 됨
+    - `open`은 `with`의 `as` 타깃에 파일 핸들을 반환 => `with` 블록이 종료할 때 핸들을 닫음
+    - 매번 수동으로 파일 핸들을 여닫는 방법보다 나음
+
+```python
+with open("/tmp/my_output.txt", "w") as handle:
+    handle.write("This is some data!")
+```
+
+- `as` 타깃에 값을 제공할 수 있게 하려면:
+  - 컨텍스트 매니저에서 `yield`를 사용하여 값을 넘겨주면 됨
+
+- `Logger` 인스턴스를 가져와서 심각성 수준을 설정한 후 `yield`로 인스턴스를 `as`에 전달하도록 정의한 예
+
+```python
+@contextmanager
+def log_level(level, name):
+    logger = logging.getLogger(name)
+    old_level = logger.getEffectiveLevel()
+    logger.setLevel(level)
+    try:
+        yield logger
+    finally:
+        logger.setLevel(old_level)
+```
+
+
