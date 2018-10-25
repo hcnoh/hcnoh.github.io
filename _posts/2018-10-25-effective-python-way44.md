@@ -160,3 +160,36 @@ class GameState(object):
         # ...
 ```
 
+- 객체를 역직렬화 해보면 => 빠진 속성 없이 올바른 게임 데이터를 만들어 냄
+  - `unpickle_game_state`가 `GameState` 생성자를 직접 호출하기 때문
+  - 생성자의 키워드 인수는 파라미터가 빠지면 기본값을 가지게 됨 => 새로 추가된 `magic` 필드는 기본값
+
+```python
+state_after = pickle.loads(serialized)
+print(state_after.__dict__)
+
+>>>
+{"level": 0, "points": 1000, "magic": 5, "lives": 4}
+```
+
+## 클래스 버전 관리
+- 필드를 제거하여 파이썬 객체가 하위 호환성을 유지하지 않게 하기를 원함
+  - 기본 인수를 사용한 직렬화는 동작하지 않음
+
+- 게임에서 생명이라는 개념을 없애고 싶은 경우 => `GameState`가 생명 필드를 더는 포함하지 않도록 재정의
+
+```python
+class GameState(object):
+    def __init__(self, level=0, points=0, magic=5):
+        # ...
+```
+
+- 문제점? 이전 게임 데이터의 역직렬화를 깨뜨림
+  - 이전 데이터에 있던 모든 필드는 (그 중 하나가 클래스에서 삭제되어도) `unpickle_game_state` 함수에 의해 `GameState` 생성자로 넘겨짐
+
+```python
+pickle.loads(serialized)
+
+>>>
+TypeError: __init__() got an unexpected keyword argument "lives"
+```
