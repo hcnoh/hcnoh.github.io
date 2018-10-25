@@ -126,3 +126,28 @@ def pickle_game_state(game_state):
     return unpickle_game_state, (kwargs,)
 ```
 
+- `unpickle_game_state` 헬퍼도 정의
+
+```python
+def unpickle_game_state(kwargs):
+    return GameState(**kwargs)
+```
+
+- 이제 내장 모듈 `copyreg`로 `GameState` 객체와 직렬화 함수를 등록
+
+```python
+copyreg.pickle(GameState, pickle_game_state)
+```
+
+- 이전과 동일하게 동작하는 것 확인
+
+```python
+state = GameState()
+state.points += 1000
+serialized = pickle.dumps(state)
+state_after = pickle.loads(serialized)
+print(state_after.__dict__)
+
+>>>
+{"lives": 4, "level": 0, "points": 1000}
+```
