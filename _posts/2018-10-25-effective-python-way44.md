@@ -151,3 +151,12 @@ print(state_after.__dict__)
 >>>
 {"lives": 4, "level": 0, "points": 1000}
 ```
+
+- 등록 이후에는 `GameState`의 정의를 변경 => 플레이어에게 사용할 마법의 개수를 부여 => 즉, `magic` 필드를 추가
+
+```python
+class GameState(object):
+    def __init__(self, level=0, lives=4, points=0, magic=5):
+        # ...
+```
+
