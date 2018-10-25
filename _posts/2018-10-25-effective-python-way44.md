@@ -193,3 +193,36 @@ pickle.loads(serialized)
 >>>
 TypeError: __init__() got an unexpected keyword argument "lives"
 ```
+
+- 해결책:
+  - `copyreg`에 제공하는 함수에 버전 파라미터를 추가
+
+```python
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    kwargs["version"] = 2   # 버전 파라미터 추가
+    return unpickle_game_state, (kwargs,)
+```
+
+- 데이터의 이전 버전에는 `version` 인수가 없음 => 이에 맞춰 `GameState` 생성자에 넘길 인수를 조작
+
+```python
+def unpickle_game_state(kwargs):
+    version = kwargs.pop("version", 1)
+    if version == 1:
+        kwargs.pop("lives")
+    return GameState(**kwargs)
+```
+
+- 이전 객체를 역직렬화하는 기능이 제대로 동작하는지 확인
+
+```python
+copyreg.pickle(GameState, pickle_game_state)
+state_after = pickle.loads(serialized)
+print(state_after.__dict__)
+
+>>>
+{"magic": 5, "level": 0, "points": 1000}
+```
+
+
