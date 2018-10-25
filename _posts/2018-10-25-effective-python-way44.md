@@ -98,9 +98,31 @@ print(state_after.__dict__)
 assert isinstance(state_after, GameState)
 ```
 
+## 내장 모듈 copyreg
 - 위의 상황에서 봤을때 `pickle`을 단순한 용도 이상으로 사용하게되면 모듈의 기능이 망가짐
 - 내장 모듈 `copyreg`를 이용하면 이 문제를 간단히 해결할 수 있음
-
-## 내장 모듈 copyreg
 - 파이썬 객체를 직렬화할 함수를 등록 => `pickle`의 동작을 제어 => `pickle`을 더 신뢰할 수 있게 만듦
+
+## 기본 속성 값
+- `GameState` 객체가 언피클링 후에 항상 모든 속성을 담음을 보장하기를 원함
+  - 가장 간단한 방법: 기본 인수가 있는 생성자를 사용
+  - Better way 19 "키워드 인수로 선택적인 동작을 제공하자" 참고
+- 이 방법으로 생성자 재정의
+
+```python
+class GameState(object):
+    def __init__(self, level=0, lives=4, points=0):
+        self.level = level
+        self.lives = lives
+        self.points = points
+```
+
+- 이 생성자를 피클용으로 사용하기를 원함
+  - `GameState` 객체를 받아 `copyreg` 모듈용 파라미터 튜플로 변환하는 헬퍼 함수를 정의
+
+```python
+def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    return unpickle_game_state, (kwargs,)
+```
 
