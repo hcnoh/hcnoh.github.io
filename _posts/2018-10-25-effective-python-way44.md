@@ -255,3 +255,24 @@ print(serialized[:25])
 b'\x80\x03c__main__\nGameState\nq\x00)'
 ```
 
+- 해결책? `copyreg`를 이용 => 객체를 언피클하는 데 사용할 함수의 안정적인 식별자를 설정
+  - 이 방식으로 역직렬화할 때 다른 클래스로 변환할 수 있음
+
+```python
+copyreg.pickle(BetterGameState, pickle_game_state)
+```
+
+- 이렇게 하면 직렬화된 데이터에 `BetterGameState`가 아닌 `pickle_game_state`의 임포트 경로가 인코드되어 있음
+
+```python
+state = BetterGameState()
+serialized = pickle.dumps(state)
+print(serialized[:35])
+
+>>>
+b'\x80\x03c__main__\unpickle_game_state\nq\x00}'
+```
+
+- 위 방법의 유일한 문제:
+  - `unpickle_game_state` 함수가 존재하는 모듈의 경로를 변경할 수 없음
+  - 어떤 함수로 데이터를 직렬화한 후에는 나중에 역직렬화할 때 사용할 수 있도록 해당 임포트 경로에 함수를 남겨둬야 함
