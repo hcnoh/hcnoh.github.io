@@ -60,3 +60,24 @@ TESTING = False
 import db_connection
 db = db_connection.Database()
 ```
+
+- 위의 예시에서 두 파일의 차이점: `TESTING` 상수의 값
+  - 프로그램에서 다른 모듈들은 `__main__` 모듈을 임포트하고 `TESTING` 값으로 자체의 속성을 정의하는 방법을 결정
+
+```python
+# db_connection.py
+import __main__       # __main__ 모듈 임포트
+
+class TestingDatabase(object):
+    # ...
+
+class RealDatabase(object):
+    # ...
+
+if __main__.TESTING:  # TESTING 값으로 자체의 속성을 정의
+    Database = TestingDatabase
+else:
+    Database = RealDatabase
+```
+
+
