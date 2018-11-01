@@ -20,10 +20,10 @@ permalink: /2018-11-01-effective-python-way54
   - 프로그램을 사용하는 동안 문제가 없게 하는 것
   - 파이썬의 내장 모듈 덕분에 디버깅, 최적화, 실행 시 프로그램의 품질과 성능을 극대화하는 테스트 기능 제공 가능
 
-## 배포 환경
-- `deployment environment`
+## 배포 환경/제품 환경
+- `deployment environment` / `production environment`
 - 프로그램을 실행하는 구성
-- 모든 프로그램에는 적어도 하나의 배포 환경과 제품 환경(`production environment`)이 있음
+- 모든 프로그램에는 적어도 하나의 배포 환경과 제품 환경이 있음
 
 >- 프로그램을 작성하는 첫 번째 목적: 제품 환경에서 동작하도록 하는 것!
 
