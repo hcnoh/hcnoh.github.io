@@ -80,4 +80,35 @@ else:
     Database = RealDatabase
 ```
 
+- 위의 예제는 함수나 메서드 내부가 아님 => 모듈 스코프에서 일반 파이썬 코드가 동작
+- 모듈 수준에서 `if` 문을 이용하여 모듈의 이름을 정의하는 방법
+  - 모듈을 다양한 배포 환경에 알맞게 만들 수 있음
+  - 데이터베이스 설정 등이 필요없을 때 재현해야 하는 수고를 덜 수 있음
+
+## 배포 환경이 복잡해지는 경우
+- 위 예제의 `TESTING` 같은 파이썬 상수에서 별ㄹ도의 설정 파일로 옮기는 방안을 고려해야 함
+- 내장 모듈 `configparser`와 같은 도구를 이용 => 제품 설정을 코드와 분리하여 관리
+
+## 호스트 플랫폼에 따라 다르게 동작해야 하는 경우
+- 모듈의 최상위 구성 요소를 정의하기 전에 `sys` 모듈을 조사
+
+```python
+# db_connection.py
+import sys
+
+class Win32Database(object):
+    # ...
+
+class PosixDatabase(object):
+    # ...
+    
+if sys.platform.startswith("win32"):
+    Database = Win32Database
+else:
+    Database = PosixDatabase
+```
+
+- 이와 유사한 방법:
+  - `os.environ`에 들어있는 환경 변수를 기반으로 모듈을 정의
+
 
