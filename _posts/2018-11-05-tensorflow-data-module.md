@@ -114,7 +114,7 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 ```
 
-`_generate_batch`가 `audio` 및 `script`를 반환할 때 각각 최대 길이 `125000` `130`으로 패딩을 하였기 때문에 `from_generator` 메서드의 `output_shapes`을 위와 같이 잡아주었다.
+`_generate_batch`가 `audio` 및 `script`를 반환할 때 각각 최대 길이 125000, 130으로 패딩을 하였기 때문에 `from_generator` 메서드의 `output_shapes`을 위와 같이 잡아주었다.
 
 또한 `.batch`, `.shuffle`, `.repeat` 등을 이용하여 배치 사이즈 및 셔플링 등의 `config` 설정들을 해주었다. 위의 예제에서 설정된 `config`는 다음과 같다.
 
@@ -122,4 +122,25 @@ sess.run(tf.global_variables_initializer())
 - 셔플을 위한 버퍼 사이즈: 10
 - 최대 10번 반복하여 반환
 
+이제 `dataset`을 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환하게 된다.
 
+```python
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+audio_target, script_target = sess.run([generated_audio, generated_script])
+print(np.shape(audio_target))
+print(np.shape(script_target))
+
+>>>
+(4, 125000)
+(4, 130)
+```
+
+배치 사이즈를 4로 설정해 주었기 때문에 위와 같은 결과가 나오는 것을 확인할 수 있다. 이제 이러한 방식으로 `tf.placeholder`를 `Dataset`으로 대체할 수 있게 되었다. 실제 모델의 추론에 활용하기 위해서는 다음과 같이 사용하면 된다.
+
+```python
+model = NeuralNetworkModel(input=generated_audio)
+loss = get_loss(pred=model, target=generated_script)
+
+print(sess.run([model, loss]))
+```
