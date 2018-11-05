@@ -87,3 +87,7 @@ def _generate_batch(dataset_list):
             yield audio, script
 ```
 
+참고로 `from_generator` 메서드의 경우 `generator`가 모든 값을 반환하면 종료가 되게 된다. 따라서 `generator`가 계속 반환을 시켜주기 위해서는 `generator` 함수 내부에 `while True:` 부분을 추가해주는 것이 좋다. 또한 자체적인 `shuffle` 기능이 있더라도 리스트에서 `yield` 반환 시에 리스트를 `shuffle` 하여 넘기는 것이 기능적으로 좋다.
+
+
+
