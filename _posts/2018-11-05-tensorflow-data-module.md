@@ -72,7 +72,7 @@ print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 `Dataset` 모듈은 여러 방식으로 데이터를 불러올 수 있지만 기본적으로는 `generator`로 부터 데이터를 불러오는 `from_generator`라는 메서드를 이용하게 된다. `from_generator` 메서드를 이용하기 위해서는 먼저 `generator` 함수를 정의해야 한다. 다음의 예제는 음성 데이터인 `VCTK` 데이터셋을 불러와서 반환하는 `generator` 예제이다.
 
 ```python
-dataset_path = "/hd/dataset/VCTK"
+dataset_path = "/hd/dataset/VCTK/VCTK-p280-short"
 dataset_list = get_dataset_list(dataset_path)
 
 def _generate_batch():
