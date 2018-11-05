@@ -236,3 +236,14 @@ print(np.shape(script_target))
 (4, 125000)
 (4, 130)
 ```
+
+위에서 `dataset`을 선언하는 작업에서 가장 중요한 작업중에 하나가 `map`을 이용한 후처리 작업이다. `map`은 바이너리 스트림을 파싱하여 다시 `tensor`로 바꿔주는 작업을 수행한다. `map`을 위한 함수인 `from_tfrecord`는 다음과 같이 정의할 수 있다.
+
+```python
+def from_tfrecord(serialized):
+    features = \
+        tf.parse_single_example(
+            serialized=serialized,
+            features={}
+```
+
