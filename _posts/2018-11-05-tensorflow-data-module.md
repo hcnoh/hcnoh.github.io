@@ -146,5 +146,5 @@ print(sess.run([model, loss]))
 ```
 
 ## TFRecord
-
+`TFRecord`는 `TensorFlow`에서 지원하는 파일 형식이다. 공식 홈페이지에는 `TFRecord`에 대해서 `The TFRecord file format is a simple record-oriented binary format that many TensorFlow applications use for training data.`라고 표현하고 있다.
 
