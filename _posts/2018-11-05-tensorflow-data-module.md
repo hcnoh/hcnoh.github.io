@@ -25,13 +25,16 @@ import numpy as np
 import tensorflow as tf
 
 
+# 그래프 생성
 x = tf.placeholder(dtype=tf.float32, shape=[3])
 y = x ** 2
 y = y + 4
 
+# Session 생성 및 변수 초기화
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
+# 
 print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 
 >>>
