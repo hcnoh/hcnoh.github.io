@@ -110,9 +110,6 @@ generated_audio, generated_script = \
     repeat(10).\
     make_one_shot_iterator().\
     get_next()
-
-sess = tf.Session()
-sess.run(tf.global_variables_initializer())
 ```
 
 `_generate_batch`가 `audio` 및 `script`를 반환할 때 각각 최대 길이 125000, 130으로 패딩을 하였기 때문에 `from_generator` 메서드의 `output_shapes`을 위와 같이 잡아주었다.
@@ -123,7 +120,7 @@ sess.run(tf.global_variables_initializer())
 - 셔플을 위한 버퍼 사이즈: 10
 - 최대 10번 반복하여 반환
 
-이제 `dataset`을 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환하게 된다.
+이제 `generated_audio`, `generated_script`을 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환하게 된다.
 
 ```python
 sess = tf.Session()
@@ -156,7 +153,7 @@ def create_tfrecord(dataset_list):
     print("Start converting...")
     options = tf.python_io.\
         TFRecordOptions(compression_type=tf.python_io.TFRecordCompressionType.GZIP)
-    writer = tf.python_op.TFRecordWriter(path="tfrecord_tfrecord_practice.tfrecords",
+    writer = tf.python_op.TFRecordWriter(path="tfrecord/tfrecord_practice.tfrecords",
                                          options=options)
     for dataset in dataset_list:
         audio_file_path = dataset["audio_file_path"]
@@ -212,4 +209,30 @@ def _bytes_feature(value):
 ## TFRecordDataset 모듈
 위에서 정의한 `create_tfrecord` 함수를 이용하여 생성된 `TFRecord` 파일을 불러와서 모델 학습 및 추론에 사용하기 위해서는 방금 설명했던 `tf.data.Dataset` 모듈과 유사한 기능을 가지는 `tf.data.TFRecordDataset` 모듈을 이용하면 된다.
 
+다음은 위에서 정의된 방식으로 저장된 `TFRecord` 파일을 불러와서 다시 기존 형식에 맞춰서 변환하는 작업을 수행하는 예제이다. 사용법은 기존 `Dataset` 모듈과 거의 일치한다.
 
+```python
+dataset = tf.data.TFRecordDataset(finenames="tfrecord/tfrecord_practice.tfrecords",
+                                  compression_type="GZIP").map(from_tfrecord)
+generated_audio, generated_script = \
+    dataset.\
+    batch(4).\
+    shuffle(10).\
+    repeat(10).\
+    make_one_shot_iterator().\
+    get_next()
+```
+
+마찬가지로 `generated_audio`, `generated_script`를 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환한다.
+
+```python
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+audio_target, script_target = sess.run([generated_audio, generated_script])
+print(np.shape(audio_target))
+print(np.shape(script_target))
+
+>>>
+(4, 125000)
+(4, 130)
+```
