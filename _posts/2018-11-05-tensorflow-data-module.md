@@ -8,6 +8,7 @@ categories:
 tags:
 - tensorflow
 - python
+- linux
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-11-05-tensorflow-data-module
@@ -165,7 +166,7 @@ def create_tfrecord(dataset_list):
         
         script = get_script(script_file_path)
         script = script_pad(script)
-        script = np.asarray(list(script))
+        script = np.asarray(list(script)) # tostring 메서드를 사용하기 위해서 numpy array로 변환해주는 작업이 추가
         
         example = tf.train.Example(
             features=tf.train.Features(
@@ -178,5 +179,22 @@ def create_tfrecord(dataset_list):
     print("Done...")
 ```
 
+공식 홈페이지에서는 `tf.data`를 이용하여 메모리에 전부 들어가지 않는 데이터셋도 알맞게 처리할 수 있다고 한다. 특히 `TFRecord`는 기존의 데이터셋을 바이너리 형식으로 처리해서 저장해주며 결과적으로 용량도 크게 줄일 수 있다. 기존의 데이터셋의 용량을 확인하기 위해 커맨드라인 상에서 다음의 명령을 수행해본다.
+
+```bash
+>>> cd /hd/dataset/VCTK
+>>> du -hs VCTK-p280-short
+150M    VCTK-p280-short
+```
+
+위의 결과에서 확인할 수 있듯이 기존 데이터셋의 용량은 150MB이다. 그러면 새로 생성된 `TFRecord` 파일의 용량은 몇일까? `TFRecord` 파일이 저장된 위치에 가서 확인해본다.
+
+```bash
+>>> cd ~/hcnoh/practice/tfrecord
+>>> du -hs tfrecord_practice.tfrecords
+92M     tfrecord_practice.tfrecords
+```
+
+용량이 150MB에서 92MB로 대폭 줄어든 것을 확인할 수 있다.
 
 
