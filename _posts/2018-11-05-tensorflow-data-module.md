@@ -114,5 +114,12 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 ```
 
+`_generate_batch`가 `audio` 및 `script`를 반환할 때 각각 최대 길이 `125000` `130`으로 패딩을 하였기 때문에 `from_generator` 메서드의 `output_shapes`을 위와 같이 잡아주었다.
+
+또한 `.batch`, `.shuffle`, `.repeat` 등을 이용하여 배치 사이즈 및 셔플링 등의 `config` 설정들을 해주었다. 위의 예제에서 설정된 `config`는 다음과 같다.
+
+- 배치 사이즈: 4
+- 셔플을 위한 버퍼 사이즈: 10
+- 최대 10번 반복하여 반환
 
 
