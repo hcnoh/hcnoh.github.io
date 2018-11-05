@@ -166,6 +166,16 @@ def create_tfrecord(dataset_list):
         script = get_script(script_file_path)
         script = script_pad(script)
         script = np.asarray(list(script))
+        
+        example = tf.train.Example(
+            features=tf.train.Features(
+                feature={"audio": _bytes_feature(audio.tostring()),
+                         "script": _bytes_feature(script.tostring())
+                         }))
+        writer.write(exampleSerializeToString())
+    
+    writer.close()
+    print("Done...")
 ```
 
 
