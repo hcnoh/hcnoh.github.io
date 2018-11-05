@@ -34,7 +34,7 @@ y = y + 4
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-# 
+# Session 실행
 print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 
 >>>
