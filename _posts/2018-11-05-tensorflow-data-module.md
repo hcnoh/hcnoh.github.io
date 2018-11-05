@@ -18,3 +18,22 @@ permalink: /2018-11-05-tensorflow-data-module
 ## tf.data 모듈이란?
 `TensorFlow`를 처음 접하는 경우에 만나게 되는 객체 및 메서드로 `tf.placeholder` 및 `sess.run(feed_dict={})`를 들 수 있다. 이 둘의 기능은 우리가 구현한 모델에 학습용 또는 추론용 데이터를 모델에 입력(보통 `feeding`이라고 표현)시키기 위한 도구라고 볼 수 있다. `tf.placeholder`는 `feeding`할 데이터의 형식 및 모양을 정의하는 어떤 틀이라고 볼 수 있다. 이렇게 정의된 `tf.placeholder`는 이미 정의된 `tf.Session`을 실행시키는 메서드인 `sess.run`과 함께 사용되어 모델에 데이터를 `feeding`시킬 수 있다.
 
+다음은 가장 기초적인 `tf.placeholder` 사용에 대한 예제이다.
+
+```python
+import numpy as np
+import tensorflow as tf
+
+
+x = tf.placeholder(dtype=tf.float32, shape=[3])
+y = x ** 2
+y = y + 4
+
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+
+print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
+
+>>>
+[ 5.  8.  13.]
+```
