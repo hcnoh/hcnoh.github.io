@@ -162,6 +162,7 @@ def create_tfrecord(dataset_list):
         audio_file_path = dataset["audio_file_path"]
         script_file_path = dataset["script_file_path"]
         
+        # 데이터셋을 미리 전처리하여 TFRecord로 저장
         audio = audio_process.get_audio(audio_file_path)
         
         script = get_script(script_file_path)
@@ -178,6 +179,15 @@ def create_tfrecord(dataset_list):
     writer.close()
     print("Done...")
 ```
+
+위의 작업의 핵심은 데이터셋을 `string`으로 변환하여 `byte` 형식의 피쳐로 바꿔주는 작업이다. 위의 작업을 수행하는 `_bytes_feature` 함수는 `TensorFlow` 공식 홈페이지에서 제공하는 다음의 코드를 사용하면 된다.
+
+```python
+def _bytes_feature(value):
+    return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
+```
+
+마찬가지로 `float` 및 `int` 형식도 `byte` 형식의 피쳐로 변환할 수 있지만 `np.ndarray.tostring` 메서드를 이용하여 `string`으로 변환한 후에 위에서 정의된 `_bytes_feature` 함수를 사용하는 것이 간편할 것이다. (이 부분은 아직 확실히는 모르겠다. 더 공부해보고 정리하도록 하겠다.)
 
 공식 홈페이지에서는 `tf.data`를 이용하여 메모리에 전부 들어가지 않는 데이터셋도 알맞게 처리할 수 있다고 한다. 특히 `TFRecord`는 기존의 데이터셋을 바이너리 형식으로 처리해서 저장해주며 결과적으로 용량도 크게 줄일 수 있다. 기존의 데이터셋의 용량을 확인하기 위해 커맨드라인 상에서 다음의 명령을 수행해본다.
 
@@ -196,5 +206,10 @@ def create_tfrecord(dataset_list):
 ```
 
 용량이 150MB에서 92MB로 대폭 줄어든 것을 확인할 수 있다.
+
+`TFRecord`를 사용하였을 때의 또 다른 장점으로는 전처리를 미리 수행할 수 있다는 점이다. 기존의 `from_generator` 메서드를 이용한 방식은 `_generate_batch` 제너레이터 내부에서 데이터를 반환할 때마다 매 번 전처리를 수행해야 한다는 단점이 있다. (물론 다른 방법을 이용하여 전처리를 우회할 수는 있을 것 같다.) 그렇게되면 속도적인 측면에서도 매우 성능이 저하될 것이다. 하지만 기존 데이터셋을 모두 전처리하여 미리 `TFRecord` 형식으로 저장해놓고 필요할 때마다 불러서 쓸 수 있다면 속도적으로 매우 향상된 성능을 기대할 수 있을 것이다.
+
+## TFRecordDataset 모듈
+위에서 정의한 `create_tfrecord` 함수를 이용하여 생성된 `TFRecord` 파일을 불러와서 모델 학습 및 추론에 사용하기 위해서는 방금 설명했던 `tf.data.Dataset` 모듈과 유사한 기능을 가지는 `tf.data.TFRecordDataset` 모듈을 이용하면 된다.
 
 
