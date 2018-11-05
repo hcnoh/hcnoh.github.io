@@ -58,5 +58,32 @@ print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 즉, 이런 방식의 `feeding`은 가장 비효율적인 방식의 데이터 입력 방식이라는 것이다. 그렇다면 대규모의 학습용 데이터셋을 입력시키기 위해서는 어떤 방식을 사용해야 할까? `TensorFlow`에서는 이런 작업을 위해서 `tf.data` 모듈을 제공한다.
 
 ## tf.data
-`tf.data`는 `TensorFlow`에서 제공하는 대규모 데이터 `feeding`용 모듈이다. 원래는 `contributor`들이 `contribute`한 모듈이었지만 최근 버전부터는 정식으로 제공하게 되었다.
+`tf.data`는 `TensorFlow`에서 제공하는 대규모 데이터 `feeding`용 모듈이다. 원래는 `contributor`들이 `contribute`한 모듈이었지만 최근 버전부터는 정식으로 제공하게 되었다. `tf.data` 모듈은 가장 기본적인 배치 사이즈 설정 및 `shuffle` 기능까지 제공하며 또한 자체 데이터 형식인 `TFRecord`를 이용한 전처리 기능까지 제공한다.
+
+`tf.data`는 다음의 하위 모듈들을 제공하지만 여기서는 가장 핵심 모듈인 `tf.data.Dataset` 및 `tf.data.TFRecordDataset` 모듈에 관하여 설명할 것이다.
+
+- `Dataset`
+- `FixedLengthRecordDataset`
+- `Iterator`
+- `TFRecordDataset`
+- `TextLineDataset`
+
+## Dataset 모듈
+`Dataset` 모듈은 여러 방식으로 데이터를 불러올 수 있지만 기본적으로는 `generator`로 부터 데이터를 불러오는 `from_generator`라는 메서드를 이용하게 된다. `from_generator` 메서드를 이용하기 위해서는 먼저 `generator` 함수를 정의해야 한다. 다음의 예제는 음성 데이터인 `VCTK` 데이터셋을 불러와서 반환하는 `generator` 예제이다.
+
+```python
+def _generate_batch(dataset_list):
+    while True:
+        random_dataset_list = dataset_list[:]
+        random.shuffle(random_dataset_list)
+        for dataset in random_dataset_list:
+            audio_file_path = dataset["audio_file_path"]
+            script_file_path = dataset["script_file_path"]
+            
+            audio = audio_process.get_audio(audio_file_path)
+            script = get_script(script_file_path)
+            script = script_pad(script)
+            
+            yield audio, script
+```
 
