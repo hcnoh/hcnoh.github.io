@@ -53,4 +53,4 @@ print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 
 하지만, `TensorFlow` 공식 홈페이지에는 무려 이런 경고 메시지가 있다.
 
-
+![](/assets/img/2018-11-05-tensorflow-data-module/01.png)
