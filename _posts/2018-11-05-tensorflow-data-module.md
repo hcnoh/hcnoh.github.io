@@ -146,5 +146,27 @@ print(sess.run([model, loss]))
 ```
 
 ## TFRecord
-`TFRecord`는 `TensorFlow`에서 지원하는 파일 형식이다. 공식 홈페이지에는 `TFRecord`에 대해서 `The TFRecord file format is a simple record-oriented binary format that many TensorFlow applications use for training data.`라고 표현하고 있다.
+`TFRecord`는 `TensorFlow`에서 지원하는 파일 형식이다. 공식 홈페이지에는 `TFRecord`에 대해서 `The TFRecord file format is a simple record-oriented binary format that many TensorFlow applications use for training data.`라고 표현하고 있다. 간단히 말해서 바이너리 형식으로 저장하기 위한 용도의 파일 형식이라는 의미이다. 즉, `TFRecord`는 데이터를 자체적인 바이너리 형식으로 저장하는 기능을 제공한다.
+
+다음은 `VCTK` 데이터셋을 `TFRecord`로 변환하여 저장해주는 함수를 구현한 예제이다. 데이터셋의 형식은 위의 `from_generator` 예제의 형식과 동일하게 구현하였다.
+
+```python
+def create_tfrecord(dataset_list):
+    print("Start converting...")
+    options = tf.python_io.\
+        TFRecordOptions(compression_type=tf.python_io.TFRecordCompressionType.GZIP)
+    writer = tf.python_op.TFRecordWriter(path="tfrecord_tfrecord_practice.tfrecords",
+                                         options=options)
+    for dataset in dataset_list:
+        audio_file_path = dataset["audio_file_path"]
+        script_file_path = dataset["script_file_path"]
+        
+        audio = audio_process.get_audio(audio_file_path)
+        
+        script = get_script(script_file_path)
+        script = script_pad(script)
+        script = np.asarray(list(script))
+```
+
+
 
