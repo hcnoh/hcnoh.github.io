@@ -72,7 +72,10 @@ print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 `Dataset` 모듈은 여러 방식으로 데이터를 불러올 수 있지만 기본적으로는 `generator`로 부터 데이터를 불러오는 `from_generator`라는 메서드를 이용하게 된다. `from_generator` 메서드를 이용하기 위해서는 먼저 `generator` 함수를 정의해야 한다. 다음의 예제는 음성 데이터인 `VCTK` 데이터셋을 불러와서 반환하는 `generator` 예제이다.
 
 ```python
-def _generate_batch(dataset_list):
+dataset_path = "/hd/dataset/VCTK"
+dataset_list = get_dataset_list(dataset_path)
+
+def _generate_batch():
     while True:
         random_dataset_list = dataset_list[:]
         random.shuffle(random_dataset_list)
@@ -83,11 +86,33 @@ def _generate_batch(dataset_list):
             audio = audio_process.get_audio(audio_file_path)
             script = get_script(script_file_path)
             script = script_pad(script)
+            script = list(script)
             
             yield audio, script
 ```
 
+`get_dataset_list` 함수는 `dataset_path`를 파라미터로 받아서 딕셔너리의 리스트 형식으로 된 `dataset_list`를 반환하게 된다. `dataset_list`는 각 요소가 `audio_file_path`, `script_file_path`를 키 값으로 가진 딕셔너리이다.
+
 참고로 `from_generator` 메서드의 경우 `generator`가 모든 값을 반환하면 종료가 되게 된다. 따라서 `generator`가 계속 반환을 시켜주기 위해서는 `generator` 함수 내부에 `while True:` 부분을 추가해주는 것이 좋다. 또한 자체적인 `shuffle` 기능이 있더라도 리스트에서 `yield` 반환 시에 리스트를 `shuffle` 하여 넘기는 것이 기능적으로 좋다.
+
+이제 `Dataset` 클래스를 사용하여 데이터를 불러와보자. 다음은 위에서 정의된 `_generate_batch` 함수를 이용하여 `Dataset` 클래스를 생성하는 예제이다.
+
+```python
+dataset = tf.data.Dataset.from_generator(generator=_generate_batch,
+                                         output_types=(tf.float32, tf.string),
+                                         output_shapes=(tf.TensorShape([125000]),
+                                                        tf.TensorShape([130])))
+generated_audio, generated_script = \
+    dataset.\
+    batch(4).\
+    shuffle(10).\
+    repeat(10).\
+    make_one_shot_iterator().\
+    get_next()
+
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+```
 
 
 
