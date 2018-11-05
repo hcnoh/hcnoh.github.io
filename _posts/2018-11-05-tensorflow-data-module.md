@@ -244,6 +244,14 @@ def from_tfrecord(serialized):
     features = \
         tf.parse_single_example(
             serialized=serialized,
-            features={}
+            features={"audio": tf.FixedLenFeature([], tf.string),
+                      "script": tf.FixedLenFeature([], tf.string)
+                      })
+    audio_batch = tf.reshape(tf.decode_raw(features["audio"], tf.float32), [125000])
+    script_batch = tf.reshape(tf.decode_raw(features["script"], tf.float32), [130])
+    
+    return audio_batch, script_batch
 ```
+
+위의 함수에서 확인할 수 있듯이 `tf.parse_single_example`을 통해 파싱이 끝난 피쳐들을 다시 `tf.reshape`를 이용하여 모양을 다시 잡아줘야 한다. 그 외의 후처리도 가능하지만 빠른 실행을 위해서 이러저러한 작업들은 최대한 전처리에 몰아서 하고 후처리는 `tf.reshape` 정도만 하는 것으로 하는 것이 좋다.
 
