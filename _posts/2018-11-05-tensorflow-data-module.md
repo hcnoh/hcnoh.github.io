@@ -54,3 +54,10 @@ print(sess.run(y, feed_dict={x: np.array([1, 2, 3])}))
 하지만, `TensorFlow` 공식 홈페이지에는 무려 이런 경고 메시지가 있다.
 
 ![](/assets/img/2018-11-05-tensorflow-data-module/01.png)
+
+즉, 이런 방식의 `feeding`은 가장 비효율적인 방식의 데이터 입력 방식이라는 것이다. 그렇다면 대규모의 학습용 데이터셋을 입력시키기 위해서는 어떤 방식을 사용해야 할까? `TensorFlow`에서는 이런 작업을 위해서 `tf.data` 모듈을 제공한다.
+
+## tf.data
+
+
+
