@@ -24,7 +24,7 @@ permalink: /about
 ## Skills
 - Languages: Korean, English
 - Programming Languages: Python, Matlab, Latex
-- Tools & Libraries: TensorFlow, Keras, Git
+- Frameworks & Tools: TensorFlow, Keras, Git
 
 ## Projects
 - [한국 고용정보원 일자리매칭 과제](http://openapi.work.go.kr/ai/wanted/datadic/dataDicSearchVw.do)
