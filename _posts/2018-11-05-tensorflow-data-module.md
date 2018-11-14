@@ -143,6 +143,14 @@ loss = get_loss(preds=preds, targets=generated_scripts)
 print(sess.run([preds, loss]))
 ```
 
+위에서와 같은 `from_generator`의 사용에는 다음과 같은 주의사항이 있다.
+
+`from_generator`을 이용하여 `script_targets`을 생성하는 경우 `script_targets`의 자료형은 `ndarray`이지만 각 요소들은 파이썬3 기준으로 `string`이 아닌 `bytes`인 것을 확인할 수 있다. 각 요소들의 자료형을 다시 `string`으로 바꿔주고 싶다면 `as_type` 메서드를 이용하면 된다.
+
+```python
+script_targets = script_targets.astype(str)
+```
+
 ## TFRecord
 `TFRecord`는 `TensorFlow`에서 지원하는 파일 형식이다. 공식 홈페이지에는 `TFRecord`에 대해서 `The TFRecord file format is a simple record-oriented binary format that many TensorFlow applications use for training data.`라고 표현하고 있다. 간단히 말해서 바이너리 형식으로 저장하기 위한 용도의 파일 형식이라는 의미이다. 즉, `TFRecord`는 데이터를 자체적인 바이너리 형식으로 저장하는 기능을 제공한다.
 
