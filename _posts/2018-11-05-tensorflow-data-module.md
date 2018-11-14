@@ -87,7 +87,6 @@ def _generate_batch():
             audio = audio_process.get_audio(audio_file_path)
             script = get_script(script_file_path)
             script = script_pad(script)
-            script = list(script)
             
             yield audio, script
 ```
@@ -102,7 +101,7 @@ def _generate_batch():
 dataset = tf.data.Dataset.from_generator(generator=_generate_batch,
                                          output_types=(tf.float32, tf.string),
                                          output_shapes=(tf.TensorShape([125000]),
-                                                        tf.TensorShape([130])))
+                                                        tf.TensorShape([])))
 generated_audios, generated_scripts = \
     dataset.\
     batch(4).\
@@ -112,7 +111,7 @@ generated_audios, generated_scripts = \
     get_next()
 ```
 
-`_generate_batch`가 `audio` 및 `script`를 반환할 때 각각 최대 길이 125000, 130으로 패딩을 하였기 때문에 `from_generator` 메서드의 `output_shapes`을 위와 같이 잡아주었다.
+`_generate_batch`가 `audio`를 반환할 때 최대 길이 125000으로 패딩을 하였고 `script`는 `string` 형태로 반환되기 때문에 `from_generator` 메서드의 `output_shapes`을 위와 같이 잡아주었다.
 
 또한 `.batch`, `.shuffle`, `.repeat` 등을 이용하여 배치 사이즈 및 셔플링 등의 `config` 설정들을 해주었다. 위의 예제에서 설정된 `config`는 다음과 같다.
 
@@ -131,7 +130,7 @@ print(np.shape(script_targets))
 
 >>>
 (4, 125000)
-(4, 130)
+(4,)
 ```
 
 배치 사이즈를 4로 설정해 주었기 때문에 위와 같은 결과가 나오는 것을 확인할 수 있다. 이제 이러한 방식으로 `tf.placeholder`를 `Dataset`으로 대체할 수 있게 되었다. 실제 모델의 추론에 활용하기 위해서는 다음과 같이 사용하면 된다.
@@ -172,12 +171,11 @@ def create_tfrecord(dataset_list):
         
         script = get_script(script_file_path)
         script = script_pad(script)
-        script = np.asarray(list(script)) # tostring 메서드를 사용하기 위해서 numpy array로 변환해주는 작업이 추가
         
         example = tf.train.Example(
             features=tf.train.Features(
                 feature={"audio": _bytes_feature(audio.tostring()),
-                         "script": _bytes_feature(script.tostring())
+                         "script": _bytes_feature(script.encode("utf-8")) # string 타입을 bytes 타입으로 변환
                          }))
         writer.write(exampleSerializeToString())
     
@@ -242,7 +240,7 @@ print(np.shape(script_targets))
 
 >>>
 (4, 125000)
-(4, 130)
+(4,)
 ```
 
 위에서 `dataset`을 선언하는 작업에서 가장 중요한 작업중에 하나가 `map`을 이용한 후처리 작업이다. `map`은 바이너리 스트림을 파싱하여 다시 `tensor`로 바꿔주는 작업을 수행한다. `map`을 위한 함수인 `from_tfrecord`는 다음과 같이 정의할 수 있다.
@@ -256,7 +254,7 @@ def from_tfrecord(serialized):
                       "script": tf.FixedLenFeature([], tf.string)
                       })
     audio = tf.reshape(tf.decode_raw(features["audio"], tf.float32), [125000])
-    script = tf.reshape(tf.decode_raw(features["script"], tf.float32), [130])
+    script = feqtures["script"]
     
     return audio, script
 ```
