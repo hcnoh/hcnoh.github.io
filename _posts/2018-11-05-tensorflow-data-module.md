@@ -229,7 +229,7 @@ generated_audios, generated_scripts = \
     get_next()
 ```
 
-마찬가지로 `generated_audios`, `generated_scripts`를 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환한다. 여기서 반환되는 `script_targets`의 요소들의 자료형 역시 마찬가지로 `bytes`이다. 역시 `decode` 메서드를 이용하여 `string` 자료형으로 변환이 가능하다.
+마찬가지로 `generated_audios`, `generated_scripts`를 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환한다. 여기서 반환되는 `script_targets`의 요소들의 자료형 역시 마찬가지로 `bytes`이다. 역시 `astype` 메서드를 이용하여 `string` 자료형으로 변환이 가능하다.
 
 ```python
 sess = tf.Session()
