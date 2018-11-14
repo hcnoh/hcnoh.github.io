@@ -103,7 +103,7 @@ dataset = tf.data.Dataset.from_generator(generator=_generate_batch,
                                          output_types=(tf.float32, tf.string),
                                          output_shapes=(tf.TensorShape([125000]),
                                                         tf.TensorShape([130])))
-generated_audio, generated_script = \
+generated_audios, generated_scripts = \
     dataset.\
     batch(4).\
     shuffle(10).\
@@ -120,14 +120,14 @@ generated_audio, generated_script = \
 - 셔플을 위한 버퍼 사이즈: 10
 - 최대 10번 반복하여 반환
 
-이제 `generated_audio`, `generated_script`을 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환하게 된다.
+이제 `generated_audios`, `generated_scripts`을 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환하게 된다.
 
 ```python
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-audio_target, script_target = sess.run([generated_audio, generated_script])
-print(np.shape(audio_target))
-print(np.shape(script_target))
+audio_targets, script_targets = sess.run([generated_audios, generated_scripts])
+print(np.shape(audio_targets))
+print(np.shape(script_targets))
 
 >>>
 (4, 125000)
@@ -137,10 +137,10 @@ print(np.shape(script_target))
 배치 사이즈를 4로 설정해 주었기 때문에 위와 같은 결과가 나오는 것을 확인할 수 있다. 이제 이러한 방식으로 `tf.placeholder`를 `Dataset`으로 대체할 수 있게 되었다. 실제 모델의 추론에 활용하기 위해서는 다음과 같이 사용하면 된다.
 
 ```python
-model = NeuralNetworkModel(input=generated_audio)
-loss = get_loss(pred=model, target=generated_script)
+preds = NeuralNetworkModel(input=generated_audios)
+loss = get_loss(preds=preds, targets=generated_scripts)
 
-print(sess.run([model, loss]))
+print(sess.run([preds, loss]))
 ```
 
 ## TFRecord
@@ -214,7 +214,7 @@ def _bytes_feature(value):
 ```python
 dataset = tf.data.TFRecordDataset(finenames="tfrecord/tfrecord_practice.tfrecords",
                                   compression_type="GZIP").map(from_tfrecord)
-generated_audio, generated_script = \
+generated_audios, generated_scripts = \
     dataset.\
     batch(4).\
     shuffle(10).\
@@ -223,14 +223,14 @@ generated_audio, generated_script = \
     get_next()
 ```
 
-마찬가지로 `generated_audio`, `generated_script`를 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환한다.
+마찬가지로 `generated_audios`, `generated_scripts`를 세션을 이용하여 실행시키면 실제 데이터셋의 데이터를 반환한다.
 
 ```python
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-audio_target, script_target = sess.run([generated_audio, generated_script])
-print(np.shape(audio_target))
-print(np.shape(script_target))
+audio_targets, script_targets = sess.run([generated_audios, generated_scripts])
+print(np.shape(audio_targets))
+print(np.shape(script_targets))
 
 >>>
 (4, 125000)
@@ -247,10 +247,10 @@ def from_tfrecord(serialized):
             features={"audio": tf.FixedLenFeature([], tf.string),
                       "script": tf.FixedLenFeature([], tf.string)
                       })
-    audio_batch = tf.reshape(tf.decode_raw(features["audio"], tf.float32), [125000])
-    script_batch = tf.reshape(tf.decode_raw(features["script"], tf.float32), [130])
+    audio = tf.reshape(tf.decode_raw(features["audio"], tf.float32), [125000])
+    script = tf.reshape(tf.decode_raw(features["script"], tf.float32), [130])
     
-    return audio_batch, script_batch
+    return audio, script
 ```
 
 위의 함수에서 확인할 수 있듯이 `tf.parse_single_example`을 통해 파싱이 끝난 피쳐들을 다시 `tf.reshape`를 이용하여 모양을 다시 잡아줘야 한다. 그 외의 후처리도 가능하지만 빠른 실행을 위해서 이러저러한 작업들은 최대한 전처리에 몰아서 하고 후처리는 `tf.reshape` 정도만 하는 것으로 하는 것이 좋다.
