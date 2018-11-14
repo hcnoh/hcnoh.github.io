@@ -144,10 +144,15 @@ print(sess.run([preds, loss]))
 
 위에서와 같은 `from_generator`의 사용에는 다음과 같은 주의사항이 있다.
 
-`from_generator`을 이용하여 `script_targets`을 생성하는 경우 `script_targets`의 자료형은 `ndarray`이지만 각 요소들은 파이썬3 기준으로 `string`이 아닌 `bytes`인 것을 확인할 수 있다. 각 요소들의 자료형을 다시 `string`으로 바꿔주고 싶다면 `as_type` 메서드를 이용하면 된다.
+`from_generator`을 이용하여 `script_targets`을 생성하는 경우 `script_targets`의 자료형은 `ndarray`이지만 각 요소들은 파이썬3 기준으로 `string`이 아닌 `bytes`인 것을 확인할 수 있다. 각 요소들의 자료형을 다시 `string`으로 바꿔주고 싶다면 `astype` 메서드를 이용하면 된다.
 
 ```python
+print(script_targets)
 script_targets = script_targets.astype(str)
+print(script_targets)
+
+>>>
+
 ```
 
 ## TFRecord
