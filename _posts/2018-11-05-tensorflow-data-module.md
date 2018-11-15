@@ -152,22 +152,22 @@ script_targets = script_targets.astype(str)
 print(script_targets)
 
 >>>
-[b'ask her to bring these things with her from the store.                                        
-                   '           
- b'however, the figures tell a different story.                                                  
-                   '           
- b'we must pay teachers to take rugby in schools.                                                
-                   '           
- b'he really played us into a corner.                                                            
+[b'ask her to bring these things with her from the store.
+                   '
+ b'however, the figures tell a different story.
+                   '
+ b'we must pay teachers to take rugby in schools.
+                   '
+ b'he really played us into a corner.
                    ']
-['ask her to bring these things with her from the store.                                         
-                  '            
- 'however, the figures tell a different story.                                                   
-                  '            
- 'we must pay teachers to take rugby in schools.                                                 
-                  '            
- 'he really played us into a corner.                                                             
-                  '] 
+['ask her to bring these things with her from the store.
+                  '
+ 'however, the figures tell a different story.
+                  '
+ 'we must pay teachers to take rugby in schools.
+                  '
+ 'he really played us into a corner.
+                  ']
 ```
 
 ## TFRecord
