@@ -180,7 +180,7 @@ def create_tfrecord(dataset_list):
     print("Start converting...")
     options = tf.python_io.\
         TFRecordOptions(compression_type=tf.python_io.TFRecordCompressionType.GZIP)
-    writer = tf.python_op.TFRecordWriter(path="tfrecord/tfrecord_practice.tfrecords",
+    writer = tf.python_io.TFRecordWriter(path="tfrecord/tfrecord_practice.tfrecords",
                                          options=options)
     for dataset in dataset_list:
         audio_file_path = dataset["audio_file_path"]
