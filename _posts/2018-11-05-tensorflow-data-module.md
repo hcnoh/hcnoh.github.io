@@ -197,7 +197,7 @@ def create_tfrecord(dataset_list):
                 feature={"audio": _bytes_feature(audio.tostring()),
                          "script": _bytes_feature(script.encode("utf-8")) # string 타입을 bytes 타입으로 변환
                          }))
-        writer.write(exampleSerializeToString())
+        writer.write(example.SerializeToString())
     
     writer.close()
     print("Done...")
