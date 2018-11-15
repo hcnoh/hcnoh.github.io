@@ -203,7 +203,7 @@ def create_tfrecord(dataset_list):
     print("Done...")
 ```
 
-위의 작업의 핵심은 데이터셋을 `string`으로 변환하여 `byte` 형식의 피쳐로 바꿔주는 작업이다. 위의 작업을 수행하는 `_bytes_feature` 함수는 `TensorFlow` 공식 홈페이지에서 제공하는 다음의 코드를 사용하면 된다.
+위의 작업의 핵심은 데이터셋을 `bytes` 자료형의 스트림으로 변환하여(`numpy`에서는 `tostring`이 그 기능을 제공) 변환된 스트림을 다시 `TFRecord`가 다룰 수 있는 `bytes` 형식의 피쳐로 바꿔주는 작업이다. 위의 작업을 수행하는 `_bytes_feature` 함수는 `TensorFlow` 공식 홈페이지에서 제공하는 다음의 코드를 사용하면 된다.
 
 ```python
 def _bytes_feature(value):
