@@ -274,7 +274,7 @@ def from_tfrecord(serialized):
                       "script": tf.FixedLenFeature([], tf.string)
                       })
     audio = tf.reshape(tf.decode_raw(features["audio"], tf.float32), [125000])
-    script = feqtures["script"]
+    script = features["script"]
     
     return audio, script
 ```
