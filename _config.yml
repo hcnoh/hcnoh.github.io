@@ -30,4 +30,5 @@ disqus:
   shortname: hcnoh
 #  admins:
 
+markdown: kramdown
 mathjax: true
