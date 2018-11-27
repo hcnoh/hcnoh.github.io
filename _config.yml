@@ -28,7 +28,8 @@ facebook:
   authors: Hyungcheol Noh
 disqus:
   shortname: hcnoh
-#  admins:
+# admins:
 
+# Puglins
 markdown: kramdown
 mathjax: true
