@@ -14,6 +14,8 @@
     {% else %}
       {% assign page-title = site.title | escape %}
     {% endif %}
+    
+    <!-- Can use mathematical expressions -->
     {% if page.use_math %}
       {% include mathjax_support.html %} 
     {% endif %}
