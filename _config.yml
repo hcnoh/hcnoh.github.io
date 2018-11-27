@@ -29,3 +29,5 @@ facebook:
 disqus:
   shortname: hcnoh
 #  admins:
+
+mathjax: true
