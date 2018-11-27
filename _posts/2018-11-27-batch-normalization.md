@@ -17,5 +17,4 @@ permalink: /2018-11-27-batch-normalization
 
 ## Introduction
 딥러닝을 학습하는 알고리즘으로 가장 일반적으로 많이 쓰이는 방법은 바로 Stochastic gradient descent (`SGD`)이다.
-
-$$ x_t = 3 $$
+수식 삽입 테스트: $$ x_t = 3 $$ ??
