@@ -1,5 +1,6 @@
 ---
 layout: post
+use_math: true
 title: "Batch Normalization 개념 정리"
 date: 2018-11-27 19:54:59
 tagline: "딥러닝에서 자주 쓰이는 Regularization 방법인 Batch Normalization 논문을 읽고 개념을 정리"
