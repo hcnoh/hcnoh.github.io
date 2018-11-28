@@ -35,7 +35,14 @@ $$\theta = \arg \min_\theta L(x, \theta), \forall x \in D$$
 
 $$\theta_{k+1} = \theta_k - \alpha \mathbb{E}_{x\in D} [ \nabla_{\theta} L(x, \theta) |_{\theta=\theta_k} ]$$
 
-실제로 이 룰을 활용하는 경우에는 모든 데이터셋 $$D$$를 전부 활용하기 힘든 여러가지 이유들로 인하여 미니배치를 샘플링하여 반복적으로 업데이트하는 방법인 Stochastic Gradient Descent를 사용한다. 미니배치의 크기를 $$N$$이라고 했을 때, 실제 Gradient를 다음과 같은 Stochastic Gradient로 근사화를 할 수 있다.
+실제로 이 룰을 활용하는 경우에는 모든 데이터셋 $$D$$를 전부 활용하기 힘든 여러가지 이유들로 인하여 미니배치를 반복적으로 샘플링하여 업데이트하는 방법인 Stochastic Gradient Descent를 사용한다. 미니배치의 크기를 $$N$$이라고 했을 때, 실제 Gradient를 다음과 같은 Stochastic Gradient로 근사화를 할 수 있다.
 
 $$\mathbb{E}_{x\in D}[ \nabla_\theta L(x, \theta) ] \approx \frac{1}{N} \sum_{i=1}^N \nabla_\theta L(x, \theta)$$
+
+물론 이러한 SGD같은 방법에도 ADAM, Adagrad 등의 여러 베리에이션이 존재하지만 그 내용들은 다음에 다루도록 하고 여기서는 이정도만 정리하고 넘어가도록 하겠다. 어쨌든 [Batch Normalization 논문](https://arxiv.org/abs/1502.03167)에서는 SGD가 다음과 같은 특징들이 있다고 정리하고 있다.
+  - Stochastic Gradient는 실제 Gradient의 추정값이며 이것은 미니배치의 크기 $$N$$이 커질수록 더 정확한 추정값을 가지게 된다.
+  - 미니배치를 뽑아서 연산을 수행하기 때문에 최신 컴퓨팅 플랫폼에 의하여 병렬적인 연산 수행이 가능하여 더욱 효율적이다.
+
+## SGD의 문제점
+SGD의 문제점이라지만 사실 딥 뉴럴넷의 문제점이라고 보는 것이 맞을 듯 싶다. 논문에서는 레이어를 여러 층으로 쌓음으로써 생기는 문제점들에 대해서 얘기하고 있다. 어쨌든 논문에서 얘기하는 SGD의 문제점은 뉴럴넷을 학습하기 위한 하이퍼 파라미터들의 초기값 설정을 굉장히 신중하게 해줘야만 한다는 점이다. 이전 네트워크에서의 파라미터 변화는 그 다음, 그 다음 네트워크들을 거치며 점점 변화량이 증폭된다.
 
