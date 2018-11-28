@@ -33,4 +33,4 @@ $$\theta = \arg \min_\theta L(x, \theta), \forall x \in D$$
 
 이러한 최적화 문제를 풀기 위한 Gradient Descent 업데이트 룰 또한 다음과 같이 정의할 수 있을 것이다.
 
-$$\theta_{k+1} = \theta_k - \alpha \mathbb{E}_{x\in D} \nabla_{\theta} L(x, \theta) |_{\theta=\theta_k}$$
+$$\theta_{k+1} = \theta_k - \alpha \mathbb{E}_{x\in D} [ \nabla_{\theta} L(x, \theta) |_{\theta=\theta_k} ]$$
