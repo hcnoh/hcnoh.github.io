@@ -33,4 +33,9 @@ $$\theta = \arg \min_\theta L(x, \theta), \forall x \in D$$
 
 이러한 최적화 문제를 풀기 위한 Gradient Descent 업데이트 룰 또한 다음과 같이 정의할 수 있을 것이다.
 
-$$\theta_{k+1} = \theta_k - \alpha \mathbb{R}_{x\in D} [ \nabla_{\theta} L(x, \theta) |_{\theta=\theta_k} ]$$
+$$\theta_{k+1} = \theta_k - \alpha \mathbb{E}_{x\in D} [ \nabla_{\theta} L(x, \theta) |_{\theta=\theta_k} ]$$
+
+실제로 이 룰을 활용하는 경우에는 모든 데이터셋 $$D$$를 전부 활용하기 힘든 여러가지 이유들로 인하여 미니배치를 샘플링하여 반복적으로 업데이트하는 방법인 Stochastic Gradient Descent를 사용한다. 미니배치의 크기를 $$N$$이라고 했을 때, 실제 Gradient를 다음과 같은 Stochastic Gradient로 근사화를 할 수 있다.
+
+$$\mathbb{E}_{x\in D}[ \nabla_\theta L(x, \theta) ] = \approx \frac{1}{N} \sum_{i=1}^N \nabla_\theta L(x, \theta)$$
+
