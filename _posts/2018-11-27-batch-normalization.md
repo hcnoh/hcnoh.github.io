@@ -54,3 +54,7 @@ $$ l = F_2(F_1(u, \theta_1), \theta_2) $$
 
 $$F_1$$, $$F_2$$는 임의의 Transformation이고, 파라미터 $$\theta_1$$, $$\theta_2$$는 Loss $$l$$을 최소화하는 방향으로 학습이 진행된다.
 
+여기서 $$\theta_2$$는 다음과 같은 방식으로 학습이 된다고 볼 수 있다.
+
+$$ \theta_2 \leftarrow \theta_2 - \frac{\alpha}{m}\sum_{i=1}^m \nabla_{\theta_2}F_2(x_i, \theta_2) $$
+
