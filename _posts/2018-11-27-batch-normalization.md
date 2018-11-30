@@ -65,6 +65,15 @@ $$ \theta_2 \leftarrow \theta_2 - \frac{\alpha}{m}\sum_{i=1}^m \nabla_{\theta_2}
     - 즉, 학습을 원할하게 하기 위해 효율적인 입력 분포는 일정하게 유지되는 입력 분포
   - 네트워크를 여러 층을 쌓은 경우에 하위 네트워크에 대한 입력 분포의 효율성에도 동일하게 적용된다!
     - 즉 앞단의 레이어의 출력(즉, 뒷단의 레이어의 입력이 될 값)의 분포도 일정하게 유지하는 것이 좋음!
+    
+논문에서 언급하고있는 또 다른 문제점은 Gradient Descent 및 뉴럴넷의 Nonlinearity에 의한 Saturated Regime에 관한 문제이다. 일반적으로 뉴럴넷의 Activation은 Sigmoid를 사용하는데 이 Sigmoid의 특성상 절대값이 일정 수준 이상으로 큰 입력에 대해서는 Gradient가 거의 사라지는 문제가 발생한다.
 
+즉, 다음의 뉴럴넷 구조를 살펴보자.
+
+$$z = g(Wu + b)$$
+
+여기서 g는 다음과 같은 Sigmoid 함수이다.
+
+$$g = \frac{1}{1 + e^{-x}}$$
 
 
