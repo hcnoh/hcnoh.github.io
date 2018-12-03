@@ -111,3 +111,10 @@ $$ \widehat{x} = \text{Norm}(x, \mathcal{X}) $$
 
 $$ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial x}, \ \text{and} \ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}} $$
 
+만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다.
+
+추가적으로 이러한 방식으 Whitening은 Covariance를 구해야 한다는 이유로 인하여 연산이 매우 복잡하다는 단점이 있다. Covarialce Matrix를 구하려면 다음의 연산을 수행하여야 한다.
+
+$$\text{Cov}[x] = \mathbb{E}_{x\in \mathcal{X}}[xx^T] - \mathbb{E}[x]\mathbb{E}[x]^T$$
+
+
