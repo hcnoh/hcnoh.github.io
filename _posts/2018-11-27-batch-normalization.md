@@ -95,4 +95,10 @@ $$\widehat{x} = x - \mathbb{E}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1
 
 만약 Gradient Descent Step이 $\mathbb{E}[x]$와 $$b$$의 Dependence를 무시하고 수행된다면 다음과 같은 업데이트 룰을 따르게 된다.
 
-$$b \leftarrow b + \Delta b, \ \text{where} \ \Delta b \propto \frac{\partial l}{\partial \widehat{x}}$$
+$$b \leftarrow b + \Delta b, \ \text{where} \ \Delta b \propto -\frac{\partial l}{\partial \widehat{x}}$$
+
+이러한 업데이트 룰을 따르게 된다면 다음과 같은 결과를 확인할 수 있다.
+
+$$ u + (b + \Delta b) - \mathbb{E}[u + (b + \Delta b)] = u + b - \mathbb{u + b} $$
+
+즉, 업데이트 전후의 Normalization 결과가 같게 되며 결과적으로 Loss $$l$$의 값 역시 일정하게 유지된다. 
