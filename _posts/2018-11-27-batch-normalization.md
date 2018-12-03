@@ -93,7 +93,7 @@ $$g = \frac{1}{1 + e^{-x}}$$
 
 $$\widehat{x} = x - \mathbb{E}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
 
-만약 Gradient Descent Step이 $\mathbb{E}[x]$와 $$b$$의 Dependence를 무시하고 수행된다면 다음과 같은 업데이트 룰을 따르게 된다.
+만약 Gradient Descent Step이 $\mathbb{E}[x]$와 $$b$$의 Dependency를 무시하고 수행된다면 다음과 같은 업데이트 룰을 따르게 된다.
 
 $$b \leftarrow b + \Delta b, \ \text{where} \ \Delta b \propto -\frac{\partial l}{\partial \widehat{x}}$$
 
@@ -101,4 +101,6 @@ $$b \leftarrow b + \Delta b, \ \text{where} \ \Delta b \propto -\frac{\partial l
 
 $$ u + (b + \Delta b) - \mathbb{E}[u + (b + \Delta b)] = u + b - \mathbb{E}[u + b] $$
 
-즉, 업데이트 전후의 Normalization 결과가 같게 되며 결과적으로 Loss $$l$$의 값 역시 일정하게 유지된다. 
+즉, 업데이트 전후의 Normalization 결과가 같게 되며 결과적으로 Loss $$l$$의 값 역시 일정하게 유지된다. $$\widehat{x}$$, $$l$$의 변화가 없게 된다면 Gradient $$\Delta b$$의 값이 불분명하게 되고 이것은 업데이트가 제대로 되지 않는 결과를 가져오게 된다. 이러한 현상은 단순히 Zero Mean을 위한 Centering 뿐 아니라 Unit Variance를 위한 Scaling에서도 마찬가지로 발생되게 된다. 따라서 이러한 방식의 Normalization은 문제가 된다!
+
+
