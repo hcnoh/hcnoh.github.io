@@ -86,3 +86,9 @@ $$g = \frac{1}{1 + e^{-x}}$$
 - Internal Covariate Shift의 정의: 네트워크의 학습 도중에 파라미터의 변화로 인한 네트워크 Activation(출력)들의 분포 변화
 
 학습 효율을 높이기 위해서는 이런 Internal Covariate Shift를 줄이기 위한 노력이 필요하다. 기존의 여러 연구 결과들은 입력값들이 Whitened된다면, 즉, Zero Mean과 Unit Variance를 가지게 되고 각각의 입력값들이 Decorrelated된다면, 뉴럴넷이 훨씬 빠르게 수렴할 것이라고 말하고 있다. 또한 모든 레이어들이 같은 Whitening 방식을 공유한다면 훨씬 이득을 가질 수 있다고 한다.
+
+기존의 연구에서는 뉴럴넷의 파라미터를 Activation의 값에 따라서 바꾸면서 Whitening하는 방식을 사용하였다. 하지만 이러한 방법은 Gradient Descent Step의 효과를 줄이는 결과를 가져온다.
+
+예를 들면, 입력값 $$u$$에 학습된 바이어스 $$b$$를 더해주고 학습용 데이터의 Activation의 Mean을 빼주는 방식으로 Normalization을 수행하는 레이어를 생각해보자.
+
+$$\hat{x} = x - \mathbb{E}[x]$$, where $$x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
