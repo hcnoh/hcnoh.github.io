@@ -80,4 +80,9 @@ $$g = \frac{1}{1 + e^{-x}}$$
 
 어쨌든 이러한 이유들이 뉴럴넷 모델의 각 레이어들의 입력들의 분포를 일정하게 유지시켜주는 것이 왜 필요한지에 대한 설명이 될 것 같다.
 
-## Covariate Shift를 없애기 위한 시도
+## Covariate Shift를 줄이기 위한 시도
+먼저 Internal Covariate Shift에 대한 정의를 하고 넘어가도록 하자.
+
+- Internal Covariate Shift의 정의: 네트워크의 학습 도중에 파라미터의 변화로 인한 네트워크 Activation(출력)들의 분포 변화
+
+학습 효율을 높이기 위해서는 이런 Internal Covariate Shift를 줄이기 위한 노력이 필요하다. 기존의 여러 연구 결과들은 입력값들이 Whitened된다면, 즉, Zero Mean과 Unit Variance를 가지게 되고 각각의 입력값들이 Decorrelated된다면, 뉴럴넷이 훨씬 빠르게 수렴할 것이라고 말하고 있다.
