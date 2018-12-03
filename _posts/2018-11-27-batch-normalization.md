@@ -103,4 +103,11 @@ $$ u + (b + \Delta b) - \mathbb{E}[u + (b + \Delta b)] = u + b - \mathbb{E}[u + 
 
 즉, 업데이트 전후의 Normalization 결과가 같게 되며 결과적으로 Loss $$l$$의 값 역시 일정하게 유지된다. $$\widehat{x}$$, $$l$$의 변화가 없게 된다면 Gradient $$\Delta b$$의 값이 불분명하게 되고 이것은 업데이트가 제대로 되지 않는 결과를 가져오게 된다. 이러한 현상은 단순히 Zero Mean을 위한 Centering 뿐 아니라 Unit Variance를 위한 Scaling에서도 마찬가지로 발생되게 된다. 따라서 이러한 방식의 Normalization은 문제가 된다!
 
+위의 현상을 다음과 같이 설명할 수 있다. 먼저 Normalization을 다음과 같이 표현해보자.
+
+$$ \widehat{x} = \text{Norm}(x, \mathcal{X}) $$
+
+따라서 이 Normalization 레이어의 Backpropagation을 구하려면 다음의 Jacobian을 구해야 한다.
+
+$$ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial x}, \ \text{and} \ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}} $$
 
