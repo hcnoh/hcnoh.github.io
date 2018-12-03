@@ -91,4 +91,8 @@ $$g = \frac{1}{1 + e^{-x}}$$
 
 예를 들면, 입력값 $$u$$에 학습된 바이어스 $$b$$를 더해주고 학습용 데이터의 Activation의 Mean을 빼주는 방식으로 Normalization을 수행하는 레이어를 생각해보자.
 
-$$\widehat{x} = x - \mathbb{E}[x]$$, where $$x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
+$$\widehat{x} = x - \mathbb{E}[x], \text{where} x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
+
+만약 Gradient Descent Step이 $\mathbb{E}[x]$와 $$b$$의 Dependeoce를 무시하고 수행된다면 다음과 같은 업데이트 룰을 따르게 된다.
+
+$$b \leftarrow b + \delta b, \text{where} \delta b \prop \frac{\partial l}{\partial \widehat{x}}$$
