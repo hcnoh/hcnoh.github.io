@@ -95,4 +95,4 @@ $$\widehat{x} = x - \mathbb{E}[x], \text{where} x = u + b, \mathcal{X}=\{x_1,\cd
 
 만약 Gradient Descent Step이 $\mathbb{E}[x]$와 $$b$$의 Dependeoce를 무시하고 수행된다면 다음과 같은 업데이트 룰을 따르게 된다.
 
-$$b \leftarrow b + \delta b, \text{where} \delta b \prop \frac{\partial l}{\partial \widehat{x}}$$
+$$b \leftarrow b + \Delta b, \text{where} \Delta b \propto \frac{\partial l}{\partial \widehat{x}}$$
