@@ -130,5 +130,9 @@ $$\text{Cov}[x]^{-1/2}(x-\mathbb{E}[x])$$
 
 $$\widehat{x}^{(k)} = \frac{x^{(k)} - \mathbb{E}[x^{(k)}]}{\sqrt{\text{Var}[x^{(k)}]}}$$
 
+근데 위에서 설명하였듯이 저런식으로 하면 문제가 발생한다. 따라서 여기서는 각각의 Activation $$x^{(k)}$$에 대해서 새로운 파라미터 쌍 $$\gamma^{(k)}, \beta^{(k)}$$을 도입하여 이 문제를 해결한다.
+
+$$y^{(k)} = \gamma^{(k)}\widehat{x}^{(k)} + \beta^{(k)}$$
+
 
 
