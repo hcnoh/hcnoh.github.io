@@ -113,7 +113,7 @@ $$ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial x}, \ \text{and} \ \frac
 
 만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다. 즉, $$\widehat{x}$$은 엄밀하게는 다음과 같이 표현해야 한다.
 
-$$\widehat{x} = \text{Norm}(x, \mathcal{X}) = x - \mathbb{E}_{\mathcal{X}}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
+$$\widehat{x} = \text{Norm}(x, \mathcal{X}) = x - \mathbb{E}_{x \in \mathcal{X}}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
 
 추가적으로 이러한 방식의 Whitening은 Covariance를 구해야 한다는 이유로 인하여 연산이 매우 복잡하다는 단점이 있다. Covarialce Matrix를 구하려면 다음의 연산을 수행하여야 한다.
 
@@ -123,7 +123,7 @@ $$\text{Cov}[x]^{-1/2}(x-\mathbb{E}[x])$$
 
 뿐만아니라 이것들의 Backpropagation까지 구해야 한다!
 
-따라서 Batch Normalization의 저자들은 여기에서 동기를 얻어서 파라미터 업데이트 이후마다의 트레이닝 셋의 분석이 필요하지 않을 뿐 아니라 미분가능한 어떤 입력 Normalization을 찾는 연구를 시도했다고 한다.
+따라서 Batch Normalization의 저자들은 여기에서 동기를 얻어서 파라미터 업데이트 이후마다의 트레이닝 셋 전체의 분석이 필요하지 않을 뿐 아니라 미분도 가능해서 Backpropagation을 구하는 것이 용이한 어떤 입력 Normalization을 찾는 연구를 시도했다고 한다.
 
 ## 미니배치의 Statistics를 이용한 Normalization
 
