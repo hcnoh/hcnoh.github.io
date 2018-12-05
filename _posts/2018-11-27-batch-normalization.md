@@ -85,7 +85,7 @@ $$g = \frac{1}{1 + e^{-x}}$$
 
 - Internal Covariate Shift의 정의: 네트워크의 학습 도중에 파라미터의 변화로 인한 네트워크 Activation(출력)들의 분포 변화
 
-학습 효율을 높이기 위해서는 이런 Internal Covariate Shift를 줄이기 위한 노력이 필요하다. 기존의 여러 연구 결과들은 입력값들이 Whitened된다면, 즉, Zero Mean과 Unit Variance를 가지게 되고 각각의 입력값들이 Decorrelated된다면, 뉴럴넷이 훨씬 빠르게 수렴할 것이라고 말하고 있다. 또한 모든 레이어들이 같은 Whitening 방식을 공유한다면 훨씬 이득을 가질 수 있다고 한다.
+학습 효율을 높이기 위해서는 이런 Internal Covariate Shift를 줄이기 위한 노력이 필요하다. 기존의 여러 연구 결과들은 입력값들이 Whitening된다면, 즉, Zero Mean과 Unit Variance를 가지게 되고 각각의 입력값들이 Decorrelated된다면, 뉴럴넷이 훨씬 빠르게 수렴할 것이라고 말하고 있다. 또한 모든 레이어들이 같은 Whitening 방식을 공유한다면 훨씬 이득을 가질 수 있다고 한다.
 
 기존의 연구에서는 뉴럴넷의 파라미터를 Activation의 값에 따라서 바꾸면서 Whitening하는 방식을 사용하였다. 하지만 이러한 방법은 Gradient Descent Step의 효과를 줄이는 결과를 가져온다.
 
@@ -101,7 +101,7 @@ $$b \leftarrow b + \Delta b, \ \text{where} \ \Delta b \propto -\frac{\partial l
 
 $$ u + (b + \Delta b) - \mathbb{E}[u + (b + \Delta b)] = u + b - \mathbb{E}[u + b] $$
 
-즉, 업데이트 전후의 Normalization 결과가 같게 되며 결과적으로 Loss $$l$$의 값 역시 일정하게 유지된다. $$\widehat{x}$$, $$l$$의 변화가 없게 된다면 Gradient $$\Delta b$$의 값이 불분명하게 되고 이것은 업데이트가 제대로 되지 않는 결과를 가져오게 된다. 이러한 현상은 단순히 Zero Mean을 위한 Centering 뿐 아니라 Unit Variance를 위한 Scaling에서도 마찬가지로 발생되게 된다. 따라서 이러한 방식의 Normalization은 문제가 된다!
+즉, 업데이트 전후의 Normalization 결과 $$\widehat{x}$$가 같게 되며 결과적으로 Loss $$l$$의 값 역시 일정하게 유지된다. $$\widehat{x}$$, $$l$$의 변화가 없게 된다면 Gradient $$\Delta b$$의 값이 불분명하게 되고 이것은 업데이트가 제대로 되지 않는 결과를 가져오게 된다. 이러한 현상은 단순히 Zero Mean을 위한 Centering 뿐 아니라 Unit Variance를 위한 Scaling에서도 마찬가지로 발생되게 된다. 따라서 이러한 방식의 Normalization은 문제가 된다!
 
 위의 현상을 다음과 같이 설명할 수 있다. 먼저 Normalization을 다음과 같이 표현해보자.
 
@@ -111,7 +111,9 @@ $$ \widehat{x} = \text{Norm}(x, \mathcal{X}) $$
 
 $$ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial x}, \ \text{and} \ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}} $$
 
-만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다.
+만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다. 즉, $$\widehat{x}$$은 다음과 같이 표현해야만 한다.
+
+$$\widehat{x} = \text{Norm}(x, \mathcal{X}) = x - \mathbb{E}_{\mathcal{X}}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
 
 추가적으로 이러한 방식의 Whitening은 Covariance를 구해야 한다는 이유로 인하여 연산이 매우 복잡하다는 단점이 있다. Covarialce Matrix를 구하려면 다음의 연산을 수행하여야 한다.
 
@@ -124,4 +126,6 @@ $$\text{Cov}[x]^{-1/2}(x-\mathbb{E}[x])$$
 따라서 Batch Normalization의 저자들은 여기에서 동기를 얻어서 파라미터 업데이트 이후마다의 트레이닝 셋의 분석이 필요하지 않을 뿐 아니라 미분가능한 어떤 입력 Normalization을 찾는 연구를 시도했다고 한다.
 
 ## 미니배치의 Statistics를 이용한 Normalization
+
+
 
