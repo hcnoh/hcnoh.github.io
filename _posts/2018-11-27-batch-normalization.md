@@ -27,7 +27,7 @@ $$ \theta_{k+1} = \theta_k - \alpha \nabla_{\theta} L(\theta) |_{\theta=\theta_k
 
 $$\theta = \arg \min_\theta L(\theta)$$
 
-Data-driven 방식을 통하여 Gradient Descent를 사용하기 위해서는 주어진 학습용 데이터에 대한 Cost를 정의하여 그 Cost를 최소화하기 위한 $$\theta$$를 찾아내야 한다. 즉, 주어진 데이터셋 $$D$$에 대한 최적화 문제는 다음과 같다.
+Data-driven 방식을 통하여 Gradient Descent를 사용하기 위해서는 주어진 트레이닝용 데이터에 대한 Cost를 정의하여 그 Cost를 최소화하기 위한 $$\theta$$를 찾아내야 한다. 즉, 주어진 데이터셋 $$D$$에 대한 최적화 문제는 다음과 같다.
 
 $$\theta = \arg \min_\theta L(x, \theta), \forall x \in D$$
 
@@ -89,7 +89,7 @@ $$g = \frac{1}{1 + e^{-x}}$$
 
 기존의 연구에서는 뉴럴넷의 파라미터를 Activation의 값에 따라서 바꾸면서 Whitening하는 방식을 사용하였다. 하지만 이러한 방법은 Gradient Descent Step의 효과를 줄이는 결과를 가져온다.
 
-예를 들면, 입력값 $$u$$에 학습된 바이어스 $$b$$를 더해주고 학습용 데이터의 Activation의 Mean을 빼주는 방식으로 Normalization을 수행하는 레이어를 생각해보자.
+예를 들면, 입력값 $$u$$에 학습된 바이어스 $$b$$를 더해주고 트레이닝용 데이터의 Activation의 Mean을 빼주는 방식으로 Normalization을 수행하는 레이어를 생각해보자.
 
 $$\widehat{x} = x - \mathbb{E}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
 
@@ -113,8 +113,15 @@ $$ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial x}, \ \text{and} \ \frac
 
 만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다.
 
-추가적으로 이러한 방식으 Whitening은 Covariance를 구해야 한다는 이유로 인하여 연산이 매우 복잡하다는 단점이 있다. Covarialce Matrix를 구하려면 다음의 연산을 수행하여야 한다.
+추가적으로 이러한 방식의 Whitening은 Covariance를 구해야 한다는 이유로 인하여 연산이 매우 복잡하다는 단점이 있다. Covarialce Matrix를 구하려면 다음의 연산을 수행하여야 한다.
 
 $$\text{Cov}[x] = \mathbb{E}_{x\in \mathcal{X}}[xx^T] - \mathbb{E}[x]\mathbb{E}[x]^T$$
 
+$$\text{Cov}[x]^{-1/2}(x-\mathbb{E}[x])$$
+
+뿐만아니라 이것들의 Backpropagation까지 구해야 한다!
+
+따라서 Batch Normalization의 저자들은 여기에서 동기를 얻어서 파라미터 업데이트 이후마다의 트레이닝 셋의 분석이 필요하지 않을 뿐 아니라 미분가능한 어떤 입력 Normalization을 찾는 연구를 시도했다고 한다.
+
+## 미니배치의 Statistics를 이용한 Normalization
 
