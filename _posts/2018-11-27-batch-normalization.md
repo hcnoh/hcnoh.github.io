@@ -111,7 +111,7 @@ $$ \widehat{x} = \text{Norm}(x, \mathcal{X}) $$
 
 $$ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial x}, \ \text{and} \ \frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}} $$
 
-만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다. 즉, $$\widehat{x}$$은 다음과 같이 표현해야만 한다.
+만약 $$\mathbb{E}[x]$$와 $$b$$의 Dependency를 무시한다는 것은 즉 뒤의 Term인 $$\frac{\partial \text{Norm}(x, \mathcal{X})}{\partial \mathcal{X}}$$을 무시한다는 것이다. 즉, $$\widehat{x}$$은 엄밀하게는 다음과 같이 표현해야 한다.
 
 $$\widehat{x} = \text{Norm}(x, \mathcal{X}) = x - \mathbb{E}_{\mathcal{X}}[x], \ \text{where} \ x = u + b, \mathcal{X}=\{x_1,\cdots, x_N\}$$
 
