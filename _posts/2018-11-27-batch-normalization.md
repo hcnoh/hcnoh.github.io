@@ -134,5 +134,9 @@ $$\widehat{x}^{(k)} = \frac{x^{(k)} - \mathbb{E}[x^{(k)}]}{\sqrt{\text{Var}[x^{(
 
 $$y^{(k)} = \gamma^{(k)}\widehat{x}^{(k)} + \beta^{(k)}$$
 
+이 파라미터 $$\gamma^{(k)}$$와 $$\beta^{(k)}$$는 모델이 학습되어감에 따라 함께 학습이 이루어지며 이 파라미터의 역할은 본래 모델의 Representation Power을 유지시키는 역할을 하며 이 Representation Power 덕분에 위에서 언급했었던 단순 정규화의 문제점이 해결이 된다. 만약 다음과 같이 세팅을 할 수 있다면(Optimal하게 학습이 이루어졌다고 가졍한다면) $$y^{(k)}$$는 결국 원래의 Activation인 $$x^{(k)}$$가 복원된 결과가 될 것이다.
+
+$$\gamma^{(k)} = \sqrt(\text{Var}[x^{(k)}]), \ \ \ \beta^{(k)} = \mathbb{E}[x^{(k)}]$$
+
 
 
