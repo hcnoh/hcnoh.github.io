@@ -138,5 +138,5 @@ $$y^{(k)} = \gamma^{(k)}\widehat{x}^{(k)} + \beta^{(k)}$$
 
 $$\gamma^{(k)} = \sqrt(\text{Var}[x^{(k)}]), \ \ \ \beta^{(k)} = \mathbb{E}[x^{(k)}]$$
 
-
+또한 Batch Normalization의 또 다른 특징은 바로 미니배치 단위에서 정규화가 수행된다는 점이다. 모든 트레이닝 셋을 다 정규화에 활용할 수 있으면 좋겠지만 효율성을 위해서 미니배치를 Stochastic하게 샘플링하여 정규화를 수행하게 된다. 각각의 미니배치는 각각의 Activation에 대하여 Mean 및 Variance를 추정하는데 사용된다. 이러한 방식을 통해서 정규화에 사용되는 Statistics가 Backpropagation에 활용될 수 있게 된다.
 
