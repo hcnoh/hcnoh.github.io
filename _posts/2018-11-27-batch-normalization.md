@@ -140,3 +140,7 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 
 또한 Batch Normalization의 또 다른 특징은 바로 미니배치 단위에서 정규화가 수행된다는 점이다. 모든 트레이닝 셋을 다 정규화에 활용할 수 있으면 좋겠지만 효율성을 위해서 미니배치를 Stochastic하게 샘플링하여 정규화를 수행하게 된다. 각각의 미니배치는 각각의 Activation에 대하여 Mean 및 Variance를 추정하는데 사용된다. 이러한 방식을 통해서 정규화에 사용되는 Statistics가 Backpropagation에 활용될 수 있게 된다.
 
+여기서 눈여겨 봐야할 점은 미니배치 정규화는 각 차원들의 Activation들 각각에 대해서 수행된다는 점이다. 이것은 각 차원들의 Activation들 사이의 Joint Covariance를 고려하지 않는다는 의미이다. 만약 하나의 샘플 데이터에 대해서 정규화가 수행된다면 Joint Covariance가 고려되어야 할 것이며 이것은 미니배치 사이즈가 Activation들의 개수보다 작다는 일반적인 사실에 의하여 Singular Covariance Matrix가 생성되는 결과를 가져올 수 있다.
+
+
+
