@@ -144,11 +144,18 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 
 어쨌든 이러한 가정들을 바탕으로 새로운 정규화 방법인 Batch Normalization을 정의할 수 있다. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}={x_1,\cdots, x_m}$$과 같이 정의한다면 Batch Normalization을 다음처럼 나타낼 수 있다.
 
-$$BN_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
+$$\text{BN}_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
 
 Batch Normalization 레이어의 디테일은 다음과 같다.
 
 - 입력: 미니배치 $$\mathcal{B}$$, 학습될 파라미터 $$\gamma, \beta$$
+- 출력: $$\{y_i = \text{BN}_{\gamma, \beta}(x_i) \}$$
 
+$$
+\begin{align*}
+\mu_{\mathcal{B}} & \leftarrow \frac{1}{m}\sum_{i=1}^m x_i \\
+\sigma_{\mathcal{B}}^2 & \leftarrow \frac{1}{m}\sum_{i=1}^m(x_i - \mu_{\mathcal{B}})^2
+\end{align*}
+$$
 
 
