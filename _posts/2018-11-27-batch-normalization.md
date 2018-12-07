@@ -142,7 +142,7 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 
 여기서 눈여겨 봐야할 점은 미니배치 정규화는 각 차원들의 Activation들 각각에 대해서 수행되는 Per-dimension Variance를 계산하게 된다는 점이다. 즉, 각 차원들의 Activation들을 독립적이라고 가정하고 각각의 Activation들 사이의 Joint Covariance를 고려하지 않는다는 의미이다. 만약 Joint Covariance를 계산하게 되는 경우에는 미니배치 사이즈가 Activation들의 개수보다 작다는 일반적인 사실에 의하여 Singular Covariance Matrix가 생성되는 결과를 가져올 수 있다.
 
-어쨌든 이러한 가정들을 바탕으로 새로운 정규화 방법인 Batch Normalization을 정의할 수 있다. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}={x_1,\cdots, x_m}$$과 같이 정의한다면 Batch Normalization을 다음처럼 나타낼 수 있다.
+어쨌든 이러한 가정들을 바탕으로 새로운 정규화 방법인 Batch Normalization을 정의할 수 있다. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}=\{x_1,\cdots, x_m\}$$과 같이 정의한다면 Batch Normalization을 다음처럼 나타낼 수 있다.
 
 $$\text{BN}_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
 
@@ -154,7 +154,9 @@ Batch Normalization 레이어의 디테일은 다음과 같다.
 $$
 \begin{align*}
 \mu_{\mathcal{B}} & \leftarrow \frac{1}{m}\sum_{i=1}^m x_i \\
-\sigma_{\mathcal{B}}^2 & \leftarrow \frac{1}{m}\sum_{i=1}^m(x_i - \mu_{\mathcal{B}})^2
+\sigma_{\mathcal{B}}^2 & \leftarrow \frac{1}{m}\sum_{i=1}^m(x_i - \mu_{\mathcal{B}})^2 \\
+\widehat{x}_i & \leftarrow \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} \\
+y_i & \leftarrow \gamma \widehat{x}_i + \beta \equiv \text{BN}_{\gamma, \beta}(x_i)
 \end{align*}
 $$
 
