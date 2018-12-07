@@ -146,5 +146,9 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 
 $$BN_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
 
+Batch Normalization 레이어의 디테일은 다음과 같다.
+
+- 입력: 미니배치 $$\mathcal{B}$$, 학습될 파라미터 $$\gamma, \beta$$
+
 
 
