@@ -64,7 +64,7 @@ $$ \theta_2 \leftarrow \theta_2 - \frac{\alpha}{m}\sum_{i=1}^m \nabla_{\theta_2}
   - 뉴럴넷의 입력 분포 변화는 일어나지 않는 것이 좋다! 왜? 뉴럴넷 파라미터들이 그 분포에 새로 적응해야 하기 때문!
   - 즉, 학습을 원할하게 하기 위해 효율적인 입력 분포는 일정하게 유지되는 입력 분포
   - 네트워크를 여러 층을 쌓은 경우에 하위 네트워크에 대한 입력 분포의 효율성에도 동일하게 적용된다!
-  - 즉 앞단의 레이어의 출력(즉, 뒷단의 레이어의 입력이 될 값)의 분포도 일정하게 유지하는 것이 좋음!
+  - 즉, 앞단의 레이어의 출력(다시말해 뒷단의 레이어의 입력이 될 값)의 분포도 일정하게 유지하는 것이 좋음!
     
 논문에서 언급하고있는 또 다른 문제점은 Gradient Descent 및 뉴럴넷의 Nonlinearity에 의한 Saturated Regime에 관한 문제이다. 일반적으로 뉴럴넷의 Activation은 Sigmoid를 사용하는데 이 Sigmoid의 특성상 절대값이 일정 수준 이상으로 큰 입력에 대해서는 Gradient가 거의 사라지는 문제가 발생한다.
 
@@ -141,6 +141,10 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 또한 Batch Normalization의 또 다른 특징은 바로 미니배치 단위에서 정규화가 수행된다는 점이다. 모든 트레이닝 셋을 다 정규화에 활용할 수 있으면 좋겠지만 효율성을 위해서 미니배치를 Stochastic하게 샘플링하여 정규화를 수행하게 된다. 각각의 미니배치는 각각의 Activation에 대하여 Mean 및 Variance를 추정하는데 사용된다. 이러한 방식을 통해서 정규화에 사용되는 Statistics가 Backpropagation에 활용될 수 있게 된다.
 
 여기서 눈여겨 봐야할 점은 미니배치 정규화는 각 차원들의 Activation들 각각에 대해서 수행되는 Per-dimension Variance를 계산하게 된다는 점이다. 즉, 각 차원들의 Activation들을 독립적이라고 가정하고 각각의 Activation들 사이의 Joint Covariance를 고려하지 않는다는 의미이다. 만약 Joint Covariance를 계산하게 되는 경우에는 미니배치 사이즈가 Activation들의 개수보다 작다는 일반적인 사실에 의하여 Singular Covariance Matrix가 생성되는 결과를 가져올 수 있다.
+
+어쨌든 이러한 가정들을 바탕으로 새로운 정규화 방법인 Batch Normalization을 정의할 수 있다. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}={x_1,\cdots, x_m}$$과 같이 정의한다면 Batch Normalization을 다음처럼 나타낼 수 있다.
+
+$$BN_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
 
 
 
