@@ -160,4 +160,7 @@ y_i & \leftarrow \gamma \widehat{x}_i + \beta \equiv \text{BN}_{\gamma, \beta}(x
 \end{align*}
 $$
 
+Batch Normalization 레이어에 대해서 좀 더 간단하게 정리하면 먼저 각 Activation의 Mean과 Variance를 미니배치 내에서 추정을 하여 정규화를 시킨 다음에 파라미터 $$\gamma, \beta$$로 Scale 및 Shift를 수행하여 출력값을 내보내게 된다. 이 때 $$\gamma, \beta$$는 Backpropagation을 통해서 학습이 된다.
+
+
 
