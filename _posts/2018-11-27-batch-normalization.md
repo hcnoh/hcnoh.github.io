@@ -197,7 +197,7 @@ $$
 
 $$
 \begin{align*}
-\widehat{x}_i & \leftarrow \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} \\
+\widehat{x}_i & \leftarrow \frac{x_i - \mathbb{E}[x]}{\sqrt{\text{Var}[x] + \epsilon}} \\
 y_i & \leftarrow \gamma \widehat{x}_i + \beta \equiv \text{BN}_{\gamma, \beta}(x_i)
 \end{align*}
 $$
