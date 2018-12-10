@@ -179,5 +179,9 @@ $$
 \end{align*}
 $$
 
+## Batch Normalization 레이어의 인퍼런스
+인퍼런스는 트레이닝과 과정이 조금 다르다. 트레이닝에서는 Activation의 정규화 과정에서 미니배치와의 Dependency를 고려하지만 인퍼런스에서도 이렇게 된다면 미니배치의 세팅에 따라서 결과가 달라지게 된다. 따라서 인퍼런스에서는 결과를 Deterministic하게 하기 위하여 고정된 Mean과 Variance를 이용하여 정규화를 한다.
+
+따라서 인퍼런스 전, 즉 트레이닝 과정에서 미리 미니배치를 뽑을 때 Sample Mean $$\mu_{\mathcal{B}}$$ 및 Sample Variance $$\sigma_{\mathcal{B}}^2$$를 이용하여 각각의 Moving Average $$\mathbb{E}_{\mathbb{B}}[\mu_{\mathcal{B}}], \mathbb{E}_{\mathcal{B}}[\sigma_{\mathcal{B}}^2]$$를 구해놨어야 한다.
 
 
