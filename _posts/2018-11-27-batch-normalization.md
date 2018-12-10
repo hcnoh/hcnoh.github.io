@@ -126,7 +126,7 @@ $$\text{Cov}[x]^{-1/2}(x-\mathbb{E}[x])$$
 따라서 Batch Normalization의 저자들은 여기에서 동기를 얻어서 파라미터 업데이트 이후마다의 트레이닝 셋 전체의 분석이 필요하지 않을 뿐 아니라 미분도 가능해서 Backpropagation을 구하는 것이 용이한 어떤 입력 Normalization을 찾는 연구를 시도했다고 한다.
 
 ## Batch Normalization: 미니배치의 Statistics를 이용
-먼저 새로운 방식의 Normalization은 각각의 스칼라 Feature들을 독립적으로 Normalization 하는 방식으로 진행된다. 즉, 각각의 Feature들의 Mean 및 Variance를 $$0$$과 $$1$$로 정규화를 하는 것이다. 정규화를 위해서는 $$d$$ 차원의 입력 $$x=(x^{(1)}, \cdots, x^{(d)})$$에 대해서 다음의 연산을 수행해야 한다.
+Batch Normalization은 각각의 스칼라 Feature들을 독립적으로 정규화하는 방식으로 진행된다. 즉, 각각의 Feature들의 Mean 및 Variance를 $$0$$과 $$1$$로 정규화를 하는 것이다. 정규화를 위해서는 $$d$$ 차원의 입력 $$x=(x^{(1)}, \cdots, x^{(d)})$$에 대해서 다음의 연산을 수행해야 한다.
 
 $$\widehat{x}^{(k)} = \frac{x^{(k)} - \mathbb{E}[x^{(k)}]}{\sqrt{\text{Var}[x^{(k)}]}}$$
 
@@ -142,6 +142,12 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 
 여기서 눈여겨 봐야할 점은 미니배치 정규화는 각 차원들의 Activation들 각각에 대해서 수행되는 Per-dimension Variance를 계산하게 된다는 점이다. 즉, 각 차원들의 Activation들을 독립적이라고 가정하고 각각의 Activation들 사이의 Joint Covariance를 고려하지 않는다는 의미이다. 만약 Joint Covariance를 계산하게 되는 경우에는 미니배치 사이즈가 Activation들의 개수보다 작다는 일반적인 사실에 의하여 Singular Covariance Matrix가 생성되는 결과를 가져올 수 있다.
 
+지금까지 설명한 Batch Normalization의 특징들을 정리하면 다음과 같다.
+- 트레이닝을 위한 미니배치 단위에서 수행
+- 미니배치 내의 한 Example 내에서의 Activation들은 각각 독립적이라고 가정
+- 독립적인 각각의 Activation들은 정규화를 위하여 미니배치 내의 Example들의 Statistics를 이용
+
+## Batch Normalization 레이어의 트레이닝
 어쨌든 이러한 가정들을 바탕으로 새로운 정규화 방법인 Batch Normalization을 정의할 수 있다. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}=\{x_1,\cdots, x_m\}$$과 같이 정의한다면 Batch Normalization을 다음처럼 나타낼 수 있다.
 
 $$\text{BN}_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
