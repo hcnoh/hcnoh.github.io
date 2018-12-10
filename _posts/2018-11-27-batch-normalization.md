@@ -184,4 +184,13 @@ $$
 
 따라서 인퍼런스 전, 즉 트레이닝 과정에서 미리 미니배치를 뽑을 때 Sample Mean $$\mu_{\mathcal{B}}$$ 및 Sample Variance $$\sigma_{\mathcal{B}}^2$$를 이용하여 각각의 Moving Average $$\mathbb{E}_{\mathbb{B}}[\mu_{\mathcal{B}}], \mathbb{E}_{\mathcal{B}}[\sigma_{\mathcal{B}}^2]$$를 구해놨어야 한다.
 
+Moving Average를 이용하여 실제 Mean 및 Variance를 추정하면 다음과 같다.
+
+$$
+\begin{align*}
+\mathbb{E}[x] & \leftarrow \mathbb{E}_{\mathcal{B}}[\mu_{\mathcal{B}}] \\
+\text{Var}[x] & \leftarrow \frac{m}{m-1} \mathbb{E}_{\mathcal{B}}[\sigma_{\mathcal{B}}^2]
+\end{align*}
+$$
+
 
