@@ -214,7 +214,7 @@ Batch Normalization은 Scaling 및 Shifting을 포함하기 때문에 Bias $$b$$
 
 $$z = g(\text{BN}(Wu))$$
 
-또한 이 과정에서 학습될 파라미터 $$\gamma^{(k)}, \beta^{(k)}$$는 각 차원들에 대해서 따로 존재한다. 즉, $$k$$는 $$k\in {1, 2, \cdots, \text{dim}(Wu)}$$를 만족한다.
+또한 이 과정에서 학습될 파라미터 $$\gamma^{(k)}, \beta^{(k)}$$는 각 차원들에 대해서 따로 존재한다. 즉, $$k$$는 $$k\in \{1, 2, \cdots, \text{dim}(Wu) \}$$를 만족한다.
 
 
 
