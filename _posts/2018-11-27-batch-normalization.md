@@ -148,11 +148,11 @@ $$\gamma^{(k)} = \sqrt{\text{Var}[x^{(k)}]}, \ \ \ \beta^{(k)} = \mathbb{E}[x^{(
 - 독립적인 각각의 Activation들은 정규화를 위하여 미니배치 내의 Example들의 Statistics를 이용
 
 ## Batch Normalization 레이어의 트레이닝
-어쨌든 이러한 가정들을 바탕으로 새로운 정규화 방법인 Batch Normalization을 정의할 수 있다. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}=\{x_1,\cdots, x_m\}$$과 같이 정의한다면 Batch Normalization을 다음처럼 나타낼 수 있다.
+Batch Normalization을 다음과 같이 정의하자. 미니배치 사이즈 $$m$$에 대한 미니배치 $$\mathcal{B}$$를 $$\mathcal{B}=\{x_1,\cdots, x_m\}$$과 같이 정의한다면 아래의 표현을 Batch Normalization 레이어의 연산으로 정의한다.
 
 $$\text{BN}_{\gamma, \beta}: x_1,\cdots, x_m \rightarrow y_1,\cdots, y_m$$
 
-Batch Normalization 레이어의 디테일은 다음과 같다.
+Batch Normalization 레이어의 학습 과정은 다음과 같다.
 
 - 입력: 미니배치 $$\mathcal{B}$$, 학습될 파라미터 $$\gamma, \beta$$
 - 출력: $$\{y_i = \text{BN}_{\gamma, \beta}(x_i) \}$$
@@ -166,7 +166,14 @@ y_i & \leftarrow \gamma \widehat{x}_i + \beta \equiv \text{BN}_{\gamma, \beta}(x
 \end{align*}
 $$
 
-Batch Normalization 레이어에 대해서 좀 더 간단하게 정리하면 먼저 각 Activation의 Mean과 Variance를 미니배치 내에서 추정을 하여 Activation들을 각각 정규화를 시킨 다음에 파라미터 $$\gamma, \beta$$로 Scale 및 Shift를 수행하여 출력값을 내보내게 된다. 이 때 $$\gamma, \beta$$는 Backpropagation을 통해서 학습이 된다.
+학습 과정에 대해서 좀 더 간단하게 정리하면 먼저 각 Activation의 Mean과 Variance를 미니배치 내에서 추정을 하여 Activation들을 각각 정규화를 시킨 다음에 파라미터 $$\gamma, \beta$$로 Scale 및 Shift를 수행하여 출력값을 내보내게 된다. 이 때 $$\gamma, \beta$$는 Backpropagation을 통해서 학습이 된다. 논문에 정리된 Backpropagation은 다음과 같다.
+
+$$
+\begin{align*}
+\frac{\partial l}{\partial \widehat{x}_i} & = \frac{\partial l}{\partial y_i} \cdot \gamma \\
+\frac{\partial l}{\partial \sigma_{\mathcal{B}}^2} * = \sum_{i=1}^m \frac{\partial l}{\partial \widehat{x}_i} \cdot (x_i - \mu_{\mathcal{B}}) \cdot \frac{-1}{2}(\sigma_{\mathcal{B}}^2 + \epsilon)^{-3/2}
+\end{align*}
+$$
 
 
 
