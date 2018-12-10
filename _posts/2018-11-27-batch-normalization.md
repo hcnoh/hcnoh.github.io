@@ -223,4 +223,12 @@ $$z = g(\text{BN}(Wu))$$
 
 그러면 여기서 의문이 생긴다. $$\widehat{x}$$는 결국 내부변환일 뿐이고 실제로 Batch Normalization은 Identity 변환일 뿐인데 여기서 $$\widehat{x}$$의 역할이 무엇인가 말이다.
 
+논문은 엄밀하지는 않지만 나름의 $$\widehat{x}$$의 역할에 대해서 서술해놓고 있다. 또한 $$\widehat{x}$$의 역할이 중요하다고 강조도 하고있다. 논문에서는 $$\widehat{x}$$가 서브 네트워크 $$y=\gamma x + \beta$$의 입력의 역할을 하고있으며 이 입력의 분포가 일정해지면서 서브 네트워크의 학습 속도가 증가하며 결과적으로 전체 네트워크의 학습 속도가 증가한다고 주장하고 있다.
+
+즉, 정리하면 다음과 같다.
+- Batch Normalization은 다음과 같은 파이프라인으로 구성됨: 이전 레이어 $$\rightarrow$$ 정규화 $$\rightarrow$$ Linear $$\rightarrow$$ 다음 레이어
+- 여기서 정규화 부분의 역할: 다음 레이어에 일정한 분포를 가진 입력을 제공
+- Linear 부분의 역할: 이전 레이어의 학습이 잘 이루어지기 위한 Representation Power 제공 (Network Capacity를 유지할 수 있게한다고 표현)
+
+
 
