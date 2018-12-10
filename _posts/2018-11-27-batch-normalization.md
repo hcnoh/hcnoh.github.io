@@ -230,5 +230,14 @@ $$z = g(\text{BN}(Wu))$$
 - 여기서 정규화 부분의 역할: 다음 레이어에 일정한 분포를 가진 입력을 제공
 - Linear 부분의 역할: 이전 레이어의 학습이 잘 이루어지기 위한 Representation Power 제공 (Network Capacity를 유지할 수 있게한다고 표현)
 
+## 저자들이 주장하는 Batch Normalization의 유용함
+논문의 저자들이 주장하는 Batch Normalization의 장점들을 요약하면 다음과 같다.
+- 높은 Learning Rate를 설정 가능: 결과적으로 더 빠른 트레이닝
+- 트레이닝 시에 Deterministic하지 않은 결과 생성 $$\rightarrow$$ Regularization 효과: 결과적으로 Dropout을 사용하지 않아도 됨
+- Learning Rate Decay를 더 느리게 설정 가능
+
+## 실험 1: MNIST
+Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구성하였다. MNIST 데이터셋을 이용하여 손글씨 이미지를 Classification하는 모델을 Hidden Size를 100으로 가지는 3개의 Fully-connected 레이어로 구성하였다. 각각의 레이어는 Sigmoid Nonlinearity를 가진다. 각각의 Weight는 Gaussian 분포를 갖게끔 초기화를 하였으며 마지막 레이어의 사이즈는 10으로 하여 0~9의 클래스를 분류하게끔 하였다. 그 외의 자세한 트레이닝 Config는 논문에 자세히 설명되어 있다.
+
 
 
