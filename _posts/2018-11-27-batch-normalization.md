@@ -125,7 +125,7 @@ $$\text{Cov}[x]^{-1/2}(x-\mathbb{E}[x])$$
 
 따라서 Batch Normalization의 저자들은 여기에서 동기를 얻어서 파라미터 업데이트 이후마다의 트레이닝 셋 전체의 분석이 필요하지 않을 뿐 아니라 미분도 가능해서 Backpropagation을 구하는 것이 용이한 어떤 입력 Normalization을 찾는 연구를 시도했다고 한다.
 
-## 미니배치의 Statistics를 이용한 Normalization
+## Batch Normalization: 미니배치의 Statistics를 이용
 먼저 새로운 방식의 Normalization은 각각의 스칼라 Feature들을 독립적으로 Normalization 하는 방식으로 진행된다. 즉, 각각의 Feature들의 Mean 및 Variance를 $$0$$과 $$1$$로 정규화를 하는 것이다. 정규화를 위해서는 $$d$$ 차원의 입력 $$x=(x^{(1)}, \cdots, x^{(d)})$$에 대해서 다음의 연산을 수행해야 한다.
 
 $$\widehat{x}^{(k)} = \frac{x^{(k)} - \mathbb{E}[x^{(k)}]}{\sqrt{\text{Var}[x^{(k)}]}}$$
