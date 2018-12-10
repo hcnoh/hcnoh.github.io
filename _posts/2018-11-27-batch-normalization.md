@@ -218,4 +218,9 @@ $$z = g(\text{BN}(Wu))$$
 
 그렇다면 Convolutional Network에서는 어떻게 수행될까? 저자들은 추가적으로 Batch Normalization이 Convolutional Property를 따르기를 원했다. 따라서 같은 Feature Map의 요소들은 함께 정규화에 사용되게 된다. 즉 미니배치 사이즈가 $$m$$이고 Featrue Map의 사이즈가 $$p\times q$$라면 Effecitve 미니배치 사이즈는 $$m' = m\cdot pq$$가 된다. 즉, 정리하자면 Convolution Kernel 하나는 같은 파라미터 $$\gamma, \beta$$를 공유하게 된다.
 
+## 의문점: $$\widehat{x}$$의 역할은 무엇인가?
+논문을 읽어나가다보니 의문점이 생겼다. Batch Normalization은 결국 입력 $$x$$를 $$\widehat{x}$$로 정규화를 한 후에 다시 Scaling 및 Shifting을 통해서 출력 $$y$$를 생성하는 레이어라고 볼 수 있다. 그런데 저자들은 여기서 이런식으로 파이프라인을 구성하는 이유로 다음과 같이 주장했다. "We make sure that the transformation inserted in the network can represent the identity transform." 여기서 the transformation은 Batch Normalization을 말하는 것이고 그 말인 즉, 저자들의 의도는 $$y=\text{BN}(x)$$를 단순하게 Identity 변환으로 학습시키고 싶었다는 것이다.
+
+그러면 여기서 의문이 생긴다. $$\widehat{x}$$는 결국 내부변환일 뿐이고 실제로 Batch Normalization은 Identity 변환일 뿐인데 여기서 $$\widehat{x}$$의 역할이 무엇인가 말이다.
+
 
