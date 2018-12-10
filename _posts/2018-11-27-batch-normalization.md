@@ -172,7 +172,10 @@ $$
 \begin{align*}
 \frac{\partial l}{\partial \widehat{x}_i} & = \frac{\partial l}{\partial y_i} \cdot \gamma \\
 \frac{\partial l}{\partial \sigma_{\mathcal{B}}^2} & = \sum_{i=1}^m \frac{\partial l}{\partial \widehat{x}_i} \cdot (x_i - \mu_{\mathcal{B}}) \cdot \frac{-1}{2}(\sigma_{\mathcal{B}}^2 + \epsilon)^{-3/2} \\
-\frac{\partial l}{\partial \mu_{\mathcal{B}}} & = \left( \sum_{i=1}^m \frac{\partial l}{\partial \widehat{x}_i} \cdot \frac{-1}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} \right) + \frac{\partial l}{\partial \sigma_{\mathcal{B}}^2} \cdot \frac{\sum_{i=1}^m -2(x_i - \mu_{\mathcal{B}})}{m}
+\frac{\partial l}{\partial \mu_{\mathcal{B}}} & = \left( \sum_{i=1}^m \frac{\partial l}{\partial \widehat{x}_i} \cdot \frac{-1}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} \right) + \frac{\partial l}{\partial \sigma_{\mathcal{B}}^2} \cdot \frac{\sum_{i=1}^m -2(x_i - \mu_{\mathcal{B}})}{m} \\
+\frac{l}{x_i} & = \frac{\partial l}{\partial \widehat{x}_i} \cdot \frac{1}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} + \frac{\partial l}{\partial \sigma_{\mathcal{B}}^2} \cdot \frac{2(x_i - \mu_{\mathcal{B}})}{m} + \frac{\partial l}{\partial \mu_{\mathcal{B}}} \cdot \frac{1}{m} \\
+\frac{\partial l}{\partial \gamma} & = \sum_{i=1}^m \frac{\partial l}{\partial y_i} \cdot \widehat{x}_i \\
+\frac{\partial l}{\partial \beta} & = \sum_{i=1}^m \frac{\partial l}{\partial y_i}
 \end{align*}
 $$
 
