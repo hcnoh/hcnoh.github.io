@@ -193,4 +193,12 @@ $$
 \end{align*}
 $$
 
+이것을 이용하여 다음과 같이 인퍼런스를 수행한다.
+
+$$
+\begin{align*}
+\widehat{x}_i & \leftarrow \frac{x_i - \mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^2 + \epsilon}} \\
+y_i & \leftarrow \gamma \widehat{x}_i + \beta \equiv \text{BN}_{\gamma, \beta}(x_i)
+\end{align*}
+$$
 
