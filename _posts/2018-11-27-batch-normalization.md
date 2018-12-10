@@ -202,3 +202,20 @@ y_i & \leftarrow \gamma \widehat{x}_i + \beta \equiv \text{BN}_{\gamma, \beta}(x
 \end{align*}
 $$
 
+## Fully-connected 및 Convolutional Network에서의 Batch Normalization
+Nonlinearity를 $$g$$라고 정의하면 Affine Transformation은 다음과 같은 네트워크를 말한다.
+$$z = g(Wu + b)$$
+이 변환은 Fully-connected 및 Convolutional Network에서 모두 통용되는 형식이다. 저자들은 Batch Normalization을 수행하기 위해서는 Nonlinearity 이전 단계인 $$Wu+b$$에 수행해야 한다고 주장한다. $$u$$에다가 수행할 수도 있지 않겠냐고 생각할 수도 있겠지만 저자들은 $$Wu+b$$에다가 수행하는 이유를 다음과 같이 주장한다.
+
+- $$u$$는 이전 단계의 레이어의 Nonlinearity 결과이므로 트레이닝 과정에서 분포가 계속 변화할 것이기 때문에 정규화가 Covariate Shift를 없애주지 못할 것임
+- 반면, $$Wu+b$$는 좀 더 Symmetric하고 Non-sparse한 분포를 가졌기 때문에(더 Gaussian하다고 표현) 정규화가 더욱 효과가 있을 것
+
+Batch Normalization은 Scaling 및 Shifting을 포함하기 때문에 Bias $$b$$의 효과가 없을 것이고 결국 Affine Transformation의 Batch Normalization 적용 결과는 다음과 같을 것이다.
+
+$$z = g(\text{BN}(Wu))$$
+
+또한 이 과정에서 학습될 파라미터 $$\gamma^{(k)}, \beta^{(k)}$$는 각 차원들에 대해서 따로 존재한다. 즉, $$k$$는 $$k\in {1, 2, \cdots, \text{dim}(Wu)}$$를 만족한다.
+
+
+
+
