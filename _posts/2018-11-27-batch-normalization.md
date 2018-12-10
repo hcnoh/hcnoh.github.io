@@ -216,6 +216,6 @@ $$z = g(\text{BN}(Wu))$$
 
 또한 이 과정에서 학습될 파라미터 $$\gamma^{(k)}, \beta^{(k)}$$는 각 차원들에 대해서 따로 존재한다. 즉, $$k$$는 $$k\in \{1, 2, \cdots, \text{dim}(Wu) \}$$를 만족한다.
 
-
+그렇다면 Convolutional Network에서는 어떻게 수행될까? 저자들은 추가적으로 Batch Normalization이 Convolutional Property를 따르기를 원했다. 따라서 같은 Feature Map의 요소들은 함께 정규화에 사용되게 된다. 즉 미니배치 사이즈가 $$m$$이고 Featrue Map의 사이즈가 $$p\times q$$라면 Effecitve 미니배치 사이즈는 $$m' = m\cdot pq$$가 된다. 즉, 정리하자면 Convolution Kernel 하나는 같은 파라미터 $$\gamma, \beta$$를 공유하게 된다.
 
 
