@@ -239,16 +239,16 @@ $$z = g(\text{BN}(Wu))$$
 ## 실험 1: MNIST
 Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구성하였다. MNIST 데이터셋을 이용하여 손글씨 이미지를 Classification하는 모델을 Hidden Size를 100으로 가지는 3개의 Fully-connected 레이어로 구성하였다. 각각의 레이어는 Sigmoid Nonlinearity를 가진다. 각각의 Weight는 Gaussian 분포를 갖게끔 초기화를 하였으며 마지막 레이어의 사이즈는 10으로 하여 0~9의 클래스를 분류하게끔 하였다. 그 외의 자세한 트레이닝 Config는 논문에 자세히 설명되어 있다.
 
-![](/assets/img/2018-11-05-tensorflow-data-module/01.png)
+![](/assets/img/2018-11-27-batch-normalization/01.png)
 
 그림은 실험에 대한 결과이다. (a)에서 확인할 수 있듯이 확실히 Batch Normalization을 사용했을 경우에 더 빨리 수렴하고 Accuracy도 높다는 것을 확인할 수 있다. (b)와 (c)는 각각 Batch Normalization을 썼을 경우와 그렇지 않은 경우의 Sigmoid의 입력 분포를 트레이닝 과정동안 보여주는 그래프이다. 확실히 Batch Normalization을 사용했을 경우에 더 분포가 안정적이고 일정하다는 점을 확인할 수 있다.
 
 ## 실험 2: ImageNet Classification
 실험 2에서는 Inception Network에 Batch Normalization을 적용하여 결과를 확인하였다. 자세한 Config는 논문에 잘 정리되어 있다. 데이터셋은 ImageNet의 LSVRC2012 트레이닝 데이터를 사용하였다고 한다. 결과는 아래 그림과 같다.
 
-![](/assets/img/2018-11-27-batch-normalization/01.png)
-
 ![](/assets/img/2018-11-27-batch-normalization/02.png)
+
+![](/assets/img/2018-11-27-batch-normalization/03.png)
 
 결과를 좀 더 자세히 정리하면 다음과 같다.
 - Inception: Inception Network 베이스라인 모델이다. Learning Rate는 0.0015를 사용하였다.
@@ -261,6 +261,6 @@ Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구
 
 그 다음 결과는 앙상블 모델을 이용한 Classification 결과이다. 이번 결과에서도 Batch Normalization이 새로운 State-of-the-art 수준을 제시한다고 주장한다.
 
-![](/assets/img/2018-11-27-batch-normalization/03.png)
+![](/assets/img/2018-11-27-batch-normalization/04.png)
 
 
