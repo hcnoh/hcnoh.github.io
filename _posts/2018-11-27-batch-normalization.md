@@ -246,7 +246,9 @@ Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구
 ## 실험 2: ImageNet Classification
 실험 2에서는 Inception Network에 Batch Normalization을 적용하여 결과를 확인하였다. 자세한 Config는 논문에 잘 정리되어 있다. 데이터셋은 ImageNet의 LSVRC2012 트레이닝 데이터를 사용하였다고 한다. 결과는 아래 그림과 같다.
 
-![](/assets/img/2018-11-05-tensorflow-data-module/01.png)
+![](/assets/img/2018-11-27-batch-normalization/01.png)
+
+![](/assets/img/2018-11-27-batch-normalization/02.png)
 
 결과를 좀 더 자세히 정리하면 다음과 같다.
 - Inception: Inception Network 베이스라인 모델이다. Learning Rate는 0.0015를 사용하였다.
@@ -255,6 +257,10 @@ Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구
 - BN-x30: 마찬가지로 Learning Rate를 30배로 사용한 모델이다.
 - BN-x5-Sigmoid: BN-x5와 동일하지만 Nonlinearity를 ReLU 대신 Sigmoid를 사용한 모델이다.
 
+확실히 Batch Normaliazation을 사용하면 더 큰 Learning Rate에 대해서도 더 빠른 수렴 및 성능을 보장한다고 볼 수 있을 것이다.
 
+그 다음 결과는 앙상블 모델을 이용한 Classification 결과이다. 이번 결과에서도 Batch Normalization이 새로운 State-of-the-art 수준을 제시한다고 주장한다.
+
+![](/assets/img/2018-11-27-batch-normalization/03.png)
 
 
