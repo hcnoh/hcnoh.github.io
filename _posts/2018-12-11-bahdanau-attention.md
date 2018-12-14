@@ -17,10 +17,10 @@ permalink: /2018-12-11-bahdanau-attention
 - [링크1](https://arxiv.org/abs/1409.0473)
 
 ## Neural Machine Translation
-기계 번역은 이전부터 확률적인 접근 방법을 통해서 수행이 되어왔다. 간단히 설명하면 소스 문장 $$\mathbf{x}$$을 Conditioning하여 조건부 확률 $$p(\mathbf{y} \vert \mathbf{x})$$를 최대화하는 타겟 문장 $$\mathbf{y}$$를 찾는 것이다. 수식으로 정리하면 아래와 같다.
+기계 번역은 이전부터 확률적인 접근 방법을 통해서 수행이 되어왔다. 간단히 설명하면 소스 문장 $$\mathbf{x}$$을 Conditioning하여 조건부 확률 $$p(\mathbf{y} \vert \mathbf{x})$$를 최대화하는 타겟 문장 $$\widehat{\mathbf{y}}$$를 찾는 것이다. 수식으로 정리하면 아래와 같다.
 
 $$
-\mathbf{y} = \arg \max_{\mathbf{y}} p(\mathbf{y} \vert \mathbf{x})
+\widehat{\mathbf{y}} = \arg \max_{\mathbf{y}} p(\mathbf{y} \vert \mathbf{x})
 $$
 
 최근 딥러닝을 이용한 연구가 활발히 진행되면서 뉴럴 네트워크를 통한 언어 번역을 시도해 보려는 NMT(Neural Machine Translation)에 관한 연구가 각광을 받게 되었다. NMT는 딥러닝 모델 $$f_{\mathbf{\theta}}(\mathbf{x})$$를 학습시키기 위해서 Loss $$\mathcal{L}$$을 다음과 같이 사용하게 된다.
