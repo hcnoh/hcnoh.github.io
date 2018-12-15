@@ -17,7 +17,7 @@ permalink: /2018-12-11-bahdanau-attention
 - [링크1](https://arxiv.org/abs/1409.0473)
 
 ## Neural Machine Translation
-기계 번역은 이전부터 확률적인 접근 방법을 통해서 수행이 되어왔다. 간단히 설명하면 소스 문장 $$\mathbf{x}$$을 Conditioning하여 조건부 확률 $$p(\mathbf{y} \vert \mathbf{x})$$를 최대화하는 타겟 문장 $$\widehat{\mathbf{y}}$$를 찾는 것이다. 수식으로 정리하면 아래와 같다.
+기계 번역은 이전부터 확률적인 접근 방법을 통해서 수행이 되어왔다. 간단히 설명하면 소스 문장 $$\mathbf{x}$$을 Conditioning하여 조건부 확률 $$p(\mathbf{y} \vert \mathbf{x})$$를 최대화하는 타겟 문장 $$\mathbf{y}$$를 찾는 것이다. 수식으로 정리하면 아래와 같다. $$\widehat{\mathbf{y}}$$는 모델의 타겟 문장 $$\mathbf{y}$$에 대한 추정 문장이다.
 
 $$
 \widehat{\mathbf{y}} = \arg \max_{\mathbf{y}} p(\mathbf{y} \vert \mathbf{x})
@@ -27,6 +27,12 @@ $$
 
 $$
 \mathcal{L} = -p(f_{\mathbf{\theta}}(\mathbf{x}) \vert \mathbf{x})
+$$
+
+즉, 이 Loss를 이용하여 모델 파라미터 $$\theta$$를 다음과 같은 최적화를 통해서 학습을 시키면 된다.
+
+$$
+\widehat{\mathbf{\theta}} = \arg \max_{\mathbf{\theta}} p(f_{\mathbf{\theta}}(\mathbf{x}) \vert \mathbf{x})
 $$
 
 기존의 NMT 연구는 RNN Encoder-Decoder를 이용하는 방식으로 많이 수행이 되었는데 이번에 소개하려는 논문에서는 이러한 RNN Encoder-Decoder 모델을 Attention Mechanism을 통해서 많은 개선을 이루어냈다.
