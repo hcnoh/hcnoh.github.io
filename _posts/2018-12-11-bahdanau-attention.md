@@ -43,3 +43,19 @@ $$
 NMT의 가장 기본적인 접근은 RNN Encoder-Decoder 모델을 이용하는 것이다. RNN Encoder-Decoder 모델은 RNN 셀을 이용하여 인코더 및 디코더를 구성하고 인코더는 번역을 하고자 하는 소스 문장을 특정 임베딩 벡터로 인코딩을 하고 디코더는 임베딩된 벡터를 타겟 언어로 번역을 하여 타겟 문장을 생성해 내는 역할을 수행하게 된다.
 
 Encoder-Decoder 모델은 기본적으로 다음의 역할을 수행하게 된다.
+
+
+```python
+import tensorflow as tf
+import hyparams as hp
+
+enc_outs = encoder(inputs)
+
+cell = tf.nn.rnn_cell.GRUCell(num_units=hp.attention_units)
+attn_mechanism = tf.contrib.seq2seq.BahdanauAttention(num_units=hp.attention_depth,
+                                                      memory=enc_outs)
+attn_cell = tf.contrib.seq2seq.AttentionWrapper(cell=attn_cell,
+                                                attention_mechanism=attention_mechanism,
+                                                alignment_history=True,
+                                                output_attention=False)
+```
