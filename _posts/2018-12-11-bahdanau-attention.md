@@ -37,5 +37,9 @@ $$
 
 기존의 NMT 연구는 RNN Encoder-Decoder를 이용하는 방식으로 많이 수행이 되었는데 이번에 소개하려는 논문에서는 이러한 RNN Encoder-Decoder 모델을 Attention Mechanism을 통해서 많은 개선을 이루어냈다.
 
-논문에서 주장하는 개선 사항은 다음과 같다. 기존 RNN Encoder-Decoder는 소스 문장을 고정된 길이의 Vector로 인코딩을 하였지만 제안된 모델에서는 인코딩을 Vector들의 Sequence로 인코딩을 하여서 소스 문장의 정보가 Sequence에 쫙 펼쳐지게 되며 이것을 디코더가 스스로 어떤 Vector에 중점을 둬서 정보를 취할지 선택할 수 있게 하였다. 이 과정이 Attention Mechanism이며 이것을 처음 제안한 논문이 바로 이 논문이다.
+논문에서 주장하는 개선 사항은 다음과 같다. 기존 RNN Encoder-Decoder는 소스 문장을 고정된 길이의 벡터로 인코딩을 하였지만 제안된 모델에서는 인코딩을 벡터들의 Sequence로 인코딩을 하여서 소스 문장의 정보가 Sequence에 쫙 펼쳐지게 되며 이것을 디코더가 스스로 어떤 벡터에 중점을 둬서 정보를 취할지 선택할 수 있게 하였다. 이 과정이 Attention Mechanism이며 이것을 처음 제안한 논문이 바로 이 논문이다.
 
+## RNN Encoder-Decoder
+NMT의 가장 기본적인 접근은 RNN Encoder-Decoder 모델을 이용하는 것이다. RNN Encoder-Decoder 모델은 RNN 셀을 이용하여 인코더 및 디코더를 구성하고 인코더는 번역을 하고자 하는 소스 문장을 특정 임베딩 벡터로 인코딩을 하고 디코더는 임베딩된 벡터를 타겟 언어로 번역을 하여 타겟 문장을 생성해 내는 역할을 수행하게 된다.
+
+Encoder-Decoder 모델은 기본적으로 다음의 역할을 수행하게 된다.
