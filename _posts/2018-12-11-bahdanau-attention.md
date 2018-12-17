@@ -15,6 +15,8 @@ permalink: /2018-12-11-bahdanau-attention
 
 이번 포스팅은 다음의 논문을 스터디하여 정리하였다:
 - [링크1](https://arxiv.org/abs/1409.0473)
+또한 다음의 링크도 참고하여 작성하였다.
+- [링크2](https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/AttentionWrapper)
 
 ## Neural Machine Translation
 기계 번역은 이전부터 확률적인 접근 방법을 통해서 수행이 되어왔다. 간단히 설명하면 소스 문장 $$\mathbf{x}$$을 Conditioning하여 조건부 확률 $$p(\mathbf{y} \vert \mathbf{x})$$를 최대화하는 타겟 문장 $$\mathbf{y}$$를 찾는 것이다. 수식으로 정리하면 아래와 같다. $$\widehat{\mathbf{y}}$$는 모델의 타겟 문장 $$\mathbf{y}$$에 대한 추정 문장이다.
@@ -58,4 +60,27 @@ attn_cell = tf.contrib.seq2seq.AttentionWrapper(cell=attn_cell,
                                                 attention_mechanism=attention_mechanism,
                                                 alignment_history=True,
                                                 output_attention=False)
+```
+
+```python
+class AttentionWrapper(rnn_cell_impl.RNNCell):
+  """Wraps another `RNNCell` with attention.
+  """
+
+  def __init__(self,
+               cell,
+               attention_mechanism,
+               attention_layer_size=None,
+               alignment_history=False,
+               cell_input_fn=None,
+               output_attention=True,
+               initial_cell_state=None,
+               name=None,
+               attention_layer=None):
+... (생략)
+    Args:
+... (생략)
+      cell_input_fn: (optional) A `callable`.  The default is:
+        `lambda inputs, attention: array_ops.concat([inputs, attention], -1)`.
+... (생략)
 ```
