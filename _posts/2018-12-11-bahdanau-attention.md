@@ -15,6 +15,7 @@ permalink: /2018-12-11-bahdanau-attention
 
 이번 포스팅은 다음의 논문을 스터디하여 정리하였다:
 - [링크1](https://arxiv.org/abs/1409.0473)
+
 또한 다음의 링크도 참고하여 작성하였다.
 - [링크2](https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/AttentionWrapper)
 
