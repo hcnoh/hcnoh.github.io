@@ -61,7 +61,7 @@ s_0 & = h_{T_{\mathbf{x}}}
 \end{align*}
 $$
 
-여기서 $$s_i$$는 디코더 RNN의 Hidden State Vector이며 $$y_0$$는 인코더가 최종적으로 생성한 문장 임베딩이다. 즉, 디코더 RNN은 입력으로 이전 타임 스텝의 인코더 아웃풋을 받는 구조라고 할 수 있다. 위의 모델을 그림으로 그리면 아래와 같다.
+여기서 $$s_i$$는 디코더 RNN의 Hidden State Vector이며 $$y_0$$는 인코더가 최종적으로 생성한 문장 임베딩이다. 또한 $$g, f$$는 RNN 기본 연산에 해당한다. 즉, 디코더 RNN은 입력으로 이전 타임 스텝의 인코더 아웃풋을 받는 구조라고 할 수 있다. 위의 모델을 그림으로 그리면 아래와 같다.
 
 ![](/assets/img/2018-12-11-tacotron/02.png)
 
@@ -70,8 +70,40 @@ $$
 ## 기존 Encoder-Decoder 모델의 단점
 이러한 기존 모델의 단점은 Bahdanau Attention 논문에서 주장하는대로 문장 임베딩을 고정된 길이로만 해야 한다는 점이다. 이 경우 짧은 문장에서는 큰 문제가 없을 수도 있지만 문장이 길어질수록 더 많은 정보를 고정된 길이로 더 많이 압축해야 하기 때문에 정보의 손실이 있다는 점이 가장 큰 문제라고 볼 수 있다. 추가적으로 RNN 특유의 Long Term Dependency 문제가 발생할 수도 있겠지만 이건 인코더 RNN을 Bidirectional로 구성하면 해결할 수 있는 문제라 여기서는 따로 언급하지 않도록 하겠다.
 
-어쨌든 결과적으로 Attention 메커니즘을 통한 보완이 가능하다고 주장한다. Attention 메커니즘을 이용하면 인코더가 고정된 길이의 문장 임베딩을 할 필요가 없으며 소스 문장의 벡터의 시퀀스를 이용하여 디코더가 디코딩이 가능하게 된다. 따라서 문장의 길이에 관계없이 Dynamic하게 정보를 인코딩이 가능하게 된다.
+어쨌든 결과적으로 Attention 메커니즘을 통한 보완이 가능하다고 주장한다. Attention 메커니즘을 이용하면 인코더가 고정된 길이의 문장 임베딩을 할 필요가 없으며 소스 문장의 벡터의 시퀀스를 이용하여 디코더가 디코딩이 가능하게 된다. 따라서 문장의 길이에 관계없이 Dynamic하게 정보를 인코딩이 가능하게 된다. Attention 메커니즘을 이용하여 조건부 확률 모델 $$p(y_i \vert y_0,\cdots, y_{i-1}, \mathbf{x})$$를 모델링하면 아래와 같다.
 
+$$
+\begin{align*}
+p(y_i \vert y_0,\cdots, y_{i-1}, \mathbf{x}) & = g(y_{i-1}, s_i, c_i) \\
+s_i & = f(y_{i-1}, s_{i-1}, c_i)
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\text{where} \ y_0 & = \text{<Go> Token}, \\
+s_0 & = \mathbf{0} \\
+c_i & = \text{Attn}(s_{i-1}, [h_1, \cdots, h_{T_{\mathbf{x}}}])
+\end{align*}
+$$
+
+여기서 달라진 점은 $$y_0$$와 $$s_0$$, 그리고 새롭게 $$c_i$$가 추가된 것들을 확인할 수 있다. $$y_0$$는 기존과 다르게 문장 임베딩을 사용하지 않고 문장의 시작점을 나타내는 새로운 \<Go> 토큰을 사용하게 되며 $$s_0$$는 평범한 RNN처럼 Zero Vector를 사용하게 된다. 여기서 핵심은 $$c_i$$를 어떻게 구하며 또 활용할 것이냐가 될 것이다.
+
+일단 $$c_i$$를 구하는 연산이 바로 Attention 메커니즘이 수행하는 일이 될 것이다. $$c_i$$는 다음과 같이 구할 수 있다.
+
+$$
+\begin{align*}
+c_i & = \sum_{j=1}^{T_{\mathbf{x}}} \alpha_{ij}h_j \\
+\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{\mathbf{x}}}\exp(e_{ik})} \\
+e_{ij} & = a(s_{i-1}, h_j)
+\end{align*}
+$$
+
+여기서 $$a$$는 Alignment Model이라고 부르게 된다. $$a(s_{i-1}, h_j)$$는 $$s_{i-1}$$과 $$h_j$$ 사이의 연관성을 Scoring하는 Score Function이라고 할 수 있다. 논문에서 사용한 Alignment Model은 다음과 같다.
+
+$$
+a(s_{i-1}, h_j) = v_a^T \tanh(W_a s_{i-1} + U_a h_j)
+$$
 
 ```python
 import tensorflow as tf
