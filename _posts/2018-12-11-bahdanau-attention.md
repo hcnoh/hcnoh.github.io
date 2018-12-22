@@ -113,6 +113,15 @@ $$
 c_i = H \boldsymbol{\alpha}_i^T
 $$
 
+$$
+\begin{align*}
+\text{where} \ H & = [h_1,\cdots, h_{T_{\mathbf{x}}}], \\
+\boldsymbol{\alpha}_i & = [\alpha_{i1}, \cdots, \alpha_{iT_{\mathbf{x}}}] \\
+& = \text{Softmax}(\mathbf{e}_i), \\
+\mathbf{e}_i & = [e_{i1}, \cdots, e_{iT_{\mathbf{x}}}]
+\end{align*}
+$$
+
 ```python
 import tensorflow as tf
 import hyparams as hp
