@@ -107,7 +107,11 @@ $$
 
 사실 두 벡터 $$s_{i-1}$$과 $$h_j$$ 사이의 Similarity를 구한다는 관점에서 봤을 경우 $$W_a s_{i-1} - U_a h_j$$라고 쓰는 것이 더 직관적일 것 같기는 하다. $$W_a$$와 $$U_a$$라는 두 Linear Transformation을 통해서 임베딩 공간에 뿌려진 두 벡터 $$W_a s_{i-1}$$과 $$U_a h_j$$ 사이의 거리를 $$W_a s_{i-1} - U_a h_j$$라고 정의할 수도 있기 때문이다. 어쨌든 그건 부호의 차이일 뿐이니 여기서는 큰 의미는 없다.
 
-또한 $$\alpha_{ij}$$는 Softmax Function이라는 점을 주목하자면 다음과 같이 정리할 수 있을 것이다. 먼저 현재 Context Vector $$c_i$$를 구하기 위해서 이전 타임 스텝의 디코더 RNN Hidden State Vector $$s_{i-1}$$과 인코더 RNN Hidden State Vector들인 $$\{h_1, \cdots, h_{T_{\mathbf{x}}} \}$$들 사이의 Score Vector인 $$\mathbf{e}_i = [e_{i1}, \cdots e_{iT_{\mathbf{x}}}]$$를 구하게 된다.
+또한 $$\alpha_{ij}$$는 Softmax Function이라는 점을 주목하자면 다음과 같이 정리할 수 있을 것이다. 먼저 현재 Context Vector $$c_i$$를 구하기 위해서 이전 타임 스텝의 디코더 RNN Hidden State Vector $$s_{i-1}$$과 인코더 RNN Hidden State Vector들인 $$\{h_1, \cdots, h_{T_{\mathbf{x}}} \}$$들 사이의 Score 벡터인 $$\mathbf{e}_i = [e_{i1}, \cdots, e_{iT_{\mathbf{x}}}]$$를 구하게 된다. 이 벡터에 Softmax를 취하여 $$\boldsymbol{\alpha}_i = [\alpha_{i1}, \cdots, \alpha_{iT_{\mathbf{x}}}]$$를 구하여서 Matrix $$H=[h_1,\cdots, h_{T_{\mathbf{x}}}]$$와 아래와 같이 곱해서 Context Vector $$c_i$$를 구하게 된다.
+
+$$
+c_i = H \boldsymbol{\alpha}_i^T
+$$
 
 ```python
 import tensorflow as tf
