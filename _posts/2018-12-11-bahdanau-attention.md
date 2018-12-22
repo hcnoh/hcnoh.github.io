@@ -61,6 +61,10 @@ s_0 & = h_{T_{\mathbf{x}}}
 \end{align*}
 $$
 
+여기서 $$s_i$$는 디코더 RNN의 Hidden State Vector이며 $$y_0$$는 인코더가 최종적으로 생성한 문장 임베딩이다. 즉, 디코더 RNN은 입력으로 이전 타임 스텝의 인코더 아웃풋을 받는 구조라고 할 수 있다. 위의 모델을 그림으로 그리면 아래와 같다.
+
+![](/assets/img/2018-12-11-tacotron/02.png)
+
 
 ```python
 import tensorflow as tf
