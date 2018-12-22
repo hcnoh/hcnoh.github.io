@@ -94,7 +94,7 @@ $$
 $$
 \begin{align*}
 c_i & = \sum_{j=1}^{T_{\mathbf{x}}} \alpha_{ij}h_j \\
-\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{\mathbf{x}}}\exp(e_{ik})} \\
+\alpha_{ij} & = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{\mathbf{x}}}\exp(e_{ik})} \\
 e_{ij} & = a(s_{i-1}, h_j)
 \end{align*}
 $$
