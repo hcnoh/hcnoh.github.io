@@ -113,7 +113,7 @@ $$
 또한 $$\alpha_{ij}$$는 Softmax Function이라는 점을 주목하자면 다음과 같이 정리할 수 있을 것이다. 먼저 현재 Context Vector $$c_i$$를 구하기 위해서 이전 타임 스텝의 디코더 RNN Hidden State Vector $$s_{i-1}$$과 인코더 RNN Hidden State Vector들인 $$\{h_1, \cdots, h_{T_{\mathbf{x}}} \}$$들 사이의 Score 벡터인 $$\mathbf{e}_i = [e_{i1}, \cdots, e_{iT_{\mathbf{x}}}]$$를 구하게 된다. 이 벡터에 Softmax를 취하여 Alignment $$\mathbf{a}_i = [\alpha_{i1}, \cdots, \alpha_{iT_{\mathbf{x}}}]$$를 구하여서 Matrix $$H=[h_1,\cdots, h_{T_{\mathbf{x}}}]$$와 아래와 같이 곱해서 Context Vector $$c_i$$를 구하게 된다. 그 외 다른 정의들도 함께 정리하였다.
 
 $$
-c_i = H \boldsymbol{\alpha}_i^T
+c_i = H \mathbf{a}_i^T
 $$
 
 $$
