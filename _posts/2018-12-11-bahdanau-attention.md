@@ -168,7 +168,7 @@ $$
 $$
 \begin{align*}
 g(y_{i-1}, s_i, c_i) & = \text{Softmax}(W_y \tilde{s}_i + b_y) \\
-\tilde{s}_i & = \tanh(W_ss s_i + W_cs c_i + b_s)
+\tilde{s}_i & = \tanh(W_{ss} s_i + W_{cs} c_i + b_s)
 \end{align*}
 $$
 
