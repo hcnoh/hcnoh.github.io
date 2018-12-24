@@ -119,7 +119,7 @@ $$
 $$
 \begin{align*}
 \text{where} \ H & = [h_1,\cdots, h_{T_{\mathbf{x}}}], \\
-\\mathbf{a}_i & = [\alpha_{i1}, \cdots, \alpha_{iT_{\mathbf{x}}}] \\
+\mathbf{a}_i & = [\alpha_{i1}, \cdots, \alpha_{iT_{\mathbf{x}}}] \\
 & = \text{Softmax}(\mathbf{e}_i), \\
 \mathbf{e}_i & = [e_{i1}, \cdots, e_{iT_{\mathbf{x}}}], \\
 e_{ij} & = a(s_{i-1}, h_j) \\
