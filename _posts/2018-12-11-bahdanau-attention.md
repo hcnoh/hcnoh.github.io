@@ -127,6 +127,16 @@ e_{ij} & = a(s_{i-1}, h_j) \\
 \end{align*}
 $$
 
+$$
+\begin{align*}
+g(y_{i-1}, s_i) & = W_ys_{i-1} + b_y \\
+f(y_{i-1}, s_{i-1}) & = z_i \odot s_{i-1} + (1-z_i)\odot \tilde{s}_i \\
+z_i & = \sigma(W_z y_{i-1} + U_z s_{i-1} +b_z) \\
+r_i & = \sigma(W_r y_{i-1} + U_r s_{i-1} + b_r) \\
+\tilde{s}_i & = \tanh(W_s y_{i-1} + U_s (r_i \odot s_{i-1}) + b_s)
+\end{align*}
+$$
+
 ```python
 import tensorflow as tf
 import hyparams as hp
