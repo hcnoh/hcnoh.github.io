@@ -184,6 +184,15 @@ $$
 p_i = S \cdot \text{Sigmoid}(v_p^T \tanh(W_p s_i))
 $$
 
+$$
+\begin{align*}
+a(s_i, h_j) & = s_i^Th_j & dot \\
+a(s_i, h_j) & = s_i^TW_ah_j & general \\
+a(s_i, h_j) & = v_a^T\tanh(W_as_i + U_a h_j) & concat \\
+a(s_i, h_j) & = \text{Softmax}(W_as_i) & location
+\end{align*}
+$$
+
 ```python
 import tensorflow as tf
 import hyparams as hp
