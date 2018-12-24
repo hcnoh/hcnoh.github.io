@@ -137,6 +137,10 @@ r_i & = \sigma(W_r y_{i-1} + U_r s_{i-1} + b_r) \\
 \end{align*}
 $$
 
+$$
+[W : C][y_{i-1}^T : c_i^T]^T = Wy_{i-1} + Cc_i
+$$
+
 ```python
 import tensorflow as tf
 import hyparams as hp
