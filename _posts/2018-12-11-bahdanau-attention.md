@@ -130,6 +130,20 @@ $$
 $$
 \begin{align*}
 g(y_{i-1}, s_i) & = \text{Softmax}(W_ys_i + b_y) \\
+f(y_{i-1}, s_{i-1}) & = \tanh(W_{ys}y_{i-1} + W_{ss}s_{i-1} + b_s)
+\end{align*}
+$$
+
+$$
+\begin{align*}
+g(y_{i-1}, s_i, c_i) & = \text{Softmax}(W_ys_i + b_y) \\
+f(y_{i-1}, s_{i-1}, c_i) & = \tanh(W_{ys}y_{i-1} + W_{ss}s_{i-1} + W_{cs}c_i + b_s)
+\end{align*}
+$$
+
+$$
+\begin{align*}
+g(y_{i-1}, s_i) & = \text{Softmax}(W_ys_i + b_y) \\
 f(y_{i-1}, s_{i-1}) & = z_i \odot s_{i-1} + (1-z_i)\odot \tilde{s}_i \\
 z_i & = \sigma(W_z y_{i-1} + U_z s_{i-1} +b_z) \\
 r_i & = \sigma(W_r y_{i-1} + U_r s_{i-1} + b_r) \\
