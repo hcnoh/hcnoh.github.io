@@ -172,6 +172,18 @@ g(y_{i-1}, s_i, c_i) & = \text{Softmax}(W_y \tilde{s}_i + b_y) \\
 \end{align*}
 $$
 
+$$
+\alpha_{ij} = a(s_i, h_j)\exp\left( -\frac{(j-p_i)^2}{2\sigma^2} \right)
+$$
+
+$$
+p_i = i
+$$
+
+$$
+p_i = S \cdot \text{Sigmoid}(v_p^T \tanh(W_p s_i))
+$$
+
 ```python
 import tensorflow as tf
 import hyparams as hp
