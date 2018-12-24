@@ -138,6 +138,16 @@ r_i & = \sigma(W_r y_{i-1} + U_r s_{i-1} + b_r) \\
 $$
 
 $$
+\begin{align*}
+g(y_{i-1}, s_i, c_i) & = W_ys_i + b_y \\
+f(y_{i-1}, s_{i-1}, c_i) & = z_i \odot s_{i-1} + (1-z_i)\odot \tilde{s}_i \\
+z_i & = \sigma(W_z y_{i-1} + U_z s_{i-1} + C_zc_i + b_z) \\
+r_i & = \sigma(W_r y_{i-1} + U_r s_{i-1} + C_rc_i + b_r) \\
+\tilde{s}_i & = \tanh(W_s y_{i-1} + U_s (r_i \odot s_{i-1}) + C_sc_i + b_s)
+\end{align*}
+$$
+
+$$
 [W : C][y_{i-1}^T : c_i^T]^T = Wy_{i-1} + Cc_i
 $$
 
