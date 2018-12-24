@@ -129,7 +129,7 @@ $$
 
 $$
 \begin{align*}
-g(y_{i-1}, s_i) & = W_ys_{i-1} + b_y \\
+g(y_{i-1}, s_i) & = W_ys_i + b_y \\
 f(y_{i-1}, s_{i-1}) & = z_i \odot s_{i-1} + (1-z_i)\odot \tilde{s}_i \\
 z_i & = \sigma(W_z y_{i-1} + U_z s_{i-1} +b_z) \\
 r_i & = \sigma(W_r y_{i-1} + U_r s_{i-1} + b_r) \\
