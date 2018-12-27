@@ -265,6 +265,12 @@ Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구
 
 ## TensorFlow Module 사용법
 
+```python
+saver = tf.train.Saver(var_list=tf.trainable_variables(), max_to_keep=1000)
+```
+
+`tf.trainable_variables()`를 사용하는 경우 문제 발생
+
 ```bash
 NotFoundError (see above for traceback): Restoring from checkpoint failed. This is most likely due to a Variable name or other graph key that is missing from the checkpoint. Please ensure that you have not altered the graph expected based on the checkpoint. Original error:
 
