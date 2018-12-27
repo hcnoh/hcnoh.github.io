@@ -263,4 +263,13 @@ Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구
 
 ![](/assets/img/2018-11-27-batch-normalization/04.png)
 
+## TensorFlow Module 사용법
+
+```bash
+NotFoundError (see above for traceback): Restoring from checkpoint failed. This is most likely due to a Variable name or other graph key that is missing from the checkpoint. Please ensure that you have not altered the graph expected based on the checkpoint. Original error:
+
+Key encoder/encoder_cbhg/conv_bank/batch_normalization/moving_mean not found in checkpoint
+         [[Node: save/RestoreV2 = RestoreV2[dtypes=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, ..., DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT], _device="/job:localhost/replica:0/task:0/device:CPU:0"](_arg_save/Const_0_0, save/RestoreV2/tensor_names, save/RestoreV2/shape_and_slices)]]  
+```
+
 
