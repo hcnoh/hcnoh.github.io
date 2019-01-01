@@ -82,7 +82,7 @@ $$
 ## 기존 Encoder-Decoder 모델의 단점: Attention Mechanism으로 극복
 이러한 기존 모델의 단점은 Bahdanau Attention 논문에서 주장하는대로 문장 임베딩을 고정된 길이로만 해야 한다는 점이다. 이 경우 짧은 문장에서는 큰 문제가 없을 수도 있지만 문장이 길어질수록 더 많은 정보를 고정된 길이로 더 많이 압축해야 하기 때문에 정보의 손실이 있다는 점이 가장 큰 문제라고 볼 수 있다. 추가적으로 RNN 특유의 Long Term Dependency 문제가 발생할 수도 있겠지만 이건 인코더 RNN을 Bidirectional로 구성하면 해결할 수 있는 문제라 여기서는 따로 언급하지 않도록 하겠다.
 
-어쨌든 결과적으로 Attention 메커니즘을 통한 보완이 가능하다고 주장한다. Attention 메커니즘을 이용하면 인코더가 고정된 길이의 문장 임베딩을 할 필요가 없으며 소스 문장의 벡터의 시퀀스를 이용하여 디코더가 디코딩이 가능하게 된다. 따라서 문장의 길이에 관계없이 Dynamic하게 정보를 인코딩이 가능하게 된다. Attention 메커니즘을 이용하여 확률 모델 $$\widehat{\mathbf{y}}$$를 모델링하면 아래와 같다.
+어쨌든 결과적으로 Attention 메커니즘을 통한 보완이 가능하다고 주장한다. Attention 메커니즘을 이용하면 인코더가 고정된 길이의 문장 임베딩을 할 필요가 없으며 소스 문장의 벡터의 시퀀스를 이용하여 디코더가 디코딩이 가능하게 된다. 따라서 문장의 길이에 관계없이 Dynamic하게 정보를 인코딩이 가능하게 된다. Attention 메커니즘을 이용하여 확률 모델 $$\widehat{\mathbf{y}}$$를 기본 RNN 모델을 이용하여 모델링하면 아래와 같다.
 
 $$
 \begin{align*}
@@ -124,6 +124,18 @@ $$
 $$\mathbf{a}_t$$는 Alignment Vector라고 정의한다. $$\mathbf{a}_t$$의 각 성분 $$\mathbf{a}_{t1}, \cdots, \mathbf{a}_{tT_{\mathbf{x}}}$$를 이용하여 $$\mathbf{h}_1,\cdots \mathbf{h}_{T_{\mathbf{x}}}$$를 Weighted Sum을 한 것이 Context Vector $$\mathbf{c}_t$$가 되는 것이다. 여기서 주의깊게 살펴봐야 하는 것이 $$\mathbf{a}_t$$의 각 성분 $$\mathbf{a}_{tj}$$는 $$\mathbf{s}_{t-1}$$과 $$\mathbf{h}_j$$ 사이의 연관성을 Scoring한 결과라고 볼 수 있다. 즉, $$\mathbf{s}_{t-1}$$과 모든 $$\mathbf{h}_1,\cdots \mathbf{h}_{T_{\mathbf{x}}}$$ 사이의 연관성을 Weight로 하여서 $$\mathbf{h}_1,\cdots \mathbf{h}_{T_{\mathbf{x}}}$$의 Weighted Sum을 구하는 방식으로 Context Vector를 구하는 것이다.
 
 또 주의깊게 봐야 할 부분은 Score Function의 형태이다. 사실 두 벡터 $$\mathbf{s}_{t-1}$$과 $$\mathbf{h}_j$$ 사이의 Similarity를 구한다는 관점에서 봤을 경우 $$\mathbf{W_a}\mathbf{s}_{t-1} - \mathbf{U_a}\mathbf{h}_j$$라고 쓰는 것이 더 직관적일 것 같기는 하다. $$\mathbf{W_a}$$와 $$\mathbf{U_a}$$라는 두 Linear Transformation을 통해서 임베딩 공간에 뿌려진 두 벡터 $$\mathbf{W_a}\mathbf{s}_{t-1}$$과 $$\mathbf{U_a}\mathbf{h}_j$$ 사이의 거리를 $$\mathbf{W_a}\mathbf{s}_{t-1} - \mathbf{U_a}\mathbf{h}_j$$라고 정의할 수도 있기 때문이다. 어쨌든 그건 부호의 차이일 뿐이니 여기서는 큰 의미는 없다. 어쨌든 Score Function에 관해서는 Luong Attention에서 더 논하기 때문에 여기서는 넘어가도록 한다. Luong Attention에 대한 포스팅은 [링크](https://hcnoh.github.io/2019-01-01-luong-attention)를 참조하면 된다.
+
+## 기본 RNN 모델이 아닌 다른 모델을 활용?
+위에서는 기본 RNN 모델을 이용하여 확률 모델 $$\widehat{\mathbf{y}}_t$$를 모델링한 결과를 보였다. 하지만 최근에는 LSTM, GRU 등의 RNN 모델들을 활용하는 경우가 많으며 이에따라 논문 Appendix에는 GRU에 대한 Attention 메커니즘의 활용이 잘 정리가 되어있다.
+
+먼저 기본 GRU의 연산은 아래와 같이 정리할 수 있다.
+$$
+\begin{align*}
+\widehat{\mathbf{y}}_t
+& = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
+\mathbf{s}_t
+& = \mathbf{z}_t \odot \mathbf{s}_{t-1} + (1-\mathbf{z}_t) \odot \tilde{\mathbf{s}}_t
+$$
 
 ```python
 import tensorflow as tf
