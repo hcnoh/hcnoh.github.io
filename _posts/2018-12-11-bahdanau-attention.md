@@ -145,7 +145,7 @@ $$
 \end{align*}
 $$
 
-$$\sigma$$는 Sigmoid Function을 나타낸 것이다. Attention 메커니즘을 활용하여 위의 연산들을 재정의하면 아래이 정리할 수 있다.
+$$\sigma$$는 Sigmoid Function을 나타낸 것이다. Attention 메커니즘을 활용하여 위의 연산들을 재정의하면 아래와 같이 정리할 수 있다.
 
 $$
 \begin{align*}
