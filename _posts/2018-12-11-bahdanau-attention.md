@@ -67,15 +67,9 @@ $$
 
 $$
 \begin{align*}
-p(y_i \vert y_0,\cdots, y_{i-1}, \mathbf{x}) & = g(y_{i-1}, s_i) \\
-s_i & = f(y_{i-1}, s_{i-1})
-\end{align*}
-$$
-
-$$
-\begin{align*}
-\text{where} \ y_0 & = \text{Enc}(\mathbf{x}) \\
-s_0 & = h_{T_{\mathbf{x}}}
+\text{where} \
+\mathbf{y}_0 & = \text{Enc}(\mathcal{X}) \\
+\mathbf{s}_0 & = \mathbf{h}_{T_{\mathbf{x}}}
 \end{align*}
 $$
 
