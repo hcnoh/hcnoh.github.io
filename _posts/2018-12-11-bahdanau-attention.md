@@ -26,16 +26,16 @@ $$
 \widehat{\mathcal{Y}} = \arg \max_{\mathcal{Y}} p(\mathcal{Y} \vert \mathcal{X})
 $$
 
-최근 딥러닝을 이용한 연구가 활발히 진행되면서 뉴럴 네트워크를 통한 언어 번역을 시도해 보려는 NMT(Neural Machine Translation)에 관한 연구가 각광을 받게 되었다. NMT는 딥러닝 모델 $$f_{\theta}(\mathbf{x})$$를 학습시키기 위해서 Loss $$\mathcal{L}$$을 다음과 같이 사용하게 된다.
+최근 딥러닝을 이용한 연구가 활발히 진행되면서 뉴럴 네트워크를 통한 언어 번역을 시도해 보려는 NMT(Neural Machine Translation)에 관한 연구가 각광을 받게 되었다. NMT는 딥러닝 모델 $$f_{\theta}(\mathcal{X})$$를 학습시키기 위해서 Loss $$\mathcal{L}$$을 다음과 같이 사용하게 된다.
 
 $$
-\mathcal{L} = -p(f_{\theta}(\mathbf{x}) \vert \mathbf{x})
+\mathcal{L} = -p(f_{\boldsymbol{\theta}}(\mathcal{X}) \vert \mathcal{X})
 $$
 
-즉, 이 Loss를 이용하여 모델 파라미터 $$\theta$$를 다음과 같은 최적화를 통해서 학습을 시키면 된다.
+즉, 이 Loss를 이용하여 모델 파라미터 $$\boldsymbol{\theta}$$를 다음과 같은 최적화를 통해서 학습을 시키면 된다.
 
 $$
-\widehat{\theta} = \arg \max_{\theta} p(f_{\theta}(\mathbf{x}) \vert \mathbf{x})
+\widehat{\boldsymbol{\theta}} = \arg \max_{\boldsymbol{\theta}} p(f_{\boldsymbol{\theta}}(\mathcal{X}) \vert \mathcal{X})
 $$
 
 기존의 NMT 연구는 RNN Encoder-Decoder를 이용하는 방식으로 많이 수행이 되었는데 이번에 소개하려는 논문에서는 이러한 RNN Encoder-Decoder 모델을 Attention Mechanism을 통해서 많은 개선을 이루어냈다.
