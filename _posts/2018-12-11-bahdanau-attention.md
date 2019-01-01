@@ -156,7 +156,7 @@ $$
 \mathbf{z}_t
 & = \sigma(\mathbf{W_z}\mathbf{y}_{t-1} + \mathbf{U_z}\mathbf{s}_{t-1} + \mathbf{C_z}\mathbf{c}_t + \mathbf{b}_z) \\
 \mathbf{r}_t
-& = \sigma(\mathbf{W_r}\mathbf{y}_{t-1} + \mathbf{U_r}\mathbf{s}_{t-1} + \mathbf{C_r}\mathbf{c}_t \mathbf{b}_r) \\
+& = \sigma(\mathbf{W_r}\mathbf{y}_{t-1} + \mathbf{U_r}\mathbf{s}_{t-1} + \mathbf{C_r}\mathbf{c}_t + \mathbf{b}_r) \\
 \tilde{\mathbf{s}}_t
 & = \tanh(\mathbf{W_s}\mathbf{y}_{t-1} + \mathbf{U_s}(\mathbf{r}_t \odot \mathbf{s}_{t-1}) + \mathbf{C_s}\mathbf{c}_t + \mathbf{b}_s)
 \end{align*}
