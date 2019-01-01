@@ -114,28 +114,16 @@ $$d$$는 인코더 RNN Hidden State Vector의 Dimension이다. 여기서 달라�
 $$
 \begin{align*}
 \mathbf{c}_t
-& = \sum_{j=1}^{T_{\mathbf{x}}} \mathbf{a}_{tj}\mathbf{h}_j \\
+& = \sum_{j=1}^{T_{\mathbf{x}}} \mathbf{a}_{tj}\mathbf{h}_j \in \mathbb{R}^{T_{\mathbf{x}}} \\
 & = \mathbf{H} \mathbf{a}_t \\
 \mathbf{a}_t & = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j)\right)_{j=1}^{T_{\mathbf{x}}}\right) \\
 \text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) & = \mathbf{v}^\text{T}\tanh (\mathbf{W_a}\mathbf{s}_{t-1} + \mathbf{U_a}\mathbf{h}_j + \mathbf{b_a})
 \end{align*}
 $$
 
-$$
-\begin{align*}
-c_i & = \sum_{j=1}^{T_{\mathbf{x}}} \alpha_{ij}h_j \\
-\alpha_{ij} & = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{\mathbf{x}}}\exp(e_{ik})} \\
-e_{ij} & = a(s_{i-1}, h_j)
-\end{align*}
-$$
+$$\mathbf{a}_t$$는 Alignment Vector라고 정의한다. $$\mathbf{a}_t$$의 각 성분 $$\mathbf{a}_{t1}, \cdots, \mathbf{a}_{tT_{\mathbf{x}}}$$를 이용하여 $$\mathbf{h}_1,\cdots \mathbf{h}_{T_{\mathbf{x}}}$$를 Weighted Sum을 한 것이 Context Vector $$\mathbf{c}_t$$가 되는 것이다. 여기서 주의깊게 살펴봐야 하는 것이 $$\mathbf{a}_t$$의 각 성분 $$\mathbf{a}_{tj}$$는 $$\mathbf{s}_{t-1}$$과 $$\mathbf{h}_j$$ 사이의 연관성을 Scoring한 결과라고 볼 수 있다. 즉, $$\mathbf{s}_{t-1}$$과 모든 $$\mathbf{h}_1,\cdots \mathbf{h}_{T_{\mathbf{x}}}$$ 사이의 연관성을 Weight로 하여서 $$\mathbf{h}_1,\cdots \mathbf{h}_{T_{\mathbf{x}}}$$의 Weighted Sum을 구하는 방식으로 Context Vector를 구하는 것이다.
 
-$$h_j$$는 $$T_{\mathbf{x}}$$ 길이의 소스 문장의 $$j$$번째 인코더 RNN Hidden State Vector이다. 또한 여기서 $$a$$는 Alignment Model이라고 부르게 된다. $$a(s_{i-1}, h_j)$$는 $$s_{i-1}$$과 $$h_j$$ 사이의 연관성을 Scoring하는 Score Function이라고 할 수 있다. 논문에서 사용한 Alignment Model은 다음과 같다.
-
-$$
-a(s_{i-1}, h_j) = v_a^T \tanh(W_a s_{i-1} + U_a h_j)
-$$
-
-사실 두 벡터 $$s_{i-1}$$과 $$h_j$$ 사이의 Similarity를 구한다는 관점에서 봤을 경우 $$W_a s_{i-1} - U_a h_j$$라고 쓰는 것이 더 직관적일 것 같기는 하다. $$W_a$$와 $$U_a$$라는 두 Linear Transformation을 통해서 임베딩 공간에 뿌려진 두 벡터 $$W_a s_{i-1}$$과 $$U_a h_j$$ 사이의 거리를 $$W_a s_{i-1} - U_a h_j$$라고 정의할 수도 있기 때문이다. 어쨌든 그건 부호의 차이일 뿐이니 여기서는 큰 의미는 없다.
+또 주의깊게 봐야 할 부분은 Score Function의 형태이다. 사실 두 벡터 $$\mathbf{s}_{t-1}$$과 $$\mathbf{h}_j$$ 사이의 Similarity를 구한다는 관점에서 봤을 경우 $$\mathbf{W_a}\mathbf{s}_{t-1} - \mathbf{U_a}\mathbf{h}_j$$라고 쓰는 것이 더 직관적일 것 같기는 하다. $$\mathbf{W_a}$$와 $$\mathbf{U_a}$$라는 두 Linear Transformation을 통해서 임베딩 공간에 뿌려진 두 벡터 $$\mathbf{W_a}\mathbf{s}_{t-1}$$과 $$\mathbf{U_a}\mathbf{h}_j$$ 사이의 거리를 $$\mathbf{W_a}\mathbf{s}_{t-1} - \mathbf{U_a}\mathbf{h}_j$$라고 정의할 수도 있기 때문이다. 어쨌든 그건 부호의 차이일 뿐이니 여기서는 큰 의미는 없다.
 
 또한 $$\alpha_{ij}$$는 Softmax Function이라는 점을 주목하자면 다음과 같이 정리할 수 있을 것이다. 먼저 현재 Context Vector $$c_i$$를 구하기 위해서 이전 타임 스텝의 디코더 RNN Hidden State Vector $$s_{i-1}$$과 인코더 RNN Hidden State Vector들인 $$\{h_1, \cdots, h_{T_{\mathbf{x}}} \}$$들 사이의 Score 벡터인 $$\mathbf{e}_i = [e_{i1}, \cdots, e_{iT_{\mathbf{x}}}]$$를 구하게 된다. 이 벡터에 Softmax를 취하여 Alignment $$\mathbf{a}_i = [\alpha_{i1}, \cdots, \alpha_{iT_{\mathbf{x}}}]$$를 구하여서 Matrix $$H=[h_1,\cdots, h_{T_{\mathbf{x}}}]$$와 아래와 같이 곱해서 Context Vector $$c_i$$를 구하게 된다. 그 외 다른 정의들도 함께 정리하였다.
 
