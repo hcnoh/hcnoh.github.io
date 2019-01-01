@@ -139,7 +139,11 @@ $$
 & = \sigma(\mathbf{W_z}\mathbf{y}_{t-1} + \mathbf{U_z}\mathbf{s}_{t-1} + \mathbf{b}_z) \\
 \mathbf{r}_t
 & = \sigma(\mathbf{W_r}\mathbf{y}_{t-1} + \mathbf{U_r}\mathbf{s}_{t-1} + \mathbf{b}_r) \\
+\tilde{\mathbf{s}}_t
+& = \tanh(\mathbf{W_s}\mathbf{y}_{t-1} + \mathbf{U_s}(\mathbf{r}_t \odot \mathbf{s}_{t-1}) + \mathbf{b}_s)
 $$
+
+$$\sigma$$는 Sigmoid Function을 나타낸 것이다.
 
 ```python
 import tensorflow as tf
