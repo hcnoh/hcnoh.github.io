@@ -29,7 +29,7 @@ $$
 최근 딥러닝을 이용한 연구가 활발히 진행되면서 뉴럴 네트워크를 통한 언어 번역을 시도해 보려는 NMT(Neural Machine Translation)에 관한 연구가 각광을 받게 되었다. NMT는 딥러닝 모델 $$f_{\theta}(\mathcal{X})$$를 학습시키기 위해서 Loss $$\mathcal{L}$$을 다음과 같이 사용하게 된다.
 
 $$
-\mathcal{L} = -p(f_{\boldsymbol{\theta}}(\mathcal{X}) \vert \mathcal{X}) \theta
+\mathcal{L} = -p(f_{\boldsymbol{\theta}}(\mathcal{X}) \vert \mathcal{X})
 $$
 
 즉, 이 Loss를 이용하여 모델 파라미터 $$\boldsymbol{\theta}$$를 다음과 같은 최적화를 통해서 학습을 시키면 된다.
@@ -46,6 +46,9 @@ $$
 이번 포스팅에서는 다음의 Notation을 사용할 것이다.
 - $$\mathcal{X} = (\mathbf{x}_t)_{t=1}^{T_{\mathbf{x}}} \in \mathbb{R}^{n \times T_{\mathbf{x}}}$$: 소스 문장의 단어 One-Hot 인코딩 시퀀스
 - $$\mathcal{Y} = (\mathbf{y}_t)_{t=1}^{T_{\mathbf{y}}} \in \mathbb{R}^{m \times T_{\mathbf{y}}}$$: 타겟 문장의 단어 One-Hot 인코딩 시퀀스
+- $$T_{\mathbf{x}}, T_{\mathbf{y}}$$: 각각 $$\mathcal{X}, \mathcal{Y}$$의 시퀀스 길이 (문장의 길이)
+- $$\mathbf{x}_t, \mathbf{y}_t$$: 각각 $$t$$번째 타임 스텝 단어의 One-Hot 인코딩
+- $$\widehat{\mathcal{Y}}$$: 모델이 추정한 타겟 문장의 단어 One-Hot 인코딩 시퀀스
 
 ## RNN Encoder-Decoder
 NMT의 가장 기본적인 접근은 RNN Encoder-Decoder 모델을 이용하는 것이다. RNN Encoder-Decoder 모델은 RNN 셀을 이용하여 인코더 및 디코더를 구성하고 인코더는 번역을 하고자 하는 소스 문장을 특정 임베딩 벡터로 인코딩을 하고 디코더는 임베딩된 벡터를 타겟 언어로 번역을 하여 타겟 문장을 생성해 내는 역할을 수행하게 된다.
