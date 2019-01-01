@@ -132,10 +132,7 @@ $$\mathbf{a}_t$$는 Alignment Vector라고 정의한다. $$\mathbf{a}_t$$의 각
 $$
 \begin{align*}
 \widehat{\mathbf{y}}_t
-& = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right)
-$$
-
-$$
+& = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
 \mathbf{s}_t
 & = \mathbf{z}_t \odot \mathbf{s}_{t-1} + (1-\mathbf{z}_t) \odot \tilde{\mathbf{s}}_t \\
 \mathbf{z}_t
@@ -144,6 +141,7 @@ $$
 & = \sigma(\mathbf{W_r}\mathbf{y}_{t-1} + \mathbf{U_r}\mathbf{s}_{t-1} + \mathbf{b}_r) \\
 \tilde{\mathbf{s}}_t
 & = \tanh(\mathbf{W_s}\mathbf{y}_{t-1} + \mathbf{U_s}(\mathbf{r}_t \odot \mathbf{s}_{t-1}) + \mathbf{b}_s)
+\end{align*}
 $$
 
 $$\sigma$$는 Sigmoid Function을 나타낸 것이다.
