@@ -96,9 +96,11 @@ $$
 
 $$
 \begin{align*}
-\text{where} \ y_0 & = \text{<Go> Token}, \\
-s_0 & = \mathbf{0} \\
-c_i & = \text{Attn}(s_{i-1}, [h_1, \cdots, h_{T_{\mathbf{x}}}])
+\text{where} \
+\mathbf{y}_0 & = \text{<Go> Token}, \\
+\mathbf{s}_0 & = \mathbf{0}, \\
+\mathbf{c}_t & = \text{Attn}(s_{t-1}, \mathbf{H}), \\
+\mathbf{H} & = [\mathbf{h}_{1}; \cdots ; \mathbf{h}_{T_{\mathbf{x}}}]
 \end{align*}
 $$
 
