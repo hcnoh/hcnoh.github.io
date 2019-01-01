@@ -100,11 +100,11 @@ $$
 \mathbf{y}_0 & = \text{<Go> Token}, \\
 \mathbf{s}_0 & = \mathbf{0}, \\
 \mathbf{c}_t & = \text{Attn}(\mathbf{s}_{t-1}, \mathbf{H}), \\
-\mathbf{H} & = [\mathbf{h}_{1}; \cdots ; \mathbf{h}_{T_{\mathbf{x}}}]
+\mathbf{H} & = [\mathbf{h}_{1}; \cdots ; \mathbf{h}_{T_{\mathbf{x}}}] \in \mathbb{R}^{d \times T_{\mathbf{x}}}
 \end{align*}
 $$
 
-여기서 달라진 점은 $$\mathbf{y}_0$$와 $$\mathbf{s}_0$$, 그리고 새롭게 Context Vector $$\mathbf{c}_t$$가 추가된 것들을 확인할 수 있다. $$\mathbf{y}_0$$는 기존과 다르게 문장 임베딩을 사용하지 않고 문장의 시작점을 나타내는 새로운 \<Go> 토큰을 사용하게 되며 $$\mathbf{s}_0$$는 평범한 RNN처럼 Zero Vector를 사용하게 된다. 여기서 핵심은 $$\mathbf{c}_t$$를 어떻게 구하며 또 활용할 것이냐가 될 것이다. 방금까지의 설명을 그림으로 정리하면 아래와 같다.
+$$d$$는 인코더 RNN Hidden State Vector의 Dimension이다. 여기서 달라진 점은 $$\mathbf{y}_0$$와 $$\mathbf{s}_0$$, 그리고 새롭게 Context Vector $$\mathbf{c}_t$$가 추가된 것들을 확인할 수 있다. $$\mathbf{y}_0$$는 기존과 다르게 문장 임베딩을 사용하지 않고 문장의 시작점을 나타내는 새로운 \<Go> 토큰을 사용하게 되며 $$\mathbf{s}_0$$는 평범한 RNN처럼 Zero Vector를 사용하게 된다. 여기서 핵심은 $$\mathbf{c}_t$$를 어떻게 구하며 또 활용할 것이냐가 될 것이다. 방금까지의 설명을 그림으로 정리하면 아래와 같다.
 
 ![](/assets/img/2018-12-11-tacotron/03.png)
 
