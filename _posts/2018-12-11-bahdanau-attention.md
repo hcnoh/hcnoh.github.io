@@ -109,7 +109,17 @@ $$d$$는 인코더 RNN Hidden State Vector의 Dimension이다. 여기서 달라�
 ![](/assets/img/2018-12-11-tacotron/03.png)
 
 ## Bahdanau Attention
-일단 $$c_i$$를 구하는 연산이 바로 Attention 메커니즘이 수행하는 일이 될 것이다. Bahdanau Attention에서 $$c_i$$는 다음과 같이 구할 수 있다.
+일단 $$\mathbf{c}_t$$를 구하는 연산이 바로 Attention 메커니즘이 수행하는 일이 될 것이다. Bahdanau Attention에서 $$\mathbf{c}_t$$는 다음과 같이 구할 수 있다.
+
+$$
+\begin{align*}
+\mathbf{c}_t
+& = \sum_{j=1}^{T_{\mathbf{x}}} \mathbf{a}_{tj}\mathbf{h}_j \\
+& = \mathbf{H} \mathbf{a}_t \\
+\mathbf{a}_t & = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j)\right)_{j=1}^{T_{\mathbf{x}}}\right) \\
+\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) & = \mathbf{v}^\text{T}\tanh (\mathbf{W_a}\mathbf{s}_{t-1} + \mathbf{U_a}\mathbf{h}_j + \mathbf{b_a})
+\end{align*}
+$$
 
 $$
 \begin{align*}
