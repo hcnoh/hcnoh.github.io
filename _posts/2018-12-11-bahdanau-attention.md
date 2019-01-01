@@ -134,7 +134,11 @@ $$
 \widehat{\mathbf{y}}_t
 & = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
 \mathbf{s}_t
-& = \mathbf{z}_t \odot \mathbf{s}_{t-1} + (1-\mathbf{z}_t) \odot \tilde{\mathbf{s}}_t
+& = \mathbf{z}_t \odot \mathbf{s}_{t-1} + (1-\mathbf{z}_t) \odot \tilde{\mathbf{s}}_t \\
+\mathbf{z}_t
+& = \sigma(\mathbf{W_z}\mathbf{y}_{t-1} + \mathbf{U_z}\mathbf{s}_{t-1} + \mathbf{b}_z) \\
+\mathbf{r}_t
+& = \sigma(\mathbf{W_r}\mathbf{y}_{t-1} + \mathbf{U_r}\mathbf{s}_{t-1} + \mathbf{b}_r) \\
 $$
 
 ```python
