@@ -61,7 +61,7 @@ $$
 & = p(\mathbf{y}_t \vert \mathbf{y}_0,\cdots, \mathbf{y}_{t-1}, \mathcal{X}) \\
 & = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
 \mathbf{s}_t
-& = \tanh(\mathbf{W_{ys}}\mathbf{y}_{t-1} + \mathbf{W_{ss}}\mathbf{s}_{t-1} + \mathbf{c_s})
+& = \tanh(\mathbf{W_{ys}}\mathbf{y}_{t-1} + \mathbf{W_{ss}}\mathbf{s}_{t-1} + \mathbf{b_s})
 \end{align*}
 $$
 
@@ -73,11 +73,11 @@ $$
 \end{align*}
 $$
 
-여기서 $$s_i$$는 디코더 RNN의 Hidden State Vector이며 $$y_0$$는 인코더가 최종적으로 생성한 문장 임베딩이다. 또한 $$g, f$$는 RNN 기본 연산에 해당한다. 즉, 디코더 RNN은 입력으로 이전 타임 스텝의 인코더 아웃풋을 받는 구조라고 할 수 있다. 위의 모델을 그림으로 그리면 아래와 같다.
+여기서 $$\mathbf{s}_t$$는 $$t$$번째 타임 스텝의 디코더 RNN Hidden State Vector이며 $$\mathbf{y}_0$$는 인코더가 최종적으로 생성한 문장 임베딩이다. 즉, 디코더 RNN은 입력으로 이전 타임 스텝의 인코더 아웃풋을 받는 구조라고 할 수 있다. 위의 모델을 그림으로 그리면 아래와 같다.
 
 ![](/assets/img/2018-12-11-tacotron/02.png)
 
-디코더의 역할은 인코더가 생성한 소스 문장의 임베딩 벡터를 이용하여 타겟 언어의 문장으로 번역된 타겟 문장을 생성하는 것이다. 그렇다면 인코더의 역할은 소스 문장을 적절한 임베딩 벡터로 변환하는 것이라고 할 수 있다. 인코더도 마찬가지로 RNN 구조를 가지고 있으며 기본적으로 문장 임베딩은 소스 문장의 마지막 입력인 \<EOS\>, 즉 End of Sentence가 입력된 마지막 출력 벡터를 문장 임베딩 벡터로 사용하게 된다. 또한 마지막 타임 스텝의 인코더 RNN Hidden State Vector $$h_{T_{\mathbf{x}}}$$는 디코더의 첫번째 타임 스텝의 Hidden State Vector $$s_0$$로 들어가게 된다.
+디코더의 역할은 인코더가 생성한 소스 문장의 임베딩 벡터를 이용하여 타겟 언어의 문장으로 번역된 타겟 문장을 생성하는 것이다. 그렇다면 인코더의 역할은 소스 문장을 적절한 임베딩 벡터로 변환하는 것이라고 할 수 있다. 인코더도 마찬가지로 RNN 구조를 가지고 있으며 기본적으로 문장 임베딩은 소스 문장의 마지막 입력인 \<EOS\>, 즉 End of Sentence가 입력된 마지막 출력 벡터를 문장 임베딩 벡터로 사용하게 된다. 또한 마지막 타임 스텝의 인코더 RNN Hidden State Vector $$\mathbf{h}_{T_{\mathbf{x}}}$$는 디코더의 첫번째 타임 스텝의 Hidden State Vector $$\mathbf{s}_0$$로 들어가게 된다.
   
 ## 기존 Encoder-Decoder 모델의 단점: Attention Mechanism으로 극복
 이러한 기존 모델의 단점은 Bahdanau Attention 논문에서 주장하는대로 문장 임베딩을 고정된 길이로만 해야 한다는 점이다. 이 경우 짧은 문장에서는 큰 문제가 없을 수도 있지만 문장이 길어질수록 더 많은 정보를 고정된 길이로 더 많이 압축해야 하기 때문에 정보의 손실이 있다는 점이 가장 큰 문제라고 볼 수 있다. 추가적으로 RNN 특유의 Long Term Dependency 문제가 발생할 수도 있겠지만 이건 인코더 RNN을 Bidirectional로 구성하면 해결할 수 있는 문제라 여기서는 따로 언급하지 않도록 하겠다.
