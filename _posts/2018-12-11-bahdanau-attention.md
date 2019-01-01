@@ -132,8 +132,7 @@ $$\mathbf{a}_t$$는 Alignment Vector라고 정의한다. $$\mathbf{a}_t$$의 각
 $$
 \begin{align*}
 \widehat{\mathbf{y}}_t
-& = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
-
+& = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right)
 $$
 
 $$
