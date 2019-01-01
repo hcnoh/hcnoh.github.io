@@ -129,6 +129,7 @@ $$\mathbf{a}_t$$는 Alignment Vector라고 정의한다. $$\mathbf{a}_t$$의 각
 위에서는 기본 RNN 모델을 이용하여 확률 모델 $$\widehat{\mathbf{y}}_t$$를 모델링한 결과를 보였다. 하지만 최근에는 LSTM, GRU 등의 RNN 모델들을 활용하는 경우가 많으며 이에따라 논문 Appendix에는 GRU에 대한 Attention 메커니즘의 활용이 잘 정리가 되어있다.
 
 먼저 기본 GRU의 연산은 아래와 같이 정리할 수 있다.
+
 $$
 \begin{align*}
 \widehat{\mathbf{y}}_t
