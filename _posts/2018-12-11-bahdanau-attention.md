@@ -133,6 +133,10 @@ $$
 \begin{align*}
 \widehat{\mathbf{y}}_t
 & = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
+
+$$
+
+$$
 \mathbf{s}_t
 & = \mathbf{z}_t \odot \mathbf{s}_{t-1} + (1-\mathbf{z}_t) \odot \tilde{\mathbf{s}}_t \\
 \mathbf{z}_t
