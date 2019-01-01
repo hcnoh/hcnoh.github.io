@@ -145,7 +145,22 @@ $$
 \end{align*}
 $$
 
-$$\sigma$$는 Sigmoid Function을 나타낸 것이다.
+$$\sigma$$는 Sigmoid Function을 나타낸 것이다. Attention 메커니즘을 활용하여 위의 연산들을 재정의하면 아래이 정리할 수 있다.
+
+$$
+\begin{align*}
+\widehat{\mathbf{y}}_t
+& = \text{Softmax}\left( \mathbf{W_y}\mathbf{s}_t + \mathbf{b_y} \right) \\
+\mathbf{s}_t
+& = \mathbf{z}_t \odot \mathbf{s}_{t-1} + (1-\mathbf{z}_t) \odot \tilde{\mathbf{s}}_t \\
+\mathbf{z}_t
+& = \sigma(\mathbf{W_z}\mathbf{y}_{t-1} + \mathbf{U_z}\mathbf{s}_{t-1} + \mathbf{C_z}\mathbf{c}_t + \mathbf{b}_z) \\
+\mathbf{r}_t
+& = \sigma(\mathbf{W_r}\mathbf{y}_{t-1} + \mathbf{U_r}\mathbf{s}_{t-1} + \mathbf{C_r}\mathbf{c}_t \mathbf{b}_r) \\
+\tilde{\mathbf{s}}_t
+& = \tanh(\mathbf{W_s}\mathbf{y}_{t-1} + \mathbf{U_s}(\mathbf{r}_t \odot \mathbf{s}_{t-1}) \mathbf{C_s}\mathbf{c}_t + \mathbf{b}_s)
+\end{align*}
+$$
 
 ```python
 import tensorflow as tf
