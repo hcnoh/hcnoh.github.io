@@ -125,7 +125,7 @@ $$\mathbf{a}_t$$는 Alignment Vector라고 정의한다. $$\mathbf{a}_t$$의 각
 
 또 주의깊게 봐야 할 부분은 Score Function의 형태이다. 사실 두 벡터 $$\mathbf{s}_{t-1}$$과 $$\mathbf{h}_j$$ 사이의 Similarity를 구한다는 관점에서 봤을 경우 $$\mathbf{W_a}\mathbf{s}_{t-1} - \mathbf{U_a}\mathbf{h}_j$$라고 쓰는 것이 더 직관적일 것 같기는 하다. $$\mathbf{W_a}$$와 $$\mathbf{U_a}$$라는 두 Linear Transformation을 통해서 임베딩 공간에 뿌려진 두 벡터 $$\mathbf{W_a}\mathbf{s}_{t-1}$$과 $$\mathbf{U_a}\mathbf{h}_j$$ 사이의 거리를 $$\mathbf{W_a}\mathbf{s}_{t-1} - \mathbf{U_a}\mathbf{h}_j$$라고 정의할 수도 있기 때문이다. 어쨌든 그건 부호의 차이일 뿐이니 여기서는 큰 의미는 없다. 어쨌든 Score Function에 관해서는 Luong Attention에서 더 논하기 때문에 여기서는 넘어가도록 한다. Luong Attention에 대한 포스팅은 [링크](https://hcnoh.github.io/2019-01-01-luong-attention)를 참조하면 된다.
 
-## 기본 RNN 모델이 아닌 다른 모델을 활용?
+## GRU 모델에서의 Attention 메커니즘 활용
 위에서는 기본 RNN 모델을 이용하여 확률 모델 $$\widehat{\mathbf{y}}_t$$를 모델링한 결과를 보였다. 하지만 최근에는 LSTM, GRU 등의 RNN 모델들을 활용하는 경우가 많으며 이에따라 논문 Appendix에는 GRU에 대한 Attention 메커니즘의 활용이 잘 정리가 되어있다.
 
 먼저 기본 GRU의 연산은 아래와 같이 정리할 수 있다.
