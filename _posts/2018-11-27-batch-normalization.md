@@ -303,11 +303,31 @@ opt = tf.train.AdamOptimizer(learning_rate=hp.learning_rate).minimize(loss)
 
 ![](/assets/img/2018-11-27-batch-normalization/05.PNG)
 
+이 경고를 해석해보자면 TensorFlow 상에서 Batch Normalization에 사용되는 여러 Trainable Parameter들을 제외한 Moving Mean 및 Moving Variance는 디폴트로 `tf.GraphKeys.UPDATE_OPS`에 위치하며 따라서 따로 Dependency 설정을 해주지 않으면 연산이 되지 않는다는 설명이다. 즉 모델을 트레이닝하기 전에 현재 배치로부터 Moving Mean 및 Moving Variance를 미리 계산해주어야 하며 그러기 위해서는 따로 설정을 추가해줘야 한다는 의미이다.
+
+TensorFlow 공식 홈페이지에서 설명하는대로 위의 예제를 수정하면 아래와 같다.
+
+```python
+loss = tf.nn.softmax_cross_entropy_with_logits(labels=labels, logits=outputs)
+opt = tf.train.AdamOptimizer(learning_rate=hp.learning_rate)
+update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+with tf.control_dependencies(update_ops):
+    opt = opt.minimize(loss)
+```
+
+마지막으로 아주 마이너한 문제지만 문제가 될 수 있는 부분을 짚고 넘어가려고 한다. 보통 트레이닝 이후에 모델을 저장하곤 하는데 `tf.train.Saver`를 이용하게 된다. 이 때 인자로 `var_list`를 넣어줄 수 있는데 만약 여기에 아래와 같이 `tf.trainabe_variables()`로 설정하게 된다면 Batch Normalization의 학습 결과로 생성된 Moving Mean 및 Moving Variance가 제대로 저장이 되지 않는 문제가 발생하니 주의하도록 하자.
+
 ```python
 saver = tf.train.Saver(var_list=tf.trainable_variables(), max_to_keep=1000)
 ```
 
-`tf.trainable_variables()`를 사용하는 경우 문제 발생
+저장을 하기 위한 `tf.train.Saver`를 활용하는 경우 위와 같은 실수를 방지하기 위해서는 그냥 아래처럼 `var_list` 인자는 비워두도록 하자. 그러면 디폴트로 저장가능한 모든 변수들이 저장된다.
+
+```python
+saver = tf.train.Saver(max_to_keep=1000)
+```
+
+아래의 에러 메시지는 방금처럼 `var_list=tf.trainable_variables()`로 설정하고 불러올때는 `var_list` 인자를 비워두고 실행하였을 경우에 발생하는 메시지이다. 메시지에서 확인할 수 있듯이 Moving Mean이 제대로 저장되지 않아서 불러올 수 없게 되었다.
 
 ```bash
 NotFoundError (see above for traceback): Restoring from checkpoint failed. This is most likely due to a Variable name or other graph key that is missing from the checkpoint. Please ensure that you have not altered the graph expected based on the checkpoint. Original error:
