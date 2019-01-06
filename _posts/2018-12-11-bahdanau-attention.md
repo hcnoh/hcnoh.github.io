@@ -217,4 +217,20 @@ attn_cell = tf.contrib.seq2seq.AttentionWrapper(
     alignment_history=True, output_attention=False)
 ```
 
+위의 예제에서는 인코더의 RNN Hidden State Vector가 아닌 단순하게 인코더의 출력을 Attention의 입력인 Attention Memory로 설정하였다. 따라서 인코더의 출력인 `enc_outs`가 미리 준비되어 있어야 한다. 이제 Attention을 위한 GRU 셀을 `tf.nn.rnn_cell.GRUCell`을 이용하여 선언하여 준다. 위의 예제에서는 `cell`이 그 역할을 하게 될 것이다.
 
+그 다음으로는 Attention 메커니즘을 선언하여야 한다. 여기서는 Bahdanau Attention을 사용하기 위하여 `tf.contrib.seq2seq.BahdanauAttention` 모듈을 이용하였다.
+
+마지막으로 `cell`과 Attention 메커니즘인 `attn_mechanism`을 이용하여 Attention 셀로 묶어줘야 한다. 이 역할은 `tf.contrib.seq2seq.AttentionWrapper`가 담당하게 된다. 이런식으로 선언된 `AttentionWrapper`는 방금 더 위에서 확인할 수 있듯이 `rnn_cell_impl.RNNCell`을 상속받는 클래스이다. 따라서 이제 `attn_cell`은 기존 GRU 셀처럼 `dynamic_rnn`, `dynamic_decode` 등에 활용할 수 있게 된다.
+
+## 실험 및 성능 검증
+
+논문에서는 여러 실험을 통해서 성능을 검증하였지만 여기서는 간단하게 한가지만 소개하도록 하겠다. 실험은 기계 번역 성능을 확인하는 방식으로 진행되었다. 기본적으로 영어에서 불어로 번역하는 기능을 학습시켰는데 학습에 사용한 데이터는 ACL WMT 14에서 제공하는 데이터셋 이용하였다. 이 데이터셋의 특징은 Bilingual하고 Parallel한 코퍼스라는 특징이 있다. 다음은 실험 결과 그래프이다.
+
+![](/assets/img/2018-12-11-tacotron/03.png)
+
+기본적으로 BLEU 스코어를 이용하여 성능을 검증하였는데 BLEU 스코어에 대한 정리는 다음에 하도록 하겠다. 어쨌든 Attention 메커니즘을 활용한 모델인 RNNsearch-50, RNNsearch-30이 그렇지 않은 모델인 RNNenc-50, RNNenc-30 보다 성능적으로 우수하다는 점을 확인할 수 있다. RNNsearch-50, RNNenc-50은 문장 길이가 50정도 되는 코퍼스에 학습시킨 모델이고 RNNsearch-30, RNNenc-30은 마찬가지로 문장 길이가 30정도 되는 코퍼스에 학습시킨 모델이다. 또한 확실히 문장 길이가 길어질수록 성능이 떨어지는 점도 추가적으로 확인할 수 있다.
+
+![](/assets/img/2018-12-11-tacotron/03.png)
+
+위 그림은 Attention Alignment를 시각화한 그림이다. 특정 단어를 번역하기 위해서는 그 단어에 가장 눈에 띄는 Alignment가 있어야 하며 잘 동작하는 것을 확인할 수 있다.
