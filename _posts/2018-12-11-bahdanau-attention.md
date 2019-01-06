@@ -177,16 +177,18 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
   """Wraps another `RNNCell` with attention.
   """
 
-  def __init__(self,
-               cell,
-               attention_mechanism,
-               attention_layer_size=None,
-               alignment_history=False,
-               cell_input_fn=None,
-               output_attention=True,
-               initial_cell_state=None,
-               name=None,
-               attention_layer=None):
+  def __init__(
+      self,
+      cell,
+      attention_mechanism,
+      attention_layer_size=None,
+      alignment_history=False,
+      cell_input_fn=None,
+      output_attention=True,
+      initial_cell_state=None,
+      name=None,
+      attention_layer=None
+  ):
 ... (생략)
     Args:
 ... (생략)
