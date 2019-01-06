@@ -16,6 +16,8 @@ permalink: /2018-11-27-batch-normalization
 이번 포스팅은 다음의 논문을 스터디하여 정리하였다:
 - [링크1](https://arxiv.org/abs/1502.03167)
 
+또한 TensorFlow 공식 홈페이지를 참고하여 작성하였다.
+
 ## Stochastic Gradient Descent
 딥러닝을 학습하는 알고리즘으로 가장 일반적으로 많이 쓰이는 방법은 바로 Stochastic Gradient Descent (SGD)이다. SGD를 설명하기 전 Gradient Descent를 먼저 간단하게 설명하면 파라미터 $$\theta$$에 대해서 정의된 특정 Cost $$L(\theta)$$를 최적화하기 위하여 $$L(\theta)$$의 Gradient를 이용하는 방법이다. $$L$$의 Gradient는 파라미터 $$\theta$$ 스페이스 상에서 $$L$$을 최대화하는 방향의 벡터값을 갖게 되므로 여기에 Learning rate $$\alpha$$를 곱해서 현재 파라미터 $$\theta$$에서 빼주면 현재 Cost $$L$$이 감소하는 방향으로 파라미터 $$\theta$$를 업데이트할 수 있게 된다.
 
@@ -264,6 +266,31 @@ Activation의 분포가 일정함을 보이기 위해서 다음의 실험을 구
 ![](/assets/img/2018-11-27-batch-normalization/04.png)
 
 ## TensorFlow Module 사용법
+
+Batch Normalization은 TensorFlow에 잘 모듈화가 되어있기 때문에 사용하는데 큰 어려움은 없다. 다만 몇가지 주의해야할 사항들이 있어서 정리를 해놓는다.
+
+먼저 TensorFlow에서 Batch Normalization을 사용하는 예제는 아래와 같다.
+
+```python
+import tensorflow as tf
+import hyparams as hp
+
+inputs = dataset_loader.get_batch(batch_size=hp.batch_size)
+convs1 = tf.layers.conv1d(
+    inputs=inputs,
+    filters=hp.filters_list[0],
+    kernel_size=hp.kernel_size_list[0],
+    padding="same")
+bns1 = tf.layers.batch_normalization(inputs=convs1, training=hp.training)
+convs2 = tf.layers.conv1d(
+    inputs=bns1,
+    filters=hp.filters_list[1],
+    kernel_size=hp.kernel_size_list[1],
+    padding="same")
+outputs = tf.nn.sigmoid(convs2)
+```
+
+`tf.layers.batch_normalization`을 사용하면 간편하게 Batch Normalization을 적용할 수 있다. 여기서 주의할 점은 `training`인자를 정확하게 넣어줘야 한다는 점이다. 현재가 트레이닝이 진행되는 상황이면 `training=True`, 그렇지 않고 단순하게 인퍼런스에 사용되는 상황이면 `training=False`를 해줘야 한다. 그 이유는 앞서 정리하였듯이 Batch Normalization이 트레이닝하는 경우와 인퍼런스하는 경우에 연산 과정이 조금 달라지기 때문이다.
 
 ```python
 saver = tf.train.Saver(var_list=tf.trainable_variables(), max_to_keep=1000)
