@@ -275,7 +275,7 @@ Batch Normalization은 TensorFlow에 잘 모듈화가 되어있기 때문에 사
 import tensorflow as tf
 import hyparams as hp
 
-inputs = dataset_loader.get_batch(batch_size=hp.batch_size)
+inputs, labels = dataset_loader.get_batch(batch_size=hp.batch_size)
 convs1 = tf.layers.conv1d(
     inputs=inputs,
     filters=hp.filters_list[0],
@@ -287,10 +287,21 @@ convs2 = tf.layers.conv1d(
     filters=hp.filters_list[1],
     kernel_size=hp.kernel_size_list[1],
     padding="same")
-outputs = tf.nn.sigmoid(convs2)
+outputs = convs2
 ```
 
 `tf.layers.batch_normalization`을 사용하면 간편하게 Batch Normalization을 적용할 수 있다. 여기서 주의할 점은 `training`인자를 정확하게 넣어줘야 한다는 점이다. 현재가 트레이닝이 진행되는 상황이면 `training=True`, 그렇지 않고 단순하게 인퍼런스에 사용되는 상황이면 `training=False`를 해줘야 한다. 그 이유는 앞서 정리하였듯이 Batch Normalization이 트레이닝하는 경우와 인퍼런스하는 경우에 연산 과정이 조금 달라지기 때문이다.
+
+그 다음으로 주의해야 할 사항은 다음과 같다. Batch Normalization의 연산은 다른 레이어들의 연산과는 조금 다르기 때문에 Optimizer를 설정해줄 때 조금 다르게 해주어야 한다. 먼저 기존의 방식대로 Optimizer를 정의해보자.
+
+```python
+loss = tf.nn.softmax_cross_entropy_with_logits(labels=labels, logits=outputs)
+opt = tf.train.AdamOptimizer(learning_rate=hp.learning_rate).minimize(loss)
+```
+
+평범하게 Adam Optimizer를 사용하여 정의하였다. 이 경우에 발생하는 문제는 보통 트레이닝 과정에서는 발견되지 않지만 인퍼런스를 하는 도중에 발생하곤 한다. 공식 홈페이지에는 다음과 같은 경고가 쓰여져 있다.
+
+![](/assets/img/2018-11-27-batch-normalization/05.PNG)
 
 ```python
 saver = tf.train.Saver(var_list=tf.trainable_variables(), max_to_keep=1000)
