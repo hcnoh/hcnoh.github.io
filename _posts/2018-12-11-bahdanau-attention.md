@@ -166,24 +166,11 @@ GRU 모델 및 기본 RNN 모델에서의 Context Vector의 활용을 살펴보�
 
 $$
 \begin{align*}
-[\mathbf{W};\mathbf{C}][\mathbf{y}_{t-1}^{\text{T}};\mathbf{c}_t^{\text{T}}]^{\text{T}}
+[\mathbf{W};\mathbf{C}][\mathbf{y}_{t-1}^{\text{T}};\mathbf{c}_t^{\text{T}}]^{\text{T}} = \mathbf{Wy}_{t-1} + \mathbf{Cc}_t
 \end{align*}
 $$
 
-```python
-import tensorflow as tf
-import hyparams as hp
-
-enc_outs = encoder(inputs)
-
-cell = tf.nn.rnn_cell.GRUCell(num_units=hp.attention_units)
-attn_mechanism = tf.contrib.seq2seq.BahdanauAttention(num_units=hp.attention_depth,
-                                                      memory=enc_outs)
-attn_cell = tf.contrib.seq2seq.AttentionWrapper(cell=attn_cell,
-                                                attention_mechanism=attention_mechanism,
-                                                alignment_history=True,
-                                                output_attention=False)
-```
+이 부분은 TensorFlow의` AttentionWrapper` 모듈에서도 확인할 수 있는 부분이다. `AttentionWrapper` 모듈은 `cell_input_fn`을 인자로 받아 RNN의 입력 및 Attention을 어떻게 받게 할지를 설정할 수 있다. 이 때 `cell_input_fn`의 디폴트를 살펴보면 아래와 같음을 알 수 있다.
 
 ```python
 class AttentionWrapper(rnn_cell_impl.RNNCell):
@@ -207,3 +194,27 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
         `lambda inputs, attention: array_ops.concat([inputs, attention], -1)`.
 ... (생략)
 ```
+
+즉, 현재 입력 및 Attention. 즉 여기서는 Context Vector $$\mathbf{c}_t$$가 Concatenation되어서 입력으로 사용된다는 것을 확인할 수 있다.
+
+## TensorFlow에서의 Bahdanau Attention의 활용
+
+이 부분은 Bahdanau Attention 뿐 아니라 다음에 정리할 Luong Attention 등의 여러 다른 Attention 메커니즘들에도 동일하게 적용될 수 있는 부분이다. 기본적으로 TensorFlow에서는 Bahdanau Attention 등의 잘 알려져있는 Attention 메커니즘을 위한 모듈을 제공한다.
+
+아래의 코드는 아주 기본적으로 활용될 수 있는 Attention 메커니즘 구현 예제이다.
+
+```python
+import tensorflow as tf
+import hyparams as hp
+
+enc_outs = encoder(inputs)
+
+cell = tf.nn.rnn_cell.GRUCell(num_units=hp.attention_units)
+attn_mechanism = tf.contrib.seq2seq.BahdanauAttention(
+    num_units=hp.attention_depth, memory=enc_outs)
+attn_cell = tf.contrib.seq2seq.AttentionWrapper(
+    cell=attn_cell, attention_mechanism=attention_mechanism,
+    alignment_history=True, output_attention=False)
+```
+
+
