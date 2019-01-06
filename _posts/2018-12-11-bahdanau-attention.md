@@ -195,7 +195,7 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
 ... (생략)
 ```
 
-즉, 현재 입력 및 Attention. 즉 여기서는 Context Vector $$\mathbf{c}_t$$가 Concatenation되어서 입력으로 사용된다는 것을 확인할 수 있다.
+즉, 현재 입력 및 Attention, 즉 여기서는 Context Vector $$\mathbf{c}_t$$가 Concatenation되어서 입력으로 사용된다는 것을 확인할 수 있다.
 
 ## TensorFlow에서의 Bahdanau Attention의 활용
 
