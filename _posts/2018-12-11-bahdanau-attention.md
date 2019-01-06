@@ -162,7 +162,13 @@ $$
 \end{align*}
 $$
 
-GRU 모델 및 기본 RNN 모델에서의 Context Vector 활용을 살펴보면 다음의 특징을 파악할 수 있다. Context Vector $$\mathbf{c}_t$$는 RNN의 입력으로 사용되는 $$mathbf{y}_{t-1}$$과 함께 등장하며 함께 임베딩 공간에 뿌려져서 더해지는 방식으로 활용된다. 즉, 간단하게 정리하자면 $$\mathbf{Wy}_{t-1}$$ 대신 $$\mathbf{Wy}_{t-1} + \mathbf{Cc}_t$$가 된다는 것이다.
+GRU 모델 및 기본 RNN 모델에서의 Context Vector의 활용을 살펴보면 다음의 특징을 파악할 수 있다. Context Vector $$\mathbf{c}_t$$는 RNN의 입력으로 사용되는 $$\mathbf{y}_{t-1}$$과 함께 등장하며 함께 임베딩 공간에 뿌려져서 더해지는 방식으로 활용된다. 즉, 간단하게 정리하자면 $$\mathbf{Wy}_{t-1}$$ 대신 $$\mathbf{Wy}_{t-1} + \mathbf{Cc}_t$$가 된다는 것이다. 이건 RNN 입력을 $$\mathbf{y}_{t-1}$$ 단독으로 사용하는 것이 아니라 Context Vector $$\mathbf{c}_t$$와 Concatenation하여 사용하는 것과 같은 의미이다. 이걸 수식으로 정리하면 다음과 같다.
+
+$$
+\begin{align*}
+[\mathbf{W};\mathbf{C}][\mathbf{y}_{t-1}^{\text{T}};\mathbf{c}_t^{\text{T}}]^{\text{T}}
+\end{align*}
+$$
 
 ```python
 import tensorflow as tf
