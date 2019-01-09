@@ -19,6 +19,12 @@ $$
 $$
 
 $$
+\begin{align*}
+\text{where} \ \sigma \ \frac{D}{2}
+\end{align*}
+$$
+
+$$
 p_t = t
 $$
 
