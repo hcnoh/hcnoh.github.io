@@ -22,7 +22,7 @@ p_t = t
 $$
 
 $$
-p_t = T_{\mathbf{x}} \cdot \text{Sigmoid}(\mathbf{v}_p^\text{T} \tanh(\mathbf{W}_p \mathbf{s}_t))
+p_t = T_{\mathbf{x}} \cdot \text{Sigmoid}\left(\mathbf{v}_p^\text{T} \tanh(\mathbf{W}_p \mathbf{s}_t)\right)
 $$
 
 $$
