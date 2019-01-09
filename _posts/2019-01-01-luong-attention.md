@@ -18,15 +18,11 @@ $$
 $$
 
 $$
-\alpha_{ij} = a(s_i, h_j)\exp\left( -\frac{(j-p_i)^2}{2\sigma^2} \right)
+p_t = t
 $$
 
 $$
-p_i = i
-$$
-
-$$
-p_i = S \cdot \text{Sigmoid}(v_p^T \tanh(W_p s_i))
+p_t = T_{\mathbf{x}} \cdot \text{Sigmoid}(\mathbf{v}_p^\text{T} \tanh(\mathbf{W}_p \mathbf{s}_t))
 $$
 
 $$
