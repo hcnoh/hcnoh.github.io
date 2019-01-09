@@ -27,9 +27,17 @@ $$
 
 $$
 \begin{align*}
-a(s_i, h_j) & = s_i^Th_j & dot \\
-a(s_i, h_j) & = s_i^TW_ah_j & general \\
-a(s_i, h_j) & = v_a^T\tanh(W_as_i + U_a h_j) & concat \\
-a(s_i, h_j) & = \text{Softmax}(W_as_i) & location
+\text{Score}(\mathbf{s}_t, \mathbf{h}_j)
+& = \mathbf{s}_t^\text{T}\mathbf{h}_j
+& dot \\
+\text{Score}(\mathbf{s}_t, \mathbf{h}_j)
+& = \mathbf{s}_t^\text{T}\mathbf{W_ah}_j
+& general \\
+\text{Score}(\mathbf{s}_t, \mathbf{h}_j)
+&= v_a^T\tanh(W_as_i + U_a h_j)
+& concat \\
+\text{Score}(\mathbf{s}_t, \mathbf{h}_j)
+& = \text{Softmax}(W_as_i)
+& location
 \end{align*}
 $$
