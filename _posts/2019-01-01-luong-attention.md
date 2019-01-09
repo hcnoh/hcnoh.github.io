@@ -29,7 +29,7 @@ permalink: /2019-01-01-luong-attention
 
 ## Bahdanau Attention으로부터 달라진 점
 논문에서 제시하는 Bahdanau Attention과의 차이점은 다음과 같이 정리할 수 있다.
-- 디코더의 Hidden State Vector를 구하는 방식이 간소화 되었으며 결과적으로 Attention Mechanism의 Computation Path가 간소화되었다.
+- 디코더의 Hidden State Vector를 구하는 방식이 간소화되었고 결과적으로 Attention Mechanism의 Computation Path가 간소화되었다.
 - Local Attention과 그것을 위한 Alignment Model을 제시하였다.
 - 다양한 Score Function들을 제시하였고 그들 각각을 비교해 보았다.
 
