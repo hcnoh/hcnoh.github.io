@@ -34,10 +34,10 @@ $$
 & = \mathbf{s}_t^\text{T}\mathbf{W_ah}_j
 & general \\
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
-&= v_a^T\tanh(W_as_i + U_a h_j)
+&= \mathbf{v_a}^\text{T}\tanh(\mathbf{W_as}_t + \mathbf{U_a h}_j)
 & concat \\
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
-& = \text{Softmax}(W_as_i)
+& = \text{Softmax}(\mathbf{W_as}_t)
 & location
 \end{align*}
 $$
