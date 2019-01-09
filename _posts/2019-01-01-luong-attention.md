@@ -14,6 +14,19 @@ author: "Hyungcheol Noh"
 permalink: /2019-01-01-luong-attention
 ---
 
+지난번에 Bahdanau Attention에 대한 포스팅을 작성하였으며 그 후속으로 나온 Luong Attention에 대한 내용을 정리하게 되었다. Bahdanau Attention에 대한 포스팅은 다음의 [링크](https://hcnoh.github.io/2018-12-11-bahdanau-attention)를 통해서 확인할 수 있다.
+
+또한 이번 포스팅은 다음의 논문을 스터디하여 정리하였다:
+- [링크1](https://arxiv.org/pdf/1508.04025)
+
+## Notation
+이전 포스팅에 이어서 이번 포스팅에서도 다음의 Notation을 사용할 것이다.
+- $$\mathcal{X} = (\mathbf{x}_t)_{t=1}^{T_{\mathbf{x}}} \in \mathbb{R}^{n \times T_{\mathbf{x}}}$$: 소스 문장의 단어 One-Hot 인코딩 시퀀스
+- $$\mathcal{Y} = (\mathbf{y}_t)_{t=1}^{T_{\mathbf{y}}} \in \mathbb{R}^{m \times T_{\mathbf{y}}}$$: 타겟 문장의 단어 One-Hot 인코딩 시퀀스
+- $$T_{\mathbf{x}}, T_{\mathbf{y}}$$: 각각 $$\mathcal{X}, \mathcal{Y}$$의 시퀀스 길이 (문장의 길이)
+- $$\mathbf{x}_t, \mathbf{y}_t$$: 각각 $$t$$번째 타임 스텝 단어의 One-Hot 인코딩
+- $$\widehat{\mathcal{Y}} = (\widehat{\mathbf{y}}_t)_{t=1}^{T_{\mathbf{y}}}$$: 모델이 타겟 문장의 단어 One-Hot 인코딩 시퀀스를 추정하기 위해서 사용하는 확률 모델 $$\widehat{\mathbf{y}}_t$$의 시퀀스
+
 $$
 \mathbf{a}_t = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) \exp\left( -\frac{(j-p_t)^2}{2\sigma^2} \right) \right)_{j=p_t-D}^{p_t+D}\right) \in \mathbb{R}^{2D+1}
 $$
