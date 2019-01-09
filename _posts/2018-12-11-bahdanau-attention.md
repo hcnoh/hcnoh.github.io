@@ -7,7 +7,8 @@ tagline: "가장 기본적인 Attention 메커니즘인 Bahdanau Attention에 �
 categories:
 - Deep Learning
 tags:
-- deep learning, tensorflow
+- deep learning
+- tensorflow
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2018-12-11-bahdanau-attention
