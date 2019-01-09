@@ -8,13 +8,14 @@ categories:
 - Deep Learning
 tags:
 - deep learning
+- tensorflow
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2019-01-01-luong-attention
 ---
 
 $$
-\mathbf{a}_t = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) \exp\left( -\frac{(j-p_t)^2}{2\sigma^2} \right) \right)_{j=1}^{T_{\mathbf{x}}}\right) \in \mathbb{R}^{T_{\mathbf{x}}}
+\mathbf{a}_t = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) \exp\left( -\frac{(j-p_t)^2}{2\sigma^2} \right) \right)_{j=1}^{T_{\mathbf{x}}}\right) \in \mathbb{R}^{2D+1}
 $$
 
 $$
