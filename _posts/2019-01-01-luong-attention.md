@@ -41,3 +41,12 @@ $$
 & location
 \end{align*}
 $$
+
+$$
+\begin{align*}
+\widehat{\mathbf{y}}_t
+& = \text{Softmax}\left( \mathbf{W_y}\tilde{\mathbf{s}}_t + \mathbf{b_y} \right) \\
+\tilde{\mathbf{s}}_t
+& = \tanh(\mathbf{W_{ss}}\mathbf{s}_t + \mathbf{W_{cs}}\mathbf{c}_t + \mathbf{b_s})
+\end{align*}
+$$
