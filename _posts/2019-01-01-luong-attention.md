@@ -139,7 +139,7 @@ $$
 ## Input Feeding Approach
 Luong Attention의 저자들이 가졌던 또 다른 불만은 다음과 같다. 왜 현재 타임 스텝의 Alignment를 구할때 이전 타임 스텝들의 Alignment들을 사용하지 않는 것일까? 저자들은 이 불만을 해소하기 위해서 Input Feeding이라는 구조를 제시하였다.
 
-사실 말은 그럴듯하지만 별것은 아니다. 현재 타임 스텝의 입력 $$\mathbf{y}_{t-1}$$이 들어갈 때 이전 타임 스텝의 새로운 Hidden State Vector $$\tilde{\mathbf{s}}_{t-1}$$을 함께 Concatenate하여 넣어주는 것이다.
+사실 말은 그럴듯하지만 별것은 아니다. 현재 타임 스텝의 입력 $$\mathbf{y}_{t-1}$$이 들어갈 때 이전 타임 스텝의 새로운 Hidden State Vector $$\tilde{\mathbf{s}}_{t-1}$$을 함께 Concatenate하여 넣어주는 것이다. 아래의 그림은 Input Feeding이 이루어지는 방식을 정리한 것이다.
 
 ![](/assets/img/2019-01-01-luong-attention/02.png)
 
