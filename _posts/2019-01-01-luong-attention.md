@@ -52,6 +52,12 @@ $$
 \end{align*}
 $$
 
+반면 Luong Attention은 $$\mathbf{s}_{t-1}$$이 아닌 $$\mathbf{s}_t$$를 이용하여 $$\mathbf{c}_t$$를 구한다. 먼저 그림을 살펴보자.
+
+![](/assets/img/2019-01-01-luong-attention/02.png)
+
+
+
 ## Local Attention과 그것을 위한 Alignment Model
 
 $$
