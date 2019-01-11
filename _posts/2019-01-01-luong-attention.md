@@ -60,6 +60,27 @@ $$
 
 이렇게 구성하게 되었을 경우에 얻을 수 있는 장점은 Computation Path가 간소화가 된다는 점을 들 수 있다. Bahdanau Attention에서는 디코더의 Hidden State의 역할을 하게되는 $$\mathbf{s}_t$$를 구할때 $$\mathbf{c}_t$$가 사용되게 되며 따라서 RNN의 재귀 연산이 수행되는 도중에 $$\mathbf{c}_t$$가 구해질 때까지 기다려야 한다. 하지만 Luong Attention의 경우에는 출력 $$\widehat{\mathbf{y}}_t$$을 구하는 부분과 RNN의 재귀 연산이 수행되는 부분을 분리할 수가 있기 때문에 더욱 Computation Path가 간소화된다고 볼 수 있다.
 
+Luong Attention의 연산을 정리하면 다음과 같다.
+
+$$
+\begin{align*}
+\mathbf{c}_t
+& = \sum_{j=1}^{T_{\mathbf{x}}} \mathbf{a}_{tj}\mathbf{h}_j \\
+& = \mathbf{H} \mathbf{a}_t \\
+\mathbf{a}_t
+& = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t}, \mathbf{h}_j)\right)_{j=1}^{T_{\mathbf{x}}}\right) \in \mathbb{R}^{T_{\mathbf{x}}}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\widehat{\mathbf{y}}_t
+& = \text{Softmax}\left( \mathbf{W_y}\tilde{\mathbf{s}}_t + \mathbf{b_y} \right) \\
+\tilde{\mathbf{s}}_t
+& = \tanh(\mathbf{W_{ss}}\mathbf{s}_t + \mathbf{W_{cs}}\mathbf{c}_t + \mathbf{b_s})
+\end{align*}
+$$
+
 ## Local Attention과 그것을 위한 Alignment Model
 Luong Attention에서는 기존의 Attention Model과는 조금 다르게 Local Attention이라는 개념을 제시하였다. 먼저 기존의 Bahdanau Attention의 경우처럼 Alignment Vector가 $$\mathbf{h}_1$$부터 $$\mathbf{h}_{T_{\mathbf{x}}}$$까지의 $$T_{\mathbf{x}}$$개의 모든 벡터들을 바라보며 Attention Score를 구하게 된다. Luong Attention의 저자들은 이러한 방식을 Global Attention이라고 정의하였고 자신들은 새로운 Local Attention 방식을 제시함으로써 차별화를 시도하였다.
 
@@ -74,6 +95,8 @@ $$
 \text{where} \ \sigma = \frac{D}{2}
 \end{align*}
 $$
+
+이 때 $$p_t$$는 
 
 $$
 p_t = t
@@ -102,11 +125,4 @@ $$
 \end{align*}
 $$
 
-$$
-\begin{align*}
-\widehat{\mathbf{y}}_t
-& = \text{Softmax}\left( \mathbf{W_y}\tilde{\mathbf{s}}_t + \mathbf{b_y} \right) \\
-\tilde{\mathbf{s}}_t
-& = \tanh(\mathbf{W_{ss}}\mathbf{s}_t + \mathbf{W_{cs}}\mathbf{c}_t + \mathbf{b_s})
-\end{align*}
-$$
+
