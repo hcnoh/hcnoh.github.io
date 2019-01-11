@@ -104,11 +104,13 @@ $$
 이렇게 구해진 $$\mathbf{a}_t$$와 범위 $$[p_t-D, p_t+D]$$에 대해서 Weighted Sum을 통해서 Context Vector $$\mathbf{c}_t$$를 구한다.
 
 $$
-\mathbf{c}_t = \mathbf{H}[:, p_t-D:o_t+D+1]\mathbf{a}_t
+\mathbf{c}_t = \mathbf{H}[:, p_t-D:p_t+D+1]\mathbf{a}_t
 $$
 
 ## 다양한 Score Function 제시 및 비교
+Luong Attention에서는 기존 Bahdanau Attention에서 제시했던 Score Function 뿐 아니라 다른 Score Function들에 대해서도 분석을 했다. 저자들은 4가지의 Score Function을 제시하였는데 크게 Content-Based Function과 Location-Based Function으로 나누었다.
 
+- Content-Based Function:
 $$
 \begin{align*}
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
@@ -119,7 +121,13 @@ $$
 & general \\
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
 &= \mathbf{v_a}^\text{T}\tanh(\mathbf{W_as}_t + \mathbf{U_a h}_j)
-& concat \\
+& concat
+\end{align*}
+$$
+
+- Location-Based Function:
+$$
+\begin{align*}
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
 & = \text{Softmax}(\mathbf{W_as}_t)
 & location
