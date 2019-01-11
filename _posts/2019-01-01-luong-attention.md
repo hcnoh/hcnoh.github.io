@@ -108,9 +108,10 @@ $$
 $$
 
 ## 다양한 Score Function 제시 및 비교
-Luong Attention에서는 기존 Bahdanau Attention에서 제시했던 Score Function 뿐 아니라 다른 Score Function들에 대해서도 분석을 했다. 저자들은 4가지의 Score Function을 제시하였는데 크게 Content-Based Function과 Location-Based Function으로 나누었다.
+Luong Attention에서는 기존 Bahdanau Attention에서 제시했던 Score Function 뿐 아니라 다른 Score Function들에 대해서도 분석을 했다. 저자들은 4가지의 Score Function을 제시하였는데 크게 Content-Based Function과 Location-Based Function으로 나누었다. 참고로 사실상 Location-Based Function은 Attention이 필요함을 보이기 위해서 억지로 만든 개념이라고 봐도 될 것 같다. 실제로 Attention이 전혀 개입되지 않는 Score Function이기 때문이다.
 
 - Content-Based Function:
+
 $$
 \begin{align*}
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
@@ -126,6 +127,7 @@ $$
 $$
 
 - Location-Based Function:
+
 $$
 \begin{align*}
 \text{Score}(\mathbf{s}_t, \mathbf{h}_j)
@@ -134,4 +136,5 @@ $$
 \end{align*}
 $$
 
+## 실험 및 성능 검증
 
