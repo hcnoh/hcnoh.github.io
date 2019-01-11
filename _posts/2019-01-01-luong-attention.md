@@ -56,7 +56,9 @@ $$
 
 ![](/assets/img/2019-01-01-luong-attention/02.png)
 
+이 경우에는 Bahdanau Attention의 경우와는 다르게 $$\mathbf{c}_t$$를 구할 때 $$\mathbf{s}_{t-1}$$이 사용되는 것이 아니라 $$\mathbf{s}_t$$를 사용하게 된다. 즉, Hidden State Vector $$\mathbf{s}_t$$는 그냥 RNN의 Hidden State의 역할만을 하게 되며 출력 $$\widehat{\mathbf{y}}_t$$를 구할때는 새로운 $$\tilde{\mathbf{s}}_t$$를 거치게 된다.
 
+이렇게 구성하게 되었을 경우에 얻을 수 있는 장점은 Computation Path가 간소화가 된다는 점을 들 수 있다. Bahdanau Attention에서는 디코더의 Hidden State의 역할을 하게되는 $$\mathbf{s}_t$$를 구할때 $$\mathbf{c}_t$$가 사용되게 되며 따라서 RNN의 재귀 연산이 수행되는 도중에 $$\mathbf{c}_t$$가 구해질 때까지 기다려야 한다. 하지만 Luong Attention의 경우에는 출력 $$\widehat{\mathbf{y}}_t$$을 구하는 부분과 RNN의 재귀 연산이 수행되는 부분을 분리할 수가 있기 때문에 더욱 Computation Path가 간소화된다고 볼 수 있다.
 
 ## Local Attention과 그것을 위한 Alignment Model
 
