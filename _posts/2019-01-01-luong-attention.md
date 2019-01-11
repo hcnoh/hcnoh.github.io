@@ -40,7 +40,17 @@ Luong Attention이 Bahdanau Attention과 가장 많이 달라진 점은 바로 H
 
 ![](/assets/img/2019-01-01-luong-attention/01.png)
 
-그림에서 확인할 수 있듯이 Bahdanau Attention에서는 현재 타임 스텝의 디코더 Hidden State Vector $$\mathbf{s}_t$$를 구하기 위해서 현재 타임 스텝의 Context Vector $$\mathbf{c}_t$$ 및 이전 타임 스텝의 Hidden State Vector $$\mathbf{s}_{t-1}$$, 그리고 현재 타임 스텝의 입력으로 들어온 $$\mathbf{y}_{t-1}$$이 사용되게 된다. 이 때 $$\mathbf{c}_t$$는 $$\mathbf{s}_{t-1}$$과 인코더 Hidden State Matrix $$\mathbf{H}$$를 이용한 Attention 메커니즘의 결과가 된다.
+그림에서 확인할 수 있듯이 Bahdanau Attention에서는 현재 타임 스텝의 디코더 Hidden State Vector $$\mathbf{s}_t$$를 구하기 위해서 현재 타임 스텝의 Context Vector $$\mathbf{c}_t$$ 및 이전 타임 스텝의 Hidden State Vector $$\mathbf{s}_{t-1}$$, 그리고 현재 타임 스텝의 입력으로 들어온 $$\mathbf{y}_{t-1}$$이 사용되게 된다. 이 때 $$\mathbf{c}_t$$는 $$\mathbf{s}_{t-1}$$과 인코더 Hidden State Matrix $$\mathbf{H}$$를 이용한 Attention 메커니즘의 결과가 된다. Bahdanau Attention에서의 Attention Mechanism을 다시 정리하면 아래와 같다.
+
+$$
+\begin{align*}
+\mathbf{c}_t
+& = \sum_{j=1}^{T_{\mathbf{x}}} \mathbf{a}_{tj}\mathbf{h}_j \\
+& = \mathbf{H} \mathbf{a}_t \\
+\mathbf{a}_t & = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j)\right)_{j=1}^{T_{\mathbf{x}}}\right) \in \mathbb{R}^{T_{\mathbf{x}}} \\
+\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) & = \mathbf{v}^\text{T}\tanh (\mathbf{W_a}\mathbf{s}_{t-1} + \mathbf{U_a}\mathbf{h}_j)
+\end{align*}
+$$
 
 ## Local Attention과 그것을 위한 Alignment Model
 
