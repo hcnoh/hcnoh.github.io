@@ -141,7 +141,7 @@ Luong Attention의 저자들이 가졌던 또 다른 불만은 다음과 같다.
 
 사실 말은 그럴듯하지만 별것은 아니다. 현재 타임 스텝의 입력 $$\mathbf{y}_{t-1}$$이 들어갈 때 이전 타임 스텝의 새로운 Hidden State Vector $$\tilde{\mathbf{s}}_{t-1}$$을 함께 Concatenate하여 넣어주는 것이다. 아래의 그림은 Input Feeding이 이루어지는 방식을 정리한 것이다.
 
-![](/assets/img/2019-01-01-luong-attention/02.png)
+![](/assets/img/2019-01-01-luong-attention/03.png)
 
 이렇게 함으로써 얻을 수 있는 장점을 저자들은 다음과 같이 정리하였다.
 - 이전의 Alignment 정보들을 Fully 활용할 수 있다.
@@ -154,14 +154,14 @@ Luong Attention의 저자들이 가졌던 또 다른 불만은 다음과 같다.
 
 실험은 전부 WMT' 14 데이터셋을 이용하였다. 영어와 독일어로 구성된 Parallel 코퍼스이며 번역을 위한 데이터셋이다. 약 4.5M개의 문장 쌍이 존재하며 코퍼스에 존재하는 단어는 영어 단어 116M, 독일어 단어 110M이다. 또한 단어 사전은 자주 등장하는 순서로 50K로 제한하였으며 새로운 단어거나 사전에 없는 단어는 \<Unknown\> 토큰을 사용하였다. 모델은 간단한 LSTM 스택을 쌓아서 구성하였다.
   
-![](/assets/img/2019-01-01-luong-attention/02.png)
+![](/assets/img/2019-01-01-luong-attention/04.png)
 
 위의 테이블은 첫 번째 실험 결과이다. 자신들의 모델이 이전에 최고 성능을 보인 모델 및 Bahdanau Attention을 사용한 모델보다 낫다는 것을 보인다. 실제로 BLEU 스코어가 이전 결과들에 비해서 (8개의 앙상블 모델을 이용하였지만) 더 좋은 것을 확인할 수 있다.
 
-![](/assets/img/2019-01-01-luong-attention/02.png)
+![](/assets/img/2019-01-01-luong-attention/05.png)
 
 그 다음 결과는 다양한 Score Function을 이용하여 비교 및 분석을 수행한 것이다. 확실히 Global Attention 보다는 Local Attention이, Local-m 보다는 Local-p가 좋은 성능을 보인다.
 
-![](/assets/img/2019-01-01-luong-attention/02.png)
+![](/assets/img/2019-01-01-luong-attention/06.png)
 
 그 다음 결과는 문장의 길이가 길어질수록 성능 변화가 어떻게 되는지 보여주는 그래프이다. 문장이 길어지면 Attention을 사용하지 않는 모델은 점차 성능이 하락하는 것을 확인할 수 있으며 또한 Attention을 사용하는 모델도 이전의 모델보다는 자신들의 모델이 성능이 더 좋음을 보여준다.
