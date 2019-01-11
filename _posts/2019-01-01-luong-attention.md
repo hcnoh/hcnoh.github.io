@@ -8,7 +8,6 @@ categories:
 - Deep Learning
 tags:
 - deep learning
-- tensorflow
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2019-01-01-luong-attention
