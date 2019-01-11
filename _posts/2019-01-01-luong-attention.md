@@ -87,7 +87,7 @@ Luong Attention에서는 기존의 Attention Model과는 조금 다르게 Local 
 그러면 Local Attention은 무엇일까? 바로 $$T_{\mathbf{x}}$$개 전부를 보는 것이 아니라 특정 하이퍼파라미터 $$D$$에 대하여 $$2D+1$$개 만큼의 서브셋만을 보겠다는 것이다. 일단 Local Attention의 방법을 정리하면 아래의 식으로 정리할 수 있다.
 
 $$
-\mathbf{a}_t = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t-1}, \mathbf{h}_j) \exp\left( -\frac{(j-p_t)^2}{2\sigma^2} \right) \right)_{j=p_t-D}^{p_t+D}\right) \in \mathbb{R}^{2D+1}
+\mathbf{a}_t = \text{Softmax}\left(\left(\text{Score}(\mathbf{s}_{t}, \mathbf{h}_j) \exp\left( -\frac{(j-p_t)^2}{2\sigma^2} \right) \right)_{j=p_t-D}^{p_t+D}\right) \in \mathbb{R}^{2D+1}
 $$
 
 $$
@@ -96,14 +96,15 @@ $$
 \end{align*}
 $$
 
-이 때 $$p_t$$는 
+이 때 $$p_t$$는 Aligned Position이라고 정의한다. $$p_t$$를 구하는 방식에 따라서 또 Local Attention의 방법이 달라지게 된다.
+
+- Monotonic Alignment (local-m): $$p_t = t$$
+- Predictive Alignment (local-p): $$p_t = T_{\mathbf{x}} \cdot \text{Sigmoid}\left(\mathbf{v}_p^\text{T} \tanh(\mathbf{W}_p \mathbf{s}_t)\right)$$
+
+이렇게 구해진 $$\mathbf{a}_t$$와 범위 $$[p_t-D, p_t+D]$$에 대해서 Weighted Sum을 통해서 Context Vector $$\mathbf{c}_t$$를 구한다.
 
 $$
-p_t = t
-$$
-
-$$
-p_t = T_{\mathbf{x}} \cdot \text{Sigmoid}\left(\mathbf{v}_p^\text{T} \tanh(\mathbf{W}_p \mathbf{s}_t)\right)
+\mathbf{c}_t = \mathbf{H}[:, p_t-D:o_t+D+1]\mathbf{a}_t
 $$
 
 ## 다양한 Score Function 제시 및 비교
