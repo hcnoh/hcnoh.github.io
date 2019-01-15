@@ -36,8 +36,8 @@ Git의 기본적인 사용법에 관한 포스팅은 다음의 [링크](https://
 
 ```bash
 >>> git branch -v
-* master      211d918 Add README.md
-  devel       110aac9 modified some source codes
+* master  211d918  Add README.md
+  devel   110aac9  modified some source codes
 ```
 
 첫 번째 칼럼의 목록 뿐 아니라 각 Branch의 최신 Commit Message 등을 확인할 수 있다.
