@@ -69,3 +69,21 @@ Branch를 생성하는 명령은 기본적으로 `git branch`이다. 만약 `dev
 ```
 
 ## 원격 Repo로부터 Branch 정보 받아오기
+원격 Repo에서 작업을 한 이후에 로컬에서 이것을 받아오기 위해서는 보통 `git pull` 명령을 사용하면 된다. 하지만 원격 Repo에서 새로운 Branch를 생성하였을 경우에는 `git pull` 명령을 통해서도 Branch 정보를 받아올 수 없다. 이 경우에는 `git pull`이 아닌 다음의 명령을 수행한다.
+
+```bash
+>>> git remote update
+```
+
+또는 원격 Repo의 Branch 정보를 확인만 하고싶을 때도 있다. 원격 Repo의 모든 Branch 목록을 확인하고 싶은 경우에는 아래의 명령을 수행하면 된다.
+
+```bash
+>>> git branch -r
+```
+
+또는 원격 및 로컬의 모든 Branch 목록을 확인하고 싶은 경우에는 아래의 명령을 수행한다.
+
+```bash
+>>> git branch -a
+```
+
