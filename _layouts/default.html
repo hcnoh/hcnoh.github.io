@@ -60,6 +60,9 @@
     {% if page.layout == 'category' %}
       {% assign page-tagline = page.tagline | escape %}
     {% endif %}
+    {% if page.layout == 'projects' %}
+      {% assign page-tagline = page.tagline | escape  %}
+    {% endif %}
     {% if page.layout == 'tags' %}
       {% assign page-tagline = page.tagline | escape %}
     {% endif %}
