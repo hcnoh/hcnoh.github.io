@@ -1,17 +1,73 @@
 ---
-layout: post
+layout: project
 use_math: true
-title: "Git Branch 사용 방법 정리"
+title: "wavenet-tensorflow"
 date: 2019-01-19 01:29:33
-tagline: "Git에서 버전 관리를 위해 사용되는 Branch 사용 방법 정리"
+tagline: "A TensorFlow implementation of Google's WaveNet"
 categories:
 - Project
 tags:
-- git
-- linux
+- deep learning
+- tensorflow
+- python
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2019-01-19-wavenet-tensorflow
 ---
 
-Git의 기본적인 사용법에 관한 포스팅은 다음의 [링크](https://hcnoh.github.io/2018-08-20-git-basic-usage)를 참조하면 된다. 여기서는 Git의 Branch 기능에 대해서만 정리한다.
+# WaveNet in TensorFlow
+This repository is for a TensorFlow implementation of Google's WaveNet. The original link of WaveNet paper is [here](https://regmedia.co.uk/2016/09/09/wavenet.pdf). In this repository, only global conditioning was implemented for WaveNet model.
+
+![](/wavenet-architecture.PNG)
+
+## Prerequisites
+- Python 3.5
+- librosa 0.6.2 or higher
+- numpy 1.14.5 or higher
+- tensorflow-gpu 1.10.0 or higher
+
+More simpler way to install these prerequisites using python 3.5 virtualenv is that:
+
+```bash
+>>> virtualenv --system-site-packages -p python3 wavenet-venv
+>>> source ./wavenet-venv/bin/activate
+>>> pip install -r requirements.txt
+```
+
+## Usage
+The dataset directory should be organized by this structure.
+
+```
+dataset
+├── p01 (person name, the name doesn't matter)
+    ├── txt
+        ├── xxx.txt (name doesn't matter)
+        ├── yyy.txt
+        └── ...
+    └── wav
+        ├── xxx.wav (name doesn't matter but should be same with corresponding txt file)
+        ├── yyy.wav
+        └── ...
+├── p02
+└── ...
+```
+
+To train a model:
+
+```bash
+>>> python train.py
+```
+
+Also, to generate a audio with a trained model:
+
+```bash
+>>> python generate.py
+```
+
+## Results
+I trained WaveNet model without using any global conditions. The trained model just mimics voice from original audio dataset.
+- The original audio sample that I used as a dataset: [https://soundcloud.com/artzizou/p280-original-sample?in=artzizou/sets/wavenet-tensorflow](https://soundcloud.com/artzizou/p280-original-sample?in=artzizou/sets/wavenet-tensorflow)
+- A generated audio from my trained WaveNet model: [https://soundcloud.com/artzizou/p280-final-version?in=artzizou/sets/wavenet-tensorflow](https://soundcloud.com/artzizou/p280-final-version?in=artzizou/sets/wavenet-tensorflow)
+
+## Author
+Hyungcheol Noh / [About Me](https://hcnoh.github.io/about)
