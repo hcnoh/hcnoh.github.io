@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {% assign date_format = site.cayman-blog.date_format | default: "%b %-d, %Y" %}
+        {{ page.date | date: date_format }}
+      </time>
+      {% if page.author %}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
+      {% endif %}</p>
+  </header> -->
+
+  <div itemprop="articleBody">
+    {% if page.tags %}
+    {% for tag in page.tags %}
+      <a href="{{ site.baseurl }}{{ site.tag_page }}#{{ tag | slugify }}" class="post-tag">#{{ tag }}</a>
+    {% endfor %}
+    {% endif %}
+    <hr size="3" noshade>
+    {{ content }}
+    <hr size="3" noshade>
+    {% for tag in page.categories %}
+      <p><a href="{{ site.baseurl }}{{ site.category_page }}#{{ tag | slugify }}">Go to the Category</a></p>
+    {% endfor %}
+  </div>
+
+  {% if site.disqus.shortname %}
+    {% include disqus_comments.html %}
+  {% endif %}
+</article>
