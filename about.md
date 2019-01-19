@@ -27,10 +27,7 @@ permalink: /about
 - Frameworks & Tools: TensorFlow, Keras, Git
 
 ## Projects
-- [한국 고용정보원 일자리매칭 과제](http://openapi.work.go.kr/ai/wanted/datadic/dataDicSearchVw.do)
-- [wavenet-tensorflow](https://github.com/hcnoh/wavenet-tensorflow)
-- [wavenet-vocoder-tensorflow](https://github.com/hcnoh/wavenet-vocoder-tensorflow)
-- [tacotron-tensorflow](https://github.com/hcnoh/tacotron-tensorflow)
+- [Projects List](https://hcnoh.github.io/projects)
 
 ## Contact
 - email: rhc0624@gmail.com
