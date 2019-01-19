@@ -1,6 +1,6 @@
 ---
 layout: tags
 title: Tags
-tagline: A list of tags that show my blog postings
+tagline: This is a list of tags that show my whole blog postings.
 permalink: /tags
 ---
