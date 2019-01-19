@@ -1,19 +1,11 @@
 ---
 layout: default
 ---
-{% for tag in site.categories %}
-{% if tag[0] == "Project" %}
-  <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
-{% endif %}
-{% endfor %}
+
 <hr size="3" noshade>
 
 {% for tag in site.categories %}
 {% if tag[0] == "Project" %}
-  <h2>
-    <!--<span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>-->
-    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | none }}</span>
-  </h2>
   {% assign pages_list = tag[1] %}
   {% for post in pages_list reversed %}
 
