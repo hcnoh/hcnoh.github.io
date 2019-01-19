@@ -18,7 +18,7 @@ permalink: /2019-01-19-wavenet-tensorflow
 # WaveNet in TensorFlow
 This repository is for a TensorFlow implementation of Google's WaveNet. The original link of WaveNet paper is [here](https://regmedia.co.uk/2016/09/09/wavenet.pdf). In this repository, only global conditioning was implemented for WaveNet model.
 
-![](/assets/img/2019-01-19-wavenet-tensorflow./wavenet-architecture.png)
+![](/assets/img/2019-01-19-wavenet-tensorflow/wavenet-architecture.png)
 
 ## Prerequisites
 - Python 3.5
