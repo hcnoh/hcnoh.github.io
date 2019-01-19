@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About Me
-tagline: Some description about Hyungcheol Noh...
+tagline: This is some description about Hyungcheol Noh.
 permalink: /about
 ---
 
