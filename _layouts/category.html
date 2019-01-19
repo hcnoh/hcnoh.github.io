@@ -2,11 +2,14 @@
 layout: default
 ---
 {% for tag in site.categories %}
+{% if tag != "project"}
   <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
+{% endif %}
 {% endfor %}
 <hr size="3" noshade>
 
 {% for tag in site.categories %}
+{% if tag != "project"}
   <h2>
     <!--<span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>-->
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | none }}</span>
@@ -25,7 +28,8 @@ layout: default
       <hr size="3" noshade>
 
     </li>
-    
+
+  {% endif %}
   {% endfor %}
   {% assign pages_list = nil %}
   {% assign group = nil %}
