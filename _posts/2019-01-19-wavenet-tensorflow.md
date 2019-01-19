@@ -1,11 +1,11 @@
 ---
-layout: project
+layout: post
 use_math: true
 title: "Git Branch 사용 방법 정리"
 date: 2019-01-19 01:29:33
 tagline: "Git에서 버전 관리를 위해 사용되는 Branch 사용 방법 정리"
 categories:
-- Git
+- project
 tags:
 - git
 - linux
