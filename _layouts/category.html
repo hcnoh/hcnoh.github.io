@@ -2,14 +2,14 @@
 layout: default
 ---
 {% for tag in site.categories %}
-{% unless tag == "Project" %}
+{% unless tag[0] == "Project" %}
   <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
 {% endunless %}
 {% endfor %}
 <hr size="3" noshade>
 
 {% for tag in site.categories %}
-{% unless tag == "Project" %}
+{% unless tag[0] == "Project" %}
   <h2>
     <!--<span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>-->
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | none }}</span>
