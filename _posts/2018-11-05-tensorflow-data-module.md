@@ -98,10 +98,12 @@ def _generate_batch():
 이제 `Dataset` 클래스를 사용하여 데이터를 불러와보자. 다음은 위에서 정의된 `_generate_batch` 함수를 이용하여 `Dataset` 클래스를 생성하는 예제이다.
 
 ```python
-dataset = tf.data.Dataset.from_generator(generator=_generate_batch,
-                                         output_types=(tf.float32, tf.string),
-                                         output_shapes=(tf.TensorShape([125000]),
-                                                        tf.TensorShape([])))
+dataset = tf.data.Dataset.from_generator(
+    generator=_generate_batch,
+    output_types=(tf.float32, tf.string),
+    output_shapes=(tf.TensorShape([125000]),
+    tf.TensorShape([])
+)
 generated_audios, generated_scripts = \
     dataset.\
     batch(4).\
@@ -180,8 +182,10 @@ def create_tfrecord(dataset_list):
     print("Start converting...")
     options = tf.python_io.\
         TFRecordOptions(compression_type=tf.python_io.TFRecordCompressionType.GZIP)
-    writer = tf.python_io.TFRecordWriter(path="tfrecord/tfrecord_practice.tfrecords",
-                                         options=options)
+    writer = tf.python_io.TFRecordWriter(\
+        path="tfrecord/tfrecord_practice.tfrecords",
+        options=options
+    )
     for dataset in dataset_list:
         audio_file_path = dataset["audio_file_path"]
         script_file_path = dataset["script_file_path"]
@@ -194,9 +198,12 @@ def create_tfrecord(dataset_list):
         
         example = tf.train.Example(
             features=tf.train.Features(
-                feature={"audio": _bytes_feature(audio.tostring()),
-                         "script": _bytes_feature(script.encode("utf-8")) # string 타입을 bytes 타입으로 변환
-                         }))
+                feature={
+                    "audio": _bytes_feature(audio.tostring()),
+                    "script": _bytes_feature(script.encode("utf-8")) # string 타입을 bytes 타입으로 변환
+                }
+            )
+        )
         writer.write(example.SerializeToString())
     
     writer.close()
@@ -238,8 +245,9 @@ def _bytes_feature(value):
 다음은 위에서 정의된 방식으로 저장된 `TFRecord` 파일을 불러와서 다시 기존 형식에 맞춰서 변환하는 작업을 수행하는 예제이다. 사용법은 기존 `Dataset` 모듈과 거의 일치한다.
 
 ```python
-dataset = tf.data.TFRecordDataset(finenames="tfrecord/tfrecord_practice.tfrecords",
-                                  compression_type="GZIP").map(from_tfrecord)
+dataset = tf.data.TFRecordDataset(
+    finenames="tfrecord/tfrecord_practice.tfrecords",
+    compression_type="GZIP").map(from_tfrecord)
 generated_audios, generated_scripts = \
     dataset.\
     batch(4).\
@@ -270,9 +278,11 @@ def from_tfrecord(serialized):
     features = \
         tf.parse_single_example(
             serialized=serialized,
-            features={"audio": tf.FixedLenFeature([], tf.string),
-                      "script": tf.FixedLenFeature([], tf.string)
-                      })
+            features={
+                "audio": tf.FixedLenFeature([], tf.string),
+                "script": tf.FixedLenFeature([], tf.string)
+                }
+            )
     audio = tf.reshape(tf.decode_raw(features["audio"], tf.float32), [125000])
     script = features["script"]
     
