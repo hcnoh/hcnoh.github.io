@@ -16,3 +16,4 @@ permalink: /2019-01-21-multi-speaker-tacotron-tensorflow
 ---
 
 # Multi-Speaker Tacotron Implementation in TensorFlow
+준비중
