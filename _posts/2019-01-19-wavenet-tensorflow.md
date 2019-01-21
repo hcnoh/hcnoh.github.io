@@ -1,7 +1,7 @@
 ---
 layout: project
 use_math: true
-title: "wavenet-tensorflow (README)"
+title: "WaveNet Implementation in TensorFlow (README)"
 date: 2019-01-19 01:29:33
 tagline: "A TensorFlow implementation of Google's WaveNet"
 categories:
@@ -15,7 +15,7 @@ author: "Hyungcheol Noh"
 permalink: /2019-01-19-wavenet-tensorflow
 ---
 
-# WaveNet in TensorFlow
+# WaveNet Implementation in TensorFlow
 This repository is for a TensorFlow implementation of Google's WaveNet. The original link of WaveNet paper is [here](https://regmedia.co.uk/2016/09/09/wavenet.pdf). In this repository, only global conditioning was implemented for WaveNet model.
 
 ![](/assets/img/2019-01-19-wavenet-tensorflow/wavenet-architecture.png)
