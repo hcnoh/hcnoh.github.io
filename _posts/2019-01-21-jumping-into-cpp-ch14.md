@@ -3,9 +3,9 @@ layout: post
 use_math: true
 title: "Jumping Into C++ 스터디 챕터 14"
 date: 2019-01-21 21:04:26
-tagline: "Jumping Into C++ 스터디하고 내용 정리"
+tagline: "Jumping Into C++ 스터디 내용 간단하게 정리"
 categories:
-- C++
+- Jumping Into C++ 스터디
 tags:
 - c++
 image: /thumbnail-mobile.png
