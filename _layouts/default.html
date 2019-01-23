@@ -15,9 +15,12 @@
       {% assign page-title = site.title | escape %}
     {% endif %}
     
+    <!-- For Google Analytics -->
+    {% include google-analytics.html %}
+    
     <!-- Can use mathematical expressions -->
     {% if page.use_math %}
-      {% include mathjax_support.html %} 
+      {% include mathjax-support.html %} 
     {% endif %}
 
     <title>{{ page-title }}</title>
