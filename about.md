@@ -9,7 +9,7 @@ permalink: /about
 잡다한 지식들을 정리해놓는 것을 즐기는 머신러닝 엔지니어입니다 :)
 
 ## Employment and Career
-- 현재 TmaxData에서 AI 비서 음성인식 및 합성 기술 연구 (병역특례)
+- 현재 TmaxData에서 AI 대화형 시스템의 음성 합성(Text-to-Speech) 모듈 개발중 (병역특례)
 
 ## Education
 - 연세대학교 전기전자공학부 학사졸 - 2016. 2
