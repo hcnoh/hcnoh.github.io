@@ -8,7 +8,7 @@ tag_page: '/tags'
 studies_page: '/studies'
 projects_page: '/projects'
 
-google_analytics:
+google_analytics: 'UA-133017353-1'
 # cayman-blog date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 cayman-blog:
