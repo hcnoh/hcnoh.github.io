@@ -44,7 +44,7 @@ void fct1(int);
 void fct2(int);
 
 int a = 10;         // 데이터 영역에 할당
-int b = 20;	        // 데이터 영역에 할당
+int b = 20;         // 데이터 영역에 할당
 
 int main() {
     int i = 100;    // 지역변수 i가 스택 영역에 할당
