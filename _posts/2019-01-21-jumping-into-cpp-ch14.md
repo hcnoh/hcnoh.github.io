@@ -147,7 +147,7 @@ int &val = *(new int);
 int numbers[8];
 int *p_numbers = numbers;
 
-for (int i=0l; i<8; ++i {
+for (int i=0; i<8; ++i {
     p_numbers[i] = i;
 }
 ```
