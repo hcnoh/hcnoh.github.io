@@ -43,18 +43,18 @@ permalink: /2019-01-21-jumping-into-cpp-ch14
 void fct1(int);
 void fct2(int);
 
-int a = 10;	// 데이터 영역에 할당
-int b = 20;	// 데이터 영역에 할당
+int a = 10;         // 데이터 영역에 할당
+int b = 20;	        // 데이터 영역에 할당
 
 int main() {
-    int i = 100;	// 지역변수 i가 스택 영역에 할당
+    int i = 100;    // 지역변수 i가 스택 영역에 할당
     fct1(i);
     fct2(i);
     return 0;
 }
 
 void fct1(int c) {
-    int d = 30;	    // 매개변수 c와 지역변수 d가 스택영역에 할당
+    int d = 30;     // 매개변수 c와 지역변수 d가 스택영역에 할당
 }
 
 void fct2(int e) {
