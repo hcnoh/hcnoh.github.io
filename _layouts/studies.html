@@ -2,7 +2,7 @@
 layout: default
 ---
 {% for tag in site.categories %}
-{% unless tag[0] == "Project" %}
+{% if site.layout == "post" %}
   <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
 {% endunless %}
 {% endfor %}
@@ -32,7 +32,7 @@ layout: default
   {% endfor %}
   {% assign pages_list = nil %}
   {% assign group = nil %}
-{% endunless %}
+{% endif %}
 {% endfor %}
 
 <article>
