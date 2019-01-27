@@ -13,4 +13,17 @@ author: "Hyungcheol Noh"
 permalink: /2019-01-27-python-arguments-asterisk
 ---
 
+파이썬 코드를 살펴보다 보면 함수의 매개변수가 다음과 같은 형식으로 정의되는 것을 볼 때가 있다.
 
+```python
+def some_func(*args):
+    return 0
+
+
+def some_func2(**kwargs):
+    return 0
+
+
+```
+
+## 
