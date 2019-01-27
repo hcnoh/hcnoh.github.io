@@ -5,7 +5,7 @@ layout: default
 <hr size="3" noshade>
 
 {% for tag in site.categories %}
-{% if site.layout == "project" %}
+{% if tag[0] == "Project" %}
   {% assign pages_list = tag[1] %}
   {% for post in pages_list reversed %}
 
