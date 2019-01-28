@@ -2,7 +2,7 @@
 layout: post
 title: "TensorFlow의 Dataset 모듈 및 TFRecord 기본 사용법 정리"
 date: 2018-11-05 10:52:42
-tagline: "TensorFlow에서 학습 데이터를 불러올 수 있게 해주는 모듈인 tf.data 모듈 및 TFRecord에 대한 기본적인 사용법 정리"
+tagline: "TensorFlow에서 학습 데이터를 불러올 수 있게 해주는 모듈인 Dataset 모듈 및 TFRecord에 대한 기본적인 사용법 정리"
 categories:
 - TensorFlow
 tags:
