@@ -164,7 +164,7 @@ To https:// github.com/hcnoh/wavenet-tensorflow
 - 최종 `commit`을 취소하되 파일은 복구/삭제하지 않는 명령
 
 ```bash
->>> git reset HEAD^
+>>> git reset HEAD
 ```
 
 - 최종 `commit`을 취소하고 파일도 복구/삭제
