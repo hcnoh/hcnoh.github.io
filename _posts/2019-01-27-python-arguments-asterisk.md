@@ -43,7 +43,7 @@ Positional: 1, 2
 Type: <class 'tuple'>
 ```
 
-위와 같이 매개변수를 가변 갯수의 위치 인수로 설정하였기 때문에 임의의 변수들인 `1, 2`를 매개변수로 입력해줘도 잘 동작하는 것을 확인할 수 있다. 또한 입력받은 매개변수 `1, 2`는 `tuple` 형태로 입력되는 것도 추가적으로 확인할 수 있다. 함수를 정의할 때 매개변수를 가변적으로 그리고 따로 이름을 가지지 않은 위치 인수로 정의하고 싶다면 \*을 한개 사용하여 매개변수를 정의하면 간단할 것이다. 예컨대 아래와 같은 활용도 가능하다.
+위와 같이 매개변수를 가변 갯수의 위치 인수로 설정하였기 때문에 임의의 변수들인 `1, 2`를 매개변수로 입력해줘도 잘 동작하는 것을 확인할 수 있다. 또한 입력받은 매개변수 `1, 2`는 튜플 형태로 입력되는 것도 추가적으로 확인할 수 있다. 함수를 정의할 때 매개변수를 가변적으로 그리고 따로 이름을 가지지 않은 위치 인수로 정의하고 싶다면 \*을 한개 사용하여 매개변수를 정의하면 간단할 것이다. 예컨대 아래와 같은 활용도 가능하다.
 
 ```python
 def get_summation(*args):
@@ -70,7 +70,7 @@ Keyword: {'bar': 2, 'foo': 1}
 Type: <class 'dict'>
 ```
 
-이번에는 위에서 \*이 1개 붙어있는 경우와는 다르게 입력된 `kwargs`가 `dict` 형태로 전달되었다는 것을 확인할 수 있다. `dict` 형태로 전달된 키워드 인수 각각을 사용하고 싶다면 함수 내부에서 `dict`의 각 요소에 접근하면 될 것이다. 예컨대 다음과 같다.
+이번에는 위에서 \*이 1개 붙어있는 경우와는 다르게 입력된 `kwargs`가 딕셔너리 형태로 전달되었다는 것을 확인할 수 있다. 딕셔너리 형태로 전달된 키워드 인수 각각을 사용하고 싶다면 함수 내부에서 딕셔너리의 각 요소에 접근하면 될 것이다. 예컨대 다음과 같다.
 
 ```python
 def get_summation(**kwargs):
@@ -84,5 +84,47 @@ second_semester: 200
 first_semester: 150
 ```
 
-## 함수의 매개변수로 리스트 및 딕셔너리를 활용하는 방법: \*을 활용
+참고로 파이썬2에서는 키워드 인수 기능이 제공되지 않으며 만약 구현하고 싶으면 다음의 [링크](https://hcnoh.github.io/2018-10-03-effective-python-way21)에서 확인할 수 있듯이 아래처럼 구현하면 된다.
+
+```python
+# 파이썬2
+def safe_division(number, divisor, **kwargs):
+    ignore_overflow = kwargs.pop("ignore_overflow", False)
+    ignore_zero_div = kwargs.pop("ignore_zero_division", False)
+    if kwargs:
+        raise TypeError("Unexpected **kwargs: %r" % kwargs)
+    # ...
+```
+
+이런 방식으로 키워드 인수의 디폴트 값까지 설정이 가능하게 된다.
+
+```python
+safe_division(1, 10)
+safe_division(1, 0, ignore_zero_division=True)
+safe_division(1, 10**500, ignore_overflow=True)
+```
+
+## 함수의 매개변수로 튜플 및 딕셔너리를 활용하는 방법: \*을 활용
+이번에는 반대로 정의된 함수에 매개변수로 튜플 및 딕셔너리를 입력하는 방법을 정리해보자. 위에서의 \*의 활용 방식과 매우 유사한데 만약 튜플을 넘기고 싶다면 튜플의 변수명 앞에 \*을 하나 붙이고 함수로 넘기고 딕셔너리의 경우에는 \*을 2개 붙여서 넘기면 된다.
+
+다음은 튜플을 함수의 매개변수로 넘기는 방법에 대한 예제이다.
+
+```python
+def some_func(first_val, second_val, third_val):
+    print("first:", first_val)
+    print("second:", second_val)
+    print("third:", third_val)
+
+some_args = 4, "foo", "bar"
+print(some_args)
+
+some_func(*some_args)
+
+>>>
+(4, 'foo', 'bar')
+first: 4
+second: foo
+third: bar
+
+```
 
