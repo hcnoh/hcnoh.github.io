@@ -34,10 +34,13 @@ def some_func2(**kwargs):
 ```python
 def print_args(*args):
     print("Positional:", args)
+    print("Type:", type(args))
 
 print_args(1, 2)
 
->>> Positional: 1, 2
+>>>
+Positional: 1, 2
+Type: <class 'tuple'>
 ```
 
 위와 같이 매개변수를 가변 갯수의 위치변수로 설정하였기 때문에 임의의 변수들인 `1, 2`를 매개변수로 입력해줘도 잘 동작하는 것을 확인할 수 있다. 함수를 정의할 때 매개변수를 가변적으로 그리고 따로 이름을 가지지 않은 위치변수로 정의하고 싶다면 \*을 한개 사용하여 매개변수를 정의하면 간단할 것이다. 예컨대 아래와 같은 활용도 가능하다.
@@ -46,7 +49,10 @@ print_args(1, 2)
 def get_summation(*args):
     return sum(args)
 
-# 이 부분 확인 필요
+print(get_summation(1, 2, 3, 4))
+
+>>>
+10
 ```
 
 ## 함수의 매개변수 정의 앞에 \*이 2개 붙어있는 경우
