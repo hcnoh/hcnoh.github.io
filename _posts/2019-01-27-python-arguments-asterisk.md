@@ -125,6 +125,20 @@ some_func(*some_args)
 first: 4
 second: foo
 third: bar
-
 ```
 
+튜플 `some_args`를 정의한 이후에 함수 `some_func`에 \*을 하나 붙여서 `some_func(*some_args)`와 같이 매개변수로 넘겨주면 우리가 예상하던 결과를 얻어낼 수 있다.
+
+마찬가지로 딕셔너리 형태로 넘기는 방법을 생각해볼 수 있다.
+
+```python
+some_kwargs = {"first_val": 4, "second_val": "foo", "third_val": "bar"}
+some_func(**some_kwargs)
+
+>>> 
+first: 4
+second: foo
+third: bar
+```
+
+같은 결과를 얻을 수 있다. 이런 식으로 함수에 입력될 매개변수들을 딕셔너리 또는 튜플 형태로 구현해서 관리하는 방식은 개발자들에게 더 좋은 가독성을 제공할 수 있다는 장점이 있다.
