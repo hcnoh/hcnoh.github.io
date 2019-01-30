@@ -126,6 +126,28 @@ print(locals())
 {'__builtins__': <module 'builtins' (built-in)>, '__file__': 'namespace_example01.py', '__spec__': None, '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7fe5e0834c18>, 'a': 10, 'outer_func': <function outer_func at 0x7fe5e086bf28>, '__doc__': None, '__name__': '__main__', '__cached__': None, '__package__': None}
 ```
 
+마찬가지로 맨 위에서부터 `inner_func`에서의 지역 네임스페이스, `outer_func`에서의 지역 네임스페이스, 그리고 모듈 전체에서의 지역 네임스페이스 순서로 출력된다. `inner_func`의 지역 네임스페이스는 지역 변수 `a = 30`만을 포함하고 있으며 `outer_func`의 지역 네임스페이스는 `inner_func` 및 `a = 20`을 포함하고 있음을 확인할 수 있다. 여기까지는 너무 당연한 얘기가 될 것이며 그 다음이 중요하다.
 
+모듈 전체에서의 지역 네임스페이스는 사실 모듈의 전역 네임스페이스와 같다는 것을 직관적으로 생각해볼 수 있다. 검증을 위해서 아래의 예제를 실행시켜 보자.
 
+```python
+```python
+def outer_func():
+    a = 20
+    def inner_func():
+        a = 30
+    
+    inner_func()
+
+a = 10
+outer_func()
+print(locals())
+print(globals())
+
+>>>
+{'a': 10, 'outer_func': <function outer_func at 0x7f90c3ac5f28>, '__package__': None, '__file__': 'namespace_example01.py', '__spec__': None, '__builtins__': <module 'builtins' (built-in)>, '__name__': '__main__', '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7f90c3a8ec18>, '__doc__': None, '__cached__': None}                 
+{'a': 10, 'outer_func': <function outer_func at 0x7f90c3ac5f28>, '__package__': None, '__file__': 'namespace_example01.py', '__spec__': None, '__builtins__': <module 'builtins' (built-in)>, '__name__': '__main__', '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7f90c3a8ec18>, '__doc__': None, '__cached__': None}
+```
+
+확인해보니 똑같다.
 
