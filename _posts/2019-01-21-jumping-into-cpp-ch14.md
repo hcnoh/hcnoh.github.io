@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "Jumping Into C++ 스터디 챕터 14"
+title: "Jumping Into C++ 스터디 챕터 14: 동적 메모리 할당"
 date: 2019-01-21 21:04:26
 tagline: "Jumping Into C++ 스터디 내용 간단하게 정리"
 categories:
