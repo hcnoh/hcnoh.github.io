@@ -17,6 +17,7 @@ permalink: /2019-01-30-python-namespace
 - [링크1](https://hashcode.co.kr/questions/3/if-__name__-__main__%EC%9D%80-%EC%99%9C%EC%93%B0%EB%82%98%EC%9A%94)
 - [링크2](https://soooprmx.com/archives/5854)
 - [링크3](https://blog.confirm.ch/python-namespaces/)
+- [링크4](https://www.programiz.com/python-programming/namespace)
 
 파이썬에서는 보통 메인 모듈의 구성이 다음과 같이 되어있다.
 
@@ -47,6 +48,10 @@ if __name__ == '__main__':
 - 지역 네임스페이스: `함수 및 메서드 별로` 존재하며, 함수 내의 지역변수들의 이름들이 소속된다.
 - 빌트인 네임스페이스: `기본 내장 함수 및 기본 예외`들의 이름들이 소속된다. 파이썬으로 작성된 모든 코드 범위가 포함된다.
 
+![](/assets/img/2019-01-30-python-namespace/02.jpg)
+
+(출처: [![](/assets/img/2019-01-30-python-namespace/01.png)](https://www.programiz.com/python-programming/namespace))
+
 파이썬의 네임스페이스는 다음과 같은 특징들을 가지고 있다.
 - 네임스페이스는 딕셔너리 형태로 구현된다.
 - 모든 이름 자체는 문자열로 되어있고 각각은 해당 네임스페이스의 범위에서 실제 객체를 가리킨다.
@@ -55,7 +60,7 @@ if __name__ == '__main__':
 
 ![](/assets/img/2019-01-30-python-namespace/01.png)
 
-(출처:[https://blog.confirm.ch/python-namespaces/](https://blog.confirm.ch/python-namespaces/))
+(출처: [https://blog.confirm.ch/python-namespaces/](https://blog.confirm.ch/python-namespaces/))
 
 위의 그림은 파이썬의 네임스페이스가 어떤 것인지 잘 표현해준다. 파이썬 공식 홈페이지의 튜토리얼에서는 네임스페이스를 `이름들과 실제 객체들 사이의 매핑`이라고 정의한다.
 
