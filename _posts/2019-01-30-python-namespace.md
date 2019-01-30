@@ -131,7 +131,6 @@ print(locals())
 모듈 전체에서의 지역 네임스페이스는 사실 모듈의 전역 네임스페이스와 같다는 것을 직관적으로 생각해볼 수 있다. 검증을 위해서 아래의 예제를 실행시켜 보자.
 
 ```python
-```python
 def outer_func():
     a = 20
     def inner_func():
