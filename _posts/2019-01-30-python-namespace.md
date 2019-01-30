@@ -149,5 +149,27 @@ print(globals())
 {'a': 10, 'outer_func': <function outer_func at 0x7f90c3ac5f28>, '__package__': None, '__file__': 'namespace_example01.py', '__spec__': None, '__builtins__': <module 'builtins' (built-in)>, '__name__': '__main__', '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7f90c3a8ec18>, '__doc__': None, '__cached__': None}
 ```
 
-확인해보니 똑같다.
+확인해보니 똑같다. 모듈의 전역 네임스페이스에는 전역 변수 `a = 10`을 포함한 `outer_func` 및 기타 등등을 포함하고 있다. 여기서 유심히 살펴봐야 하는 점은 `'__name__': '__main__'`이다.
+
+다시 맨 처음 질문으로 되돌아가 보자. 그냥 실행시켜도 될 메인 코드를 왜 굳이 `if`문을 포함하여 `if '__name__' == '__main__':`을 사용하여 구현했는지에 대한 의문점이 여기서 해결될 수 있다.
+
+그 전에 짚고 넘어가야 되는 점이 하나 있다. 현재까지의 결과는 저 예제 코드를 우분투 커맨드 라인에서 실행한 결과이다. 예제를 작성한 스크립트의 파일명이 `namespace_example01.py`일 때, 다음과 같이 실행한 결과인 것이다.
+
+```bash
+>>> python namespace_example01.py
+```
+
+이렇게 실행하면 현재 전역 네임스페이스의 `__name__`이 `__main__`으로 설정되는 것을 확인할 수 있을 것이다. 또 다른 예제를 위하여 `namespace_example02.py` 파일을 열어서 다음과 같이 작성해보자.
+
+```python
+import namespace_example01
+
+a = 10
+
+>>>
+{..., '__name__': 'namespace_example01', ...}
+```
+
+그 외에 잡다한 것이 너무 많이 출력되지만 가장 중요한 부분을 살펴보면 위의 결과처럼 네임스페이스가 `'namespace_example01'`으로 출력되는 것으로 확인할 수 있다.
+
 
