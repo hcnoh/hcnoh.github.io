@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
 ![](/assets/img/2019-01-30-python-namespace/02.jpg)
 
-(출처: [![](/assets/img/2019-01-30-python-namespace/01.png)](https://www.programiz.com/python-programming/namespace))
+(출처: [https://www.programiz.com/python-programming/namespace](https://www.programiz.com/python-programming/namespace))
 
 파이썬의 네임스페이스는 다음과 같은 특징들을 가지고 있다.
 - 네임스페이스는 딕셔너리 형태로 구현된다.
