@@ -12,3 +12,6 @@ image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
 permalink: /2019-01-30-python-class-namespace
 ---
+
+지난번 [포스팅](https://hcnoh.github.io/2019-01-30-python-namespace)에 이어서 이번에는 파이썬의 클래스 네임스페이스에 대한 개념에 대해서 정리해보았다.
+
