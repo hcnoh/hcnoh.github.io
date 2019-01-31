@@ -79,6 +79,7 @@ if __name__ == '__main__':
 다음의 예제를 살펴보자.
 
 ```python
+# namespace_example01.py
 def outer_func():
     a = 20
     def inner_func():
@@ -107,6 +108,7 @@ a = 10
 여기서 각 스코프의 네임스페이스를 출력해볼 수 있다. 현재 스코프의 네임스페이스를 복사해서 반환하는 메서드는 `locals`이다. 위의 예제를 다음과 같이 수정해보자.
 
 ```python
+# namespace_example01.py
 def outer_func():
     a = 20
     def inner_func():
@@ -131,6 +133,7 @@ print(locals())
 모듈 전체에서의 지역 네임스페이스는 사실 모듈의 전역 네임스페이스와 같다는 것을 직관적으로 생각해볼 수 있다. 검증을 위해서 아래의 예제를 실행시켜 보자.
 
 ```python
+# namespace_example01.py
 def outer_func():
     a = 20
     def inner_func():
@@ -152,7 +155,7 @@ print(globals())
 
 ## '\_\_name\_\_' == '\_\_main\_\_'의 의미
 
-다시 맨 처음 질문으로 되돌아가 보자. 그냥 실행시켜도 될 메인 코드를 왜 굳이 `if`문을 포함하여 `if '__name__' == '__main__':`을 사용하여 구현했는지에 대한 의문점이 여기서 해결될 수 있다.
+다시 맨 처음 질문으로 되돌아가 보자. 그냥 실행시켜도 될 메인 코드를 왜 굳이 `if`문을 포함하여 `if __name__ == '__main__':`을 사용하여 구현했는지에 대한 의문점이 여기서 해결될 수 있다.
 
 그 전에 짚고 넘어가야 되는 점이 하나 있다. 현재까지의 결과는 저 예제 코드를 우분투 커맨드 라인에서 실행한 결과이다. 예제를 작성한 스크립트의 파일명이 `namespace_example01.py`일 때, 다음과 같이 실행한 결과인 것이다.
 
@@ -163,6 +166,7 @@ print(globals())
 이렇게 실행하면 현재 전역 네임스페이스의 `__name__`이 `__main__`으로 설정되는 것을 확인할 수 있을 것이다. 또 다른 예제를 위하여 `namespace_example02.py` 파일을 열어서 다음과 같이 작성해보자.
 
 ```python
+# namespace_example02.py
 import namespace_example01
 
 a = 10
@@ -171,7 +175,49 @@ a = 10
 {..., '__name__': 'namespace_example01', ...}
 ```
 
-그 외에 잡다한 것이 너무 많이 출력되지만 가장 중요한 부분을 살펴보면 위의 결과처럼 네임스페이스가 `'namespace_example01'`으로 출력되는 것으로 확인할 수 있다.
+그 외에 잡다한 것이 너무 많이 출력된다. 좀 더 깔끔하게 출력되게 하기 위하여 내장 변수 `__name__`를 사용하여 위의 `namespace_example01.py`를 아래와 같이 수정해보자.
 
-즉, 맨 처음 질문의 `if __name__ == '__main__':`을 해석하면 다음과 같다. `__name__`은 현재 모듈의 네임스페이스의 이름을 담고있는 내장 변수이다. 따라서 현재 모듈의 네임스페이스가 `__main__`에 해당한다면, 즉 현재 모듈이 `커맨드 라인 상에서 직접 실행되는 경우`에만 `if`문 이하를 실행하라는 의미이다.
+```python
+# namespace_example01.py
+def outer_func():
+    a = 20
+    def inner_func():
+        a = 30
+    
+    inner_func()
+
+a = 10
+outer_func()
+print("Namespace:", __name__)
+```
+
+```python
+# namespace_example02.py
+import namespace_example01
+
+a = 10
+
+>>>
+Namespace: namespace_example01
+```
+
+참고로 `namespace_example01.py`를 아래처럼 작성하여도 같은 결과를 얻을 수 있다.
+
+```python
+# namespace_example01.py
+def outer_func():
+    a = 20
+    def inner_func():
+        a = 30
+    
+    inner_func()
+
+a = 10
+outer_func()
+print("Namespace:", globals()["__name__"])
+```
+
+위의 예제들을 통해서 얻은 결과처럼 네임스페이스가 `'namespace_example01'`으로 출력되는 것으로 확인할 수 있다. 내장 변수 `__name__`은 현재 모듈의 네임스페이스의 이름을 담고있는 내장 변수이다. 이것은 `globals()["__name__"]`과 같은 표현이다.
+
+즉, 맨 처음 질문의 `if __name__ == '__main__':`을 해석하면 다음과 같다. 현재 모듈의 네임스페이스가 `__main__`에 해당한다면, 즉 현재 모듈이 `커맨드 라인 상에서 직접 실행되는 경우`에만 `if`문 이하를 실행하라는 의미이다.
 
