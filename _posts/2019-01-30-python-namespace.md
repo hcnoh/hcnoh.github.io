@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "Python 네임스페이스 개념 정리"
+title: "[Python] 네임스페이스 개념 정리"
 date: 2019-01-30 10:14:05
 tagline: "파이썬에서 변수와 객체의 매핑 관계를 나타내는 네임스페이스의 개념 및 변수 스코프에 대한 개념 정리"
 categories:
