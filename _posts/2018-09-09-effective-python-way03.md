@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 3. bytes, str, unicode의 차이점을 알자"
+title: "[Effective Python] WAY 3. bytes, str, unicode의 차이점을 알자"
 date: 2018-09-10 10:15:52
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
