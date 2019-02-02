@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 6. 한 슬라이스에 start, end, stride를 함께 쓰지 말자"
+title: "[Effective Python] WAY 6. 한 슬라이스에 start, end, stride를 함께 쓰지 말자"
 date: 2018-09-16 20:51:23
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
