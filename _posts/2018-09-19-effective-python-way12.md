@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 12. for와 while 루프 뒤에는 else 블록을 쓰지 말자"
+title: "[Effective Python] WAY 12. for와 while 루프 뒤에는 else 블록을 쓰지 말자"
 date: 2018-09-19 10:15:35
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
