@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 36. 자식 프로세스를 관리하려면 subprocess를 사용하자"
+title: "[Effective Python] WAY 36. 자식 프로세스를 관리하려면 subprocess를 사용하자"
 date: 2018-10-19 19:59:27
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
