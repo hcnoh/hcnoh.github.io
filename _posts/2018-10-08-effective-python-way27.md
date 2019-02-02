@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 27. 공개 속성보다는 비공개 속성을 사용하자"
+title: "[Effective Python] WAY 27. 공개 속성보다는 비공개 속성을 사용하자"
 date: 2018-10-08 18:36:28
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
