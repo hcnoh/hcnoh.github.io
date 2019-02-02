@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 41. 진정한 병렬성을 실현하려면 concurrent.futures를 고려하자"
+title: "[Effective Python] WAY 41. 진정한 병렬성을 실현하려면 concurrent.futures를 고려하자"
 date: 2018-10-24 19:37:48
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
