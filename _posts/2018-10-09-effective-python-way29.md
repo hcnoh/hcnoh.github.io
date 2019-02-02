@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 29. 게터와 세터 메서드 대신에 일반 속성을 사용하자"
+title: "[Effective Python] WAY 29. 게터와 세터 메서드 대신에 일반 속성을 사용하자"
 date: 2018-10-09 12:03:51
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
