@@ -1,7 +1,7 @@
 ---
 layout: project
 use_math: true
-title: "[TensorFlow] Multi-Speaker Tacotron Implementation in TensorFlow (README)"
+title: "[모델 구현] Multi-Speaker Tacotron Implementation in TensorFlow (README)"
 date: 2019-01-21 11:29:23
 tagline: "A TensorFlow implementation of Multi-Speaker Tacotron which was introduced on Deep Voice 2 paper by Baidu"
 categories:
