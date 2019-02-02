@@ -28,7 +28,7 @@ IID Noise:
 - Observation들은 모두 Zero-Mean의 특징을 갖는다.
 
 Binary Process:
-- $$P[X_t=1]=p, \ \ \ P[X_t=-1]=1-p, \ \ \ p=\frac{1}{2}$$의 특징을 가진 IID 랜덤 변수들의 시퀀스 모델이다.
+- 다음과 같은 특징을 가진 IID 랜덤 변수들의 시퀀스 모델이다: $$P[X_t=1]=p, \ \ \ P[X_t=-1]=1-p, \ \ \ p=\frac{1}{2}$$
 
 Random Walk:
 - IID 랜덤 변수들의 합계로 모델링된다.
