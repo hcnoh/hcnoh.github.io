@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 32. 지연 속성에는 __getattr__, __getattribute__, setattr__을 사용하자"
+title: "[Effective Python] WAY 32. 지연 속성에는 __getattr__, __getattribute__, setattr__을 사용하자"
 date: 2018-10-17 13:08:31
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
