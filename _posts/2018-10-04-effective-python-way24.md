@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 24. 객체를 범용으로 생성하려면 @classmethod 다형성을 이용하자"
+title: "[Effective Python] WAY 24. 객체를 범용으로 생성하려면 @classmethod 다형성을 이용하자"
 date: 2018-10-04 17:31:32
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
