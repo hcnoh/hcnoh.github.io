@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ubuntu hostname 확인 및 변경"
+title: "[Ubuntu] hostname 확인 및 변경"
 date: 2018-10-05 17:43:12
 tagline: "Ubuntu 16.04에서 hostname 확인 및 변경하는 방법 정리"
 categories:
