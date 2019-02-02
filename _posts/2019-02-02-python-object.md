@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "[Python] 객체의 개념"
+title: "[Python] 객체의 개념 정리"
 date: 2019-02-02 13:15:27
 tagline: "파이썬에서 객체의 개념에 대해서 정리"
 categories:
