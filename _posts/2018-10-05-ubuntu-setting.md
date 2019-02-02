@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ubuntu 개발 환경 세팅"
+title: "[Ubuntu] 개발 환경 세팅"
 date: 2018-10-05 18:49:38
 tagline: "Ubuntu 16.04에서 TensorFlow 개발을 위한 Tmux 및 zshell 세팅 방법 정리"
 categories:
@@ -13,7 +13,7 @@ tags:
 - vim
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
-permalink: /2018-10-05-development-environment-setting
+permalink: /2018-10-05-ubuntu-setting
 ---
 
 ## pip 설치
