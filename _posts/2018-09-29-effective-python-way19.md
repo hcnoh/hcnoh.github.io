@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 19. 키워드 인수로 선택적인 동작을 제공하자"
+title: "[Effective Python] WAY 19. 키워드 인수로 선택적인 동작을 제공하자"
 date: 2018-09-29 15:51:2
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
