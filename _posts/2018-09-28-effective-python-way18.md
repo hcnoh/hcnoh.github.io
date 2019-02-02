@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 18. 가변 위치 인수로 깔끔하게 보이게 하자"
+title: "[Effective Python] WAY 18. 가변 위치 인수로 깔끔하게 보이게 하자"
 date: 2018-09-28 20:59:58
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
