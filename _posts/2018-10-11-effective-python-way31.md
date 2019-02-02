@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 31. 재사용 가능한 @property 메서드에는 디스크립터를 사용하자"
+title: "[Effective Python] WAY 31. 재사용 가능한 @property 메서드에는 디스크립터를 사용하자"
 date: 2018-10-11 13:45:17
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
