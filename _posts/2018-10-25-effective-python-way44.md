@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 44. copyreg로 pickle을 신뢰할 수 있게 만들자"
+title: "[Effective Python] WAY 44. copyreg로 pickle을 신뢰할 수 있게 만들자"
 date: 2018-10-25 10:56:25
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
