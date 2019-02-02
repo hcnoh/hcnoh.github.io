@@ -36,7 +36,7 @@ Random Walk:
 - 특히 $$\{X_t\}$$가 Binary Process라면 $$\{S_t\}$$는 Simple Symmetric Random Walk라고 한다.
 
 ## Trend와 Seasonality를 가진 모델
-이러한 모델은 보통 $$X_t = m_t + Y_t$$의 형태로 모델링될 수 있다. $$m_t$$는 천천히 변화하는 Trend Component이고 Y_t는 Zero-Mean의 랜덤 변수이다. 보통 이러한 모델은 $$m_t$$를 다음과 같이 모델링하여서 Least Square Regression을 사용하여 파라미터 $$a_0, a_1, a_2$$를 찾아낸다.
+이러한 모델은 보통 $$X_t = m_t + Y_t$$의 형태로 모델링될 수 있다. $$m_t$$는 천천히 변화하는 Trend Component이고 $$Y_t$$는 Zero-Mean의 랜덤 변수이다. 보통 이러한 모델은 $$m_t$$를 다음과 같이 모델링하여서 Least Square Regression을 사용하여 파라미터 $$a_0, a_1, a_2$$를 찾아낸다.
 
 $$m_t = a_0 + a_1t + a_2t^2$$
 
