@@ -57,6 +57,22 @@ $$s_t = a_0 + \sum_{j=1}^k(a_j \cos(\lambda_j t) + b_j \sin(\lambda_j t))$$
 
 여기서 $$a_0,\cdots, a_k, b_1,\cdots, b_k$$는 찾아내야 하는 파라미터이고 $$\lambda_1,\cdots, \lambda_k$$는 고정된 주파수이다. 마찬가지로 Least Square Regression을 이용하여 파라미터를 찾아낼 수 있다.
 
+## Time Series 분석의 기본적인 접근 방법
+Time Series 모델의 분석은 다음과 같은 방법으로 수행한다.
+1. 그래프의 주된 특징을 분석하여 다음과 같은 특징을 지니고 있는지 파악한다.
+  - Trend
+  - Seasonal Component
+  - 눈에 띄는 급격한 변화 및 Observation
+2. Stationary Residual을 찾기 위해서 Trend 정보 및 Seasonal Component 정보를 삭제
+3. Residual에 Fit하기 위한 모델을 선정
+4. Residual에 대한 예측을 통해서 실제 시퀀스인 $$\{X_t\}$$에 대한 예측도 가능
+5. Fourier 분석을 시도해보는 것이 좋음
+
+여기서 잠깐 짚고 넘어가볼 부분이 있다. 위에서 모델링을 통한 Least Square Regression을 이용하여 모델의 파라미터를 찾아내는 방식은 최근의 빅데이터와 딥러닝(여기서는 RNN 계열)을 이용하는 방식에 비해서 일반적으로 더 낮은 성능을 보이고 있다.
+
+
+
+
 
 
 
