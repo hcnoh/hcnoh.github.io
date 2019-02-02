@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 28. 커스텀 컨테이너 타입은 collections.abc의 클래스를 상속받게 만들자"
+title: "[Effective Python] WAY 28. 커스텀 컨테이너 타입은 collections.abc의 클래스를 상속받게 만들자"
 date: 2018-10-09 09:47:31
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
