@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 35. 메타클래스로 클래스 속성에 주석을 달자"
+title: "[Effective Python] WAY 35. 메타클래스로 클래스 속성에 주석을 달자"
 date: 2018-10-19 18:57:12
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
