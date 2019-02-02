@@ -25,8 +25,13 @@ Time Series란 Observation $$x_t$$의 시퀀스이다. 대부분의 공학적인
 IID Noise:
 - Trend도 없고 Seasonal Component도 없는 모델이다.
 - Observation들이 각각 독립적(Independent)이고 동일한 분포를 갖는(Identical) 랜덤 변수이다.
-- Observation들은 모두 Zero-Mean 의 특징을 갖는다.
+- Observation들은 모두 Zero-Mean의 특징을 갖는다.
 
 Binary Process:
 - $$P[X_t=1]=p, \ \ P[X_t=-1]=1-p, \ \ p=\frac{1}{2}$$의 특징을 가진 IID 랜덤 변수들의 시퀀스 모델이다.
+
+Random Walk:
+- IID 랜덤 변수들의 합계로 모델링
+- $$S_t = X_1+X_2+\cdots + X_t, \ \ \text{for} \ t=1,2,\cdots, \ \ \{X_t\}: \ \text{iid Noise}$$
+- 특히 $$\{X_t\}$$가 Binary Process라면 $$\{S_t\}$$는 Simple Symmetric Random Walk라고 한다.
 
