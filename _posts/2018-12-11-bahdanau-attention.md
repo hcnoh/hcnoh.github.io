@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "Bahdanau Attention 개념 정리"
+title: "[Attention] Bahdanau Attention 개념 정리"
 date: 2018-12-11 18:26:08
 tagline: "가장 기본적인 Attention 메커니즘인 Bahdanau Attention에 대해서 스터디하여 정리"
 categories:
