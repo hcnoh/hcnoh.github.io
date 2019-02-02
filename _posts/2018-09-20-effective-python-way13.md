@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 13. try/except/else/finally에서 각 블록의 장점을 이용하자"
+title: "[Effective Python] WAY 13. try/except/else/finally에서 각 블록의 장점을 이용하자"
 date: 2018-09-20 14:55:45
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
