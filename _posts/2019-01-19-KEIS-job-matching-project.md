@@ -1,7 +1,7 @@
 ---
 layout: project
 use_math: true
-title: "[정부과제] 한국 고용정보원 일자리매칭 과제"
+title: "[정부 과제] 한국 고용정보원 일자리매칭 과제"
 date: 2019-01-19 01:21:34
 tagline: "A TensorFlow implementation of Google's WaveNet"
 categories:
