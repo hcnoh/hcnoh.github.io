@@ -40,5 +40,18 @@ Random Walk:
 
 $$m_t = a_0 + a_1t + a_2t^2$$
 
+## Harmonic Regression
+대부분의 Time Series는 날씨 등의 Season에 따라서 바뀌는 팩터의 영향을 받게 된다. 이러한 효과는 고정된 주기를 지닌 Periodic Component를 이용하여 모델링할 수 있다.
+
+Seasonal Effect를 표현하기 위해서 다음과 같이 모델링할 수 있다:
+
+$$X_t = s_t + Y_t$$
+
+여기서 $$s_t$$는 다음과 같이 Harmonic들의 합으로 나타낼 수 있는 주기 $$d$$를 가진 시간 $$t$$에 대한 함수이다.
+
+$$s_t = a_0 + \sum_{j=1}^k(a_j \cos(\lambda_j t) + b_j \sin(\lambda_j t))$$
+
+
+
 
 
