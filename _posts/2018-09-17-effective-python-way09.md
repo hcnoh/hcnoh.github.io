@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 9. 컴프리헨션이 클 때는 제너레이터 표현식을 고려하자"
+title: "[Effective Python] WAY 9. 컴프리헨션이 클 때는 제너레이터 표현식을 고려하자"
 date: 2018-09-17 20:24:26
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
