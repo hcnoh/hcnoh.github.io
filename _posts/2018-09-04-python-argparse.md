@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Python Argparse 모듈 정리"
+title: "[Python] Argparse 모듈 정리"
 date: 2018-09-04 22:47:51
 tagline: "Python의 Argparse 모듈의 간단한 예제를 통한 기능 정리"
 categories:
@@ -9,7 +9,7 @@ tags:
 - python
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
-permalink: /2018-09-04-argparse
+permalink: /2018-09-04-python-argparse
 ---
 
 이번 포스팅은 다음의 링크들을 참고하여 작성하였다.
