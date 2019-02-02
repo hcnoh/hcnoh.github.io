@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Git 처음 사용하기"
+title: "[Git] 처음 사용하기"
 date: 2018-08-18 14:13:35
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
