@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 14. None을 반환하기보다는 예외를 일으키자"
+title: "[Effective Python] WAY 14. None을 반환하기보다는 예외를 일으키자"
 date: 2018-09-26 17:39:13
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
