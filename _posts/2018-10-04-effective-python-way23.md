@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "WAY 23. 인터페이스가 간단하면 클래스 대신 함수를 받자"
+title: "[Effective Python] WAY 23. 인터페이스가 간단하면 클래스 대신 함수를 받자"
 date: 2018-10-04 15:01:51
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- 이펙티브 파이썬 스터디
+- Effective Python
 tags:
 - python
 image: /thumbnail-mobile.png
