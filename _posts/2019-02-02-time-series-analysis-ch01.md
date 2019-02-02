@@ -51,6 +51,7 @@ $$X_t = s_t + Y_t$$
 
 $$s_t = a_0 + \sum_{j=1}^k(a_j \cos(\lambda_j t) + b_j \sin(\lambda_j t))$$
 
+여기서 $$a_0,\cdots, a_k, b_1,\cdots, b_k$$는 찾아내야 하는 파라미터이고 $$\lambda_1,\cdots, \lambda_k$$는 고정된 주파수이다. 마찬가지로 Least Square Regression을 이용하여 파라미터를 찾아낼 수 있다.
 
 
 
