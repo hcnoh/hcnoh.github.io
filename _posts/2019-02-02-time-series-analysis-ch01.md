@@ -14,7 +14,7 @@ permalink: /2019-02-02-time-series-analysis-ch01
 ---
 
 이번 포스팅은 다음의 도서를 스터디하여 정리한 내용이다.
-- Peter J Brockwell, Richard A Davis "Introduction to Time Series and Forecasting"
+- Peter. J. Brockwell, Richard. A. Davis, "Introduction to Time Series and Forecasting"
 
 ## Time Series Analysis란?
 Time Series란 Observation $$x_t$$의 시퀀스이다. 대부분의 공학적인 문제 및 사회 과학적 문제, 그리고 경제학적인 문제들은 이러한 Time Series로 표현될 수 있다.
