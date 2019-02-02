@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "Git Branch 사용 방법 정리"
+title: "[Git] Branch 사용 방법 정리"
 date: 2019-01-12 12:26:37
 tagline: "Git에서 버전 관리를 위해 사용되는 Branch 사용 방법 정리"
 categories:
