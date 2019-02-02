@@ -1,7 +1,7 @@
 ---
 layout: project
 use_math: true
-title: "WaveNet Implementation in TensorFlow (README)"
+title: "[TensorFlow] WaveNet Implementation in TensorFlow (README)"
 date: 2019-01-19 01:29:33
 tagline: "A TensorFlow implementation of Google's WaveNet"
 categories:
