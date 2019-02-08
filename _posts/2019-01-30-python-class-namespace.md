@@ -47,6 +47,7 @@ print(dir())
 class ClassExample:
     a = 10
 
+
 print(dir())
 
 >>>
@@ -61,14 +62,15 @@ class ClassExample(object):
     print(dir())    # 현재 스코프: 클래스 내부의 네임스페이스
 
 
+class_instance = ClassExample()
 print(dir())
 
 >>>
 ['__module__', '__qualname__', 'a']
-['ClassExample', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__']
+['ClassExample', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'class_instance']
 ```
 
-파이썬의 클래스는 모듈과 마찬가지로 각각의 네임스페이스를 갖는다. 클래스를 정의하는 동안에 `dir` 메서드는 현재 스코프인 클래스 내부의 네임스페이스 이름 리스트를 반환할 것이고 그에따라 클래스 내부의 지역 변수를 포함한 네임스페이스의 이름 리스트를 확인할 수 있을 것이다.
+파이썬의 클래스는 모듈과 마찬가지로 각각의 네임스페이스를 갖는다. 클래스를 정의하는 동안에 `dir` 메서드는 현재 스코프인 클래스 내부의 네임스페이스 이름 리스트를 반환할 것이고 그에따라 클래스 내부의 지역 변수를 포함한 네임스페이스의 이름 리스트를 확인할 수 있을 것이다. 또한 추가적으로 모듈의 네임스페이스에 클래스의 인스턴스인 `class_instance`도 추가되어 있는 것도 확인해볼 수 있다.
 
 ## 클래스 네임스페이스 반환: 내장변수 \_\_dict\_\_ 활용
 파이썬의 클래스는 각각의 네임스페이스를 갖는다. 또한 `dir` 메서드를 통해서 현재 네임스페이스의 이름 리스트를 반환받을 수 있다고 언급하였다. 만약 이름 리스트가 아닌 실제 네임스페이스의 사본을 반환받고 싶은 경우에는 파이썬 내장변수 `__dict__`를 사용하면 된다. 하지만 이 경우에 주의해야 할 사항들이 몇 가지 있다. 아래의 예제를 살펴보자.
@@ -110,4 +112,31 @@ print(ClassExample.__dict__)
 {'__module__': '__main__', '__dict__': <attribute '__dict__' of 'ClassExample' objects>, '__weakref__': <attribute '__weakref__' of 'ClassExample' objects>, 'b': 20, '__init__': <function ClassExample.__init__ at 0x7f1cae105840>, '__doc__': None, 'a': 10}
 ```
 
-예상한 대로 인스턴스의 네임스페이스에 인스턴스 변수인 `c`가 추가되어 있는 것을 확인할 수 있다.
+예상한 대로 인스턴스의 네임스페이스에 인스턴스 변수인 `c`가 추가되어 있는 것을 확인할 수 있다. 위의 예제들을 통해서 우리는 클래스의 네임스페이스는 클래스 자체의 네임스페이스 뿐 아니라 각각 인스턴스 별로 따로 네임스페이스를 관리하고 있을 것이라고 유추해볼 수 있다. 이것을 확인해보기 위해서 다음의 예제를 살펴보자.
+
+```python
+class ClassExample(object):
+    a = 10
+    b = 20
+    
+    def __init__(self):
+        self.c = 30
+    
+    def some_func(self):
+        self.d = 40
+
+
+class_instance0 = ClassExample()
+class_instance1 = ClassExample()
+
+class_instance1.some_func()
+
+print(class_instance0.__dict__)
+print(class_instance1.__dict__)
+
+>>>
+{'c': 30}  
+{'c': 30, 'd': 40}
+```
+
+두 인스턴스의 네임스페이스가 다른 것을 확인할 수 있다. 두 번째 인스턴스인 `class_instance1`은 `some_func` 메서드를 통해서 인스턴스 변수 `d`를 추가했기 때문에 인스턴스의 네임스페이스에 `d`가 추가되어 있을 것이다.
