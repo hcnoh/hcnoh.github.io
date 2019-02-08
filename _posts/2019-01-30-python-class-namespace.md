@@ -17,7 +17,7 @@ permalink: /2019-01-30-python-class-namespace
 - [링크1](https://wikidocs.net/1743)
 
 ## 파이썬의 네임스페이스 확인
-파이썬에서 현재 스코프의 네임스페이스를 확인하는 방법으로는 `locals` 메서드를 사용하는 것을 이전 [포스팅](https://hcnoh.github.io/2019-01-30-python-namespace)에서 설명했던 것 같다. 한편 `locals` 메서드는 딕셔너리 형태의 네임스페이스를 복사해서 반환하는 메서드인데 여기서 네임스페이스의 Key인 `이름`들만을 반환하는 `dir` 메서드가 있다. 이전 [포스팅](https://hcnoh.github.io/2019-01-30-python-namespace)에서 사용했던 예제들을 이용하여 `dir`을 사용하는 예제를 살펴보도록 하자.
+파이썬에서 현재 스코프의 네임스페이스를 확인하는 방법으로는 `locals` 메서드를 사용하는 것을 이전 [포스팅](https://hcnoh.github.io/2019-01-30-python-namespace)에서 설명했던 것 같다. 한편 `locals` 메서드는 딕셔너리 형태의 네임스페이스를 복사해서 반환하는 메서드인데 여기서 네임스페이스의 Key들인 이름들만을 반환하는 `dir` 메서드가 있다. 이전 [포스팅](https://hcnoh.github.io/2019-01-30-python-namespace)에서 사용했던 예제들을 이용하여 `dir`을 사용하는 예제를 살펴보도록 하자.
 
 ```python
 # namespace_example01.py
