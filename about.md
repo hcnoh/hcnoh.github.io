@@ -24,7 +24,7 @@ permalink: /about
 
 ## Skills
 - Languages: Korean, English
-- Programming Languages: Python, C++(Novice), Java(Novice), MatLab, LaTex
+- Programming Languages: Python, C++(Novice), Java(Novice), MATLAB, LaTex
 - Deep Learning Frameworks: TensorFlow, Keras, DL4J(Novice)
 - Data Analysis: Numpy
 - Speech Signal Processing: Librosa
