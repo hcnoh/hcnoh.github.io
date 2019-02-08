@@ -16,15 +16,20 @@ permalink: /about
 - KAIST 전기 및 전자공학부 석사졸 (세부전공: 머신러닝 및 강화학습) - 2018. 2
 
 ## Interests
-- Deep Learning for Natural Language Processing
 - Deep Learning for Speech Recognition and Synthesis
+- Deep Learning for Natural Language Processing
+- Statistical Dynamics
 - Reinforcement Learning
-- Big-data Analysis
+- Data Analysis
 
 ## Skills
 - Languages: Korean, English
-- Programming Languages: Python, Matlab, Latex
-- Frameworks & Tools: TensorFlow, Keras, Git
+- Programming Languages: Python, C++(Novice), Java(Novice), MatLab, LaTex
+- Deep Learning Frameworks: TensorFlow, Keras, DL4J(Novice)
+- Data Analysis: Numpy
+- Speech Signal Processing: Librosa
+- Natural Language Processing: KoNLPy, Mecab
+- Other Tools: Linux, Git, Jekyll(Novice)
 
 ## Projects
 - [Projects List](https://hcnoh.github.io/projects)
