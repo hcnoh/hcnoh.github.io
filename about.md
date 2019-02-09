@@ -13,7 +13,8 @@ permalink: /about
 
 ## Education
 - 연세대학교 전기전자공학부 학사졸 - 2016. 2
-- KAIST 전기 및 전자공학부 석사졸 (세부전공: 머신러닝 및 강화학습) - 2018. 2
+- KAIST 전기 및 전자공학부 석사졸 - 2018. 2
+  - 세부전공: 머신러닝 및 강화학습
 
 ## Interests
 - Deep Learning for Speech Recognition and Synthesis
