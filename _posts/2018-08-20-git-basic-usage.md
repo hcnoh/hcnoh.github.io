@@ -246,7 +246,7 @@ origin https://github.com/hcnoh/example.git (fetch)
 origin https://github.com/hcnoh/example.git (push)
 ```
 
-URL을 만약 https://github.com/hcnoh/example-2로 변경하고 싶다면 다음과 같이 명령을 수행하면 된다.
+URL을 만약 (https://github.com/hcnoh/example-2)로 변경하고 싶다면 다음과 같이 명령을 수행하면 된다.
 
 ```bash
 >>> git remote set-url origin https://github.com/hcnoh/example-2.git
