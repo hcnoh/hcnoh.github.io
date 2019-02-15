@@ -260,4 +260,4 @@ origin https://github.com/hcnoh/example-2.git (fetch)
 origin https://github.com/hcnoh/example-2.git (push)
 ```
 
-잘 변경된 것을 
+잘 변경된 것을 확인할 수 있다.
