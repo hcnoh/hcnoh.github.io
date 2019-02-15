@@ -237,7 +237,7 @@ To https://github.com/hcnoh/wavenet-tensorflow-2.git
 >>> git remote rm github_origin
 ```
 
-## Git Origin의 URL 변경
+## Origin의 URL 변경
 만약 원격 저장소의 위치 이동 등으로 인하여 URL을 바꿔줘야 하는 상황이 발생한다면 다음과 같이 수행하면 된다. 먼저 현재 원격 저장소의 상태를 확인하기 위하여 `git remote -v` 명령을 수행해 보자.
 
 ```bash
