@@ -19,9 +19,9 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
 - `home` 경로: `~`
   - 예제: `home`에다가 `temp`라는 이름의 디렉토리 생성
 
-   ```bash
-   >>> mkdir ~/temp
-   ```
+      ```bash
+      >>> mkdir ~/temp
+      ```
 
 - 바로 상위 경로: `..`
   - 예제: 현재 디렉토리의 상위 디렉토리로 이동
