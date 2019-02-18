@@ -19,38 +19,38 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
 - `home` 경로: `~`
   - 예제: `home`에다가 `temp`라는 이름의 디렉토리 생성
 
-```bash
->>> mkdir ~/temp
-```
+   ```bash
+   >>> mkdir ~/temp
+   ```
 
 - 바로 상위 경로: `..`
   - 예제: 현재 디렉토리의 상위 디렉토리로 이동
 
-```bash
->>> cd ..
-```
+   ```bash
+   >>> cd ..
+   ```
 
 - 현재 경로: `.`
   - 예제: 현재 디렉토리에 `temp`라는 이름의 디렉토리 생성
 
-```bash
->>> mkdir ./temp
-```
+   ```bash
+   >>> mkdir ./temp
+   ```
 
 ## 파일/디렉토리 생성, 이동, 삭제
 - 디렉토리 생성: `mkdir`
   - 예제: `dir_name`라는 이름의 디렉토리 생성
 
-```bash
->>> mkdir dir_name
-```
+   ```bash
+   >>> mkdir dir_name
+   ```
 
 - 파일 및 디렉토리 삭제: `rm -rf`
   - 예제: `dir_name`라는 디렉토리와 하위 디렉토리 및 파일 전부 삭제
 
-```bash
->>> rm -rf dir_name
-```
+   ```bash
+   >>> rm -rf dir_name
+   ```
 
 - 파일 및 디렉토리 복사: `cp`
   - 옵션:
@@ -70,9 +70,9 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
     - `-R`: 디렉터리를 복사할 경우 그 안에 포함된 모든 하위경로와 파일들을 모두 복사
   - 예제: 현재 위치에 있는 `dir_name`라는 디렉토리를 `home`으로 복사
 
-```bash
->>> cp -r ./dir_name ~/dir_name
-```
+   ```bash
+   >>> cp -r ./dir_name ~/dir_name
+   ```
 
 - 파일 및 디렉토리 이동 (또는 이름 변경): `mv`
   - 옵션:
@@ -82,31 +82,31 @@ permalink: /2018-10-09-ubuntu-frequent-bash-command
     - `-v`: 이동 상태를 표시
   - 예제 `./temp`의 디렉토리를 `./temp_`으로 이름 변경
 
-```bash
->>> mv ./temp ./temp_
-```
+   ```bash
+   >>> mv ./temp ./temp_
+   ```
 
 ## zip 압축 파일 관련
 - zip 압축 풀기:
 
-```bash
->>> unzip file_name.zip
-```
+   ```bash
+   >>> unzip file_name.zip
+   ```
 
 - 특정 폴더로 zip 압축 풀기:
 
-```bash
->>> unzip file_name.zip -d ./target
-```
+   ```bash
+   >>> unzip file_name.zip -d ./target
+   ```
 
 - 현재 폴더에 있는 내용 zip 압축 하기:
 
-```bash
->>> zip test.zip ./*
-```
+   ```bash
+   >>> zip test.zip ./*
+   ```
 
 - 하위 폴더까지 전부 압축:
 
-```bash
->>> zip -r test.zip ./*
-```
+   ```bash
+   >>> zip -r test.zip ./*
+   ```
