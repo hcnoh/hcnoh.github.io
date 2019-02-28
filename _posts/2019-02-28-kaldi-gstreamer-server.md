@@ -34,5 +34,32 @@ Kaldi Gstreamer Server는 [링크1](https://github.com/alumae/kaldi-gstreamer-se
 
 참고로 이 툴킷은 파이썬 버전 2에서 사용 가능하며 파이썬 2에서는 JSON이 기본적으로 설치가 이미 되어있어서([참고](https://stackoverflow.com/questions/41466431/pip-install-json-fails-on-ubuntu)) JSON을 따로 설치할 필요는 없다.
 
+그 외에는 Kaldi 및 Kaldi와 관련된 여러 패키지들이 필요한데 [링크2](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)에서 툴킷을 실행할 수 있는 도커 이미지를 제공한다. 따라서 도커를 이용하여 개발 환경을 구축할 필요가 있다.
+
+일단 여기서는 도커가 이미 설치되어 있다고 가정한다. 도커가 설치되어 있는지 확인하기 위해서는 다음의 명령을 수행하면 된다.
+
+```bash
+>>> docker version
+Client:
+ Version:           18.06.0-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        0ffa825
+ Built:             Wed Jul 18 19:11:02 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.0-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       0ffa825
+  Built:            Wed Jul 18 19:09:05 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+```
+
+위와 같은 형식으로 출력이 된다면 잘 설치가 되어있는 것이다.
 
 
