@@ -15,5 +15,8 @@ author: "Hyungcheol Noh"
 permalink: /2019-02-28-kaldi-gstreamer-server
 ---
 
+이번 포스팅은 다음의 링크들을 참고하여 작성하였다:
+- [링크1](https://github.com/alumae/kaldi-gstreamer-server?fbclid=IwAR35dhlAFrf59cdZ9B67iZe1QFUHwwmiRSrzBDwGwLaAqUZb4bvt2ttWA3U)
+- [링크2](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
 
 
