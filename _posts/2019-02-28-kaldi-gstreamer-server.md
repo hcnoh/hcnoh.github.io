@@ -78,3 +78,21 @@ e24641a195b5: Pull complete
 Digest: sha256:74a1bc0818dbde060e3966767e4caaf9d8f039146120c121841c570b6efc6e04
 Status: Downloaded newer image for jcsilva/docker-kaldi-gstreamer-server:latest
 ```
+
+이미지가 잘 받아졌는지 확인하기 위해서는 다음의 명령을 수행하면 된다.
+
+```bash
+>>> docker images
+REPOSITORY                              TAG                 IMAGE ID            CREATED             SIZE
+<none>                                  <none>              348b52ea004f        2 months ago        362MB
+ubuntu                                  14.04               f17b6a61de28        3 months ago        188MB
+tensorflow/serving                      latest-gpu          ad003bd9bd92        3 months ago        2.18GB
+tensorflow/serving                      latest              d42952c6f8a6        3 months ago        230MB
+nvidia/cuda                             latest              04a9ce0dec6d        6 months ago        1.96GB
+tensorflow/tensorflow                   latest-gpu          49b48d227d6e        6 months ago        3.1GB
+hello-world                             latest              2cb0d9787c4d        7 months ago        1.85kB
+jcsilva/docker-kaldi-gstreamer-server   latest              13d616ef11e1        8 months ago        1.11GB
+```
+
+마지막 줄에 `jcsilva/docker-kaldi-gstreamer-server`라는 것이 보이는 것을 확인할 수 있다면 이미지를 제대로 받아온 것이다.
+
