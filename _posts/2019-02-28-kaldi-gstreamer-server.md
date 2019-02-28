@@ -23,7 +23,7 @@ permalink: /2019-02-28-kaldi-gstreamer-server
 음성 인식 개발용 툴킷으로 최근 가장 많이 사용되는 것으로 알려진 것이 바로 Kaldi라는 툴킷이다. Kaldi는 GMM(Gaussian Mixture Model), HMM(Hidden Markov Model) 등의 통계 기반의 모델 및 최근의 딥러닝 모델들까지 포함하는 음성 인식 모델들을 제공해줄 뿐 아니라 Language Model 같은 전/후처리 모듈들 역시 제공해주는 사실상 음성 인식을 위한 올인원 패키지라고 볼 수 있다.
 Kaldi Gstreamer Server는 [링크1](https://github.com/alumae/kaldi-gstreamer-server?fbclid=IwAR35dhlAFrf59cdZ9B67iZe1QFUHwwmiRSrzBDwGwLaAqUZb4bvt2ttWA3U)에서 확인할 수 있듯이 Kaldi를 통해서 얻어진 음성 인식 모델을 실행하기 위한 서버 구축을 도와주는 프레임워크라고 보면 된다. 현재 처음 사용중이라 자세한 사항은 아직 파악이 되지 않았지만 사용하면서 차차 업데이트를 진행하도록 하겠다.
 
-## 개발 환경 구축 
+## 파이썬 패키지 
 [링크1](https://github.com/alumae/kaldi-gstreamer-server?fbclid=IwAR35dhlAFrf59cdZ9B67iZe1QFUHwwmiRSrzBDwGwLaAqUZb4bvt2ttWA3U)에서 확인할 수 있듯이 Kaldi Gstreamer Server를 사용하기 위해 필요한 파이썬 패키지는 아래와 같이 정리할 수 있다.
 
 파이썬 패키지 Requirements:
@@ -36,6 +36,7 @@ Kaldi Gstreamer Server는 [링크1](https://github.com/alumae/kaldi-gstreamer-se
 
 그 외에는 Kaldi 및 Kaldi와 관련된 여러 패키지들이 필요한데 [링크2](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)에서 툴킷을 실행할 수 있는 도커 이미지를 제공한다. 따라서 도커를 이용하여 개발 환경을 구축할 필요가 있다.
 
+## 도커 설치 확인
 일단 여기서는 도커가 이미 설치되어 있다고 가정한다. 도커가 설치되어 있는지 확인하기 위해서는 다음의 명령을 수행하면 된다.
 
 ```bash
@@ -62,4 +63,18 @@ Server:
 
 위와 같은 형식으로 출력이 된다면 잘 설치가 되어있는 것이다.
 
+## 도커 이미지 가져오기
+다음의 명령을 통해서 Kaldi Gstreamer Server 도커 이미지를 가져올 수 있다.
 
+```bash
+>>> docker pull jcsilva/docker-kaldi-gstreamer-server
+Using default tag: latest
+latest: Pulling from jcsilva/docker-kaldi-gstreamer-server
+3d77ce4481b1: Pull complete 
+53457bfe6a81: Pull complete 
+6fddb0335893: Pull complete 
+8e48209c42f9: Pull complete 
+e24641a195b5: Pull complete 
+Digest: sha256:74a1bc0818dbde060e3966767e4caaf9d8f039146120c121841c570b6efc6e04
+Status: Downloaded newer image for jcsilva/docker-kaldi-gstreamer-server:latest
+```
