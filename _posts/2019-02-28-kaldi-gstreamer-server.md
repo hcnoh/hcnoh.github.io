@@ -96,3 +96,33 @@ jcsilva/docker-kaldi-gstreamer-server   latest              13d616ef11e1        
 
 마지막 줄에 `jcsilva/docker-kaldi-gstreamer-server`라는 것이 보이는 것을 확인할 수 있다면 이미지를 제대로 받아온 것이다.
 
+## 도커 컨테이너 생성
+다운받은 도커 이미지를 이용해서 도커 컨테이너를 생성할 차례다. 다운받은 도커 이미지를 이용하여 도커 컨테이너를 생성하면 생성된 도커 컨테이너는 일종의 가상 환경의 역할을 할 수 있으며 여기서는 Kaldi를 포함한 여러 패키지를 사용할 수 있는 가상 환경이 생성되는 셈이다.
+
+먼저 도커 컨테이너를 생성하기 전에 다음의 디렉토리를 생성해 준다.
+
+```bash
+>>> mkdir ~/kaldi-practice
+>>> mkdir ~/kaldi-practice/models
+>>> cd ~/kaldi-practice/models
+```
+
+그리고나서 도커 컨테이너를 생성하기 위해서 다음의 명령을 수행한다.
+
+```bash
+>>> docker run -it -p 8080:80 -v ~/kaldi-practice/kaldi_models:/opt/models jcsilva/docker-kaldi-gstreamer-server:latest /bin/bash
+root@d63a3c7522dc:/opt#
+```
+
+아마 이런식으로 터미널에 출력이 될 것이다. 그러면 도커 컨테이너를 생성하여 현재 컨테이너에 진입한 상태이다. 컨테이너가 제대로 생성되었는지 확인하기 위해서 다음과 같이 몇 가지 명령을 수행해 본다.
+
+```bash
+root@d63a3c7522dc:/opt# ls
+gst-kaldi-nnet2-online	kaldi  kaldi-gstreamer-server  models  start.sh  stop.sh
+```
+
+잘 실행이 된 것이다. 일단 다른 작업이 더 필요하기 때문에 현재 생성된 컨테이너는 종료하고 빠져나오도록 한다.
+
+```bash
+root@d63a3c7522dc:/opt# exit
+```
