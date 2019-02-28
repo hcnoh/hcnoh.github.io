@@ -124,5 +124,5 @@ gst-kaldi-nnet2-online	kaldi  kaldi-gstreamer-server  models  start.sh  stop.sh
 잘 실행이 된 것이다. 일단 다른 작업이 더 필요하기 때문에 현재 생성된 컨테이너는 종료하고 빠져나오도록 한다.
 
 ```bash
-root@d63a3c7522dc:/opt# exit
+root@d63a3c7522dc:/opt# \exit
 ```
