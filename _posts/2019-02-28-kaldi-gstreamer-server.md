@@ -103,8 +103,8 @@ jcsilva/docker-kaldi-gstreamer-server   latest              13d616ef11e1        
 
 ```bash
 >>> mkdir ~/kaldi-practice
->>> mkdir ~/kaldi-practice/models
->>> cd ~/kaldi-practice/models
+>>> mkdir ~/kaldi-practice/kaldi_models
+>>> cd ~/kaldi-practice/kaldi_models
 ```
 
 그리고나서 도커 컨테이너를 생성하기 위해서 다음의 명령을 수행한다.
@@ -126,3 +126,48 @@ gst-kaldi-nnet2-online	kaldi  kaldi-gstreamer-server  models  start.sh  stop.sh
 ```bash
 root@d63a3c7522dc:/opt# exit
 ```
+
+## Kaldi 모델 다운로드
+[링크2](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)에서는 간단한 예제를 한 번 돌려보기 위한 메뉴얼을 제공한다. 메뉴얼에서 모델을 다운로드받기 위한 명령은 다음과 같이 나와있다.
+
+```bash
+>>> cd ~/kaldi-practice/kaldi_models
+>>> wget https://phon.ioc.ee/~tanela/tedlium_nnet_ms_sp_online.tgz
+```
+
+혹시 다음과 같은 에러가 발생할 수도 있다.
+
+```bash
+--2019-02-28 09:35:32--  https://phon.ioc.ee/~tanela/tedlium_nnet_ms_sp_online.tgz
+Resolving phon.ioc.ee (phon.ioc.ee)... 193.40.251.126
+Connecting to phon.ioc.ee (phon.ioc.ee)|193.40.251.126|:443... connected.
+ERROR: cannot verify phon.ioc.ee's certificate, issued by ‘CN=TERENA SSL CA 3,O=TERENA,L=Amsterdam,ST=Noord-Holland,C=NL’:
+  Issued certificate has expired.
+To connect to phon.ioc.ee insecurely, use `--no-check-certificate'.
+```
+
+안전하지 않은 접근이라는 에러이다. 만약 위와 같은 에러가 발생한다면 다음과 같이 명령을 수정해본다.
+
+```bash
+>>> wget https://phon.ioc.ee/~tanela/tedlium_nnet_ms_sp_online.tgz --no-check-certificate
+```
+
+설치가 진행이 될 것이다.
+
+```bash
+--2019-02-28 09:36:55--  https://phon.ioc.ee/~tanela/tedlium_nnet_ms_sp_online.tgz
+Resolving phon.ioc.ee (phon.ioc.ee)... 193.40.251.126
+Connecting to phon.ioc.ee (phon.ioc.ee)|193.40.251.126|:443... connected.
+WARNING: cannot verify phon.ioc.ee's certificate, issued by ‘CN=TERENA SSL CA 3,O=TERENA,L=Amsterdam,ST=Noord-Holland,C=NL’:
+  Issued certificate has expired.
+HTTP request sent, awaiting response... 200 OK
+Length: 1552598256 (1.4G) [application/x-gzip]
+Saving to: ‘tedlium_nnet_ms_sp_online.tgz’
+
+tedlium_nnet_ms_sp_online.tgz                      100%[================================================================================================================>]   1.45G   586KB/s    in 16m 40s 
+
+2019-02-28 09:53:36 (1.48 MB/s) - ‘tedlium_nnet_ms_sp_online.tgz’ saved [1552598256/1552598256]
+```
+
+
+
