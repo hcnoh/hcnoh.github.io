@@ -169,5 +169,46 @@ tedlium_nnet_ms_sp_online.tgz                      100%[========================
 2019-02-28 09:53:36 (1.48 MB/s) - ‘tedlium_nnet_ms_sp_online.tgz’ saved [1552598256/1552598256]
 ```
 
+그 다음으로 압축을 풀어준다.
 
+```bash
+>>> tar -zxvf tedlium_nnet_ms_sp_online.tgz
+english/tedlium_nnet_ms_sp_online/
+english/tedlium_nnet_ms_sp_online/ivector_extractor/
+english/tedlium_nnet_ms_sp_online/ivector_extractor/final.dubm
+english/tedlium_nnet_ms_sp_online/ivector_extractor/global_cmvn.stats
+english/tedlium_nnet_ms_sp_online/ivector_extractor/splice_opts
+english/tedlium_nnet_ms_sp_online/ivector_extractor/online_cmvn.conf
+english/tedlium_nnet_ms_sp_online/ivector_extractor/final.ie
+english/tedlium_nnet_ms_sp_online/ivector_extractor/final.mat
+english/tedlium_nnet_ms_sp_online/words.txt
+english/tedlium_nnet_ms_sp_online/phones.txt
+english/tedlium_nnet_ms_sp_online/word_boundary.int
+english/tedlium_nnet_ms_sp_online/G.carpa
+english/tedlium_nnet_ms_sp_online/G.fst
+english/tedlium_nnet_ms_sp_online/conf/
+english/tedlium_nnet_ms_sp_online/conf/ivector_extractor.conf
+english/tedlium_nnet_ms_sp_online/conf/splice.conf
+english/tedlium_nnet_ms_sp_online/conf/online_nnet2_decoding.conf
+english/tedlium_nnet_ms_sp_online/conf/online_cmvn.conf
+english/tedlium_nnet_ms_sp_online/conf/mfcc.conf
+english/tedlium_nnet_ms_sp_online/final.mdl
+english/tedlium_nnet_ms_sp_online/HCLG.fst
+```
+
+그 다음으로는 모델을 실행시키기 위한 `yaml` 파일을 다운받아 준다. 역시 메뉴얼에서 제공하는 방법대로 따라간다.
+
+```bash
+>>> wget https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/sample_english_nnet2.yaml -P ~/kaldi-practice/kaldi_models
+--2019-02-28 10:01:58--  https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/sample_english_nnet2.yaml
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.128.133, 151.101.192.133, 151.101.0.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.128.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2226 (2.2K) [text/plain]
+Saving to: ‘/home/hcnoh/kaldi-practice/kaldi_models/sample_english_nnet2.yaml’
+
+sample_english_nnet2.yaml                          100%[================================================================================================================>]   2.17K  --.-KB/s    in 0s      
+
+2019-02-28 10:01:58 (34.7 MB/s) - ‘/home/hcnoh/kaldi-practice/kaldi_models/sample_english_nnet2.yaml’ saved [2226/2226]
+```
 
