@@ -212,3 +212,14 @@ sample_english_nnet2.yaml                          100%[========================
 2019-02-28 10:01:58 (34.7 MB/s) - ‘/home/hcnoh/kaldi-practice/kaldi_models/sample_english_nnet2.yaml’ saved [2226/2226]
 ```
 
+메뉴얼에서는 콘텐츠 업데이트를 위해 다음의 명령을 수행하라고 한다. 정확히 어떤 것을 수행하는지는 파악이 되지는 않았다. 차차 정리해보도록 하겠다.
+
+```bash
+>>> find ~/kaldi-practice/kaldi_models/ -type f | xargs sed -i 's:test:/opt:g'
+>>> sed -i 's:full-post-processor:#full-post-processor:g' ~/kaldi-practice/kaldi_models/sample_english_nnet2.yaml
+```
+
+## Master 서버와 Worker 서버를 같은 머신에 실행하는 방법
+Master 서버와 Worker 서버를 다른 머신에 실행할 수도 있겠지만 간단한 예제를 위해서는 같은 머신에 실행하는 방법을 수행하는 것을 먼저 해보는 것이 좋다.
+
+
