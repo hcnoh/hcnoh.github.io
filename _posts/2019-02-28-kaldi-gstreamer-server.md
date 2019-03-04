@@ -219,12 +219,20 @@ sample_english_nnet2.yaml                          100%[========================
 >>> sed -i 's:full-post-processor:#full-post-processor:g' ~/kaldi-practice/kaldi_models/sample_english_nnet2.yaml
 ```
 
-## Master 서버와 Worker 서버를 같은 머신에 실행하는 방법
+## Master 서버와 Worker 서버를 같은 호스트 머신에 실행하는 방법
 Master 서버와 Worker 서버를 다른 머신에 실행할 수도 있겠지만 간단한 예제를 위해서는 같은 머신에 실행하는 방법을 수행하는 것을 먼저 해보는 것이 좋다.
 
-일단 다음의 명령을 수행한다.
+일단 위에서의 방식과 동일하게 도커 컨테이너를 실행한다.
 
 ```bash
 >>> docker run -it -p 8080:80 -v ~/kaldi-practice/kaldi_models:/opt/models jcsilva/docker-kaldi-gstreamer-server:latest /bin/bash
+root@d63a3c7522dc:/opt#
 ```
+
+도커 컨테이너가 잘 실행이 되었다면 컨테이너 내부에서 다음의 명령을 통해서 다음의 명령을 수행하여 서비스를 개시한다.
+
+```bash
+/opt/start.sh -y /opt/models/sample_english_nnet2.yaml
+```
+
 
