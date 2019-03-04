@@ -107,7 +107,7 @@ jcsilva/docker-kaldi-gstreamer-server   latest              13d616ef11e1        
 >>> cd ~/kaldi-practice/kaldi_models
 ```
 
-그리고나서 도커 컨테이너를 생성하기 위해서 다음의 명령을 수행한다.
+그리고나서 도커 컨테이너를 생성하기 위해서 다음의 명령을 수행한다. 도커 컨테이너를 생성할 때 `-p` 옵션은 호스트 포트는 8080, 컨테이너 포트는 80으로 설정하여 실행하였으며, `-v` 옵션을 통해서 호스트 디렉토리를 `~/kaldi-practice/kaldi_models`, 컨테이너 디렉토리를 `/opt/models`로 설정하였다.
 
 ```bash
 >>> docker run -it -p 8080:80 -v ~/kaldi-practice/kaldi_models:/opt/models jcsilva/docker-kaldi-gstreamer-server:latest /bin/bash
@@ -222,4 +222,9 @@ sample_english_nnet2.yaml                          100%[========================
 ## Master 서버와 Worker 서버를 같은 머신에 실행하는 방법
 Master 서버와 Worker 서버를 다른 머신에 실행할 수도 있겠지만 간단한 예제를 위해서는 같은 머신에 실행하는 방법을 수행하는 것을 먼저 해보는 것이 좋다.
 
+일단 다음의 명령을 수행한다.
+
+```bash
+>>> docker run -it -p 8080:80 -v ~/kaldi-practice/kaldi_models:/opt/models jcsilva/docker-kaldi-gstreamer-server:latest /bin/bash
+```
 
