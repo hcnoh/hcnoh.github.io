@@ -220,7 +220,7 @@ sample_english_nnet2.yaml                          100%[========================
 ```
 
 ## Master 서버와 Worker 서버를 같은 호스트 머신에 실행하는 방법
-Master 서버와 Worker 서버를 다른 머신에 실행할 수도 있겠지만 간단한 예제를 위해서는 같은 머신에 실행하는 방법을 수행하는 것을 먼저 해보는 것이 좋다.
+Master 서버와 Worker 서버를 다른 머신에 실행할 수도 있겠지만 간단한 예제를 위해서는 같은 호스트 머신에 실행하는 방법을 수행하는 것을 먼저 해보는 것이 좋다.
 
 일단 위에서의 방식과 동일하게 도커 컨테이너를 실행한다.
 
@@ -235,4 +235,43 @@ root@d63a3c7522dc:/opt#
 /opt/start.sh -y /opt/models/sample_english_nnet2.yaml
 ```
 
+서비스가 제대로 시작이 되었는지 확인하려면 다음과 같은 과정을 수행하면 된다. 먼저 도커 컨테이너가 돌아가고 있는 로컬호스트에서 파이어폭스 또는 크롬을 실행한다. 필자는 로컬호스트가 작업용 서버라서 GUI가 제공되지 않기 때문에 다른 방법으로 파이어폭스를 실행해야만 했다. 그 방법을 간단하게 정리하면 아래와 같다.
+
+먼저 로컬호스트에 접속을 하는데 `ssh` 접속 명령을 사용한다. 이 때 옵션 -X를 추가해주어야 한다. 이전 [포스팅](https://hcnoh.github.io/2018-10-17-ubuntu-ssh-scp-usage)을 참고하여 다음과 같이 접속하면 된다.
+
+```bash
+>>> ssh -X [서버 로그인을 위한 계정 ID]@[서버 IP 주소] -p [포트 번호]
+```
+
+로컬호스트에 접속하여 다음의 명령을 통해서 파이어폭스를 실행하면 된다.
+
+```bash
+>>> firefox
+```
+
+파이어폭스 또는 크롬을 실행한 이후에 주소에 [http://www.websocket.org/echo.html](http://www.websocket.org/echo.html)을 입력하여 접속한다. 그 다음 `location:`에 `ws://localhost:8080/client/ws/status`을 입력한 이후에 Connect 버튼을 누른다.
+
+![](/assets/img/2019-02-28-kaldi-gstreamer-server/01.png)
+
+위와 같이 나오면 실행이 잘 되고있는 것이다. 특히 `num_workers_abailable`이 1인 것을 확인하자. 잘 되는 것을 확인했다면 `Ctrl+P`를 누른 후에 `Ctrl+Q`를 누르면 컨테이너가 실행되는 상태로 컨테이너 밖으로 빠져나올 수 있을 것이다. 빠져나온 후에 `~/kaldi-practice` 디렉토리로 이동하여 테스트에 사용할 `client` 예제 및 음성 파일을 다운받도록 한다.
+
+```bash
+>>> wget https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/kaldigstserver/client.py -P ~/kaldi-practice/tmp/
+>>> wget https://raw.githubusercontent.com/jcsilva/docker-kaldi-gstreamer-server/master/audio/1272-128104-0000.wav -P ~/kaldi-practice/tmp/
+>>> wget https://raw.githubusercontent.com/alumae/kaldi-gstreamer-server/master/test/data/bill_gates-TED.mp3 -P ~/kaldi-practice/tmp/
+>>> cd tmp
+>>> ls
+client.py  1272-128104-0000.wav  bill_gates-TED.mp3
+```
+
+이제 다운로드 받은 `client.py` 파일을 실행시켜야 하는데 여기서 `ws4py==0.3.2` 패키지가 설치가 되어있어야 한다. 위에서 파이썬 패키지 Requirements에 정리된 패키지들을 모두 설치했다면 문제가 없을 것이다. 파이썬 코드를 실행한다.
+
+```bash
+>>> python ~/kaldi-practice/tmp/client.py -u ws://localhost:8080/client/ws/speech -r 32000 ~/kaldi-practice/tmp/1272-128104-0000.wav
+mr coulter is the apostle of the middle classes and we're glad to welcome his. Audio sent, now sending EOS
+mr coulter is the apostle of the middle classes and we're glad to welcome his gospel.
+mr coulter is the apostle of the middle classes and we're glad to welcome his gospel.
+```
+
+잘 실행이 되는 것을 확인할 수 있다. 음성을 실시간으로 스크립트화하여 터미널에 띄워준다.
 
