@@ -19,16 +19,16 @@ permalink: /about
 ## Interests
 - Deep Learning for Speech Recognition and Synthesis
 - Deep Learning for Natural Language Processing
-- Statistical Dynamics
-- Reinforcement Learning
 - Data Analysis
+- Statistical Mechanics
+- Complex System
 
 ## Skills
 - Languages: Korean, English
 - Programming Languages: Python, C++(Novice), Java(Novice), MATLAB, LaTex
 - Deep Learning Frameworks: TensorFlow, Keras, DL4J(Novice)
 - Data Analysis: Numpy
-- Speech Signal Processing: Librosa
+- Speech Signal Processing: Librosa, Kaldi(Novice)
 - Natural Language Processing: KoNLPy, Mecab
 - Other Tools: Linux, Git, Jekyll(Novice)
 
