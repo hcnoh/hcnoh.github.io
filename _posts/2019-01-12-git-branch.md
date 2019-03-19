@@ -87,3 +87,16 @@ Branch를 생성하는 명령은 기본적으로 `git branch`이다. 만약 `dev
 >>> git branch -a
 ```
 
+## 원격 저장소의 특정 Branch만 따로 Clone해오기
+원격 저장소를 받아오는 경우 `clone`을 통해서 받아오게 되는데 이 경우 보통 `master` Branch에 대해서 전부 받아오게 된다. 이 경우 특정 Branch만 따로 `clone`하고 싶은 경우는 `-b` 옵션을 이용하면 된다. 예를 들면 주소가 https://github.com/hcnoh/multi-speaker-tacotron-tensorflow.git인 원격 저장소의 `devel`이라는 이름의 Branch만 따로 `clone`해오고 싶은 경우는 다음과 같이 사용할 수 있다.
+
+```bash
+>>> git clone -b devel https://github.com/hcnoh/multi-speaker-tacotron-tensorflow.git
+```
+
+즉, 정리하자면 다음과 같이 사용하면 된다.
+
+```bash
+>>> git clone -b [Branch 이름] [저장소 URL]
+```
+
