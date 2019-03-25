@@ -439,6 +439,8 @@ Checking connectivity... done.
 -- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
 ```
 
+만약 `exec zsh` 명령이 제대로 실행되지 않는다면 다음과 같이 `zshell`을 설치하면 된다.
+
 ```bash
 >>> dotfiles install zsh
 ... (todfir)
@@ -471,7 +473,7 @@ zsh 5.4.1 (x86_64-unknown-linux-gnu)
 [*] Installation(s) successful. You may need to run `exec zsh` to reflect changes in PATH.
 ```
 
-222222222222
+이제 `exec zsh`을 실행한다.
 
 ```bash
 >>> exec zsh
