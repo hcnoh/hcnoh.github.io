@@ -640,5 +640,19 @@ set notermguicolors
 
 ![](/assets/img/2018-10-05-development-environment-setting/09.png)
 
+추가적으로 `vim`을 실행할 시 `pylint` 및 `pycodestyle`를 설치해주라는 경고가 나올 수도 있다. 이 경우에는 아래의 명령을 통해서 설치해주면 된다.
+
+```bash
+>>> pip install pylint
+>>> pip install pycodestyle
+```
+
+`--user` 옵션을 추가해주라는 에러가 발생하면 다음과 같이 옵션을 추가하여 실행시키면 된다.
+
+```bash
+>>> pip install --user pylint
+>>> pip install --user pycodestyle
+```
+
 제대로 나온다. 글자가 조금 깨지는 듯 하지만 이유는 추후에 알아내서 포스팅하도록 하겠다.
 
