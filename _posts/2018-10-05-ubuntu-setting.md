@@ -439,6 +439,178 @@ Checking connectivity... done.
 -- zgen: Creating `/home/hyungcheol/.zgen/init.zsh` ...
 ```
 
+```bash
+>>> dotfiles install zsh
+... (todfir)
+mkdir -m 755 -p -- /home/hcnoh/.local/share/zsh/site-functions
+mkdir -m 755 -p -- /home/hcnoh/.local/share/zsh/5.4.1/functions
+mkdir -m 755 -p -- /home/hcnoh/.local/share/zsh/5.4.1/scripts
+make[1]: Entering directory '/tmp/hcnoh/zsh/Doc'
+/bin/sh ../mkinstalldirs /home/hcnoh/.local/share/man/man1
+mkdir -m 755 -p -- /home/hcnoh/.local/share/man/man1
+for file in zsh.1 zshbuiltins.1 zshcalsys.1 zshcompctl.1 zshcompwid.1 zshcompsys.1 zshcontrib.1 zshexpn.1 zshmisc.1 zshmodules.1 zshoptions.1 zshparam.1 zshroadmap.1 zshtcpsys.1 zshzftpsys.1 zshzle.1 zshall.1; do \
+    test -s ./$file || exit 1; \
+    /usr/bin/install -c -m 644 ./$file /home/hcnoh/.local/share/man/man1/`echo $file | sed 's|zsh|zsh|'` || exit 1; \
+done
+make[1]: Leaving directory '/tmp/hcnoh/zsh/Doc'
+make[1]: Entering directory '/tmp/hcnoh/zsh/Doc'
+if test x"/home/hcnoh/.local/share/zsh/5.4.1/help" != x""; then \
+    /bin/sh ../mkinstalldirs /home/hcnoh/.local/share/zsh/5.4.1/help; \
+    /usr/bin/install -c -m 644 ./help/* /home/hcnoh/.local/share/zsh/5.4.1/help; \
+    while read from to; do \
+        rm -f /home/hcnoh/.local/share/zsh/5.4.1/help/$to || : ; \
+        ln -s $from /home/hcnoh/.local/share/zsh/5.4.1/help/$to; \
+    done < ./help.txt; \
+fi
+mkdir -m 755 -p -- /home/hcnoh/.local/share/zsh/5.4.1/help
+make[1]: Leaving directory '/tmp/hcnoh/zsh/Doc'
+zsh 5.4.1 (x86_64-unknown-linux-gnu)
+[*] Installation successful: zsh
+
+
+[*] Installation(s) successful. You may need to run `exec zsh` to reflect changes in PATH.
+```
+
+222222222222
+
+```bash
+>>> exec zsh
+Initializing zgen plugins ...
+Cloning into '/home/hcnoh/.zgen/sorin-ionescu/prezto-master'...
+remote: Enumerating objects: 233, done.
+remote: Counting objects: 100% (233/233), done.
+remote: Compressing objects: 100% (220/220), done.
+remote: Total 233 (delta 9), reused 112 (delta 4), pack-reused 0
+Receiving objects: 100% (233/233), 124.26 KiB | 2.39 MiB/s, done.
+Resolving deltas: 100% (9/9), done.
+Submodule 'modules/autosuggestions/external' (https://github.com/zsh-users/zsh-autosuggestions.git) registered for path 'modules/autosuggestions/external'
+Submodule 'modules/completion/external' (https://github.com/zsh-users/zsh-completions.git) registered for path 'modules/completion/external'
+Submodule 'modules/fasd/external' (https://github.com/clvv/fasd.git) registered for path 'modules/fasd/external'
+Submodule 'modules/history-substring-search/external' (https://github.com/zsh-users/zsh-history-substring-search.git) registered for path 'modules/history-substring-search/external'
+Submodule 'modules/prompt/external/agnoster' (https://github.com/agnoster/agnoster-zsh-theme.git) registered for path 'modules/prompt/external/agnoster'
+Submodule 'modules/prompt/external/async' (https://github.com/mafredri/zsh-async.git) registered for path 'modules/prompt/external/async'
+Submodule 'modules/prompt/external/powerlevel9k' (https://github.com/bhilburn/powerlevel9k.git) registered for path 'modules/prompt/external/powerlevel9k'
+Submodule 'modules/prompt/external/powerline' (https://github.com/davidjrice/prezto_powerline.git) registered for path 'modules/prompt/external/powerline'
+Submodule 'modules/prompt/functions/pure' (https://github.com/sindresorhus/pure.git) registered for path 'modules/prompt/external/pure'
+Submodule 'modules/syntax-highlighting/external' (https://github.com/zsh-users/zsh-syntax-highlighting.git) registered for path 'modules/syntax-highlighting/external'
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/autosuggestions/external'...
+remote: Enumerating objects: 65, done.        
+remote: Counting objects: 100% (65/65), done.        
+remote: Compressing objects: 100% (28/28), done.        
+remote: Total 1943 (delta 37), reused 65 (delta 37), pack-reused 1878        
+Receiving objects: 100% (1943/1943), 450.20 KiB | 895.00 KiB/s, done.
+Resolving deltas: 100% (1221/1221), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/completion/external'...
+remote: Enumerating objects: 3984, done.        
+remote: Total 3984 (delta 0), reused 0 (delta 0), pack-reused 3984        
+Receiving objects: 100% (3984/3984), 1.44 MiB | 2.07 MiB/s, done.
+Resolving deltas: 100% (2482/2482), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/fasd/external'...
+remote: Enumerating objects: 1028, done.        
+remote: Total 1028 (delta 0), reused 0 (delta 0), pack-reused 1028        
+Receiving objects: 100% (1028/1028), 233.81 KiB | 449.00 KiB/s, done.
+Resolving deltas: 100% (506/506), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/history-substring-search/external'...
+remote: Enumerating objects: 374, done.        
+remote: Total 374 (delta 0), reused 0 (delta 0), pack-reused 374        
+Receiving objects: 100% (374/374), 121.59 KiB | 368.00 KiB/s, done.
+Resolving deltas: 100% (180/180), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/prompt/external/agnoster'...
+remote: Enumerating objects: 100, done.        
+remote: Total 100 (delta 0), reused 0 (delta 0), pack-reused 100        
+Receiving objects: 100% (100/100), 6.07 MiB | 3.90 MiB/s, done.
+Resolving deltas: 100% (34/34), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/prompt/external/async'...
+remote: Enumerating objects: 12, done.        
+remote: Counting objects: 100% (12/12), done.        
+remote: Compressing objects: 100% (8/8), done.        
+remote: Total 619 (delta 5), reused 8 (delta 4), pack-reused 607        
+Receiving objects: 100% (619/619), 155.09 KiB | 667.00 KiB/s, done.
+Resolving deltas: 100% (389/389), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/prompt/external/powerlevel9k'...
+remote: Enumerating objects: 11038, done.        
+remote: Total 11038 (delta 0), reused 0 (delta 0), pack-reused 11038        
+Receiving objects: 100% (11038/11038), 4.12 MiB | 2.28 MiB/s, done.
+Resolving deltas: 100% (7263/7263), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/prompt/external/powerline'...
+remote: Enumerating objects: 38, done.        
+remote: Total 38 (delta 0), reused 0 (delta 0), pack-reused 38        
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/prompt/external/pure'...
+remote: Enumerating objects: 9, done.        
+remote: Counting objects: 100% (9/9), done.        
+remote: Compressing objects: 100% (7/7), done.        
+remote: Total 854 (delta 3), reused 7 (delta 2), pack-reused 845        
+Receiving objects: 100% (854/854), 593.57 KiB | 1.35 MiB/s, done.
+Resolving deltas: 100% (450/450), done.
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/syntax-highlighting/external'...
+remote: Enumerating objects: 64, done.        
+remote: Counting objects: 100% (64/64), done.        
+remote: Compressing objects: 100% (42/42), done.        
+remote: Total 5344 (delta 29), reused 45 (delta 22), pack-reused 5280        
+Receiving objects: 100% (5344/5344), 1.10 MiB | 2.59 MiB/s, done.
+Resolving deltas: 100% (3527/3527), done.
+Submodule path 'modules/autosuggestions/external': checked out 'a7f0106b31c2538a36cab30428e6ca65d9a2ae60'
+Submodule path 'modules/completion/external': checked out 'cf565254e26bb7ce03f51889e9a29953b955b1fb'
+Submodule path 'modules/fasd/external': checked out '48220241e764fdf46b075cd7fe723468aaadde58'
+Submodule path 'modules/history-substring-search/external': checked out 'aae3388491c2312c4efb2e86bcb999927bb2900e'
+Submodule path 'modules/prompt/external/agnoster': checked out '6bba672c7812a76defc3efed9b6369eeee2425dc'
+Submodule path 'modules/prompt/external/async': checked out '58f7ba70f05e75802299848e7e31c7d7a7fd0c97'
+Submodule path 'modules/prompt/external/powerlevel9k': checked out '2f4b15041fe31d85dc9ef705b818c3a0e6985da3'
+Submodule 'shunit2' (https://github.com/kward/shunit2.git) registered for path 'modules/prompt/external/powerlevel9k/shunit2'
+Cloning into '/home/hcnoh/.dotfiles/zsh/zgen/sorin-ionescu/prezto-master/modules/prompt/external/powerlevel9k/shunit2'...
+remote: Enumerating objects: 2986, done.        
+remote: Total 2986 (delta 0), reused 0 (delta 0), pack-reused 2986        
+Receiving objects: 100% (2986/2986), 549.60 KiB | 958.00 KiB/s, done.
+Resolving deltas: 100% (1434/1434), done.
+Submodule path 'modules/prompt/external/powerlevel9k/shunit2': checked out '07bb3292048a4982aad7247bdd7890f2bf532ece'
+Submodule path 'modules/prompt/external/powerline': checked out 'c48e4c69ef5c368ea7cda961ed9d0e298a5ae1fc'
+Submodule path 'modules/prompt/external/pure': checked out '7aade5fca2acae3f10e260d0c076af6356da9dc6'
+Submodule path 'modules/syntax-highlighting/external': checked out '1e34c4aa0bcbdde5173aab15600784edf0a212fd'
+Cloning into '/home/hcnoh/.zgen/mafredri/zsh-async-master'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 10 (delta 0), reused 5 (delta 0), pack-reused 0
+Unpacking objects: 100% (10/10), done.
+Cloning into '/home/hcnoh/.zgen/wookayin/pure-master'...
+remote: Enumerating objects: 12, done.
+remote: Counting objects: 100% (12/12), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 12 (delta 0), reused 9 (delta 0), pack-reused 0
+Unpacking objects: 100% (12/12), done.
+Cloning into '/home/hcnoh/.zgen/zdharma/fast-syntax-highlighting-master'...
+remote: Enumerating objects: 88, done.
+remote: Counting objects: 100% (88/88), done.
+remote: Compressing objects: 100% (87/87), done.
+remote: Total 88 (delta 29), reused 33 (delta 1), pack-reused 0
+Unpacking objects: 100% (88/88), done.
+For style globbing-ext, went for fallback style double-quoted-argument
+For style here-string-text, went for fallback style subtle-bg
+For style here-string-var, went for fallback style back-or-dollar-double-quoted-argument
+For style subcommand, went for fallback style reserved-word
+Missing style: single-sq-bracket
+Missing style: double-sq-bracket
+Missing style: double-paren
+For style optarg-string, went for fallback style double-quoted-argument
+For style optarg-number, went for fallback style mathnum
+Missing style: recursive-base
+Switched to theme `wook' (current session, and future sessions)
+Cloning into '/home/hcnoh/.zgen/wookayin/fzf-fasd-master'...
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 0), reused 2 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+Cloning into '/home/hcnoh/.zgen/zsh-users/zsh-autosuggestions-master'...
+remote: Enumerating objects: 67, done.
+remote: Counting objects: 100% (67/67), done.
+remote: Compressing objects: 100% (59/59), done.
+remote: Total 67 (delta 7), reused 34 (delta 3), pack-reused 0
+Unpacking objects: 100% (67/67), done.
+-- zgen: Creating `/home/hcnoh/.zgen/init.zsh` ...
+-- zgen: Initializing completions ...
+```
+
 ![](/assets/img/2018-10-05-development-environment-setting/01.png)
 
 `zshell`이 제대로 실행이 된 모습이다. `tmux`를 실행해봤으나 실행이 제대로 되지 않는다.
