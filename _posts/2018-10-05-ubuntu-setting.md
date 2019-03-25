@@ -635,7 +635,7 @@ Switched to theme `wook' (current session, and future sessions)
 더 이상해졌다. [링크](https://github.com/wookayin/dotfiles/pull/9)를 통해서 확인한 결과, 터미널이 24비트 색상을 지원하지 않는 경우에 발생하는 문제라고 한다. [링크](https://github.com/wookayin/dotfiles/pull/9)를 참고하여서 `~/.vimrc` 파일의 맨 밑에 다음을 추가해주었다.
 
 ```bash
-set notermguicolor
+set notermguicolors
 ```
 
 ![](/assets/img/2018-10-05-development-environment-setting/09.png)
