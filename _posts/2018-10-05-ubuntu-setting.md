@@ -542,7 +542,7 @@ set -g default-shell /bin/zsh
 이제 글자가 깨지는 것을 방지하기 위해서 폰트를 설치해준다. 다음의 작업을 순서대로 따라하면 된다.
 
 ```bash
->>> git clone https://github.com/powerline.fonts.git --depth=1
+>>> git clone https://github.com/powerline/fonts.git --depth=1
 Cloning into 'fonts'...
 remote: Enumerating objects: 310, done.
 remote: Counting objects: 100% (310/310), done.
