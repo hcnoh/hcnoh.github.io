@@ -4,7 +4,7 @@ title: "[Ubuntu] 개발 환경 세팅"
 date: 2018-10-05 18:49:38
 tagline: "Ubuntu 16.04에서 TensorFlow 개발을 위한 Tmux 및 zshell 세팅 방법 정리"
 categories:
-- Ubuntu 16.04
+- Ubuntu
 tags:
 - linux
 - tensorflow
