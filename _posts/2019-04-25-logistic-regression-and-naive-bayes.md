@@ -61,7 +61,7 @@ $$
 \widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \frac{y}{N}\log(\mu(\mathbf{x})) + \frac{1-y}{N}\log(1-\mu(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \widehat{P}(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + \widehat{P}(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
-& = \arg \min_{\boldsymbol{\theta}} -\mathbb{E}_{(\mathbf{x},y)\sim D}y \log(\mu(\mathbf{x}))
+& = \arg \min_{\boldsymbol{\theta}} -\mathbb{E}_{(\mathbf{x},y)\sim D}\widehat{P}(Y\vert X) \log(P(Y \vert X ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
