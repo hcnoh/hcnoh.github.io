@@ -24,8 +24,19 @@ Optimal Classifier를 찾기 위한 모델링 방법 2가지:
 
 강의에서는 Discriminative Model의 대표적인 예시로 Logistic Regression을, Generative Model의 대표적인 예시로 Naive Bayes를 다루게 됨
 
+## Logistic Regression
 Logistic Regression이란?
 - 대표적인 Logistic Function 예시: Sigmoid, Tanh, 등등
+
+$$P(Y\vert X)$$를 Logistic Function을 이용하여 모델링을 하고 그것을 Fitting하는 것을 Logistic Regression이라고 함
+여기서는 Sigmoid를 사용하여 예시를 들었음: $$Sigmoid(x) = \frac{1}{1+e^{−x}}$$
+
+Binary Classifier의 예시:
+y는 0또는 1, x는 벡터
+모델링:
+$$P(Y=y\vert X=\mathbf{x}) = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y}$$ (Bernoulli Distribution)
+$$\mu(\mathbf{x}) = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}$$
+파라미터 쎄타는 Maximum Likelihood Estimation으로 찾아내게 됨!
 
 $$
 \begin{align*}
