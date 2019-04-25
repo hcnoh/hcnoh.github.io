@@ -70,6 +70,7 @@ f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x}
 $$
 
 - 만약 $$f$$를 최대화하고 싶다면:
+
 $$
 \begin{align*}
 \mathbf{u}^* & = \arg \max_{\mathbf{u}} f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} \\
@@ -78,10 +79,14 @@ $$
 $$
 
 - 최소화인 경우도 마찬가지로:
+
 $$
 \begin{align*}
 \mathbf{u}^* & = \arg \min_{\mathbf{u}} f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} \\
 & = -\frac{1}{\vert \nabla_{\mathbf{x}}f(\mathbf{x}) \vert} \nabla_{\mathbf{x}}f(\mathbf{x})
 \end{align*}
 $$
+
+
+
 
