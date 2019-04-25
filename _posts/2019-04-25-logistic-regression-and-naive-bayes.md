@@ -198,8 +198,7 @@ $$
 \begin{align*}
 P(Y=1\vert X) & = \frac{1}{1 + \frac{\pi_2\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_2 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_2)^2}{2\sigma_2^2}\right)}{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}\right)}} \\
 & = \frac{1}{1 + \frac{\pi_2\prod_{i\in \{1,2,\cdots, d\}}\exp\left(-\frac{(x_i-\mu_2)^2}{2\sigma_2^2}\right)}{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\exp\left(-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}\right)}}
-\end{align*} \\
-& = \frac{1}{1 + \frac{\pi_2 exp \left( -\sum_{i\in \{1,2,\cdtos, d\} \frac{1}{2} \left( \frac{x_i-\mu_2^i}{\sigma_2^i} \right) \right)}{\pi_1 exp \left( -\sum_{i\in \{1,2,\cdtos, d\} \frac{1}{2} \left( \frac{x_i-\mu_1^i}{\sigma_1^i} \right) \right)}}
+\end{align*}
 $$
 
 
