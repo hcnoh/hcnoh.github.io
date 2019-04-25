@@ -125,7 +125,8 @@ $$
 $$
 \begin{align*}
 f^*(\mathbf{x}) & = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
-& = \arg \max_{Y=y} P(Y=y) \prod_{i\in {1,2,\cdots, d}} P(X_i=x_i \vert Y=y)
+& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y)
 \end{align*}
+\text{where} \ \mathbf{x} = (x_1,x_2,\cdots, x_d)
 $$
 
