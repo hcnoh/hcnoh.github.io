@@ -34,9 +34,16 @@ $$P(Y\vert X)$$를 Logistic Function을 이용하여 모델링을 하고 그것�
 Binary Classifier의 예시:
 - y는 0또는 1, x는 벡터
 - 모델링(Bernoulli Distribution):
-$$P(Y=y\vert X=\mathbf{x}) = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y}$$
-$$\mu(\mathbf{x}) = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}$$
+
+$$
+\begin{align*}
+P(Y=y\vert X=\mathbf{x}) & = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y} \\
+\mu(\mathbf{x}) & = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
+\end{align*}
+$$
+
 - 파라미터 쎄타는 Maximum Likelihood Estimation으로 찾아내게 됨!
+
 $$
 \begin{align*}
 \widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D \vert \boldsymbol{\theta}) \\
