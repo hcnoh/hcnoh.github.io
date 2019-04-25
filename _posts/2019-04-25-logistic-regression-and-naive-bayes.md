@@ -72,7 +72,17 @@ $$
 \widehat{\boldsymbol{\theta}}
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert \mathbf{x})\log(\mu(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert \mathbf{x})\log(1-\mu(\mathbf{x}))
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x}))
+\end{align*}
+$$
+
+여기서 $$N_D(\mathbf{x})$$는 주어진 $$\mathbf{x}$$에 대한 데이터셋 내부의 샘플 갯수이며, $$P_D$$는 주어진 확률 변수에 대한 데이터셋 내부의 분포이다. 만약 데이터셋의 분포가 균일하여 $$N_D(\mathbf{x})$$가 모든 샘플 데이터 $$\mathbf{x}$$에 대해서 일정하다면 상수취급되어 Optimization 문제에서 생략될 것이다.
+
+$$
+\begin{align*}
+\widehat{\boldsymbol{\theta}}
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta}))
 \end{align*}
 $$
 
