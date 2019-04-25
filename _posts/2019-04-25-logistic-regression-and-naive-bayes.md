@@ -15,8 +15,7 @@ permalink: /2019-04-25-logistic-regression-and-naive-bayes
 ---
 
 ## Optimal Classifier
-Optimal Classifier의 정의:
-- $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
+Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
 
 Optimal Classifier를 찾기 위한 모델링 방법 2가지:
 - Discriminative Model: $$P(Y\vert X)$$를 직접 모델링하여 추정
