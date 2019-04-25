@@ -181,8 +181,12 @@ $$
 \begin{align*}
 P(Y=y \vert X) & = \frac{P(X\vert Y=y)P(Y=y)}{P(X)} \\
 & = \frac{P(X\vert Y=y)P(Y=y)}{P(X)}{P(X\vert Y=1)P(Y=1) + P(X\vert Y=0)P(Y=0)} \\
-& = \frac{P(Y=y)\prod_{i\in \{1,2,\cdots, d\}}P(X_i \vert Y=y)}{P(Y=1)\prod_{i\in \{1,2,\cdots, d\}}P(X_i \vert Y=1) + P(Y=0)\prod_{i\in \{1,2,\cdots, d\}}P(X_i \vert Y=0)}
+& = \frac{P(Y=y)\prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i \vert Y=y)}{P(Y=1)\prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i \vert Y=1) + P(Y=0)\prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i \vert Y=0)}
 \end{align*}
+$$
+
+$$
+P(Y=1\vert X) = \frac{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}}}{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}} + \pi_2\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_2 \sqrt{2 \pi}}e^{-\frac{(x_i-\mu_2)^2}{2\sigma_2^2}}}
 $$
 
 
