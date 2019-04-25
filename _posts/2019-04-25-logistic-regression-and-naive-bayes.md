@@ -64,7 +64,8 @@ $$f(\mathbf{x}) \longrightarrow f(\mathbf{x} + h\mathbf{u})$$
 
 $$
 \begin{align*}
-f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f^{\text{T}} + \frac{h}{2}\mathbf{u}^{\text{T}}\nabla_{\mathbf{x}}^2f \mathbf{u}
+f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} + \frac{h}{2}\mathbf{u}^{\text{T}}\nabla_{\mathbf{x}}^2 f(\mathbf{x}) \mathbf{u} + \cdots \\
+& \approx f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u}
 \end{align*}
 $$
 
