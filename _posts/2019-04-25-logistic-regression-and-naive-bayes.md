@@ -48,6 +48,8 @@ $$
 $$
 \begin{align*}
 \widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y, X=\mathbf{x} ; boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
