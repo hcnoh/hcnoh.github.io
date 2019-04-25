@@ -83,7 +83,6 @@ $$
 \widehat{\boldsymbol{\theta}}
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
-& = \arg \min_{\boldsymbol{\theta}} -\mathbb{E}_{(\mathbf{x},y)\sim D} \log(P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})) \\
 & = \arg \min_{\boldsymbol{\theta}} H(\widehat{P}(Y\vert X), P(Y \vert X ; \boldsymbol{\theta}))
 \end{align*}
 $$
