@@ -46,7 +46,7 @@ $$
 
 $$
 \begin{align*}
-\widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D \vert \boldsymbol{\theta}) \\
+\widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{\mathbf{x}, y \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}, y \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
