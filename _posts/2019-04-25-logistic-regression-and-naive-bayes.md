@@ -66,7 +66,7 @@ $$
 \end{align*}
 $$
 
-이 경우 $$\widehat{P}(Y \vert X)$$는 우리가 실제로 알고 싶은 확률 $$P(Y \vert X)$$의 데이터셋 $$D$$를 이용하여 추정한 것이다. (이 방법을 몬테카를로라고 하던가...?) 추정 값이 실제 값과 같다고 가정한다면 우리고 풀고자 하는 Optimization 문제는 우리 모델 $$P(Y\vert X ; \boldsymbol{\theta})$$와 실제 확률 $$P(Y\vert X)$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다.
+이 경우 $$\widehat{P}(Y \vert X)$$는 우리가 실제로 알고 싶은 확률 $$P(Y \vert X)$$를 데이터셋 $$D$$를 이용하여 추정한 것이다. (이 방법을 몬테카를로라고 하던가...?) 추정 값이 실제 값과 같다고 가정한다면 우리고 풀고자 하는 Optimization 문제는 우리 모델 $$P(Y\vert X ; \boldsymbol{\theta})$$와 실제 확률 $$P(Y\vert X)$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다.
 
 추가적으로 Cross-Entropy는 KL-Divergence로 다시 쓸 수 있다.
 
