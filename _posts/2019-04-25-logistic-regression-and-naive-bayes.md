@@ -49,7 +49,8 @@ $$
 \widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{\mathbf{x}, y \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}, y \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
-\end{align*}
+\end{align*} \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}, y \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
 $$
 
 여기서 세타를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
@@ -132,7 +133,9 @@ $$
 
 이 경우 확률을 추정하기 위한 데이터셋의 크기가 매우 감소하는 것을 확인할 수 있다. $$P(X_i=x_i\vert Y=y)$$를 추정하기 위해 필요한 $$(x_i, y)$$ Tuple는 $$k$$개가 될 것이고 $$x_i$$가 $$d$$개가 필요할 것이기 때문에 총 Tuple의 갯수는 $$dk$$가 될 것이다.
 
-Conditional Independence 가정의 합당한지? (강의 자료 참고)
+Conditional Independence 가정이 합당한지? (강의 자료 참고)
+
+## Logistic Regression과 Naive Bayes의 관계
 
 
 
