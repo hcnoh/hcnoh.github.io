@@ -52,7 +52,7 @@ $$
 \end{align*}
 $$
 
-여기서 세타를 찾기 위해서 Gradient Descent를 사용하게 됨!
+여기서 세타를 찾기 위해서 Gradient Descent(Ascent)를 사용하게 됨!
 
 Gradient Descent:
 - 우리가 어떤 함수 $$f(\mathbf{x})$$를 최적화하기 위해서 사용하는 방법
@@ -69,6 +69,7 @@ f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x}
 \end{align*}
 $$
 
+- 만약 $$f$$를 최대화하고 싶다면:
 $$
 \begin{align*}
 \mathbf{u}^* & = \arg \max_{\mathbf{u}} f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} \\
@@ -76,4 +77,11 @@ $$
 \end{align*}
 $$
 
+- 최소화인 경우도 마찬가지로:
+$$
+\begin{align*}
+\mathbf{u}^* & = \arg \min_{\mathbf{u}} f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} \\
+& = -\frac{1}{\vert \nabla_{\mathbf{x}}f(\mathbf{x}) \vert} \nabla_{\mathbf{x}}f(\mathbf{x})
+\end{align*}
+$$
 
