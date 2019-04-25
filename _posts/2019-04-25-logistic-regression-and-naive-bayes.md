@@ -3,7 +3,7 @@ layout: post
 use_math: true
 title: "[Machine Learning] Logistic Regression 및 Naive Bayes 정리"
 date: 2019-04-25 11:04:33
-tagline: "내 Ubuntu PC를 SSH를 이용하여 서버화하여 망 내의 다른 로컬에서 접속할 수 있게끔 서버 구축 방법 정리"
+tagline: "머신 러닝의 가장 기초적인 개념인 Logistic Regression 및 Naive Bayes 방법 정리"
 categories:
 - Machine Learning
 tags:
@@ -42,7 +42,7 @@ P(Y=y\vert X=\mathbf{x}) & = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y} \\
 \end{align*}
 $$
 
-- 파라미터 쎄타는 Maximum Likelihood Estimation으로 찾아내게 됨!
+- 파라미터 $$\boldsymbol(\theta)$$는 Maximum Likelihood Estimation으로 찾아내게 됨!
 
 $$
 \begin{align*}
@@ -52,9 +52,11 @@ $$
 \end{align*}
 $$
 
-여기서 세타를 찾기 위해서 Gradient Descent(Ascent)를 사용하게 됨!
+여기서 세타를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
 
-Gradient Descent:
+## Gradient Desecent (Ascent)
+
+Gradient Descent란:
 - 우리가 어떤 함수 $$f(\mathbf{x})$$를 최적화하기 위해서 사용하는 방법
 - 이 함수를 $$\mathbf{x}$$공간 상에서 Unit Vector $$\mathbf{u}$$방향으로 약간 움직여본다고 가정:
 
@@ -69,7 +71,7 @@ f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x}
 \end{align*}
 $$
 
-- 만약 $$f$$를 최대화하고 싶다면:
+- 만약 $$f$$를 최대화하고 싶다면 (Gradient Ascent):
 
 $$
 \begin{align*}
@@ -78,7 +80,7 @@ $$
 \end{align*}
 $$
 
-- 최소화인 경우도 마찬가지로:
+- 최소화인 경우도 마찬가지로 (Gradient Descent):
 
 $$
 \begin{align*}
@@ -87,6 +89,15 @@ $$
 \end{align*}
 $$
 
+## Naive Bayes
+Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
 
+Naive Bayes Classifier를 구하기 위해서는 위의 식을 분해해야 함
 
+$$
+\begin{align*}
+f^*(x) & = \arg \max_{Y=y}P(Y=y \vert X=x) \\
+& = \arg \max_{Y=y} P(X=x \vert Y=y)P(Y=y)
+end{align*}
+$$
 
