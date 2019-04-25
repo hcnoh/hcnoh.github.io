@@ -20,6 +20,12 @@ Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
 Optimal Classifier를 찾기 위한 모델링 방법 2가지:
 - Discriminative Model: $$P(Y\vert X)$$를 직접 모델링하여 추정
 - Generative Model: $$P(Y\vert X) = \frac{P(X\vert Y)P(Y)}{P(X)}$$로 분해해서 각각의 확률을 추정하여 $$P(Y\vert X)$$를 추정
+- 둘 사이는 MLE와 MAP와 같음… 이건 나중에 천천히 얘기해보는 것으로
+
+강의에서는 Discriminative Model의 대표적인 예시로 Logistic Regression을, Generative Model의 대표적인 예시로 Naive Bayes를 다루게 됨
+
+Logistic Regression이란?
+- 대표적인 Logistic Function 예시: Sigmoid, Tanh, 등등
 
 $$
 \begin{align*}
