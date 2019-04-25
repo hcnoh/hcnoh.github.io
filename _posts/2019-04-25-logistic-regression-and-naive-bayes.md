@@ -98,6 +98,6 @@ $$
 \begin{align*}
 f^*(x) & = \arg \max_{Y=y}P(Y=y \vert X=x) \\
 & = \arg \max_{Y=y} P(X=x \vert Y=y)P(Y=y)
-end{align*}
+\end{align*}
 $$
 
