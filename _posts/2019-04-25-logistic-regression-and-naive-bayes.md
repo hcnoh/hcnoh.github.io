@@ -169,9 +169,9 @@ $$P(Y=y) = \pi_1$$
 
 만약 Binary Classfication 문제라는 가정이 추가된다면 다음과 같이 쓸 수 있을 것이다.
 
-$$P(X_i=x_i\vert Y=1, \mu_1, \sigma_1^2) = \frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}}$$
+$$P(X_i=x_i\vert Y=1, \mu_1, \sigma_1^2) = \frac{1}{\sigma_1 \sqrt{2 \pi}}\exp({-\frac{(x_i-\mu_1)^2}{2\sigma_1^2})$$
 
-$$P(X_i=x_i\vert Y=0, \mu, \sigma_2^2) = \frac{1}{\sigma_2 \sqrt{2 \pi}}e^{-\frac{(x_i-\mu_2)^2}{2\sigma_2^2}}$$
+$$P(X_i=x_i\vert Y=0, \mu, \sigma_2^2) = \frac{1}{\sigma_2 \sqrt{2 \pi}}\exp({-\frac{(x_i-\mu_2)^2}{2\sigma_2^2})$$
 
 $$P(Y=1) = \pi_1, \ \ \ P(Y=0) = \pi_2$$
 
