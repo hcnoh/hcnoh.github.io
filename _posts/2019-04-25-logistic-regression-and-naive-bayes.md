@@ -62,13 +62,21 @@ $$
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \frac{y}{N}\log(\mu(\mathbf{x})) + \frac{1-y}{N}\log(1-\mu(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \widehat{P}(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + \widehat{P}(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
 & = \arg \min_{\boldsymbol{\theta}} -\mathbb{E}_{(\mathbf{x},y)\sim D} \log(P(Y \vert X ; \boldsymbol{\theta})) \\
-& = \arg \min_{\boldsymbol{\theta}} H(\widehat{P}(Y\vert X), P(Y \vert X ; \boldsymbol(\theta)))
+& = \arg \min_{\boldsymbol{\theta}} H(\widehat{P}(Y\vert X), P(Y \vert X ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
 이 경우 $$\widehat{P}(Y \vert X)$$는 우리가 실제로 알고 싶은 확률 $$P(Y \vert X)$$의 데이터셋 $$D$$를 이용하여 추정한 것이다. (이 방법을 몬테카를로라고 하던가...?) 추정 값이 실제 값과 같다고 가정한다면 우리고 풀고자 하는 Optimization 문제는 우리 모델 $$P(Y\vert X ; \boldsymbol{\theta})$$와 실제 확률 $$P(Y\vert X)$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다.
 
-여기서 세타를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
+추가적으로 Cross-Entropy는 KL-Divergence로 다시 쓸 수 있다.
+
+$$
+\begin{align*}
+H(\widehat{P}(Y\vert X), P(Y \vert X ; \boldsymbol{\theta})) & = H(\widehat{P}(Y \vert X)) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X ; \boldsymbol{\theta}))
+\end{align*}
+$$
+
+여기서 $$\boldsymbol{\theta}$$를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
 
 ## Gradient Desecent (Ascent)
 
