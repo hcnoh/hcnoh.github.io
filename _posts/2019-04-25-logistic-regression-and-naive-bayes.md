@@ -32,12 +32,11 @@ $$P(Y\vert X)$$를 Logistic Function을 이용하여 모델링을 하고 그것�
 여기서는 Sigmoid를 사용하여 예시를 들었음: $$Sigmoid(x) = \frac{1}{1+e^{−x}}$$
 
 Binary Classifier의 예시:
-y는 0또는 1, x는 벡터
-모델링:
+- y는 0또는 1, x는 벡터
+- 모델링:
 $$P(Y=y\vert X=\mathbf{x}) = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y}$$ (Bernoulli Distribution)
 $$\mu(\mathbf{x}) = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}$$
-파라미터 쎄타는 Maximum Likelihood Estimation으로 찾아내게 됨!
-
+- 파라미터 쎄타는 Maximum Likelihood Estimation으로 찾아내게 됨!
 $$
 \begin{align*}
 \widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D \vert \boldsymbol{\theta}) \\
@@ -45,4 +44,5 @@ $$
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}, y \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
+
 
