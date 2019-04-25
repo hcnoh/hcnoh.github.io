@@ -189,7 +189,7 @@ $$
 \begin{align*}
 P(Y=1\vert X) & = \frac{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1)}{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1) + \pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0)} \\
 & = \frac{1}{1 + \frac{\pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0)}{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1)}} \\
-& = \frac{1}{1 + \exp(-(\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1)} - \pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0)))}
+& = \frac{1}{1 + 1}
 \end{align*}
 $$
 
