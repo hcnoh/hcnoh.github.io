@@ -188,7 +188,9 @@ $$
 $$
 \begin{align*}
 P(Y=1\vert X) & = \frac{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=xi\vert Y=1)}{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=xi\vert Y=1) + \pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=xi\vert Y=0)}
-\end{align*}
+\end{align*} \\
+& = \frac{1}{1 + \frac{\pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=xi\vert Y=0)}{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=xi\vert Y=1)}} \\
+& = \frac{1}{1 + \exp(\log )}
 $$
 
 
