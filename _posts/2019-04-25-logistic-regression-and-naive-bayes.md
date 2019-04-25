@@ -38,12 +38,12 @@ Binary Classifier의 예시:
 $$
 \begin{align*}
 P(Y=y\vert X=\mathbf{x}) & = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y} \\
-\mu(\mathbf{x}) & = P(Y=1\vert \mathbf{x})\\
+\mu(\mathbf{x}) & = P(Y=1\vert X=\mathbf{x})\\
 & = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
 \end{align*}
 $$
 
-- 파라미터 $$\boldsymbol(\theta)$$는 Maximum Likelihood Estimation으로 찾아내게 됨!
+- 파라미터 $$\boldsymbol{\theta}$$는 Maximum Likelihood Estimation으로 찾아내게 됨!
 
 $$
 \begin{align*}
