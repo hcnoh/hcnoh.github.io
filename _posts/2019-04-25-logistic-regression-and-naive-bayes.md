@@ -187,7 +187,7 @@ $$
 
 $$
 \begin{align*}
-P(Y=1\vert X) & = \frac{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}\right)}{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}\right) + \pi_2\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_2 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_2)^2}{2\sigma_2^2}\right)} \\
+P(Y=1\vert X) & = \frac{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-\mu_1^i}{2\sigma_1^i}\right)^2\right)}{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-\mu_1^i}{2\sigma_1^i}\right)^2\right) + \pi_2\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_2^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-\mu_2^i}{2\sigma_2^i}\right)^2\right)} \\
 & = \frac{1}{1 + \frac{\pi_2\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_2 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_2)^2}{2\sigma_2^2}\right)}{\pi_1\prod_{i\in \{1,2,\cdots, d\}}\frac{1}{\sigma_1 \sqrt{2 \pi}}\exp\left(-\frac{(x_i-\mu_1)^2}{2\sigma_1^2}\right)}}
 \end{align*}
 $$
