@@ -52,4 +52,20 @@ $$
 \end{align*}
 $$
 
+여기서 세타를 찾기 위해서 Gradient Descent를 사용하게 됨!
+
+Gradient Descent:
+- 우리가 어떤 함수 $$f(\mathbf{x})$$를 최적화하기 위해서 사용하는 방법
+- 이 함수를 $$\mathbf{x}$$공간 상에서 Unit Vector $$\mathbf{u}$$방향으로 약간 움직여본다고 가정:
+
+$$f(\mathbf{x}) \longrightarrow f(\mathbf{x} + h\mathbf{u})$$
+
+- Taylor Expansion:
+
+$$
+\begin{align*}
+f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f^{\text{T}} + \frac{h}{2}\mathbf{u}^{\text{T}}\nabla_{\mathbf{x}}^2f \mathbf{u}
+\end{align*}
+$$
+
 
