@@ -32,7 +32,7 @@ $$P(Y\vert X)$$를 Logistic Function을 이용하여 모델링을 하고 그것�
 여기서는 Sigmoid를 사용하여 예시를 들었음: $$Sigmoid(x) = \frac{1}{1+e^{−x}}$$
 
 Binary Classifier의 예시:
-- y는 0또는 1, x는 벡터
+- y는 0 또는 1, x는 벡터
 - 모델링(Bernoulli Distribution):
 
 $$
@@ -101,3 +101,12 @@ f^*(x) & = \arg \max_{Y=y}P(Y=y \vert X=x) \\
 \end{align*}
 $$
 
+마찬가지로 Binary Classifier의 예시:
+- y는 0 또는 1, x는 벡터
+
+$$
+\begin{align*}
+f^*(\mathbf{x}) & = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x}) \\
+& = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y)
+\end{align*}
+$$
