@@ -69,4 +69,11 @@ f(\mathbf{x} + h\mathbf{u}) & = f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x}
 \end{align*}
 $$
 
+$$
+\begin{align*}
+\mathbf{u}^* & = \arg \max_{\mathbf{u}} f(\mathbf{x}) + h\nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} \\
+& = \frac{1}{\vert \nabla_{\mathbf{x}}f(\mathbf{x}) \vert} \nabla_{\mathbf{x}}f(\mathbf{x})
+\end{align*}
+$$
+
 
