@@ -92,7 +92,7 @@ $$
 ## Naive Bayes
 Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
 
-Naive Bayes Classifier를 구하기 위해서는 위의 식을 분해해야 함
+Naive Bayes Classifier를 구하기 위해서는 위의 식을 분해해야 아래와 같은 Optimization 문제를 풀어야 한다.
 
 $$
 \begin{align*}
@@ -110,3 +110,22 @@ f^*(\mathbf{x}) & = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x}) \\
 & = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y)
 \end{align*}
 $$
+
+이 경우 이 확률을 추정하기 위해서 필요한 데이터셋의 크기를 생각해보자. 만약 $$\mathbf{x}$$의 Dimension이 $$d$$이고, 각각의 Dimension의 Element는 Binary라고 가정하였을 경우 필요한 $$(\mathbf{x}, y)$$ Tuple의 갯수는 $$(2^d-1)k$$가 될 것이다. 이 크기는 너무 크다는 문제가 있으며 이것을 줄이기 위한 다른 추가적인 가정을 필요로 하게 된다.
+
+Naive Bayes의 가정: Conditional Independence
+- 다음을 만족할 때 $$X_1$$은 Given $$Y$$에 대해서 $$X_2$$와 Conditional Independent하다고 정의한다.
+
+$$
+P(X_1 \vert X_2, Y) = P(X_1 \vert Y)
+$$
+
+따라서 Naive Bayes의 Optimization 문제는 아래와 같이 쓸 수 있다.
+
+$$
+\begin{align*}
+f^*(\mathbf{x}) & = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
+& = \arg \max_{Y=y} P(Y=y) \prod_{i\in {1,2,\cdots, d}} P(X_i=x_i \vert Y=y)
+\end{align*}
+$$
+
