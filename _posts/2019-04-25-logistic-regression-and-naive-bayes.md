@@ -149,9 +149,9 @@ $$
 $$
 \begin{align*}
 f^*(\mathbf{x}) & = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
-& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y)
+& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y) \\
+& \text{where} \ \mathbf{x} = (x_1,x_2,\cdots, x_d)
 \end{align*}
-\text{where} \ \mathbf{x} = (x_1,x_2,\cdots, x_d)
 $$
 
 이 경우 확률을 추정하기 위한 데이터셋의 크기가 매우 감소하는 것을 확인할 수 있다. $$P(X_i=x_i\vert Y=y)$$를 추정하기 위해 필요한 $$(x_i, y)$$ Tuple는 $$k$$개가 될 것이고 $$x_i$$가 $$d$$개가 필요할 것이기 때문에 총 Tuple의 갯수는 $$dk$$가 될 것이다.
@@ -175,6 +175,15 @@ $$P(X_i=x_i\vert Y=0, \mu, \sigma_2^2) = \frac{1}{\sigma_2 \sqrt{2 \pi}}e^{-\fra
 
 $$P(Y=1) = \pi_1, \ \ \ P(Y=0) = \pi_2$$
 
+따라서 위의 가정들을 바탕으로 $$P(Y=y \vert X)$$를 다시 쓰면 다음과 같다.
+
+$$
+\begin{align*}
+P(Y=y \vert X) & = \frac{P(X\vert Y=y)P(Y=y)}{P(X)} \\
+& = \frac{P(X\vert Y=y)P(Y=y)}{P(X)}{P(X\vert Y=1)P(Y=1) + P(X\vert Y=0)P(Y=0)} \\
+& = \frac{P(Y=y)\prod_{i\in \{1,2,\cdots, d\}}P(X_i \vert Y=y)}{P(Y=1)\prod_{i\in \{1,2,\cdots, d\}}P(X_i \vert Y=1) + P(Y=0)\prod_{i\in \{1,2,\cdots, d\}}P(X_i \vert Y=0)}
+\end{align*}
+$$
 
 
 
