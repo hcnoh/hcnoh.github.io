@@ -47,9 +47,18 @@ $$
 $$
 \begin{align*}
 \widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \prod_{\mathbf{x}, y \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}, y \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}, y \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
+\end{align*}
+$$
+
+특히 마지막 식은 Binary Cross-Entropy를 최소화하는 문제로 바꿀 수 있음을 확인할 수 있을 것이다. 아래와 같이 식을 수정해보자.
+
+$$
+\begin{align*}
+\widehat{\boldsymbol{\theta}} & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
+& = \arg \min_{\boldsymbol{\theta}} -\mathbb{E}_{(\mathbf{x},y)\sim D}y \log(\mu(\mathbf{x}))
 \end{align*}
 $$
 
