@@ -189,8 +189,8 @@ $$
 \begin{align*}
 P(Y=1\vert X) & = \frac{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1)}{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1) + \pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0)} \\
 & = \frac{1}{1 + \frac{\pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0)}{\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1)}} \\
-& = \frac{1}{1 + \exp\[-(\log\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1) - \log\pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0))\]} \\
-& = \frac{1}{1 + \exp\[-(\sum_{i\in \{1,2,\cdots, d \}}\log P(X_i=x_i\vert Y=1) - \sum_{i\in \{1,2,\cdots, d \}}\log P(X_i=x_i \vert Y=0))\]}
+& = \frac{1}{1 + \exp[-(\log\pi_1 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=1) - \log\pi_2 \prod_{i\in \{1,2,\cdots, d\}}P(X_i=x_i\vert Y=0))]} \\
+& = \frac{1}{1 + \exp[-(\sum_{i\in \{1,2,\cdots, d \}}\log P(X_i=x_i\vert Y=1) - \sum_{i\in \{1,2,\cdots, d \}}\log P(X_i=x_i \vert Y=0)) + \log \pi_2 - \log \pi_1]}
 \end{align*}
 $$
 
