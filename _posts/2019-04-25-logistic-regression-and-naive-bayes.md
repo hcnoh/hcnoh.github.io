@@ -31,7 +31,7 @@ $$
 
 위와 같은 예시를 바탕으로 Optimal Classifier를 정의할 수 있다. 일단 Optimal Classifier의 정의는 다음과 같다.
 
-$$f^*(\mathbf{x}) = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x}), \ \forall \mathbf{x}\in \mathcal{X}, y\in \mathcal{Y}$$
+$$f^*(\mathbf{x}) = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x})$$
 
 위의 과일 예시로 다시 설명을 해보자. 실제 자연계의 모델은 주어진 음식 $$\mathbf{x}$$에 대해서 과일인지 아닌지에 대한 분포 $$P(Y\vert X=\mathbf{x})$$를 모델링하고 있다고 가정할 수 있다. (물론 이 가정은 틀렸을 수도 있다.) 이러한 분포를 최대로 만족하는 Classifier $$f$$가 바로 Optimal Classifier가 될 것이다.
 
@@ -210,8 +210,8 @@ $$
 $$
 \begin{align*}
 f^*(\mathbf{x})
-& = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
-& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y) \\
+& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
+& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y) \\
 & \text{where} \ \mathbf{x} = (x_1,x_2,\cdots, x_d)
 \end{align*}
 $$
@@ -223,7 +223,9 @@ Conditional Independence 가정이 합당한지에 대해서는 Graphical Model�
 어쨌든 Naive Bayes 방법을 정리하면, 일반적인 Generative Model처럼 $$P(X\vert Y)$$에 대해서 가정을 통하여 모델링을 시도하게 되지만 여기서 사용하는 가정이 Conditional Independence 가정이 사용된다면 그 방법은 Naive Bayes 방법을 사용한다고 말할 수 있겠다.
 
 ## Logistic Regression과 Naive Bayes의 관계
-두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2)$$를 다음과 같이 쓸 수 있다.
+두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 일단 기본적으로 $$P(X\vert Y)$$가 기본적으로 $$X$$의 모든 Dimension Element에 대해서 Conditional Independence라는 가정에 추가하여 특정 파라미터 $$\boldsymbol{\theta}$$로 Parameterization하였다고 가정한다.
+
+먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2)$$를 다음과 같이 쓸 수 있다.
 
 $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{(x_i-p_{\boldsymbol{\theta}})^2}{2\sigma^2}}$$
 
