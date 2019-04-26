@@ -21,9 +21,17 @@ $$
 f(\text{Apple}) = 1, \ \ \ f(\text{Banna}) = 1, \ \ \ f(\text{Steak}) = 0, \cdots
 $$
 
-먼저 Optimal Classifier의 정의는 다음과 같다.
+물론 어떤 Classifier $$g$$는 다음과 같이 동작할 수도 있을 것이다.
 
-$$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
+$$
+g(\text{Apple}) = 1, \ \ \ g(\text{Banna}) = 0, \ \ \ g(\text{Steak}) = 0, \cdots
+$$
+
+이 경우 $$f$$는 바나나에 대해서는 정확히 분류해냈지만 $$g$$는 그렇지 못한 셈이 되었다. 우리는 바나나가 과일이 맞다는 것을 알 수 있으므로 $$g$$ 보다는 $$f$$가 더 성능이 좋다고 판단할 수 있다.
+
+위와 같은 예시를 바탕으로 Optimal Classifier를 정의할 수 있다. 일단 Optimal Classifier의 정의는 다음과 같다.
+
+$$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x), \ \forall x\in \mathcal{X}, y\in \mathcal{Y}$$
 
 Optimal Classifier를 찾기 위한 모델링 방법 2가지:
 - Discriminative Model: $$P(Y\vert X)$$를 직접 모델링하여 추정
