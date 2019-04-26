@@ -47,7 +47,7 @@ $$
 
 $$
 \begin{align*}
-\widehat{\boldsymbol{\theta}}\
+\boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} ; \boldsymbol{\theta}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
@@ -58,7 +58,7 @@ $$
 
 $$
 \begin{align*}
-\widehat{\boldsymbol{\theta}}
+\boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x}))
@@ -69,7 +69,7 @@ $$
 
 $$
 \begin{align*}
-\widehat{\boldsymbol{\theta}}
+\boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x}))
@@ -80,7 +80,7 @@ $$
 
 $$
 \begin{align*}
-\widehat{\boldsymbol{\theta}}
+\boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
@@ -88,19 +88,18 @@ $$
 \end{align*}
 $$
 
-이 경우 $$\widehat{P}(Y \vert X)$$는 우리가 실제로 알고 싶은 확률 $$P(Y \vert X)$$를 데이터셋 $$D$$를 이용하여 추정한 것이다. (이 방법을 몬테카를로라고 하던가...?) 추정 값이 실제 값과 같다고 가정한다면 우리고 풀고자 하는 Optimization 문제는 우리 모델 $$P(Y\vert X ; \boldsymbol{\theta})$$와 실제 확률 $$P(Y\vert X)$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다.
+Binary Classifier를 학습시키기 위하여 사용하는 Optimization 문제는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 데이터셋 $$D$$로부터 찾아낸 분포 $$P_D(Y\vert X=\mathbf{x})$$와 우리 모델 $$P(Y\vert X\\mathbf{x} ; \boldsymbol{\theta})$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다. 여기서 Cross-Entropy를 KL-Divergence로 다시 쓰면 아래와 같다.
 
-추가적으로 Cross-Entropy는 KL-Divergence로 다시 쓸 수 있다.
-
-$$
 \begin{align*}
-H(\widehat{P}(Y\vert X), P(Y \vert X ; \boldsymbol{\theta})) & = H(\widehat{P}(Y \vert X)) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X ; \boldsymbol{\theta}))
+H(\widehat{P}(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) & = H(\widehat{P}(Y \vert X=\mathbf{x})) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
-여기서 $$\boldsymbol{\theta}$$를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
+즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X)$$에 $$P(Y\vert X ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
 
-## Gradient Desecent (Ascent)
+이러한 Optimization 문제는 Closed Form으로 풀어내기 쉽지 않으며 따라서 Iterative한 방법으로 접근을 하게 된다. 가장 대표적인 Iterative한 방법은 바로 Gradient Descent(Ascent)이다.
+
+## Gradient Desecent(Ascent)
 
 Gradient Descent란:
 - 우리가 어떤 함수 $$f(\mathbf{x})$$를 최적화하기 위해서 사용하는 방법
