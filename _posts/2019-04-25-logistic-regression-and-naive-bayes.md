@@ -88,8 +88,9 @@ $$
 \end{align*}
 $$
 
-Binary Classifier를 학습시키기 위하여 사용하는 Optimization 문제는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 데이터셋 $$D$$로부터 찾아낸 분포 $$P_D(Y\vert X=\mathbf{x})$$와 우리 모델 $$P(Y\vert X\\mathbf{x} ; \boldsymbol{\theta})$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다. 여기서 Cross-Entropy를 KL-Divergence로 다시 쓰면 아래와 같다.
+Binary Classifier를 학습시키기 위하여 사용하는 Optimization 문제는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 데이터셋 $$D$$로부터 찾아낸 분포 $$P_D(Y\vert X=\mathbf{x})$$와 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다. 여기서 Cross-Entropy를 KL-Divergence로 다시 쓰면 아래와 같다.
 
+$$
 \begin{align*}
 H(\widehat{P}(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) & = H(\widehat{P}(Y \vert X=\mathbf{x})) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
