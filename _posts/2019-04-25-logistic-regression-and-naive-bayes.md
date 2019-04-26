@@ -104,7 +104,7 @@ $$
 \end{align*}
 $$
 
-여기서 우리가 가정한 모델 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 사용하여 Joint Distribution $$P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta})$$를 $$P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 분해하였다. $$P(X=\mathbf{x})$$는 $$\mathbf{x}$$의 값이 Optimization 문제에 영향을 주지 않기 때문에 상수취급하여 제거할 수 있다.
+여기서 우리가 가정한 모델 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 사용하여 Joint Distribution $$P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta})$$를 $$P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 분해하였다. $$P(X=\mathbf{x})$$는 $$\mathbf{x}$$의 값이 Optimization 문제에 영향을 주지 않기 때문에 상수로 취급하여 제거할 수 있다.
 
 따라서 Optimization 문제는 다음과 같이 정리될 수 있다.
 
@@ -112,7 +112,8 @@ $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x}))
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
 $$
 
@@ -121,9 +122,9 @@ $$
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x}))
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} \left[ y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \left[ N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
 $$
 
@@ -132,9 +133,9 @@ $$
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \left[ P_D(Y=1 \vert X=\mathbf{x}) \log(p_{\boldsymbol{\theta}}(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \left[ P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \right] \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} \left[ P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \right] \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
