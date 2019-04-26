@@ -71,16 +71,25 @@ $$
 
 이렇게 모델링이 된 $$P(Y\vert X;\boldsymbol{\theta})$$를 주어진 데이터셋 $$D$$를 이용하여 Fitting시키는 문제를 Logistic Regression이라고 한다.
 
-Logistic Regression을 풀기 위해서는 파라미터 $$\boldsymbol{\theta}$$에 대해서 Optimal Classifier를 찾는 Optimization 문제로부터 시작하는 것이 좋다.
+Logistic Regression을 풀기 위해서는 Optimal Classifier를 찾는 Optimization 문제로부터 시작하는 것이 좋다.
 
 $$
 \begin{align*}
-\boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+f^*(\mathbf{x})
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x})
 \end{align*}
 $$
 
-모든 Pair $$(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})$$에 대한 각각의 $$P(Y=y\vert X=\mathbf{x}; \boldsymbol{\theta})$$는 모두 독립이기 때문에(i.i.d라는 가정) $$\prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})}$$로 묶을 수 있다. 하지만 우리는 모든 데이터 공간 $$(\mathcal{X}, \mathcal{Y})$$을 Tracking할 수 없기 때문에 주어진 데이터셋 $$D$$에 대해서만 이 Optimization 문제를 풀고자 한다. 따라서 Optimization 문제는 아래와 같이 바꿔서 쓰게 된다.
+모든 Pair $$(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})$$에 대한 각각의 $$P(Y=y\vert X=\mathbf{x})$$는 모두 독립이기 때문에(i.i.d라는 가정) $$\prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})}$$로 묶을 수 있다. 하지만 우리는 모든 데이터 공간 $$(\mathcal{X}, \mathcal{Y})$$을 Tracking할 수 없기 때문에 주어진 데이터셋 $$D$$에 대해서만 이 Optimization 문제를 풀고자 한다. 따라서 Optimization 문제는 아래와 같이 바꿔서 쓰게 된다.
+
+$$
+\begin{align*}
+f^*(\mathbf{x})
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x})
+\end{align*}
+$$
+
+우리는 이 문제를 Logistic Regression으로 풀기 위해서 $$P(Y=y \vert X=\mathbf{x})$$를 위에서 정의한 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 가정할 것이며 $$\boldsymbol{\theta}$$에 대한 Optimization 문제로 바꿀 것이다.
 
 $$
 \begin{align*}
@@ -89,7 +98,7 @@ $$
 \end{align*}
 $$
 
-여기에 $$\log$$를 씌움으로써 더 문제를 간단하게 쓸 수 있다.
+이 문제는 데이터셋 $$D$$에 대해서 모델을 직접 Fitting하는 것이기 때문에 MLE라고 볼 수도 있다. 어쨌든 여기에 $$\log$$를 씌움으로써 더 문제를 간단하게 쓸 수 있다.
 
 $$
 \begin{align*}
@@ -170,7 +179,23 @@ $$\mathbf{x}_{t+1} \longleftarrow \mathbf{x}_t - \alpha \mathbf{u}_t, \ \text{wh
 즉 위와 같이 Gradient를 이용하여 함수 $$f$$를 Iterative하게 업데이트하는 방법을 Gradient Descent 또는 Gradient Ascent라고 한다. $$f$$를 최대화시키는 알고리즘을 Gradient Ascent, $$f$$를 최소화시키는 알고리즘을 Gradient Descent라고 한다.
 
 ## Naive Bayes
-Naive Bayes 방법은 위에서 설명한대로 Generative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$를 직접 가정하여 모델링하는 대신 $$P(X\vert Y)$$ 및 $$P(Y)$$에 대한 가정이 필요하게 된다. 위에서 Logistic Regression을 설명할 때 사용한 문제 세팅을 그대로 가져와서 다시 써보면 다음과 같이 쓸 수 있다.
+Naive Bayes 방법은 위에서 설명한대로 Generative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$를 직접 가정하여 모델링하는 대신 $$P(X\vert Y)$$ 및 $$P(Y)$$에 대한 가정이 필요하게 된다. 위에서 Logistic Regression을 설명할 때 사용한 문제 세팅을 그대로 가져와서 Optimization 문제를 다시 써보면 다음과 같이 쓸 수 있다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x})
+\end{align*}
+$$
+
+Naive Bayes는 Generative Model이기 때문에 아래와 같이 분해하여 생각하게 된다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} \vert Y=y)P(Y=y)
+\end{align*}
+$$
 
 Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
 
