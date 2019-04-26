@@ -218,7 +218,9 @@ $$
 
 이 경우 확률을 추정하기 위한 데이터셋의 크기가 매우 감소하는 것을 확인할 수 있다. $$P(X_i=x_i\vert Y=y)$$를 추정하기 위해 필요한 $$(x_i, y)$$ Tuple는 $$k$$개가 될 것이고 $$x_i$$가 $$d$$개가 필요할 것이기 때문에 총 Tuple의 갯수는 $$dk$$가 될 것이다.
 
-Conditional Independence 가정이 합당한지? (강의 자료 참고)
+Conditional Independence 가정이 합당한지에 대해서는 Graphical Model에 대한 공부가 더 필요하다. 나중에 공부하여 정리하도록 하겠다.
+
+어쨌든 Naive Bayes 방법을 정리하면, 일반적인 Generative Model처럼 $$P(X\vert Y)$$에 대해서 가정을 통하여 모델링을 시도하게 되지만 여기서 사용하는 가정이 Conditional Independence 가정이 사용된다면 그 방법은 Naive Bayes 방법을 사용한다고 말할 수 있겠다.
 
 ## Logistic Regression과 Naive Bayes의 관계
 두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2)$$를 다음과 같이 쓸 수 있다.
