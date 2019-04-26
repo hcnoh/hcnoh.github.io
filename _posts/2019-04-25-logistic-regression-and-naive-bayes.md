@@ -36,7 +36,7 @@ $$f^*(\mathbf{x}) = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x})$$
 위의 과일 예시로 다시 설명을 해보자. 실제 자연계의 모델은 주어진 음식 $$\mathbf{x}$$에 대해서 과일인지 아닌지에 대한 분포 $$P(Y\vert X=\mathbf{x})$$를 모델링하고 있다고 가정할 수 있다. (물론 이 가정은 틀렸을 수도 있다.) 이러한 분포를 최대로 만족하는 Classifier $$f$$가 바로 Optimal Classifier가 될 것이다. 이러한 Optimal Classifier를 찾기 위해서는 다음과 같은 Optimization 문제를 풀어야 할 것이다.
 
 $$
-f^* = \arg \max_f P(Y=f(\mathbf{x}) \vert X=\mathbf{x}), \ \forall x \in \mathcal{X}, y \in \mathcal{Y}
+f^* = \arg \max_f P(Y=f(\mathbf{x}) \vert X=\mathbf{x}), \ \forall \mathbf{x} \in \mathcal{X}
 $$
 
 Machine Learning의 방법론은 이러한 Optimal Classifier를 찾기 위한 모델링을 크게 2가지로 분류하고 있다. Discriminative Model과 Generative Model이다.
