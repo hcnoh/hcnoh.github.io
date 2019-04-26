@@ -50,18 +50,18 @@ Generative Model은 Bayes Theorem을 이용하여 $$P(Y\vert X)$$를 $$P(X \vert
 일반적으로 확률 모델 $$P(X\vert Y)$$나 $$P(Y)$$에 대한 좋은 가정을 할 수 있다면 적은 데이터로도 충분히 좋은 성능을 찾아낼 수 있다는 것이 Generative Model의 장점이다. 반면 Discriminative Model은 데이터가 충분히 많다면 훨씬 더 좋은 성능을 낼 수 있다.. 이러한 관점으로 봤을 때 Discriminative Model은 MLE(Maximum Likelihood Estimation)와 같다고 볼 수 있으며 Generative Model은 MAP(Maximum A Posteriori)와 같다고도 볼 수 있다.
 
 ## Logistic Regression
-Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary라는 가정을 추가하자. 물론 Multi 클래스에 대해서 확장이 간단할 것이다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
+Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary라는 가정을 추가하자. 물론 Multi 클래스에 대해서 간단한 방법으로 확장이 가능하다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
 
 $$
 \begin{align*}
 P(Y=y \vert X=\mathbf{x};\boldsymbol{\theta})
-& = p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y}, \ \forall \mathbf{x}\in\mathcal{X}, y\in\mathcal{Y} \\
+& = p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
 p_{\boldsymbol{\theta}}(\mathbf{x})
 & = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})
 \end{align*}
 $$
 
-여기서 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 Logistic Function으로 가정하는 것이 Logistic Regression이다. 대표적인 Logistic Function은 다음과 같다.
+여기서 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 Logistic Function으로 가정하는 것이 Logistic Regression이다. 대표적인 Logistic Function들은 다음과 같다.
 
 ![](/assets/img/2019-04-25-logistic-regression-and-naive-bayes/01.png)
 
@@ -148,7 +148,7 @@ H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) & = H
 \end{align*}
 $$
 
-즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X)$$에 $$P(Y\vert X ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
+즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X=\mathbf{x})$$에 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
 
 이러한 Optimization 문제는 Closed Form으로 풀어내기 쉽지 않으며 따라서 Iterative한 방법으로 접근을 하게 된다. 가장 대표적인 Iterative한 방법은 바로 Gradient Descent(Ascent)이다.
 
@@ -157,7 +157,7 @@ Gradient Descent 또는 Gradient Ascent란 어떤 함수 $$f$$를 최적화하�
 
 어떤 함수 $$f$$가 $$\mathbf{x}$$가 살고있는 공간 $$\mathcal{X}$$에 대하여 정의되어 있다고 가정하자. ($$f:\mathcal{X}\longmapsto \mathcal{Y}$$) 이 경우에 공간 $$\mathcal{X}$$에서 $$f$$를 최대화하는 어떤 $$\mathbf{x}^*$$를 찾을 수 있을 것이라고 가정하자. 즉, 함수 $$f$$는 공간 $$\mathcal{X}$$ 상에 유한한 함수값을 가지는 함수로 잘 정의가 되어있는 것이라고 가정한다. 임의의 $$\mathbf{x}\in \mathcal{X}$$에 대해서 $$\mathbf{x}^*$$의 방향으로 가기 위해서는 어떤 방향으로 $$\mathbf{x}$$를 움직일 수 있을 것일지에 대한 문제로 생각할 수 있을 것이다. 그리고 이 방향은 $$f$$를 최대한 증가시키는 방향이 될 것이다.
 
-즉, 정리하면 임의의 $$\mathbf{x}_t\in \mathcal{X}$$에 대해서 $$f$$를 최대한 증가시키는 방향인 $$\mathbf{u}_t$$를 찾을 수 있고($$\vert \mathbf{u}_t \vert = 1$$), 매번 $$\mathbf{x}_t$$를 아래와 같은 업데이트 룰을 통해서 Iterative하게 업데이트시키게 된다면 결국 $$\mathbf{x}^*$$로 점점 다가가게 될 것이라고 생각할 수 있다.
+즉, 정리하면 임의의 $$\mathbf{x}_t\in \mathcal{X}$$에 대해서 $$f$$를 최대한 증가시키는 방향인 $$\mathbf{u}_t$$를 찾을 수 있고($$\vert \mathbf{u}_t \vert = 1$$라는 가정이 있음), 매번 $$\mathbf{x}_t$$를 아래와 같은 업데이트 룰을 통해서 Iterative하게 업데이트시키게 된다면 결국 $$\mathbf{x}^*$$로 점점 다가가게 될 것이라고 생각할 수 있다.
 
 $$\mathbf{x}_{t+1} \longleftarrow \mathbf{x}_t + \alpha \mathbf{u}_t$$
 
@@ -171,7 +171,7 @@ f(\mathbf{x}_t + \alpha \mathbf{u})
 \end{align*}
 $$
 
-여기서 우리는 $$\mathbf{u}_t$$가 $$f(\mathbf{x}_t+\alpha \mathbf{u})$$를 최대화하는 $$\mathbf{u}$$가 되기를 원한다.
+여기서 우리는 $$\mathbf{u}_t$$가 $$f(\mathbf{x}_t+\alpha \mathbf{u})$$를 최대화하는 Unit 벡터 $$\mathbf{u}$$가 되기를 원한다.
 
 $$
 \begin{align*}
@@ -193,7 +193,7 @@ Naive Bayes 방법은 위에서 설명한대로 Generative Model의 한 종류�
 $$
 \begin{align*}
 f^*(\mathbf{x})
-& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x})
+& = \arg \max_{Y=y} P(Y=y \vert X=\mathbf{x})
 \end{align*}
 $$
 
@@ -202,11 +202,11 @@ Generative Model은 위에서 설명한대로 아래와 같이 Optimization 문�
 $$
 \begin{align*}
 f^*(\mathbf{x})
-& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} \vert Y=y)P(Y=y)
+& = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y)
 \end{align*}
 $$
 
-여기서 Generative Model은 다양한 방법으로 $$P(X=\mathbf{x} \vert Y=y)$$을 모델링하게 되는데 여기서는 한 가지 문제가 발생하게 된다. 바로 이 확률을 추정하기 위해서 필요한 데이터셋의 크기이다. 만약 $$\mathbf{x}$$의 Dimension이 $$d$$이고, 각각의 Dimension의 Element는 Binary라고 가정하였을 경우 필요한 $$(\mathbf{x}, y)$$ Tuple의 갯수는 $$(2^d-1)k$$가 될 것이다. 이 크기는 너무 크다는 문제가 있으며 이것을 줄이기 위한 다른 추가적인 가정을 필요로 하게 된다.
+여기서 Generative Model은 다양한 방법으로 $$P(X=\mathbf{x} \vert Y=y)$$을 모델링하게 되는데 여기서는 한 가지 문제가 발생하게 된다. 바로 이 확률을 추정하기 위해서 필요한 데이터셋의 크기이다. 만약 $$\mathbf{x}$$의 Dimension이 $$d$$이고, 각각의 Dimension의 Element는 Binary라고 가정하였을 경우 $$P(X=\mathbf{x} \vert Y=y)$$를 추정하기 위해서 필요한 $$(\mathbf{x}, y)$$ Tuple의 갯수는 $$(2^d-1)k$$가 될 것이다. 이 크기는 너무 크다는 문제가 있으며 이것을 줄이기 위한 다른 추가적인 가정을 필요로 하게 된다.
 
 여기서 Naive Bayes는 한 가지 가정을 추가하여 이 문제를 해결하려고 시도하게 된다. 바로 Conditional Independence 가정이다. Conditional Independence는 다음과 같이 정의된다. 확률 변수 $$X_1, X_2, Y$$에 대해서 각각이 다음을 만족할 때 $$X_1$$은 Given $$Y$$에 대해서 $$X_2$$와 Conditional Independent하다고 정의한다.
 
@@ -219,9 +219,9 @@ $$
 $$
 \begin{align*}
 f^*(\mathbf{x})
-& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
-& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y) \\
-& \text{where} \ \mathbf{x} = (x_1,x_2,\cdots, x_d)
+& = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
+& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X^{(i)}=x_^{(i)} \vert Y=y) \\
+& \text{where} \ X=(X^{(1)}, X^{(2)}, \cdots, X^{(d)}), \ \mathbf{x} = (x^{(1)}, x^{(2)}, \cdots, x^{(d)})
 \end{align*}
 $$
 
