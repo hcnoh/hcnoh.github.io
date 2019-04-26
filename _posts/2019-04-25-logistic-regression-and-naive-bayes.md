@@ -15,7 +15,15 @@ permalink: /2019-04-25-logistic-regression-and-naive-bayes
 ---
 
 ## Optimal Classifier
-Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
+일반적으로 Classification 문제는 샘플 공간 $$\mathcal{X}$$ 상에 있는 샘플 $$\mathbf{x}_1, \mathbf{x}_2, \cdots \in \mathcal{X}$$ 각각에 대해서 이 샘플은 어떤 클래스 $$y \in \mathcal{Y}$$로 분류할 것인가에 관한 문제로 생각할 수 있을 것이다. 이러한 문제 세팅에서 자연스럽게 우리는 Classifier $$f$$를 정의할 수 있다. Classifier $$f$$:\mathcal{X} \longmasto \mathcal{Y}는 주어진 샘플 공간으로부터 클래스 공간으로 Mapping해주는 함수라고 정의할 수 있을 것이다. 예를 들면 다음과 같다. 여러 음식들($$\mathcal{X}$$)을 과일이냐 아니냐($$\mathcal{Y}=\{0, 1 \}$$)로 분류하는 Classifier $$f$$를 예로 들어보자. $$f$$는 다음과 같이 동작할 것이다.
+
+$$
+f(\text{Apple}) = 1, \ \ \ f(\text{Banna}) = 1, \ \ \ f(\text{Steak}) = 0, \cdots
+$$
+
+먼저 Optimal Classifier의 정의는 다음과 같다.
+
+$$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
 
 Optimal Classifier를 찾기 위한 모델링 방법 2가지:
 - Discriminative Model: $$P(Y\vert X)$$를 직접 모델링하여 추정
