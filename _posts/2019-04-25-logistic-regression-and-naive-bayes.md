@@ -35,16 +35,28 @@ $$f^*(\mathbf{x}) = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x}), \ \forall \mathbf{
 
 위의 과일 예시로 다시 설명을 해보자. 실제 자연계의 모델은 주어진 음식 $$\mathbf{x}$$에 대해서 과일인지 아닌지에 대한 분포 $$P(Y\vert X=\mathbf{x})$$를 모델링하고 있다고 가정할 수 있다. (물론 이 가정은 틀렸을 수도 있다.) 이러한 분포를 최대로 만족하는 Classifier $$f$$가 바로 Optimal Classifier가 될 것이다.
 
-Machine Learning의 방법론은 이러한 Optimal Classifier를 찾기 위한 모델링을 크게 2가지로 분류하고 있다.
+Machine Learning의 방법론은 이러한 Optimal Classifier를 찾기 위한 모델링을 크게 2가지로 분류하고 있다. Discriminative Model과 Generative Model이다.
 
-Optimal Classifier를 찾기 위한 모델링 방법 2가지:
-- Discriminative Model: $$P(Y\vert X)$$를 직접 모델링하여 추정
-- Generative Model: $$P(Y\vert X) = \frac{P(X\vert Y)P(Y)}{P(X)}$$로 분해해서 각각의 확률을 추정하여 $$P(Y\vert X)$$를 추정
-- 둘 사이는 MLE와 MAP와 같음… 이건 나중에 천천히 얘기해보는 것으로
+## Discriminative Model 및 Generative Model
 
-강의에서는 Discriminative Model의 대표적인 예시로 Logistic Regression을, Generative Model의 대표적인 예시로 Naive Bayes를 다루게 됨
+Discriminative Model은 $$P(Y\vert X)$$에 대한 가정을 추가하여 $$P(Y\vert X)$$를 직접 모델링을 하게 되며 이렇게 찾아낸 $$P(Y\vert X)$$를 이용하여 Decision Boundary를 찾는 것이이다. Discriminative Model의 대표적인 방법은 Linear Regression 및 Logistic Regression이 있다.
+
+Generative Model은 Bayes Theorem을 이용하여 $$P(Y\vert X)$$를 $$P(X \vert Y)P(Y)$$로 분해하여 $$P(X\vert Y)$$와 $$P(Y)$$에 대한 가정을 추가하여 간접적으로 $$P(Y\vert X)$$를 모델링하여 Decision Boundary를 찾게 된다. Generative Model의 대표적인 방법은 Naive Bayes Classification이 있다.
+
+일반적으로 확률 모델 $$P(X\vert Y)$$나 $$P(Y)$$에 대한 좋은 가정을 할 수 있다면 적은 데이터로도 충분히 좋은 성능을 찾아낼 수 있다는 것이 Generative Model의 장점이다. 반면 Discriminative Model은 데이터가 충분히 많다면 훨씬 더 좋은 성능을 낼 수 있다.. 이러한 관점으로 봤을 때 Discriminative Model은 MLE(Maximum Likelihood Estimation)와 같다고 볼 수 있으며 Generative Model은 MAP(Maximum A Posteriori)와 같다고도 볼 수 있다.
 
 ## Logistic Regression
+Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary로 가정을 추가하자. 물론 Multi 클래스에 대해서 확장이 간단할 것이다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
+
+$$
+\begin{align*}
+P(Y=y \vert X=\mathbf{x};\boldsymbol{\theta})
+& = p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y}, \ \forall \mathbf{x}\in\mathcal{X}, y\in\mathcal{Y} \\
+p_{\boldsymbol{\theta}}(\mathbf{x})
+& = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})
+\end{align*}
+$$
+
 Logistic Regression이란?
 - 대표적인 Logistic Function 예시: Sigmoid, Tanh, 등등
 
