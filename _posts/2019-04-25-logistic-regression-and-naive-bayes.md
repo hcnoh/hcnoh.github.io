@@ -89,7 +89,7 @@ f^*(\mathbf{x})
 \end{align*}
 $$
 
-우리는 이 문제를 Logistic Regression으로 풀기 위해서 $$P(Y=y \vert X=\mathbf{x})$$를 위에서 정의한 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 가정할 것이며 $$\boldsymbol{\theta}$$에 대한 Optimization 문제로 바꿀 것이다.
+우리는 이 문제를 Logistic Regression으로 풀기 위해서 $$P(Y=y \vert X=\mathbf{x})$$를 위에서 정의한 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 가정할 것이며 이를 통해서 $$\boldsymbol{\theta}$$에 대한 Optimization 문제로 바꿀 것이다.
 
 $$
 \begin{align*}
