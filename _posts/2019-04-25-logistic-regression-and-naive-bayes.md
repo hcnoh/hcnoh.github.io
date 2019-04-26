@@ -131,7 +131,7 @@ Gradient Descent 또는 Gradient Ascent란 어떤 함수 $$f(\mathbf{x})$$를 �
 
 어떤 함수 $$f(\mathbf{x})$$가 $$\mathbf{x}$$가 살고있는 공간 $$\mathcal{X}$$에 대하여 정의되어 있다고 가정하자. ($$f:\mathcal{X}\longmapsto \mathcal{Y}$$) 이 경우에 공간 $$\mathcal{X}$$에서 $$f(\mathbf{x})$$를 최대화하는 어떤 $$\mathbf{x}^*$$를 찾을 수 있을 것이라고 가정하자. 즉, 함수 $$f$$는 공간 $$\mathcal{X}$$ 상에 유한한 함수값을 가지는 함수로 잘 정의가 되어있는 것이라고 가정한다. 임의의 $$\mathbf{x}\in \mathcal{X}$$에 대해서 $$\mathbf{x}^*$$의 방향으로 가기 위해서는 어떤 방향으로 $$\mathbf{x}$$를 움직일 수 있을 것일지에 대한 문제로 생각할 수 있을 것이다. 그리고 이 방향은 $$f(\mathbf{x})$$를 최대한 증가시키는 방향이 될 것이다.
 
-즉, 정리하면 임의의 $$\mathbf{x}\in \mathcal{X}$$에 대해서 $$f(\mathbf{x})$$ 최대한 증가시키는 방향인 $$\mathbf{u}(\mathbf{x})$$를 찾을 수 있고 매번 $$\mathbf{x}$$를 아래와 같은 업데이트 룰을 통해서 Iterative하게 업데이트시키게 된다면 결국 $$\mathbf{x}^*$$로 점점 다가가게 될 것이라고 생각할 수 있다.
+즉, 정리하면 임의의 $$\mathbf{x}\in \mathcal{X}$$에 대해서 $$f(\mathbf{x})$$ 최대한 증가시키는 방향인 $$\mathbf{u}(\mathbf{x})$$를 찾을 수 있고($$\vert \mathbf{u}(\mathbf{x}) \vert = 1$$), 매번 $$\mathbf{x}$$를 아래와 같은 업데이트 룰을 통해서 Iterative하게 업데이트시키게 된다면 결국 $$\mathbf{x}^*$$로 점점 다가가게 될 것이라고 생각할 수 있다.
 
 $$\mathbf{x} \longleftarrow \mathbf{x} + \alpha \mathbf{u}(\mathbf{x})$$
 
