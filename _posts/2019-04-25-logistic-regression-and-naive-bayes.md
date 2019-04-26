@@ -92,7 +92,7 @@ Binary Classifier를 학습시키기 위하여 사용하는 Optimization 문제�
 
 $$
 \begin{align*}
-H(\widehat{P}(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) & = H(\widehat{P}(Y \vert X=\mathbf{x})) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
+H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) & = H(P_D(Y \vert X=\mathbf{x})) + D_{KL}(P_D(Y \vert X=\mathbf{x}) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
