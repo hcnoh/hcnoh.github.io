@@ -133,9 +133,26 @@ Gradient Descent 또는 Gradient Ascent란 어떤 함수 $$f(\mathbf{x})$$를 �
 
 즉, 정리하면 임의의 $$\mathbf{x}\in \mathcal{X}$$에 대해서 $$f(\mathbf{x})$$ 최대한 증가시키는 방향인 $$\mathbf{u}(\mathbf{x})$$를 찾을 수 있고 매번 $$\mathbf{x}$$를 아래와 같은 업데이트 룰을 통해서 업데이트시키게 된다면 결국 $$\mathbf{x}^*$$로 점점 다가가게 될 것이라고 생각할 수 있다.
 
-$$mathbf{x} \longleftarrow \mathbf{x} + \alpha \mathbf{u}(\mathbf{x})$$
+$$\mathbf{x} \longleftarrow \mathbf{x} + \alpha \mathbf{u}(\mathbf{x})$$
 
-여기서 $$\alpha \in \mathbb{R}$$는 임의의 양의 실수가 될 것이다.
+여기서 $$\alpha \in \mathbb{R}$$는 임의의 양의 실수가 될 것이다. 이 경우 Local Extrema에 빠질 가능성도 물론 있지만 여기서는 함수 $$f$$가 Concave하다고 가정을 하도록 하자. 그 다음 문제는 모든 $$\mathbf{x}\in \mathcal{X}$$에 대해서 $$\mathbf{u(x)}$$를 찾을 수 있는지가 될 것이다. 이 문제를 풀기 위해서는 $$f(\mathbf{x} + \alpha \mathbf{u})$$를 Taylor Expansion으로 풀어서 써놓는 것에서 시작한다.
+
+$$
+\begin{align*}
+f(\mathbf{x} + \alpha \mathbf{u})
+& = f(\mathbf{x}) + \alpha \nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} + \frac{h}{2}\mathbf{u}^{\text{T}}\nabla_{\mathbf{x}}^2 f(\mathbf{x}) \mathbf{u} + \cdots \\
+& \approx f(\mathbf{x}) + \alpha \nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u}
+\end{align*}
+$$
+
+여기서 우리는 $$\mathbf{u}$$가 $$f(\mathbf{x}+\alpha \mathbf{u})$$를 최대화하기를 원한다.
+
+$$
+\begin{align*}
+\mathbf{u(x)} & = \arg \max_{\mathbf{u}} f(\mathbf{x}) + \alpha \nabla_{\mathbf{x}}f(\mathbf{x})^{\text{T}}\mathbf{u} \\
+& = \frac{1}{\vert \nabla_{\mathbf{x}}f(\mathbf{x}) \vert} \nabla_{\mathbf{x}}f(\mathbf{x})
+\end{align*}
+$$
 
 Gradient Descent란:
 - 우리가 어떤 함수 $$f(\mathbf{x})$$를 최적화하기 위해서 사용하는 방법
