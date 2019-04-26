@@ -46,7 +46,7 @@ Generative Model은 Bayes Theorem을 이용하여 $$P(Y\vert X)$$를 $$P(X \vert
 일반적으로 확률 모델 $$P(X\vert Y)$$나 $$P(Y)$$에 대한 좋은 가정을 할 수 있다면 적은 데이터로도 충분히 좋은 성능을 찾아낼 수 있다는 것이 Generative Model의 장점이다. 반면 Discriminative Model은 데이터가 충분히 많다면 훨씬 더 좋은 성능을 낼 수 있다.. 이러한 관점으로 봤을 때 Discriminative Model은 MLE(Maximum Likelihood Estimation)와 같다고 볼 수 있으며 Generative Model은 MAP(Maximum A Posteriori)와 같다고도 볼 수 있다.
 
 ## Logistic Regression
-Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary로 가정을 추가하자. 물론 Multi 클래스에 대해서 확장이 간단할 것이다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
+Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary라는 가정을 추가하자. 물론 Multi 클래스에 대해서 확장이 간단할 것이다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
 
 $$
 \begin{align*}
@@ -57,25 +57,18 @@ p_{\boldsymbol{\theta}}(\mathbf{x})
 \end{align*}
 $$
 
-Logistic Regression이란?
-- 대표적인 Logistic Function 예시: Sigmoid, Tanh, 등등
+여기서 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 Logistic Function으로 가정하는 것이 Logistic Regression이다. 대표적인 Logistic Function은 다음과 같다.
 
-$$P(Y\vert X)$$를 Logistic Function을 이용하여 모델링을 하고 그것을 Fitting하는 것을 Logistic Regression이라고 함
-여기서는 Sigmoid를 사용하여 예시를 들었음: $$Sigmoid(x) = \frac{1}{1+e^{−x}}$$
+![](/assets/img/2019-04-25-logistic-regression-and-naive-bayes/01.png)
+(출처: [https://aailab.kaist.ac.kr/xe2/page_GBex27](https://aailab.kaist.ac.kr/xe2/page_GBex27))
 
-Binary Classifier의 예시:
-- y는 0 또는 1, x는 벡터
-- 모델링(Bernoulli Distribution):
+여기서는 가장 대표적인 Logistic Function인 Sigmoid를 사용하기로 하자. Sigmoid를 사용하여 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 다음과 같이 정의할 수 있다.
 
 $$
-\begin{align*}
-P(Y=y\vert X=\mathbf{x};\boldsymbol{\theta}) & = p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
-p_{\boldsymbol{\theta}}(\mathbf{x}) & = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})\\
-& = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
-\end{align*}
+p_{\boldsymbol{\theta}}(\mathbf{x}) = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
 $$
 
-- 파라미터 $$\boldsymbol{\theta}$$는 Maximum Likelihood Estimation으로 찾아내게 됨!
+이렇게 모델링이 된 $$P(Y\vert X;\boldsymbol{\theta})$$를 주어진 데이터셋 $$D$$를 이용하여 Fitting시키는 문제를 Logistic Regression이라고 한다. Logistic Regression을 풀기 위해서는 파라미터 $$\boldsymbol{\theta}$$에 대해서 다음과 같은 MLE 기반의 Optimization 문제를 풀어야 한다.
 
 $$
 \begin{align*}
