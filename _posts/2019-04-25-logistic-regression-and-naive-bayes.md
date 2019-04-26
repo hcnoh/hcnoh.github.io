@@ -183,8 +183,8 @@ Naive Bayes 방법은 위에서 설명한대로 Generative Model의 한 종류�
 
 $$
 \begin{align*}
-\boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x})
+f^*(\mathbf{x})
+& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x})
 \end{align*}
 $$
 
@@ -192,8 +192,8 @@ Generative Model은 위에서 설명한대로 아래와 같이 Optimization 문�
 
 $$
 \begin{align*}
-\boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} \vert Y=y)P(Y=y)
+f^*(\mathbf{x})
+& = \arg \max_{Y=y} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} \vert Y=y)P(Y=y)
 \end{align*}
 $$
 
@@ -205,11 +205,12 @@ $$
 P(X_1 \vert X_2, Y) = P(X_1 \vert Y)
 $$
 
-따라서 Naive Bayes의 Optimization 문제는 아래와 같이 쓸 수 있다.
+따라서 이러한 Conditional Independence 가정을 통해서 Naive Bayes의 Optimization 문제는 아래와 같이 쓸 수 있다.
 
 $$
 \begin{align*}
-f^*(\mathbf{x}) & = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
+f^*(\mathbf{x})
+& = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
 & = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X_i=x_i \vert Y=y) \\
 & \text{where} \ \mathbf{x} = (x_1,x_2,\cdots, x_d)
 \end{align*}
