@@ -37,31 +37,31 @@ Binary Classifier의 예시:
 
 $$
 \begin{align*}
-P(Y=y\vert X=\mathbf{x};\mathbf{w}) & = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y} \\
-\mu(\mathbf{x}) & = P(Y=1\vert X=\mathbf{x};\mathbf{w})\\
-& = \frac{1}{1+e^{−\mathbf{w}^{\text{T}}\mathbf{x}}}
+P(Y=y\vert X=\mathbf{x};\boldsymbol{\theta}) & = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y} \\
+\mu(\mathbf{x}) & = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})\\
+& = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
 \end{align*}
 $$
 
-- 파라미터 $$\mathbf{w}$$는 Maximum Likelihood Estimation으로 찾아내게 됨!
+- 파라미터 $$\boldsymbol{\theta}$$는 Maximum Likelihood Estimation으로 찾아내게 됨!
 
 $$
 \begin{align*}
-\widehat{\mathbf{w}}\
-& = \arg \max_{\mathbf{w}} P(D ; \mathbf{w}) \\
-& = \arg \max_{\mathbf{w}} \prod_{(\mathbf{x}, y) \in D} P(Y=y, X=\mathbf{x} ; \mathbf{w}) \\
-& = \arg \max_{\mathbf{w}} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} ; \mathbf{w}) P(Y=y \vert X=\mathbf{x} ; \mathbf{w}) \\
+\widehat{\boldsymbol{\theta}}\
+& = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(X=\mathbf{x} ; \boldsymbol{\theta}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 \end{align*}
 $$
 
-여기서 $$P(X=\mathbf{x} ; \mathbf{w})$$는 $$X$$와 $$\mathbf{w}$$가 독립이기 때문에 상수취급되며 따라서 Optimization에 영향을 주지 않기 때문에 생략이 가능할 것이다.
+여기서 $$P(X=\mathbf{x} ; \boldsymbol{\theta})$$는 $$X$$와 $$\boldsymbol{\theta}$$가 독립이기 때문에 상수취급되며 따라서 Optimization에 영향을 주지 않기 때문에 생략이 가능할 것이다.
 
 $$
 \begin{align*}
-\widehat{\mathbf{w}}
-& = \arg \max_{\mathbf{w}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \mathbf{w}) \\
-& = \arg \max_{\mathbf{w}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \mathbf{w}) \\
-& = \arg \max_{\mathbf{w}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
+\widehat{\boldsymbol{\theta}}
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
 \end{align*}
 $$
 
@@ -69,10 +69,10 @@ $$
 
 $$
 \begin{align*}
-\widehat{\mathbf{w}}
-& = \arg \max_{\mathbf{w}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
-& = \arg \max_{\mathbf{w}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
-& = \arg \max_{\mathbf{w}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x}))
+\widehat{\boldsymbol{\theta}}
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x}))
 \end{align*}
 $$
 
@@ -80,25 +80,25 @@ $$
 
 $$
 \begin{align*}
-\widehat{\mathbf{w}}
-& = \arg \max_{\mathbf{w}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x})) \\
-& = \arg \max_{\mathbf{w}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\mathbf{w})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\mathbf{w})) \\
-& = \arg \max_{\mathbf{w}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \mathbf{w})) \\
-& = \arg \max_{\mathbf{w}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \mathbf{w}))
+\widehat{\boldsymbol{\theta}}
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
-이 경우 $$\widehat{P}(Y \vert X)$$는 우리가 실제로 알고 싶은 확률 $$P(Y \vert X)$$를 데이터셋 $$D$$를 이용하여 추정한 것이다. (이 방법을 몬테카를로라고 하던가...?) 추정 값이 실제 값과 같다고 가정한다면 우리고 풀고자 하는 Optimization 문제는 우리 모델 $$P(Y\vert X ; \mathbf{w})$$와 실제 확률 $$P(Y\vert X)$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다.
+이 경우 $$\widehat{P}(Y \vert X)$$는 우리가 실제로 알고 싶은 확률 $$P(Y \vert X)$$를 데이터셋 $$D$$를 이용하여 추정한 것이다. (이 방법을 몬테카를로라고 하던가...?) 추정 값이 실제 값과 같다고 가정한다면 우리고 풀고자 하는 Optimization 문제는 우리 모델 $$P(Y\vert X ; \boldsymbol{\theta})$$와 실제 확률 $$P(Y\vert X)$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다.
 
 추가적으로 Cross-Entropy는 KL-Divergence로 다시 쓸 수 있다.
 
 $$
 \begin{align*}
-H(\widehat{P}(Y\vert X), P(Y \vert X ; \mathbf{w})) & = H(\widehat{P}(Y \vert X)) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X ; \mathbf{w}))
+H(\widehat{P}(Y\vert X), P(Y \vert X ; \boldsymbol{\theta})) & = H(\widehat{P}(Y \vert X)) + D_{KL}(\widehat{P}(Y \vert X) \Vert P(Y \vert X ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
-여기서 $$\mathbf{w}$$를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
+여기서 $$\boldsymbol{\theta}$$를 찾기 위해서 Gradient Descent (Ascent)를 사용하게 됨!
 
 ## Gradient Desecent (Ascent)
 
