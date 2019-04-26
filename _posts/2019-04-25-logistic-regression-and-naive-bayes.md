@@ -188,7 +188,7 @@ $$
 \end{align*}
 $$
 
-Naive Bayes는 Generative Model이기 때문에 아래와 같이 분해하여 생각하게 된다.
+Generative Model은 위에서 설명한대로 아래와 같이 Optimization 문제를 분해하여 생각하게 된다.
 
 $$
 \begin{align*}
@@ -197,31 +197,9 @@ $$
 \end{align*}
 $$
 
-Optimal Classifier의 정의: $$f^*(x) = \arg \max_{Y=y}P(Y=y \vert X=x)$$
+여기서 Generative Model은 다양한 방법으로 $$P(X=\mathbf{x} \vert Y=y)$$을 모델링하게 되는데 여기서는 한 가지 문제가 발생하게 된다. 바로 이 확률을 추정하기 위해서 필요한 데이터셋의 크기이다. 만약 $$\mathbf{x}$$의 Dimension이 $$d$$이고, 각각의 Dimension의 Element는 Binary라고 가정하였을 경우 필요한 $$(\mathbf{x}, y)$$ Tuple의 갯수는 $$(2^d-1)k$$가 될 것이다. 이 크기는 너무 크다는 문제가 있으며 이것을 줄이기 위한 다른 추가적인 가정을 필요로 하게 된다.
 
-Naive Bayes Classifier를 구하기 위해서는 위의 식을 분해해야 아래와 같은 Optimization 문제를 풀어야 한다.
-
-$$
-\begin{align*}
-f^*(x) & = \arg \max_{Y=y}P(Y=y \vert X=x) \\
-& = \arg \max_{Y=y} P(X=x \vert Y=y)P(Y=y)
-\end{align*}
-$$
-
-마찬가지로 Binary Classifier의 예시:
-- y는 0 또는 1, x는 벡터
-
-$$
-\begin{align*}
-f^*(\mathbf{x}) & = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x}) \\
-& = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y)
-\end{align*}
-$$
-
-이 경우 이 확률을 추정하기 위해서 필요한 데이터셋의 크기를 생각해보자. 만약 $$\mathbf{x}$$의 Dimension이 $$d$$이고, 각각의 Dimension의 Element는 Binary라고 가정하였을 경우 필요한 $$(\mathbf{x}, y)$$ Tuple의 갯수는 $$(2^d-1)k$$가 될 것이다. 이 크기는 너무 크다는 문제가 있으며 이것을 줄이기 위한 다른 추가적인 가정을 필요로 하게 된다.
-
-Naive Bayes의 가정: Conditional Independence
-- 다음을 만족할 때 $$X_1$$은 Given $$Y$$에 대해서 $$X_2$$와 Conditional Independent하다고 정의한다.
+여기서 Naive Bayes는 한 가지 가정을 추가하여 이 문제를 해결하려고 시도하게 된다. 바로 Conditional Independence 가정이다. Conditional Independence는 다음과 같이 정의된다. 확률 변수 $$X_1, X_2, Y$$에 대해서 각각이 다음을 만족할 때 $$X_1$$은 Given $$Y$$에 대해서 $$X_2$$와 Conditional Independent하다고 정의한다.
 
 $$
 P(X_1 \vert X_2, Y) = P(X_1 \vert Y)
