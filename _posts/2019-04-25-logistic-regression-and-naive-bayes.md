@@ -37,8 +37,8 @@ Binary Classifier의 예시:
 
 $$
 \begin{align*}
-P(Y=y\vert X=\mathbf{x};\boldsymbol{\theta}) & = \mu(\mathbf{x})^y(1−\mu(\mathbf{x}))^{1−y} \\
-\mu(\mathbf{x}) & = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})\\
+P(Y=y\vert X=\mathbf{x};\boldsymbol{\theta}) & = p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
+p_{\boldsymbol{\theta}}(\mathbf{x}) & = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})\\
 & = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
 \end{align*}
 $$
@@ -61,7 +61,7 @@ $$
 \widehat{\boldsymbol{\theta}}
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x}))
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x}))
 \end{align*}
 $$
 
@@ -70,9 +70,9 @@ $$
 $$
 \begin{align*}
 \widehat{\boldsymbol{\theta}}
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(\mu(\mathbf{x})) + (1-y)\log(1-\mu(\mathbf{x})) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x}))
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x}))
 \end{align*}
 $$
 
@@ -81,7 +81,7 @@ $$
 $$
 \begin{align*}
 \widehat{\boldsymbol{\theta}}
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(\mu(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-\mu(\mathbf{x})) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) + P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
@@ -181,9 +181,9 @@ $$
 Conditional Independence 가정이 합당한지? (강의 자료 참고)
 
 ## Logistic Regression과 Naive Bayes의 관계
-두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, \mu, \sigma^2)$$를 다음과 같이 쓸 수 있다.
+두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2)$$를 다음과 같이 쓸 수 있다.
 
-$$P(X_i=x_i\vert Y=y, \mu, \sigma^2) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}$$
+$$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{(x_i-p_{\boldsymbol{\theta}})^2}{2\sigma^2}}$$
 
 추가적으로, $$P(Y=y)$$에 대해서는 다음과 같은 가정을 사용하게 된다.
 
@@ -191,9 +191,9 @@ $$P(Y=y) = \pi_1$$
 
 만약 Binary Classfication 문제라는 가정이 추가된다면 다음과 같이 쓸 수 있을 것이다.
 
-$$P(X_i=x_i\vert Y=1, \mu_1^i, (\sigma_1^i)^2) = \frac{1}{\sigma_1^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-\mu_1^i}{2\sigma_1^i}\right)^2\right)$$
+$$P(X_i=x_i\vert Y=1, p_{\boldsymbol{\theta}}_1^i, (\sigma_1^i)^2) = \frac{1}{\sigma_1^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-p_{\boldsymbol{\theta}}_1^i}{2\sigma_1^i}\right)^2\right)$$
 
-$$P(X_i=x_i\vert Y=0, \mu_2^i, (\sigma_2^i)^2) = \frac{1}{\sigma_2^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-\mu_2^i}{2\sigma_2^i}\right)^2\right)$$
+$$P(X_i=x_i\vert Y=0, p_{\boldsymbol{\theta}}_2^i, (\sigma_2^i)^2) = \frac{1}{\sigma_2^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-p_{\boldsymbol{\theta}}_2^i}{2\sigma_2^i}\right)^2\right)$$
 
 $$P(Y=1) = \pi_1, \ \ \ P(Y=0) = \pi_2$$
 
