@@ -60,6 +60,7 @@ $$
 여기서 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 Logistic Function으로 가정하는 것이 Logistic Regression이다. 대표적인 Logistic Function은 다음과 같다.
 
 ![](/assets/img/2019-04-25-logistic-regression-and-naive-bayes/01.png)
+
 (출처: [https://aailab.kaist.ac.kr/xe2/page_GBex27](https://aailab.kaist.ac.kr/xe2/page_GBex27))
 
 여기서는 가장 대표적인 Logistic Function인 Sigmoid를 사용하기로 하자. Sigmoid를 사용하여 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 다음과 같이 정의할 수 있다.
