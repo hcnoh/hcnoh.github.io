@@ -80,29 +80,33 @@ Logistic Regression을 풀기 위해서는 Optimal Classifier를 찾는 Optimiza
 $$
 \begin{align*}
 f^*(\mathbf{x})
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x})
+& = \arg \max_{Y=y} P(Y=y \vert X=\mathbf{x})
 \end{align*}
 $$
 
-모든 Pair $$(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})$$에 대한 각각의 $$P(Y=y\vert X=\mathbf{x})$$는 모두 독립이기 때문에(i.i.d라는 가정) $$\prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})}$$로 묶을 수 있다. 하지만 우리는 모든 데이터 공간 $$(\mathcal{X}, \mathcal{Y})$$을 Tracking할 수 없기 때문에 주어진 데이터셋 $$D$$에 대해서만 이 Optimization 문제를 풀고자 한다. 따라서 Optimization 문제는 아래와 같이 바꿔서 쓰게 된다.
+여기서 우리는 실제 $$P(Y=y \vert X=\mathbf{x})$$를 알 수 없으므로 우리가 가정한 모델 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 대신 사용하여 Optimal Classifier를 정의하게 된다.
 
 $$
 \begin{align*}
 f^*(\mathbf{x})
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x})
+& = \arg \max_{Y=y} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
 
-우리는 이 문제를 Logistic Regression으로 풀기 위해서 $$P(Y=y \vert X=\mathbf{x})$$를 위에서 정의한 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 가정할 것이며 이를 통해서 $$\boldsymbol{\theta}$$에 대한 Optimization 문제로 바꿀 것이다.
+우리는 이제 이 Optimization 문제로부터 실제 $$P(Y=y\vert X=\mathbf{x})$$를 모델링할 수 있는 최적의 파라미터 $$\boldsymbol{\theta}$$를 찾고자 한다. 이 경우 우리에게 주어진 데이터셋 $$D$$를 활용하게 된다. 즉, 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾는 MLE 방법을 사용하게 된다. 일단 먼저 MLE의 형식대로 Optimization 문제를 다시 써보면 다음과 같다.
 
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+& = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
 
-이 문제는 데이터셋 $$D$$에 대해서 모델을 직접 Fitting하는 것이기 때문에 MLE라고 볼 수도 있다. 어쨌든 여기에 $$\log$$를 씌움으로써 더 문제를 간단하게 쓸 수 있다.
+여기서 우리가 가정한 모델 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 사용하여 Joint Distribution $$P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta})$$를 $$P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 분해하였다. $$P(X=\mathbf{x})$$는 $$\mathbf{x}$$의 값이 Optimization 문제에 영향을 주지 않기 때문에 상수취급하여 제거할 수 있다.
+
+따라서 Optimization 문제는 다음과 같이 정리될 수 있다.
 
 $$
 \begin{align*}
@@ -112,7 +116,7 @@ $$
 \end{align*}
 $$
 
-특히 마지막 식은 Binary Cross-Entropy를 최소화하는 문제로 바꿀 수 있음을 확인할 수 있을 것이다. 아래와 같이 식을 수정해보자.
+특히 마지막 식은 이 Optimization 문제가 Binary Cross-Entropy를 최소화하는 문제로 바꿀 수 있음을 확인할 수 있을 것이다. 아래와 같이 식을 수정해보자.
 
 $$
 \begin{align*}
