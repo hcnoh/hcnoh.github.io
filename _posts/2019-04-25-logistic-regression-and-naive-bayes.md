@@ -69,7 +69,18 @@ $$
 p_{\boldsymbol{\theta}}(\mathbf{x}) = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
 $$
 
-이렇게 모델링이 된 $$P(Y\vert X;\boldsymbol{\theta})$$를 주어진 데이터셋 $$D$$를 이용하여 Fitting시키는 문제를 Logistic Regression이라고 한다. Logistic Regression을 풀기 위해서는 파라미터 $$\boldsymbol{\theta}$$에 대해서 Optimal Classifier를 찾는 문제로부터 시작하는 것이 좋다.
+이렇게 모델링이 된 $$P(Y\vert X;\boldsymbol{\theta})$$를 주어진 데이터셋 $$D$$를 이용하여 Fitting시키는 문제를 Logistic Regression이라고 한다.
+
+Logistic Regression을 풀기 위해서는 파라미터 $$\boldsymbol{\theta}$$에 대해서 Optimal Classifier를 찾는 Optimization 문제로부터 시작하는 것이 좋다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+\end{align*}
+$$
+
+모든 Pair $$(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})$$에 대한 각각의 $$P(Y=y\vert X=\mathbf{x}; \boldsymbol{\theta})$$는 모두 독립이기 때문에(i.i.d라는 가정) $$\prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})}$$로 묶을 수 있다. 하지만 우리는 모든 데이터 공간 $$(\mathcal{X}, \mathcal{Y})$$을 Tracking할 수 없기 때문에 주어진 데이터셋 $$D$$에 대해서만 이 Optimization 문제를 풀고자 한다. 따라서 Optimization 문제는 아래와 같이 바꿔서 쓰게 된다.
 
 $$
 \begin{align*}
@@ -78,7 +89,7 @@ $$
 \end{align*}
 $$
 
-데이터셋 $$D$$의 모든 Pair $$(\mathbf{x}, y)$$에 대한 각각의 $$P(Y=y\vert X=\mathbf{x}; \boldsymbol{\theta})$$는 모두 독립이기 때문에(i.i.d라는 가정) $$\prod_{(\mathbf{x}, y) \in D}$$로 묶을 수 있다. 여기에 $$\log$$를 씌움으로써 더 문제를 간단하게 쓸 수 있다.
+여기에 $$\log$$를 씌움으로써 더 문제를 간단하게 쓸 수 있다.
 
 $$
 \begin{align*}
