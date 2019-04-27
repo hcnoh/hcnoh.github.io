@@ -208,7 +208,7 @@ $$
 
 여기서 Generative Model은 다양한 방법으로 $$P(X=\mathbf{x} \vert Y=y)$$을 모델링하게 되는데 여기서는 한 가지 문제가 발생하게 된다. 바로 이 확률을 추정하기 위해서 필요한 데이터셋의 크기이다. 만약 $$\mathbf{x}$$의 Dimension이 $$d$$이고, 각각의 Dimension의 Element는 Binary라고 가정하였을 경우 $$P(X=\mathbf{x} \vert Y=y)$$를 추정하기 위해서 필요한 $$(\mathbf{x}, y)$$ Tuple의 갯수는 $$(2^d-1)k$$가 될 것이다. 이 크기는 너무 크다는 문제가 있으며 이것을 줄이기 위한 다른 추가적인 가정을 필요로 하게 된다.
 
-여기서 Naive Bayes는 한 가지 가정을 추가하여 이 문제를 해결하려고 시도하게 된다. 바로 Conditional Independence 가정이다. Conditional Independence는 다음과 같이 정의된다. 확률 변수 $$X_1, X_2, Y$$에 대해서 각각이 다음을 만족할 때 $$X_1$$은 Given $$Y$$에 대해서 $$X_2$$와 Conditional Independent하다고 정의한다.
+따라서 Naive Bayes는 한 가지 가정을 추가하여 이 문제를 해결하려고 시도하게 된다. 바로 Conditional Independence 가정이다. Conditional Independence는 다음과 같이 정의된다. 확률 변수 $$X_1, X_2, Y$$에 대해서 각각이 다음을 만족할 때 $$X_1$$은 Given $$Y$$에 대해서 $$X_2$$와 Conditional Independent하다고 정의한다.
 
 $$
 P(X_1 \vert X_2, Y) = P(X_1 \vert Y)
@@ -225,7 +225,7 @@ f^*(\mathbf{x})
 \end{align*}
 $$
 
-이 경우 확률을 추정하기 위한 데이터셋의 크기가 매우 감소하는 것을 확인할 수 있다. $$P(X_i=x_i\vert Y=y)$$를 추정하기 위해 필요한 $$(x_i, y)$$ Tuple는 $$k$$개가 될 것이고 $$x_i$$가 $$d$$개가 필요할 것이기 때문에 총 Tuple의 갯수는 $$dk$$가 될 것이다.
+이 경우 확률을 추정하기 위한 데이터셋의 크기가 매우 감소하는 것을 확인할 수 있다. $$P(X^{(i)}=x^{(i)} \vert Y=y)$$를 추정하기 위해 필요한 $$(x^{(i)}, y)$$ Tuple는 $$k$$개가 될 것이고 $$x^{(i)}$$가 $$d$$개가 필요할 것이기 때문에 총 Tuple의 갯수는 $$dk$$가 될 것이다.
 
 Conditional Independence 가정이 합당한지에 대해서는 Graphical Model에 대한 공부가 더 필요하다. 나중에 공부하여 정리하도록 하겠다.
 
