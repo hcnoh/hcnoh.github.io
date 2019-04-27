@@ -248,6 +248,12 @@ P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})
 \end{align*}
 $$
 
+마찬가지로 $$P(Y)$$에 대해서도 가정이 필요하다. 다음과 같은 가정을 사용하도록 하자.
+
+$$
+P(Y=y) = \pi_y
+$$
+
 먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2)$$를 다음과 같이 쓸 수 있다.
 
 $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{(x_i-p_{\boldsymbol{\theta}})^2}{2\sigma^2}}$$
@@ -255,6 +261,8 @@ $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2) = \frac{1}{\sigma \sqrt
 추가적으로, $$P(Y=y)$$에 대해서는 다음과 같은 가정을 사용하게 된다.
 
 $$P(Y=y) = \pi_1$$
+
+이제 모든 가정이 끝났다. Logistic Regression처럼 주어진 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾아보도록 하자.
 
 만약 Binary Classfication 문제라는 가정이 추가된다면 다음과 같이 쓸 수 있을 것이다.
 
@@ -265,6 +273,18 @@ $$P(X_i=x_i\vert Y=0, p_{\boldsymbol{\theta}}_2^i, (\sigma_2^i)^2) = \frac{1}{\s
 $$P(Y=1) = \pi_1, \ \ \ P(Y=0) = \pi_2$$
 
 따라서 위의 가정들을 바탕으로 $$P(Y=y \vert X)$$를 다시 쓰면 다음과 같다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+\end{align*}
+$$
+
+
 
 $$
 \begin{align*}
