@@ -270,7 +270,18 @@ $$
 P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
 & = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{P(X=\mathbf{x})} \\
 & = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{\sum_{y\in \{ 0,1 \}}P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)} \\
-& = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y)}{\sum_{y\in \{ 0,1 \}}\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y)}
+& = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y}{\sum_{y\in \{ 0,1 \}}\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y} \\
+& = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}
+\end{align*}
+$$
+
+여기서 과정을 좀 더 간단하게 하기 위하여 $$P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})$$인 경우만 고려하여 생각해보자.
+
+$$
+\begin{align*}
+P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
+& = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
+& = \frac{1}{1 + \frac{1}{1}}
 \end{align*}
 $$
 
