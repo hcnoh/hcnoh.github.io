@@ -50,7 +50,7 @@ Generative Model은 Bayes Theorem을 이용하여 $$P(Y\vert X)$$를 $$P(X \vert
 일반적으로 확률 모델 $$P(X\vert Y)$$나 $$P(Y)$$에 대한 좋은 가정을 할 수 있다면 적은 데이터로도 충분히 좋은 성능을 찾아낼 수 있다는 것이 Generative Model의 장점이다. 반면 Discriminative Model은 데이터가 충분히 많다면 훨씬 더 좋은 성능을 낼 수 있다.. 이러한 관점으로 봤을 때 Discriminative Model은 MLE(Maximum Likelihood Estimation)와 같다고 볼 수 있으며 Generative Model은 MAP(Maximum A Posteriori)와 같다고도 볼 수 있다.
 
 ## Logistic Regression
-Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary라는 가정을 추가하자. 물론 Multi 클래스에 대해서 간단한 방법으로 확장이 가능하다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
+Logistic Regression은 위에서 설명하였듯이 Discriminative Model의 한 종류이다. 따라서 $$P(Y\vert X)$$에 대해서 가정을 하여 $$P(Y\vert X;\boldsymbol{\theta})$$로 모델링을 하게 된다. 문제를 좀 더 간단하게 표현하기 위해서 클래스 공간 $$\mathcal{Y}$$는 Binary라는 가정($$\mathcal{Y}=\{0,1\}$$)을 추가하자. 물론 Multi 클래스에 대해서 간단한 방법으로 확장이 가능하다. $$P(Y\vert X)$$가 Binary 랜덤 변수에 대한 분포를 나타내므로 Bernoulli 분포로 가정을 하는 것이 자연스러울 것이다.
 
 $$
 \begin{align*}
@@ -263,13 +263,14 @@ P(Y=y\vert X=\mathbf{x})
 \end{align*}
 $$
 
-여기서 Naive Bayes의 가정을 통해서 $$P(X=\mathbf{x}\vert Y)$$를 $$P(X=\mathbf{x}\vert Y ; \boldsymbol{\theta})$$로 다시 써보도록 하자.
+여기서 Naive Bayes의 가정을 통해서 $$P(X=\mathbf{x}\vert Y=y)$$를 $$P(X=\mathbf{x}\vert Y=y ; \boldsymbol{\theta})$$로 다시 써보도록 하자.
 
 $$
 \begin{align*}
 P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
 & = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{P(X=\mathbf{x})} \\
-& = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{\sum_{y\in \{ \mathcal{Y} \}}P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}
+& = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{\sum_{y\in \{ 0,1 \}}P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)} \\
+& = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y)}{\sum_{y\in \{ 0,1 \}}\prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_y)}
 \end{align*}
 $$
 
