@@ -232,7 +232,21 @@ Conditional Independence 가정이 합당한지에 대해서는 Graphical Model�
 어쨌든 Naive Bayes 방법을 정리하면, 일반적인 Generative Model처럼 $$P(X\vert Y)$$에 대해서 가정을 통하여 모델링을 시도하게 되지만 여기서 사용하는 가정이 Conditional Independence 가정이 사용된다면 그 방법은 Naive Bayes 방법을 사용한다고 말할 수 있겠다.
 
 ## Logistic Regression과 Naive Bayes의 관계
-두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 일단 기본적으로 $$P(X\vert Y)$$가 기본적으로 $$X$$의 모든 Dimension Element에 대해서 Conditional Independence라는 가정에 추가하여 특정 파라미터 $$\boldsymbol{\theta}$$로 Parameterization하였다고 가정한다.
+두 방법을 비교하기 위해서 Naive Bayes의 가정이 몇 가지 더 추가되게 된다. 일단 기본적으로 $$P(X\vert Y)$$가 기본적으로 $$X$$의 모든 Dimension Element에 대해서 Conditional Independence라는 가정에 추가하여 특정 파라미터 $$\boldsymbol{\theta}$$로 Parameterization하였다고 가정한다. 대부분의 강의자료 또는 교과서에서는 $$P(X\vert Y)$$를 Gaussian이라고 가정하는데 여기서는 좀 더 일반적으로 가정하도록 해보자. $$P(X\vert Y)$$를 다음과 같이 가정하자.
+
+$$
+P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta}) = q_{(y, \boldsymbol{\theta})}(\mathbf{x})
+$$
+
+또한 Naive Bayes는 Conditional Independence 가정을 사용하기 때문에 아래와 같은 가정이 추가된다.
+
+$$
+\begin{align*}
+P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})
+& = q_{(y, \boldsymbol{\theta})}(\mathbf{x}) \\ q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})
+& = \prod_{i\in \{1,2,\cdots, d \}} 
+\end{align*}
+$$
 
 먼저 $$X$$는 Continuous하다는 가정과 $$X$$가 주어진 파라미터에 대해서 Gaussian Distribution을 따른다는 가정이다. 즉, $$P(X_i=x_i\vert Y=y, p_{\boldsymbol{\theta}}, \sigma^2)$$를 다음과 같이 쓸 수 있다.
 
