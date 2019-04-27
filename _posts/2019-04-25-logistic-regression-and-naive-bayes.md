@@ -281,7 +281,7 @@ $$
 \begin{align*}
 P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})
 & = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
-& = \frac{1}{1 + \frac{q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}}
+& = \frac{1}{1 + \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}}
 \end{align*}
 $$
 
