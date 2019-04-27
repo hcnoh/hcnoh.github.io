@@ -264,16 +264,6 @@ $$P(Y=y) = \pi_1$$
 
 이제 모든 가정이 끝났다. Logistic Regression처럼 주어진 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾아보도록 하자.
 
-만약 Binary Classfication 문제라는 가정이 추가된다면 다음과 같이 쓸 수 있을 것이다.
-
-$$P(X_i=x_i\vert Y=1, p_{\boldsymbol{\theta}}_1^i, (\sigma_1^i)^2) = \frac{1}{\sigma_1^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-p_{\boldsymbol{\theta}}_1^i}{2\sigma_1^i}\right)^2\right)$$
-
-$$P(X_i=x_i\vert Y=0, p_{\boldsymbol{\theta}}_2^i, (\sigma_2^i)^2) = \frac{1}{\sigma_2^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-p_{\boldsymbol{\theta}}_2^i}{2\sigma_2^i}\right)^2\right)$$
-
-$$P(Y=1) = \pi_1, \ \ \ P(Y=0) = \pi_2$$
-
-따라서 위의 가정들을 바탕으로 $$P(Y=y \vert X)$$를 다시 쓰면 다음과 같다.
-
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
@@ -285,6 +275,21 @@ $$
 $$
 
 
+
+
+
+
+
+
+만약 Binary Classfication 문제라는 가정이 추가된다면 다음과 같이 쓸 수 있을 것이다.
+
+$$P(X_i=x_i\vert Y=1, p_{\boldsymbol{\theta}}_1^i, (\sigma_1^i)^2) = \frac{1}{\sigma_1^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-p_{\boldsymbol{\theta}}_1^i}{2\sigma_1^i}\right)^2\right)$$
+
+$$P(X_i=x_i\vert Y=0, p_{\boldsymbol{\theta}}_2^i, (\sigma_2^i)^2) = \frac{1}{\sigma_2^i \sqrt{2 \pi}}\exp\left(-\left(\frac{x_i-p_{\boldsymbol{\theta}}_2^i}{2\sigma_2^i}\right)^2\right)$$
+
+$$P(Y=1) = \pi_1, \ \ \ P(Y=0) = \pi_2$$
+
+따라서 위의 가정들을 바탕으로 $$P(Y=y \vert X)$$를 다시 쓰면 다음과 같다.
 
 $$
 \begin{align*}
