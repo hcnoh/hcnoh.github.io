@@ -220,7 +220,7 @@ $$
 \begin{align*}
 f^*(\mathbf{x})
 & = \arg \max_{Y=y} P(X=\mathbf{x} \vert Y=y)P(Y=y) \\
-& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X^{(i)}=x_^{(i)} \vert Y=y) \\
+& = \arg \max_{Y=y} P(Y=y) \prod_{i\in \{1,2,\cdots, d\}} P(X^{(i)}=x^{(i)} \vert Y=y) \\
 & \text{where} \ X=(X^{(1)}, X^{(2)}, \cdots, X^{(d)}), \ \mathbf{x} = (x^{(1)}, x^{(2)}, \cdots, x^{(d)})
 \end{align*}
 $$
@@ -243,8 +243,8 @@ $$
 $$
 \begin{align*}
 P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})
-& = q_{(y, \boldsymbol{\theta})}(\mathbf{x}) \\ q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})
-& = \prod_{i\in \{1,2,\cdots, d \}} 
+& = q_{(y, \boldsymbol{\theta})}(\mathbf{x}) \\
+& = \prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})
 \end{align*}
 $$
 
