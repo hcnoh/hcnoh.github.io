@@ -254,7 +254,29 @@ $$
 P(Y=y) = \pi_y
 $$
 
-이제 모든 가정이 끝났다. Logistic Regression처럼 주어진 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾아보도록 하자.
+이제 모든 가정이 끝났다. 이제 우리가 찾고자 하는 $$P(Y\vert X)$$를 파라미터 $$\boldsymbol{\theta}$$에 대해서 모델링해보도록 하자. 먼저 $$P(Y\vert X)$$를 다음과 같이 써보자.
+
+$$
+\begin{align*}
+P(Y=y\vert X=\mathbf{x})
+& = \frac{P(X=\mathbf{x} \vert Y=y)P(Y=y)}{P(X=\mathbf{x})}
+\end{align*}
+$$
+
+여기서 Naive Bayes의 가정을 통해서 $$P(X=\mathbf{x}\vert Y)$$를 $$P(X=\mathbf{x}\vert Y ; \boldsymbol{\theta})$$로 다시 써보도록 하자.
+
+$$
+\begin{align*}
+P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
+& = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{P(X=\mathbf{x})} \\
+& = \frac{P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}{\sum_{y\in \{ \mathcal{Y} \}}P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y)}
+\end{align*}
+$$
+
+
+
+
+Logistic Regression처럼 주어진 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾아보도록 하자.
 
 $$
 \begin{align*}
