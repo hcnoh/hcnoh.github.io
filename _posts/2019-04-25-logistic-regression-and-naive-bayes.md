@@ -275,11 +275,11 @@ P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
 
-여기서 과정을 좀 더 간단하게 하기 위하여 $$P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})$$인 경우만 고려하여 생각해보자.
+여기서 과정을 좀 더 간단하게 하기 위하여 $$P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 먼저 계산해보자. $$P(Y=0\vert X=\mathbf{x} ; \boldsymbol{\theta})$$은 $$1-P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 간단하게 계산할 수 있을 것이다.
 
 $$
 \begin{align*}
-P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
+P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})
 & = \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
 & = \frac{1}{1 + \frac{q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}}
 \end{align*}
