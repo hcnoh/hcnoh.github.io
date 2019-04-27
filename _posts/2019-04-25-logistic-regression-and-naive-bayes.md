@@ -262,7 +262,8 @@ $$
 & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(X=\mathbf{x} \vert Y=y ; \boldsymbol{\theta})P(Y=y) \\
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y) \prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} \pi_y \prod_{i\in \{1,2,\cdots, d \}} q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)}) \\
+& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} \sum_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} \log \pi_y \sum_{i\in \{1,2,\cdots, d \}} \log q_{(y, \boldsymbol{\theta})}^{(i)}(x^{(i)})
 \end{align*}
 $$
 
