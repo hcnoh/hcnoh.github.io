@@ -148,7 +148,7 @@ Binary Classifier를 학습시키기 위하여 사용하는 Optimization 문제�
 $$
 \begin{align*}
 & H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) \\
-& \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad = \ H(P_D(Y \vert X=\mathbf{x})) + D_{KL}(P_D(Y \vert X=\mathbf{x}) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
+& \quad \quad \quad \quad \quad \quad \quad \quad = \ H(P_D(Y \vert X=\mathbf{x})) + D_{KL}(P_D(Y \vert X=\mathbf{x}) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
@@ -284,10 +284,10 @@ $$
 $$
 \begin{align*}
 & P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
-& \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{1}{1 + \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}} \\
-& \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{1}{1 + \exp \left( -\log \left[ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0} \right] \right) } \\
-\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{1}{1 + \exp \left( -\left[ \sum_{i\in \{1,2,\cdots, d \}} \log q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)}) - \sum_{i\in \{1,2,\cdots, d \}} \log q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)}) + \log \pi_1 - \log \pi_0 \right] \right) }
+& \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
+& \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{1}{1 + \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}} \\
+& \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{1}{1 + \exp \left( -\log \left[ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0} \right] \right) } \\
+& \quad \quad \quad \quad \quad \quad \quad \quad = \ \frac{1}{1 + \exp \left( -\left[ \sum_{i\in \{1,2,\cdots, d \}} \log q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)}) - \sum_{i\in \{1,2,\cdots, d \}} \log q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)}) + \log \pi_1 - \log \pi_0 \right] \right) }
 \end{align*}
 $$
 
