@@ -27,7 +27,7 @@ $$
 g(\text{Apple}) = 1, \ \ \ g(\text{Banna}) = 0, \ \ \ g(\text{Steak}) = 0, \cdots
 $$
 
-이 경우 $$f$$는 바나나에 대해서는 정확히 분류해냈지만 $$g$$는 그렇지 못한 셈이 되었다. 우리는 바나나가 과일이 맞다는 것을 알 수 있으므로 $$g$$ 보다는 $$f$$가 더 성능이 좋다고 판단할 수 있다.
+이 경우 $$f$$는 바나나에 대해서는 정확히 분류해냈지만 $$g$$는 그2렇지 못한 셈이 되었다. 우리는 바나나가 과일이 맞다는 것을 알 수 있으므로 $$g$$ 보다는 $$f$$가 더 성능이 좋다고 판단할 수 있다.
 
 위와 같은 예시를 바탕으로 Optimal Classifier를 정의할 수 있다. 일단 Optimal Classifier의 정의는 다음과 같다.
 
@@ -70,7 +70,11 @@ $$
 여기서는 가장 대표적인 Logistic Function인 Sigmoid를 사용하기로 하자. Sigmoid를 사용하여 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 다음과 같이 정의할 수 있다.
 
 $$
-p_{\boldsymbol{\theta}}(\mathbf{x}) = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
+\begin{align*}
+p_{\boldsymbol{\theta}}(\mathbf{x})
+& = \sigma(−\boldsymbol{\theta}^{\text{T}}\mathbf{x}) \\
+& = \frac{1}{1+e^{−\boldsymbol{\theta}^{\text{T}}\mathbf{x}}}
+\end{align*}
 $$
 
 이렇게 모델링이 된 $$P(Y\vert X;\boldsymbol{\theta})$$를 주어진 데이터셋 $$D$$를 이용하여 Fitting시키는 문제를 Logistic Regression이라고 한다.
