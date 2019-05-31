@@ -18,13 +18,13 @@ permalink: /2019-04-25-logistic-regression-and-naive-bayes
 일반적으로 Classification 문제는 샘플 공간 $$\mathcal{X}$$ 상에 있는 샘플 $$\mathbf{x}_1, \mathbf{x}_2, \cdots \in \mathcal{X}$$ 각각에 대해서 이 샘플은 어떤 클래스 $$y \in \mathcal{Y}$$로 분류할 것인가에 관한 문제로 생각할 수 있을 것이다. 이러한 문제 세팅에서 자연스럽게 우리는 Classifier $$f$$를 정의할 수 있다. Classifier $$f:\mathcal{X} \longmapsto \mathcal{Y}$$는 주어진 샘플 공간으로부터 클래스 공간으로 Mapping해주는 함수라고 정의할 수 있을 것이다. 예를 들면 다음과 같다. 여러 음식들($$\mathcal{X}$$)을 과일이냐 아니냐($$\mathcal{Y}=\{0, 1 \}$$)로 분류하는 Classifier $$f$$를 예로 들어보자. $$f$$는 다음과 같이 동작할 것이다.
 
 $$
-f(\text{Apple}) = 1, \ \ \ f(\text{Banna}) = 1, \ \ \ f(\text{Steak}) = 0, \cdots
+f(\text{Apple}) = 1, \ \ \ f(\text{Banana}) = 1, \ \ \ f(\text{Steak}) = 0, \cdots
 $$
 
 물론 어떤 Classifier $$g$$는 다음과 같이 동작할 수도 있을 것이다.
 
 $$
-g(\text{Apple}) = 1, \ \ \ g(\text{Banna}) = 0, \ \ \ g(\text{Steak}) = 0, \cdots
+g(\text{Apple}) = 1, \ \ \ g(\text{Banana}) = 0, \ \ \ g(\text{Steak}) = 0, \cdots
 $$
 
 이 경우 $$f$$는 바나나에 대해서는 정확히 분류해냈지만 $$g$$는 그2렇지 못한 셈이 되었다. 우리는 바나나가 과일이 맞다는 것을 알 수 있으므로 $$g$$ 보다는 $$f$$가 더 성능이 좋다고 판단할 수 있다.
