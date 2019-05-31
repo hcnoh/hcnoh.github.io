@@ -283,7 +283,7 @@ P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
 
-Logistic Regression과의 관계를 확인하기 위해서는 Logistic Regression의 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$에 대한 가정이 Naive Bayes에서는 어떤 모습으로 변화하였는지를 확인해야 할 것이다. Logistic Regression에서 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$는 $$P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 의미하므로 위에서 구한 $$P(X=\mathbf{x}\vert Y=y ; \boldsymbol{\theta})$$를 이용하여 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 써보도록 하자.
+Logistic Regression과의 관계를 확인하기 위해서는 Logistic Regression의 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$에 대한 가정이 Naive Bayes에서는 어떤 모습으로 변화하였는지를 확인해야 할 것이다. Logistic Regression에서 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$는 $$P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 의미하므로 위에서 구한 $$P(Y=y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 이용하여 $$p_{\boldsymbol{\theta}}(\mathbf{x})$$를 써보도록 하자.
 
 $$
 \begin{align*}
