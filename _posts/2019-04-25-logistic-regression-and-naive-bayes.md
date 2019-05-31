@@ -287,13 +287,13 @@ Logistic Regression과의 관계를 확인하기 위해서는 Logistic Regressio
 
 $$
 \begin{align*}
-& p_{\boldsymbol{\theta}}(\mathbf{x}) \\
-& \quad \quad \quad \quad = \ P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& \quad \quad \quad \quad = \ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
-& \quad \quad \quad \quad = \ \frac{1}{1 + \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}} \\
-& \quad \quad \quad \quad = \ \frac{1}{1 + \exp \left( -\log \left[ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0} \right] \right) } \\
-& \quad \quad \quad \quad = \ \frac{1}{1 + \exp \left( -\left[ \sum_{i\in \{1,2,\cdots, d \}} \log q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)}) - \sum_{i\in \{1,2,\cdots, d \}} \log q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)}) + \log \pi_1 - \log \pi_0 \right] \right) } \\
-& \quad \quad \quad \quad = \ \sigma \left( \sum_{i\in \{1,2,\cdots, d \}} \log q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)}) - \sum_{i\in \{1,2,\cdots, d \}} \log q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)}) + \log \pi_1 - \log \pi_0 \right)
+p_{\boldsymbol{\theta}}(\mathbf{x}) \\
+& = \ P(Y=1\vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0 + \prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1} \\
+& = \ \frac{1}{1 + \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0}{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}} \\
+& = \ \frac{1}{1 + \exp \left( -\log \left[ \frac{\prod_{i\in \{1,2,\cdots, d \}} q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_1}{\prod_{i\in \{1,2,\cdots, d \}} q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)})\pi_0} \right] \right) } \\
+& = \ \frac{1}{1 + \exp \left( -\left[ \sum_{i\in \{1,2,\cdots, d \}} \log q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)}) - \sum_{i\in \{1,2,\cdots, d \}} \log q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)}) + \log \pi_1 - \log \pi_0 \right] \right) } \\
+& = \ \sigma \left( \sum_{i\in \{1,2,\cdots, d \}} \log q_{(1, \boldsymbol{\theta})}^{(i)}(x^{(i)}) - \sum_{i\in \{1,2,\cdots, d \}} \log q_{(0, \boldsymbol{\theta})}^{(i)}(x^{(i)}) + \log \pi_1 - \log \pi_0 \right)
 \end{align*}
 $$
 
