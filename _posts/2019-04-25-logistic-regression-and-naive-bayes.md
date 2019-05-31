@@ -175,7 +175,7 @@ $$
 \begin{align*}
 f(\mathbf{x}_t + \alpha \mathbf{u})
 & = f(\mathbf{x}_t) + \alpha \nabla_{\mathbf{x}}f(\mathbf{x}_t)^{\text{T}}\mathbf{u} + \frac{\alpha}{2}\mathbf{u}^{\text{T}}\nabla_{\mathbf{x}}^2 f(\mathbf{x}_t) \mathbf{u} + \cdots \\
-& \approx f(\mathbf{x}) + \alpha \nabla_{\mathbf{x}}f(\mathbf{x}_t)^{\text{T}}\mathbf{u}
+& \approx f(\mathbf{x}_t) + \alpha \nabla_{\mathbf{x}}f(\mathbf{x}_t)^{\text{T}}\mathbf{u}
 \end{align*}
 $$
 
