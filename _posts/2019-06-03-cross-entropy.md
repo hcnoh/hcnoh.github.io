@@ -41,7 +41,7 @@ $$
 \end{align*}
 $$
 
-이러한 형식의 함수를 다루는 경우에는 곱하기 연산을 보통 복잡하다고 생각하여 Log를 씌움으로써 식을 간단하게 만들게 된다. 이렇게 만들어진 함수는 Log (Conditional) Likelihood Function이 될 것이다.
+이러한 형식의 함수를 다루는 경우에는 곱하기 연산을 보통 복잡하다고 생각하여 Log를 씌움으로써 식을 간단하게 만들게 된다. 이렇게 만들어진 함수는 Log (Conditional) Likelihood Function이 될 것이다. MLE 또는 MCLE를 사용하는 경우 Log 함수의 증가함수의 특성 덕분에 Optimization 문제를 푸는 것의 결과에는 영향을 주지 않게 된다.
 
 $$
 \begin{align*}
@@ -67,7 +67,7 @@ $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
 $$
