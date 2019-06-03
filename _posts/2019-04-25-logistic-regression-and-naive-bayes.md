@@ -97,24 +97,12 @@ f^*(\mathbf{x})
 \end{align*}
 $$
 
-우리는 이제 이 Optimization 문제로부터 실제 $$P(Y=y\vert X=\mathbf{x})$$를 모델링할 수 있는 최적의 파라미터 $$\boldsymbol{\theta}$$를 찾고자 한다. 이 경우 우리에게 주어진 데이터셋 $$D$$를 활용하게 된다. 즉, 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾는 MLE 방법을 사용하게 된다. 일단 먼저 MLE의 형식대로 Optimization 문제를 다시 써보면 다음과 같다.
+우리는 이제 이 Optimization 문제로부터 실제 $$P(Y=y\vert X=\mathbf{x})$$를 모델링할 수 있는 최적의 파라미터 $$\boldsymbol{\theta}$$를 찾고자 한다. 이 경우 우리에게 주어진 데이터셋 $$D$$를 활용하게 된다. 즉, 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾는 MLE 방법을 사용하게 된다. 여기서는 데이터셋 $$D$$ 내부의 $$\mathbf{x}$$와 $$y$$가 서로 Dependent하기 때문에 MCLE(Maximum Conditional Likelihood Estimation)를 사용하게 된다. MCLE의 형식대로 Optimization 문제를 다시 써보면 다음과 같다.
 
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
-\end{align*}
-$$
-
-여기서 우리가 가정한 모델 $$P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 사용하여 Joint Distribution $$P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta})$$를 $$P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})$$로 분해하였다. $$P(X=\mathbf{x})$$는 $$\mathbf{x}$$의 값이 Optimization 문제에 영향을 주지 않기 때문에 상수로 취급하여 제거할 수 있다.
-
-따라서 Optimization 문제는 다음과 같이 정리될 수 있다.
-
-$$
-\begin{align*}
-\boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
