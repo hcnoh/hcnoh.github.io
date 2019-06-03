@@ -37,7 +37,7 @@ $$
 \begin{align*}
 \mathcal{L}(\boldsymbol{\theta} ; D)
 & = P(D ; \boldsymbol{\theta}) \\
-& = \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
+& = \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
 
@@ -47,7 +47,19 @@ $$
 \begin{align*}
 \log \mathcal{L}(\boldsymbol{\theta} ; D)
 & = \log P(D ; \boldsymbol{\theta}) \\
-& = \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
+& = \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
+
+## Maximum Likelihood Estimation
+위에서 구한 Log (Conditional) Likelihood Function을 이용하여 파라미터를 추정하기 위한 방법인 Maximum (Conditional) Likelihood Estimation의 Optimization 문제를 써보면 아래와 같다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+\end{align*}
+$$
+
+
 
