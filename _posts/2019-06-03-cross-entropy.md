@@ -68,10 +68,22 @@ $$
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
 $$
 
-우리가 잘 알고있는 Cross-Entropy Loss의 모양이 등장했다.
+우리가 잘 알고있는 Cross-Entropy Loss의 모양이 등장했다. 이 유도 결과를 통해서 우리는 Cross-Entropy Loss를 최소화하는 것의 의미는 데이터셋 $$D$$를 설명하는 Log Likelihood를 최대화하는 Optimization 문제의 Objective Function이라는 것을 확인할 수 있다.
+
+## Cross-Entropy Loss로부터 Cross-Entropy 유도
+위에서 유도한 Cross-Entropy Loss의 결과를 이용하여 아래와 같이 식을 변형할 수 있다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
+\end{align*}
+$$
 
 
