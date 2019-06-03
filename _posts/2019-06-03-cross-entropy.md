@@ -73,10 +73,10 @@ $$
 \end{align*}
 $$
 
-우리가 잘 알고있는 Cross-Entropy Loss의 모양이 등장했다. 이 유도 결과를 통해서 우리는 Cross-Entropy Loss를 최소화하는 것의 의미는 데이터셋 $$D$$를 설명하는 Log Likelihood를 최대화하는 Optimization 문제의 Objective Function이라는 것을 확인할 수 있다.
+우리가 잘 알고있는 Binary Cross-Entropy Loss의 모양이 등장했다. 이 유도 결과를 통해서 우리는 Binary Cross-Entropy Loss를 최소화하는 것의 의미는 데이터셋 $$D$$를 설명하는 Log Likelihood를 최대화하는 Optimization 문제의 Objective Function이라는 것을 확인할 수 있다.
 
-## Cross-Entropy Loss로부터 Cross-Entropy 유도
-위에서 유도한 Cross-Entropy Loss의 결과를 이용하여 아래와 같이 식을 변형할 수 있다.
+## Binary Cross-Entropy Loss로부터 Binary Cross-Entropy 유도
+위에서 유도한 Binary Cross-Entropy Loss의 결과를 이용하여 아래와 같이 식을 변형할 수 있다.
 
 $$
 \begin{align*}
@@ -103,4 +103,5 @@ $$
 \end{align*}
 $$
 
+이 유도 결과를 통해서 Binary Cross-Entropy Loss를 최소화하는 Optimization 문제는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 데이터셋 $$D$$로부터 찾아낸 분포 $$P_D(Y\vert X=\mathbf{x})$$와 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다는 것을 확인할 수 있었다.
 
