@@ -61,5 +61,13 @@ $$
 \end{align*}
 $$
 
+여기에 우리가 위에서 한 문제 세팅의 가정을 사용하여 식을 다시 쓸 수 있다.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
+\end{align*}
+$$
 
 
