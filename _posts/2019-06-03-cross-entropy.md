@@ -31,13 +31,12 @@ $$
 여기서 우리는 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾아야 할 것이다.
 
 ## Log Likelihood Function
-데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾기 위한 최적의 방법은 Likelihood Function을 최대로 하는 파라미터 $$\boldsymbol{\theta}$$를 찾는 방법인 Maximum Likelihood Estimation (MLE)라는 것이 잘 알려져 있다. 일단 이 세팅에서 Likelihood Function을 써보면 다음과 같다.
+데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾기 위한 최적의 방법은 Likelihood Function을 최대로 하는 파라미터 $$\boldsymbol{\theta}$$를 찾는 방법인 Maximum Likelihood Estimation (MLE)라는 것이 잘 알려져 있다. 여기서는 데이터셋 $$D$$ 내부에서의 $$\mathbf{x}$$와 $$y$$가 서로 Dependent하기 때문에 Maximum Conditional Likelihood Estimation (MCLE)를 사용하게 될 것이다. 일단 이 세팅에서 Conditional Likelihood Function을 써보면 다음과 같다.
 
 $$
 \begin{align*}
 P(D ; \boldsymbol{\theta})
-& = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+& = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
 \end{align*}
 $$
 
