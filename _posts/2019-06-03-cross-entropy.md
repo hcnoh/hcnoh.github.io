@@ -35,10 +35,19 @@ $$
 
 $$
 \begin{align*}
-P(D ; \boldsymbol{\theta})
+\mathcal{L}(\boldsymbol{\theta} ; D)
+& = P(D ; \boldsymbol{\theta}) \\
 & = \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
 \end{align*}
 $$
 
+이러한 형식의 함수를 다루는 경우에는 곱하기 연산을 보통 복잡하다고 생각하여 Log를 씌움으로써 식을 간단하게 만들게 된다. 이렇게 만들어진 함수는 Log (Conditional) Likelihood Function이 될 것이다.
 
+$$
+\begin{align*}
+\log \mathcal{L}(\boldsymbol{\theta} ; D)
+& = \log P(D ; \boldsymbol{\theta}) \\
+& = \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
+\end{align*}
+$$
 
