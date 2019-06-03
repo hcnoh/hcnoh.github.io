@@ -97,10 +97,26 @@ $$
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\left[ P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) \right. \\
 & \left. \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad + \ P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \right] \\
 & \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} -P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
 
 이 유도 결과를 통해서 Binary Cross-Entropy Loss를 최소화하는 Optimization 문제는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 데이터셋 $$D$$로부터 찾아낸 분포 $$P_D(Y\vert X=\mathbf{x})$$와 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다는 것을 확인할 수 있었다.
+
+이 결과의 통계적인 의미를 확인하기 위해서는 정보이론적인 분석이 필요하다. Binary Cross-Entropy는 KL-Divergence로 다음과 같이 쓸 수 있다는 점이 알려져 있다.
+
+$$
+\begin{align*}
+& H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) \\
+& \quad \quad \quad \quad \quad \quad \quad \quad = \ H(P_D(Y \vert X=\mathbf{x})) + D_{KL}(P_D(Y \vert X=\mathbf{x}) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
+\end{align*}
+$$
+
+즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X=\mathbf{x})$$에 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
+
+## Multi Class로의 확장
+
+
+
 
