@@ -34,7 +34,11 @@ $$
 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾기 위한 최적의 방법은 Likelihood Function을 최대로 하는 파라미터 $$\boldsymbol{\theta}$$를 찾는 방법인 Maximum Likelihood Estimation (MLE)라는 것이 잘 알려져 있다. 일단 이 세팅에서 Likelihood Function을 써보면 다음과 같다.
 
 $$
-P(D ; \boldsymbol{\theta}) = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta})
+\begin{align*}
+P(D ; \boldsymbol{\theta})
+& = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y, X=\mathbf{x} ; \boldsymbol{\theta}) \\
+& = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(X=\mathbf{x}) P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+\end{align*}
 $$
 
 
