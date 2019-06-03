@@ -70,4 +70,6 @@ $$
 \end{align*}
 $$
 
+우리가 잘 알고있는 Cross-Entropy Loss의 모양이 등장했다.
+
 
