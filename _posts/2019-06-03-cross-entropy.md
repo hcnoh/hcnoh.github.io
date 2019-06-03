@@ -36,7 +36,7 @@ $$
 $$
 \begin{align*}
 P(D ; \boldsymbol{\theta})
-& = \prod_{(\mathbf{x}, y) \in (\mathcal{X}, \mathcal{Y})} P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
+& = \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} \vert \boldsymbol{\theta})
 \end{align*}
 $$
 
