@@ -175,6 +175,7 @@ $$
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} -\sum_{k=1}^m \delta_{yk} \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m N_D(\mathbf{x})P_D(Y=k \vert X=\mathbf{x}) \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m P_D(Y=k \vert X=\mathbf{x}) \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m P_D(Y=k \vert X=\mathbf{x}) \log P(Y=k \vert X=\mathbf{x}; \boldsymbol{\theta})
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m P_D(Y=k \vert X=\mathbf{x}) \log P(Y=k \vert X=\mathbf{x}; \boldsymbol{\theta}) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y \vert X=\mathbf{x}), P(Y \vert X=\mathbf{x}; \boldsymbol{\theta}))
 \end{align*}
 $$
