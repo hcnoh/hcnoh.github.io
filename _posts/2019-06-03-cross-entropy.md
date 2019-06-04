@@ -70,6 +70,7 @@ $$
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \log \mathcal{L}(\boldsymbol{\theta} ; D) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
 \end{align*}
 $$
@@ -140,24 +141,27 @@ p_{k, \boldsymbol{\theta}}(\mathbf{x})
 \end{align*}
 $$
 
-$$\delta_{yk}$$는 Kronecker Delta Function으로 다음과 같은 정의를 가진다.
+$$\delta_{yk}$$는 Kronecker Delta Function이며 다음과 같은 정의를 가진다.
 
 $$
 \begin{align*}
 \delta_{yk}
 = \left\{ \begin{array}{ll}
-1 & \mbox{if $y = k$};\\
+1 & \mbox{if $y = k$}; \\
 0 & \mbox{if $y \neq k$}.
 \end{array} \right.
 \end{align*}
 $$
 
+이 세팅에서 위와 같이 MLE 세팅으로 변형해보도록 하자.
+
 $$
 \begin{align*}
-|x| = \left\{ \begin{array}{ll}
-x & \mbox{if $x \geq 0$};\\
--x & \mbox{if $x < 0$}.\end{array} \right.
+\boldsymbol{\theta}^*
+& = \arg \max_{\boldsymbol{\theta}} \log \mathcal{L}(\boldsymbol{\theta} ; D) \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta})
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
 $$
-
-
