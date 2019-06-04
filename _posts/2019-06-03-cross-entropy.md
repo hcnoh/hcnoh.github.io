@@ -145,6 +145,10 @@ $$\delta_{yk}$$는 Kronecker Delta Function으로 다음과 같은 정의를 가
 $$
 \begin{align*}
 \delta_{yk}
+= \left\{ \begin{array}{ll}
+1 & \mbox{if $y = k$};\\
+0 & \mbox{if $y \neq k$}.
+\end{array} \right.
 \end{align*}
 $$
 
