@@ -81,7 +81,7 @@ $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log (p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
@@ -108,10 +108,10 @@ $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\left[ P_D(Y=1 \vert X=\mathbf{x}) \log(p_{\boldsymbol{\theta}}(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\left[ P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) \right. \\
-& \left. \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad + \ P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \right] \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\left[ P_D(Y=1\vert X=\mathbf{x})\log P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta}) \right. \\
+& \left. \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad + \ P_D(Y=0 \vert X=\mathbf{x})\log P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta}) \right] \\
 & \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta}) \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
 \end{align*}
 $$
@@ -171,8 +171,10 @@ $$
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x}) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} -\sum_{k=1}^m \delta_{yk} \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m N_D(\mathbf{x})P_D(Y=k \vert X=\mathbf{x}) \log(p_{k, \boldsymbol{\theta}}(\mathbf{x}))
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m N_D(\mathbf{x})P_D(Y=k \vert X=\mathbf{x}) \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m P_D(Y=k \vert X=\mathbf{x}) \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m P_D(Y=k \vert X=\mathbf{x}) \log P(Y=k \vert X=\mathbf{x}; \boldsymbol{\theta})
 \end{align*}
 $$
