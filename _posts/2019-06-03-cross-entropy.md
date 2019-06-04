@@ -161,8 +161,8 @@ $$
 & = \arg \max_{\boldsymbol{\theta}} \log \mathcal{L}(\boldsymbol{\theta} ; D) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log \prod_{k=1}^m p_{k, \boldsymbol{\theta}}(\mathbf{x})^{\delta_{yk}} \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x}) \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x})
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \sum_{k=1}^m \delta_{yk} \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} \log(p_{k, \boldsymbol{\theta}}(\mathbf{x}))
 \end{align*}
 $$
 
@@ -172,6 +172,7 @@ $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x}) \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x})
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} -\sum_{k=1}^m \delta_{yk} \log(p_{k, \boldsymbol{\theta}}(\mathbf{x})) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} -\sum_{k=1}^m N_D(\mathbf{x})P_D(Y=k \vert X=\mathbf{x}) \log(p_{k, \boldsymbol{\theta}}(\mathbf{x}))
 \end{align*}
 $$
