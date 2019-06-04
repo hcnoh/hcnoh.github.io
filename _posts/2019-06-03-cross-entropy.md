@@ -129,16 +129,31 @@ $$
 즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X=\mathbf{x})$$에 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
 
 ## Multi Class로의 확장
-Multi Class로 확장하기 위해서는 기존에 사용된 Bernoulli 분포의 가정을 Categorical 분포로 새로 가정해야 할 것이다. Categorical 분포를 통해서 다음과 같은 세팅으로 바꾸는 것이 가장 자연스러운 문제 세팅이 될 것이다.
+Multi Class로 확장하기 위해서는 기존에 사용된 Bernoulli 분포의 가정을 Categorical 분포로 새로 가정해야 할 것이다. Categorical 분포를 통해서 다음과 같은 세팅으로 바꾸는 것이 가장 자연스러운 문제 세팅이 될 것이다. Multi Class는 $$m$$-ary라고 가정할 것이다.
 
 $$
 \begin{align*}
 P(Y=y \vert X=\mathbf{x};\boldsymbol{\theta})
-& = \prod_{k=1}^m p_{k, \boldsymbol{\theta}}(\mathbf{x})^{\delta_{y=k}} \\
+& = \prod_{k=1}^m p_{k, \boldsymbol{\theta}}(\mathbf{x})^{\delta_{yk}} \\
 p_{k, \boldsymbol{\theta}}(\mathbf{x})
 & = P(Y=k\vert X=\mathbf{x};\boldsymbol{\theta})
 \end{align*}
 $$
 
+$$\delta_{yk}$$는 Kronecker Delta Function으로 다음과 같은 정의를 가진다.
+
+$$
+\begin{align*}
+\delta_{yk}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+|x| = \left\{ \begin{array}{ll}
+x & \mbox{if $x \geq 0$};\\
+-x & \mbox{if $x < 0$}.\end{array} \right.
+\end{align*}
+$$
 
 
