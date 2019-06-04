@@ -179,3 +179,5 @@ $$
 & = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y \vert X=\mathbf{x}), P(Y \vert X=\mathbf{x}; \boldsymbol{\theta}))
 \end{align*}
 $$
+
+Cross-Entropy의 결과가 나오는 것을 확인할 수 있다.
