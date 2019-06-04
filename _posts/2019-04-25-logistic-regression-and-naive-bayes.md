@@ -99,8 +99,6 @@ $$
 
 우리는 이제 이 Optimization 문제로부터 실제 $$P(Y=y\vert X=\mathbf{x})$$를 모델링할 수 있는 최적의 파라미터 $$\boldsymbol{\theta}$$를 찾고자 한다. 이 경우 우리에게 주어진 데이터셋 $$D$$를 활용하게 된다. 즉, 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾는 MLE 방법을 사용하게 된다. 여기서는 데이터셋 $$D$$ 내부의 $$\mathbf{x}$$와 $$y$$가 서로 Dependent하기 때문에 MCLE(Maximum Conditional Likelihood Estimation)를 사용하게 된다. Binary 세팅에서 MCLE를 풀기 위한 Optimization 문제는 Binary Cross-Entropy Loss를 최소화하는 문제와 동치라는 것을 다음의 [포스팅](https://hcnoh.github.io/2019-06-03-cross-entropy)에서 확인할 수 있다. 여기서는 받아들이고 사용하도록 하자.
 
-MCLE의 형식대로 Optimization 문제를 다시 써보면 다음과 같다.
-
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
