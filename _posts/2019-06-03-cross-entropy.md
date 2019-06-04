@@ -15,7 +15,20 @@ permalink: /2019-06-03-cross-entropy
 ---
 
 ## 문제 세팅
-Cross-Entropy를 설명하기 위한 문제는 기본적으로 Binary Classification에서 Optimal Classifier를 어떻게 찾을 지에 대한 문제 세팅을 가지게 된다. Optimal Classifier에 대한 정의는 Logistic Regression에 대한 [포스팅](https://hcnoh.github.io/2019-04-25-logistic-regression-and-naive-bayes)에 정리가 되어있으니 참고하면 될 것 같다. 기본적으로 Binary라는 가정을 가지고 가지만 Multi Class에 대해서도 간단하게 확장이 가능하다.
+Cross-Entropy를 설명하기 위한 문제는 기본적으로 Binary Classification에서 Optimal Classifier를 어떻게 찾을 지에 대한 문제 세팅을 가지게 된다. Optimal Classifier에 대한 정의는 Logistic Regression에 대한 [포스팅](https://hcnoh.github.io/2019-04-25-logistic-regression-and-naive-bayes)에 정리가 되어있으니 참고하면 될 것 같다. 기본적으로 Binary라는 가정을 가지고 가지만 Multi Class에 대해서도 간단하게 확장이 가능하다. 아래는 문제 세팅에 대한 간단한 정리이다.
+
+- $$\mathcal{X}$$: 샘플 공간, 샘플들은 샘플 공간에서 추출됨($$\mathbf{x}_1, \mathbf{x}_2, \cdots \in \mathcal{X}$$)
+- $$\mathcal{Y}$$: 클래스 공간, Binary($$\mathcal{Y}=\{0,1\}$$), Multi Class($$k$$-ary: $$\mathcal{Y}=\{1,2,\cdots,k\}$$)
+- Classifier $$f:\mathcal{X} \longmapsto \mathcal{Y}$$
+- Oitimal Classifier의 정의:
+
+$$f^*(\mathbf{x}) = \arg \max_{Y=y}P(Y=y \vert X=\mathbf{x})$$
+
+- Optimal Classifier를 찾기위한 Optimization 문제:
+
+$$
+f^* = \arg \max_f P(Y=f(\mathbf{x}) \vert X=\mathbf{x}), \ \forall \mathbf{x} \in \mathcal{X}
+$$
 
 어쨌든 우리는 여기서 Binary Classification을 위한 Logistic Regression 문제를 풀어나갈 것이다. 이전 [포스팅](https://hcnoh.github.io/2019-04-25-logistic-regression-and-naive-bayes)에서도 확인할 수 있듯이 Binary Classification을 위하여 다음과 같은 Bernoulli 분포를 가정한 모델을 사용하게 될 것이다.
 
@@ -116,7 +129,16 @@ $$
 즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X=\mathbf{x})$$에 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
 
 ## Multi Class로의 확장
+Multi Class로 확장하기 위해서는 기존에 사용된 Bernoulli 분포의 가정을 Categorical 분포로 새로 가정해야 할 것이다. Categorical 분포를 통해서 다음과 같은 세팅으로 바꾸는 것이 가장 자연스러운 문제 세팅이 될 것이다.
 
+$$
+\begin{align*}
+P(Y=y \vert X=\mathbf{x};\boldsymbol{\theta})
+& = p_{\boldsymbol{\theta}}(\mathbf{x})^y \\
+p_{\boldsymbol{\theta}}(\mathbf{x})
+& = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})
+\end{align*}
+$$
 
 
 
