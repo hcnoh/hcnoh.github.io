@@ -97,54 +97,17 @@ f^*(\mathbf{x})
 \end{align*}
 $$
 
-우리는 이제 이 Optimization 문제로부터 실제 $$P(Y=y\vert X=\mathbf{x})$$를 모델링할 수 있는 최적의 파라미터 $$\boldsymbol{\theta}$$를 찾고자 한다. 이 경우 우리에게 주어진 데이터셋 $$D$$를 활용하게 된다. 즉, 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾는 MLE 방법을 사용하게 된다. 여기서는 데이터셋 $$D$$ 내부의 $$\mathbf{x}$$와 $$y$$가 서로 Dependent하기 때문에 MCLE(Maximum Conditional Likelihood Estimation)를 사용하게 된다. MCLE의 형식대로 Optimization 문제를 다시 써보면 다음과 같다.
+우리는 이제 이 Optimization 문제로부터 실제 $$P(Y=y\vert X=\mathbf{x})$$를 모델링할 수 있는 최적의 파라미터 $$\boldsymbol{\theta}$$를 찾고자 한다. 이 경우 우리에게 주어진 데이터셋 $$D$$를 활용하게 된다. 즉, 데이터셋 $$D$$를 가장 잘 설명할 수 있는 파라미터 $$\boldsymbol{\theta}$$를 찾는 MLE 방법을 사용하게 된다. 여기서는 데이터셋 $$D$$ 내부의 $$\mathbf{x}$$와 $$y$$가 서로 Dependent하기 때문에 MCLE(Maximum Conditional Likelihood Estimation)를 사용하게 된다. Binary 세팅에서 MCLE를 풀기 위한 Optimization 문제는 Binary Cross-Entropy Loss를 최소화하는 문제와 동치라는 것을 다음의 [포스팅](https://hcnoh.github.io/2019-06-03-cross-entropy)에서 확인할 수 있다. 여기서는 받아들이고 사용하도록 하자.
+
+MCLE의 형식대로 Optimization 문제를 다시 써보면 다음과 같다.
 
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} P(D ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \prod_{(\mathbf{x}, y) \in D} P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
 \end{align*}
 $$
-
-특히 마지막 식은 이 Optimization 문제가 Binary Cross-Entropy를 최소화하는 문제로 바꿀 수 있음을 확인할 수 있을 것이다. 아래와 같이 식을 수정해보자.
-
-$$
-\begin{align*}
-\boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} \left[ y\log(p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \left[ N_D(\mathbf{x})P_D(Y=1 \vert X=\mathbf{x})\log(p_{\boldsymbol{\theta}}(\mathbf{x})) \right. \\
-& \left. \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad + \ N_D(\mathbf{x})P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
-\end{align*}
-$$
-
-여기서 $$N_D(\mathbf{x})$$는 주어진 $$\mathbf{x}$$에 대한 데이터셋 내부의 샘플 갯수이며, $$P_D$$는 주어진 확률 변수에 대한 데이터셋 내부의 분포이다. 만약 데이터셋의 분포가 균일하여 $$N_D(\mathbf{x})$$가 모든 샘플 데이터 $$\mathbf{x}$$에 대해서 일정하다면 상수로 취급되어 Optimization 문제에서 생략될 것이다.
-
-$$
-\begin{align*}
-\boldsymbol{\theta}^*
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \left[ P_D(Y=1 \vert X=\mathbf{x}) \log(p_{\boldsymbol{\theta}}(\mathbf{x})) + P_D(Y=0 \vert X=\mathbf{x})\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \left[ P_D(Y=1\vert X=\mathbf{x})\log(P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})) \right. \\
-& \left. \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad + \ P_D(Y=0 \vert X=\mathbf{x})\log(P(Y=0\vert X=\mathbf{x};\boldsymbol{\theta})) \right] \\
-& \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y \in \{0,1\}} P_D(Y=y\vert X=\mathbf{x}) \log(P(Y=y \vert X=\mathbf{x}; \boldsymbol{\theta})) \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
-\end{align*}
-$$
-
-Binary Classifier를 학습시키기 위하여 사용하는 Optimization 문제는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 데이터셋 $$D$$로부터 찾아낸 분포 $$P_D(Y\vert X=\mathbf{x})$$와 우리 모델 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$ 사이의 Binary Cross-Entropy를 최소화하는 문제와 동치가 된다. 여기서 Cross-Entropy를 KL-Divergence로 다시 쓰면 아래와 같다.
-
-$$
-\begin{align*}
-& H(P_D(Y\vert X=\mathbf{x}), P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta})) \\
-& \quad \quad \quad \quad \quad \quad \quad \quad = \ H(P_D(Y \vert X=\mathbf{x})) + D_{KL}(P_D(Y \vert X=\mathbf{x}) \Vert P(Y \vert X=\mathbf{x} ; \boldsymbol{\theta}))
-\end{align*}
-$$
-
-즉, 우리가 찾고자 하는 최적의 파라미터 $$\boldsymbol{\theta}^*$$는 데이터셋 $$D$$의 모든 $$\mathbf{x}$$에 대하여 $$P_D(Y\vert X=\mathbf{x})$$에 $$P(Y\vert X=\mathbf{x} ; \boldsymbol{\theta})$$를 확률적으로 Fitting하는 $$\boldsymbol{\theta}$$인 것을 확인할 수 있다.
 
 이러한 Optimization 문제는 Closed Form으로 풀어내기 쉽지 않으며 따라서 Iterative한 방법으로 접근을 하게 된다. 가장 대표적인 Iterative한 방법은 바로 Gradient Descent(Ascent)이다.
 
