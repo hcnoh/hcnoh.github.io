@@ -18,7 +18,7 @@ permalink: /2019-06-03-cross-entropy
 Cross-Entropy를 설명하기 위한 문제는 기본적으로 Binary Classification에서 Optimal Classifier를 어떻게 찾을 지에 대한 문제 세팅을 가지게 된다. Optimal Classifier에 대한 정의는 Logistic Regression에 대한 [포스팅](https://hcnoh.github.io/2019-04-25-logistic-regression-and-naive-bayes)에 정리가 되어있으니 참고하면 될 것 같다. 기본적으로 Binary라는 가정을 가지고 가지만 Multi Class에 대해서도 간단하게 확장이 가능하다. 아래는 문제 세팅에 대한 간단한 정리이다.
 
 - $$\mathcal{X}$$: 샘플 공간, 샘플들은 샘플 공간에서 추출됨($$\mathbf{x}_1, \mathbf{x}_2, \cdots \in \mathcal{X}$$)
-- $$\mathcal{Y}$$: 클래스 공간, Binary($$\mathcal{Y}=\{0,1\}$$), Multi Class($$k$$-ary: $$\mathcal{Y}=\{1,2,\cdots,k\}$$)
+- $$\mathcal{Y}$$: 클래스 공간, Binary($$\mathcal{Y}=\{0,1\}$$), Multi Class($$m$$-ary: $$\mathcal{Y}=\{1,2,\cdots,m\}$$)
 - Classifier $$f:\mathcal{X} \longmapsto \mathcal{Y}$$
 - Oitimal Classifier의 정의:
 
@@ -134,9 +134,9 @@ Multi Class로 확장하기 위해서는 기존에 사용된 Bernoulli 분포의
 $$
 \begin{align*}
 P(Y=y \vert X=\mathbf{x};\boldsymbol{\theta})
-& = p_{\boldsymbol{\theta}}(\mathbf{x})^y \\
-p_{\boldsymbol{\theta}}(\mathbf{x})
-& = P(Y=1\vert X=\mathbf{x};\boldsymbol{\theta})
+& = \prod_{k=1}^m p_{k, \boldsymbol{\theta}}(\mathbf{x})^{\delta_{y=k}} \\
+p_{k, \boldsymbol{\theta}}(\mathbf{x})
+& = P(Y=k\vert X=\mathbf{x};\boldsymbol{\theta})
 \end{align*}
 $$
 
