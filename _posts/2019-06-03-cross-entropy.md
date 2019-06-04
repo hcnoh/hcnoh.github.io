@@ -165,3 +165,13 @@ $$
 & = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x})
 \end{align*}
 $$
+
+마찬가지로 일반적으로 잘 알려진 Cross-Entropy Loss의 모습이 등장했다. 여기서 Cross-Entropy를 유도해보도록 하자.
+
+$$
+\begin{align*}
+\boldsymbol{\theta}^*
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x}) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{\mathbf{x}\sim P_D(\mathbf{x})} \sum_{y\sim P_D(y\vert \mathbf{x})} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x})
+\end{align*}
+$$
