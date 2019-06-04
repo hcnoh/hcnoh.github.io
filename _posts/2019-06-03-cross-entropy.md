@@ -160,8 +160,8 @@ $$
 \boldsymbol{\theta}^*
 & = \arg \max_{\boldsymbol{\theta}} \log \mathcal{L}(\boldsymbol{\theta} ; D) \\
 & = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log P(Y=y \vert X=\mathbf{x} ; \boldsymbol{\theta}) \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log p_{\boldsymbol{\theta}}(\mathbf{x})^y(1−p_{\boldsymbol{\theta}}(\mathbf{x}))^{1−y} \\
-& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right] \\
-& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\left[ y\log (p_{\boldsymbol{\theta}}(\mathbf{x})) + (1-y)\log(1-p_{\boldsymbol{\theta}}(\mathbf{x})) \right]
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \log \prod_{k=1}^m p_{k, \boldsymbol{\theta}}(\mathbf{x})^{\delta_{yk}} \\
+& = \arg \max_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} \sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x}) \\
+& = \arg \min_{\boldsymbol{\theta}} \sum_{(\mathbf{x}, y) \in D} -\sum_{k=1}^m \delta_{yk} p_{k, \boldsymbol{\theta}}(\mathbf{x})
 \end{align*}
 $$
