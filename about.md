@@ -10,7 +10,7 @@ permalink: /about
 
 ## Employment and Career
 - 전) TmaxData에서 AI 대화형 시스템의 음성 합성(Text-to-Speech) 모듈 개발 (병역특례) - ~ 2019. 3
-- 현) TmaxData에서 자연어 처리 관련 선행 기술 연구중 (병역특례) - 2019. 4 ~
+- 현) TmaxData에서 추천 시스템 연구 및 개발 (병역특례) - 2019. 4 ~
 
 ## Education
 - 연세대학교 전기전자공학부 학사졸 - 2016. 2
