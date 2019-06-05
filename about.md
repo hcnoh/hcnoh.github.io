@@ -18,11 +18,9 @@ permalink: /about
   - 세부전공: 머신러닝 및 강화학습
 
 ## Interests
-- Deep Learning for Speech Recognition and Synthesis
-- Deep Learning for Natural Language Processing
+- Machine Learning, Deep Learning
 - Data Analysis
 - Statistical Mechanics
-- Complex Systems
 
 ## Skills
 - Languages: Korean, English
