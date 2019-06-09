@@ -46,7 +46,7 @@ Git for Windows의 설치는 다음의 링크를 참고하였다:
 초기 설치화면에서 `Add Python 3.5 to PATH`를 꼭 선택하는 것을 추천한다. 따로 PATH를 추가해줘야하는 수고를 줄일 수 있다.
 
 파이썬 설치는 다음의 링크를 참고하였다:
-[https://mainia.tistory.com/5678](https://mainia.tistory.com/5678)
+- [https://mainia.tistory.com/5678](https://mainia.tistory.com/5678)
 
 ## Python 패키지 설치
 파이썬 설치가 다 끝난 이후에 Git Bash를 실행하여 파이썬 버전을 확인해보면 (PATH를 추가해줬기 때문에) 제대로 나오는 것을 확인할 수 있다.
@@ -89,5 +89,7 @@ $ pip freeze
 ```bash
 $ pip install numpy
 $ pip install pandas
+$ pip install jupyter
+$ pip install tensorflow
 ```
 
