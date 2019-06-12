@@ -13,12 +13,12 @@ author: "Hyungcheol Noh"
 permalink: /2019-06-12-euler-lagrange-eq
 ---
 
-# Galilean Transformation
+## Galilean Transformation
 
-# Generalized Coordinates
+## Generalized Coordinates
 
-# Principle of Least Action (Hamilton's Principle)
+## Principle of Least Action (Hamilton's Principle)
 
-# Lagrangian의 특징
+## Lagrangian의 특징
 
 
