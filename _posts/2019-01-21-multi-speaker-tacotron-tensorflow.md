@@ -24,15 +24,15 @@ Multi-Speaker 기능을 가진 Tacotron 모델의 TensorFlow 구현입니다. �
 3. 파이썬 패키지(Requirements)를 설치합니다. 설치는 아래와 같은 명령을 통해 수행 가능합니다.
 
    ```bash
-   >>> pip install -r requirements.txt
+   $ pip install -r requirements.txt
    ```
 
    아래와 같이 `virtualenv`를 활용하여 더 쉽게 패키지 관리를 할 수도 있습니다. `virtualenv`가 이미 설치되어 있다는 가정 하에 아래의 명령을 수행하면 됩니다.
 
    ```bash
-   >>> virtualenv --system-site-packages -p python3 tacotron-venv
-   >>> source ./tacotron-venv/bin/activate
-   >>> pip install -r requirements.txt
+   $ virtualenv --system-site-packages -p python3 tacotron-venv
+   $ source ./tacotron-venv/bin/activate
+   $ pip install -r requirements.txt
    ```
 
 ## Training
@@ -101,28 +101,44 @@ Multi-Speaker 기능을 가진 Tacotron 모델의 TensorFlow 구현입니다. �
 4. **데이터 세트 전처리를 수행합니다.**
 
    ```bash
-   >>> python preprocess.py
+   $ python preprocess.py
    ```
 
 5. **모델 Training을 수행합니다.**
 
    ```bash
-   >>> python train.py
+   $ python train.py
    ```
 
 ## Generating
 학습된 모델을 이용하여 음성을 생성하기 위해서는 `generate.py`를 실행하면 됩니다. `hyparams.py`의 `for generating` 부분을 원하는 경로로 바꿔주고 바로 실행하면 됩니다. Multi-Speaker 기능 사용 여부에 따라서 실행 방식이 달라질 것이지만 사용하는데 어려움이 없을 것입니다.
 
 ```bash
->>> python generate.py
+$ python generate.py
 ```
 
 ## Results
-준비중
+106000 Steps:
+- [Generated Audio Samples](https://soundcloud.com/artzizou/sets/multi-speaker-tacotron-tensorflow-106000-steps)
+- Mel Spectrogram Sample
+![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-56-41.png)
+- Linear Spectrogram Sample
+![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-56-52.png)
+- Attention Alignment Sample
+![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-57-15.png)
+
+382000 Steps:
+- [Generated Audio Samples](https://soundcloud.com/artzizou/sets/multi-speaker-tacotron-tensorflow-382000-steps )
+- Mel Spectrogram Sample
+![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-52-41.png)
+- Linear Spectrogram Sample
+![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-54-19.png)
+- Attention Alignment Sample
+![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-54-30.png)
 
 ## Recent Updates
 1. 현재 Multi-Speaker 기능 실험을 위한 여러 기능들이 구현되어 있지만 지금 당장은 사용하기 어려운 상태입니다.
-2. 모듈 리팩토링이 진행중입니다.
+2. Results 작성을 완료하였습니다.
 
 ## References
 - Tacotron: [Tacotron: Towards End-to-End Speech Synthesis](https://arxiv.org/pdf/1703.10135.pdf)
