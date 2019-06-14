@@ -63,4 +63,20 @@ One-Hot Encoding은 상당히 Naive하게 구성하였다. 전체 문제 세트�
 ![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-33-37.png)
 
 ## Training
+Training은 아래 그림과 같이 다음 Time Step에서 푼 문제만을 고려하여 학습의 Label로 사용하여 수행되게 된다. 이 경우 Loss Function은 아래와 같이 Binary Cross-Entropy를 사용하게 된다.
+
+$$
+L = \sum_t l(\mathbf{y}^{\text{T}}}] \delta(q_{t+1}), a_{t+1})
+$$
+
+여기서 $$l$$은 Binary Cross-Entropy가 된다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-40-30.png)
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-41-04.png)
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-41-31.png)
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-42-01.png)
+
 
