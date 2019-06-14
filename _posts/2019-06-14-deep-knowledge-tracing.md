@@ -79,4 +79,40 @@ $$
 
 ![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-42-01.png)
 
+## 활용 1: 문제 시퀀스 최적화
+앞서 설명했듯이 학습자는 문제를 풀면서 지식을 습득하는 과정을 거치게 된다. 이 경우 문제를 푸는 순서에 따라서 지식을 습득하는 학습의 효율이 달라진다는 점을 가정한다는 것도 앞에서 언급하였었다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-57-08.png)
+
+특히 이러한 문제 시퀀스 최적화는 Markov Decision Process (MDP) 문제로 변환이 가능하다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-58-26.png)
+
+5개의 Time Step를 입력으로 받으면 6번째 Time Step에서의 문제 정답 확률을 예측할 수 있다. 이 확률 예측값들을 바탕으로 다음 Time Step, 즉, 이 예제에서는 6번째 Time Step에서 전체 문제 세트 중 어떤 문제를 풀도록 추천하는 것을 생각해볼 수 있다.
+
+먼저 가능한 모든 문제 세트(여기서는 3문제가 될 것이다.)에 대해서 정답, 또는 오답의 경우를 모두 DKT에 입력하여 그 다음 Time Step에서의 전체 문제 세트에 대한 정답 확률을 예측한다. 이 확률 예측값들이 현재 경우의 수에 대한 Reward라고 볼 수 있다. 위의 예제에서는 간단하게 확률 예측을 스코어로 하여 스코어의 평균을 구하게 하였다.
+
+이런 방식으로 모든 경우의 수에 대해서 Reward를 구할 수 있으며 이 상황을 Tree 구조로 바꿀 수 있을 것이다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-15-00-04-43.png)
+
+Tree는 가장 상단에 현재 State를 반영하는 Node가 존재하며 현재 Node로 부터 가능한 Action들을 그 다음 단계의 Node로 구성할 수 있다. 위의 예제에서는 총 3문제를 추천할 수 있으며 따라서 Action의 가능한 경우의 수는 3가지가 된다.
+
+여기서 어떤 Action을 선택하는 문제는 각 Action에 대해서 얻을 수 있는 Reward가 어떻게 되는지를 살펴봄으로써 해결할 수 있을 것이다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-15-00-08-20.png)
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-15-00-08-51.png)
+
+1번 문제를 추천하는 Action에 대해서는 그 다음에 얻을 수 있는 Reward로 두 가지를 고려할 수 있다. 두 가지는 맞았을 확률과 틀렸을 확률이 된다. 이 두 확률을 이용하여 Reward의 평균을 구하게 되고 이것이 1번 문제를 추천하는 Action에 대한 대표 Reward가 된다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-15-00-10-36.png)
+
+마찬가지의 방법으로 2번 문제를 추천하는 Action에 대한 대표 Reward를 구할 수 있다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-15-00-11-55.png)
+
+예시로 들었던 방법은 Expectimax라는 Tree Search 알고리즘이다. MDP 문제를 풀 수 있는 Tree Search 알고리즘은 Expectimax 외에 Minimax, Dynamic Programming 등 다양하다.
+
+## 활용 2: 문제 사이의 연관성 정의
 
