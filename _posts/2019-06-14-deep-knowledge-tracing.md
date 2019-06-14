@@ -35,3 +35,32 @@ Deep Knowledge Tracing (DKT) 모델은 처음으로 Knowledge Tracing 분야에 
 - 문제 시퀀스 최적화
 - 문제 사이의 연관성 정의
 
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-20-01.png)
+(Piech, Chris, et al. "Deep knowledge tracing." Advances in neural information processing systems. 2015.)
+
+DKT 모델은 위 그림과 같은 간단한 RNN 모델로 구성되어 있다. DKT 모델은 아래와 같이 5개의 Time Step을 입력으로 받아서 6번째 Time Step에서의 전체 문제 세트 (여기서는 3문제로 구성되어 있다고 가졍) 각각에 대한 정답을 맞출 확률을 예측하게 된다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-24-03.png)
+
+DKT 모델을 자세히 살펴보기 위해서는 이 모델이 One-Hot Encoding과 RNN이라는 두 단계로 구성되어 있다는 점을 짚고 넘어갈 필요가 있다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-27-06.png)
+
+## One-Hot Encoding
+One-Hot Encoding은 상당히 Naive하게 구성하였다. 전체 문제 세트가 $$M$$개라고 할 때 One-Hot Encoding은 기본적으로 $$2M$$ 차원으로 이루어지게 된다. 처음 $$M$$ 차원의 요소들은 각각 현재 Time Step에서 학습자가 어떤 문제를 풀었는지 Binary로 인코딩을 하게 된다.
+
+나중 $$M$$ 차원의 요소들은 각각 푼 문제가 틀렸는지(0) 맞았는지(1)를 Binary로 인코딩을 하게 된다.
+
+아래 그림을 통해서 예제를 살펴볼 수 있다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-31-30.png)
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-31-58.png)
+
+## Inference
+인코딩 이후에 RNN 모델의 Inference는 다음 그림과 같이 수행되게 된다. 여전히 매우 Naive한 접근이라는 것을 알 수 있다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-14-23-33-37.png)
+
+## Training
+
