@@ -115,4 +115,21 @@ Tree는 가장 상단에 현재 State를 반영하는 Node가 존재하며 현�
 예시로 들었던 방법은 Expectimax라는 Tree Search 알고리즘이다. MDP 문제를 풀 수 있는 Tree Search 알고리즘은 Expectimax 외에 Minimax, Dynamic Programming 등 다양하다.
 
 ## 활용 2: 문제 사이의 연관성 정의
+논문에서는 학습이 완료된 DKT 모델의 활용하여 문제 사이의 연관성을 정의할 수 있다고 주장한다. $$i$$번 문제와 $$j$$번 문제 사이의 연관성 $$J_{ij}$$는 다음과 같이 정의할 수 있다.
 
+$$
+J_{ij} = \frac{y(i \vert j)}{\sum_{k}y(j \vert k)}
+$$
+
+여기서 $$y(i \vert j)$$는 $$j$$번 문제를 맞췄을 떄 다음 Time Step에서 $$i$$번 문제를 맞출 확률로 정의한다. 다음 그림을 통해서 $$y(i \vert j)$$의 정의를 좀 더 쉽게 이해할 수 있을 것이다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-16-00-56-20.png)
+
+이러한 방식으로 모든 문제 쌍의 값을 정의할 수 있으며 이렇게 정의된 값들을 이용하여 모든 문제들을 Node로 하고 해당하는 $$J$$ 값을 Edge로 하는 Directed Graph를 그릴 수 있게 된다.
+
+![](/assets/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-16-00-57-57.png)
+(Piech, Chris, et al. "Deep knowledge tracing." Advances in neural information processing systems. 2015.)
+
+이렇게 만들어진 Directed Graph를 Undirected Graph로 변환하거나 또는 Graph Embedding을 통해서 새로운 Embedding Space로 Projection하는 것을 생각해 볼 수 있다. 이렇게 Embedding된 문제들은 비슷한 개념을 사용하는 문제끼리 뭉칠 것으로 기대할 수 있다.
+
+또한 뭉쳐진 문제들 역시 뭉쳐진 문제들 사이에서 내부에 더 가까워질 수록 더 기본적인 예제 수준의 문제가 될 것이고 이를 이용하여 문제 난이도 분석 및 문제 추천, 개념 간의 거리를 이용한 커리큘럼 개선 등에 활용할 수 있을 것이라고 기대할 수 있다.
