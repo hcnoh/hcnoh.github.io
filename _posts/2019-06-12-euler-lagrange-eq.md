@@ -30,7 +30,7 @@ Galilean Transformation의 종류는 아래와 같다:
 ## Generalized Coordinates
 앞으로 Generalized Coordinates $$\mathbf{q}$$를 자주 보게 될 것이다. Generalized Coordinates의 정의는 시간에 따른 System의 위치를 Unique하게 나타낼 수 있는 독립적인 물리량들을 말한다.
 
-예를 들면 어떤 회전하는 물체는 Cartesian Coordinate에서는 $$x, y, z$$로 위치를 나타낼 수 있으며 $$Cylinderical Coordinate$$에서는 $$r, \theta, z$$로 위치를 나타낼 수 있다. 따라서 이러한 $$x, y, z$$의 변수들 한 묶음은 Generalized Coordinates를 구성하게 되며 마찬가지로 $$r, \theta, z$$의 변수들 한 묶음도 또 다른 Generalized Coordinates를 구성하게 된다.
+예를 들면 어떤 회전하는 물체는 Cartesian Coordinate에서는 $$x, y, z$$로 위치를 나타낼 수 있으며 Cylinderical Coordinate에서는 $$r, \theta, z$$로 위치를 나타낼 수 있다. 따라서 이러한 $$x, y, z$$의 변수들 한 묶음은 Generalized Coordinates를 구성하게 되며 마찬가지로 $$r, \theta, z$$의 변수들 한 묶음도 또 다른 Generalized Coordinates를 구성하게 된다.
 
 ## Principle of Least Action (Hamilton's Principle)
 
