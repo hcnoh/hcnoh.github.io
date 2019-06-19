@@ -40,7 +40,7 @@ $ virtualenv tutorial-venv
 $ .\tutorial-venv\Scripts\activate
 ```
 
-![](/assets/2019-06-19-windows-python-virtualenv/2019-06-19-windows-python-virtualenv_2019-06-19-21-40-40.png)
+![](/assets/img/2019-06-19-windows-python-virtualenv/2019-06-19-windows-python-virtualenv_2019-06-19-21-40-40.png)
 
 위의 이미지와 같이 가상환경이 실행되면 커맨드라인 상에서 `(TUTORI~1)`라는 식으로 현재 `tutorial-venv`라는 이름의 가상환경이 실행되어 있다고 알려주게 된다.
 
@@ -50,7 +50,7 @@ $ .\tutorial-venv\Scripts\activate
 $ deactivate
 ```
 
-![](/assets/2019-06-19-windows-python-virtualenv/2019-06-19-windows-python-virtualenv_2019-06-19-21-41-58.png)
+![](/assets/img/2019-06-19-windows-python-virtualenv/2019-06-19-windows-python-virtualenv_2019-06-19-21-41-58.png)
 
 ## 가상환경에 패키지 설치
 가상환경을 생성하면 패키지가 하나도 없는 것을 확인할 수 있을 것이다. 아래의 명령을 통해서 현재 설치된 패키지의 목록을 확인할 수 있다.

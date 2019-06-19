@@ -20,7 +20,7 @@ permalink: /2019-06-09-windows-setting
 ## Visual Studio Code 설치
 Visual Studio Code (VSCODE)를 먼저 설치한다. 설치는 간단하게 [VSCODE 공식 홈페이지](https://code.visualstudio.com/)에서 수행할 수 있다.
 
-![](/assets/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-12-24.png)
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-12-24.png)
 
 우리는 윈도우에 해당하는 설치 파일을 받아야 하므로 왼쪽에 있는 다운로드 버튼을 눌러서 다운받으면 된다.
 
@@ -29,7 +29,7 @@ VSCODE는 마이크로소프트에서 개발한 오픈소스 IDE이며 Git과의
 ## Git 설치
 그 다음으로는 윈도우를 위한 Git 설치를 수행한다. Git for Windows라는 유틸이 있으며 [링크](https://gitforwindows.org/)에서 다운받을 수 있다. 특히 이 유틸은 Git Bash라는 기능을 제공하는데 Linux Bash에 대체하여 잘 사용해 볼 생각이다. (하지만 결국 윈도우의 명령 프롬프트를 사용하는 것으로 결정)
 
-![](/assets/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-19-36.png)
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-19-36.png)
 
 마찬가지로 간단하게 다운받을 수 있다. 첨언을 하자면 현재 세팅할때 중간에 나오는 옵션에서 `Use Git from Git Bash only` 옵션을 선택하였다.
 
@@ -39,7 +39,7 @@ Git for Windows의 설치는 다음의 링크를 참고하였다:
 ## Python 설치
 파이썬도 마찬가지로 공식 홈페이지에서 다운받을 수 있다. 현재는 파이썬 3.5.2 버전으로 설치를 진행하였다. 다운로드 페이지는 [링크](https://www.python.org/downloads/release/python-352/)에서 확인할 수 있다.
 
-![](/assets/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-26-23.png)
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-26-23.png)
 
 현재 노트북은 64비트 운영체제를 사용하기 때문에 `Windows x86-64 executable installer`를 다운받아서 설치하였다.
 

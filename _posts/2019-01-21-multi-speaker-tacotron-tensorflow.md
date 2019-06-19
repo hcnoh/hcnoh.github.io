@@ -122,25 +122,25 @@ $ python generate.py
 - [Generated Audio Samples](https://soundcloud.com/artzizou/sets/multi-speaker-tacotron-tensorflow-106000-steps)
 
 - Mel Spectrogram Sample
-![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-56-41.png)
+![](/assets/img/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-56-41.png)
 
 - Linear Spectrogram Sample
-![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-56-52.png)
+![](/assets/img/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-56-52.png)
 
 - Attention Alignment Sample
-![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-57-15.png)
+![](/assets/img/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-57-15.png)
 
 382000 Steps:
 - [Generated Audio Samples](https://soundcloud.com/artzizou/sets/multi-speaker-tacotron-tensorflow-382000-steps )
 
 - Mel Spectrogram Sample
-![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-52-41.png)
+![](/assets/img/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-52-41.png)
 
 - Linear Spectrogram Sample
-![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-54-19.png)
+![](/assets/img/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-54-19.png)
 
 - Attention Alignment Sample
-![](/assets/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-54-30.png)
+![](/assets/img/2019-01-21-multi-speaker-tacotron-tensorflow/2019-01-21-multi-speaker-tacotron-tensorflow_2019-06-12-12-54-30.png)
 
 ## Recent Updates
 1. 현재 Multi-Speaker 기능 실험을 위한 여러 기능들이 구현되어 있지만 지금 당장은 사용하기 어려운 상태입니다.
