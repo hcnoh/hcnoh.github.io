@@ -27,7 +27,7 @@ Visual Studio Code (VSCODE)를 먼저 설치한다. 설치는 간단하게 [VSCO
 VSCODE는 마이크로소프트에서 개발한 오픈소스 IDE이며 Git과의 연동은 물론 다양한 Extension을 제공하기 때문에 사용이 간편하며 파이썬 개발을 위해서 사용하는 것을 추천한다.
 
 ## Git 설치
-그 다음으로는 윈도우를 위한 Git 설치를 수행한다. Git for Windows라는 유틸이 있으며 [링크](https://gitforwindows.org/)에서 다운받을 수 있다. 특히 이 유틸은 Git Bash라는 기능을 제공하는데 Linux Bash에 대체하여 잘 사용해 볼 생각이다.
+그 다음으로는 윈도우를 위한 Git 설치를 수행한다. Git for Windows라는 유틸이 있으며 [링크](https://gitforwindows.org/)에서 다운받을 수 있다. 특히 이 유틸은 Git Bash라는 기능을 제공하는데 Linux Bash에 대체하여 잘 사용해 볼 생각이다. (하지만 결국 윈도우의 명령 프롬프트를 사용하는 것으로 결정)
 
 ![](/assets/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-09-19-19-36.png)
 
@@ -61,14 +61,21 @@ Python 3.5.2
 추가적으로 파이썬의 PATH가 어디로 설정되어 있는지는 아래의 명령을 통해서 확인할 수 있다.
 
 ```bash
-$ which python
-/c/Users/Hyungcheeol Noh/AppData/Local/Programs/Python/Python35/python
+$ where python
+C:\Users\Hyungcheeol Noh\AppData\Local\Programs\Python\Python35\python.exe
 ```
 
 이제 `pip`를 이용하여 패키지 설치를 해나갈 것이다. 먼저 `pip`를 업데이트한다.
 
 ```bash
-pip install --upgrade pip
+$ pip install --upgrade pip
+```
+
+만약 이미 최신 버전이라면 다음과 같은 결과가 나올 것이다.
+
+```bash
+$ pip install --upgrade pip
+Requirement already up-to-date: pip in c:\users\hyungcheeol noh\appdata\local\programs\python\python35\lib\site-packages (19.1.1)
 ```
 
 설치가 끝난 이후에 버전을 확인해보면 최신 버전인 것을 알 수 있을 것이다.
@@ -93,5 +100,6 @@ $ pip install jupyter
 $ pip install tensorflow
 $ pip install scikit-learn
 $ pip install matplotlib
+$ pip install virtualenv
 ```
 

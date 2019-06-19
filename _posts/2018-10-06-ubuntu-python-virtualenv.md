@@ -53,7 +53,7 @@ Consider using the `--user` option or check the permissions.
 >>> virtualenv -p python3 env_name
 ```
 
-문제는 이러한 방식으로 만들게 되면 이 가상환경들은 아무 패키지도 포함하지 않은 빈 가상환경이 된다. 아마 기본 파이썬에 설치되어있는 `site-packages`를 모두 가져오고 싶을 수 있다. 다음의 명령을 통해서 `site-packages`를 모두 포함한 파이썬3의 가상환경을 만들 수 있다.
+문제는 이러한 방식으로 만들게 되면 이 가상환경들은 아무 패키지도 포함하지 않은 빈 가상환경이 된다. 아마 기본 파이썬에 설치되어있는 `site-packages`를 모두 가져오고 싶을 수 있다. 다음의 명령을 통해서 `site-packages`를 모두 포함한 파이썬3의 가상환경을 만들 수 있다. 다만 이 경우 `pip install`로 설치하는 모든 패키지들은 기본 파이썬에도 반영이 된다는 점을 주의하도록 하자.
 
 ```bash
 >>> virtualenv --system-site-packages -p python3 env_name
