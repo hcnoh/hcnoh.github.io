@@ -91,5 +91,7 @@ $ pip install numpy
 $ pip install pandas
 $ pip install jupyter
 $ pip install tensorflow
+$ pip install scikit-learn
+$ pip install matplotlib
 ```
 
