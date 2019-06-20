@@ -36,6 +36,28 @@ VSCODE는 마이크로소프트에서 개발한 오픈소스 IDE이며 Git과의
 Git for Windows의 설치는 다음의 링크를 참고하였다:
 - [https://promobile.tistory.com/352](https://promobile.tistory.com/352)
 
+설치 과정을 살펴보면 먼저 어떤 컴포넌트들을 설치할지 결정해야 한다. 그냥 Default로 설정하였다.
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-03-26.png)
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-04-15.png)
+
+또한 앞으로 VSCODE를 사용할 것이기 때문에 위와 같은 옵션을 설정해주었다.
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-05-03.png)
+
+그 다음은 어떤 CLI에서 Git을 사용할 수 있게 할 것이냐에 관한 옵션이다. 첫 번째 옵션은 Git for Windows 설치시 함께 설치되는 Git Bash에서만 Git을 사용할 수 있게 해주는 옵션이며, 두 번째 옵션은 윈도우 명령 프롬프트에서도 사용할 수 있게 해주는 옵션이다. 여기서는 명령 프롬프트에서도 사용하기 위하여 두 번째 옵션을 선택하였다.
+
+그 외 나머지 옵션은 모두 디폴트로 설정하여 진행하였다. 혹시 나중에 참고할 수도 있기 때문에 이미지를 첨부하였다.
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-08-35.png)
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-08-57.png)
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-09-14.png)
+
+![](/assets/img/2019-06-09-windows-setting/2019-06-09-windows-setting_2019-06-20-11-09-36.png)
+
 ## Python 설치
 파이썬도 마찬가지로 공식 홈페이지에서 다운받을 수 있다. 현재는 파이썬 3.5.2 버전으로 설치를 진행하였다. 다운로드 페이지는 [링크](https://www.python.org/downloads/release/python-352/)에서 확인할 수 있다.
 
