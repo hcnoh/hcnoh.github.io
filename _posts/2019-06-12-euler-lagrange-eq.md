@@ -41,7 +41,7 @@ Generalized Coordinates의 정의는 시간에 따른 System의 위치를 Unique
 
 $$
 \begin{align*}
-(x_1, y_1) & = (L_1\sin \theta_1, L_1\cos \theta_1)
+(x_1, y_1) & = (L_1\sin \theta_1, L_1\cos \theta_1) \\
 (x_2, y_2) & = (L_1\sin \theta_1 + L_2\sin \theta_2, L_1\cos \theta_1 + L_2\cos \theta_2)
 \end{align*}
 $$
@@ -56,10 +56,10 @@ $$
 Action은 다음과 같이 정의한다.
 
 $$
-S(\mathbf{q}(t)) = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot \mathbf{q}(t), t) dt
+S(\mathbf{q}(t)) = \int_{t_1}^{t_2} L(\mathbf{q}(t), \mathbf{q}(t), t) dt
 $$
 
-여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \dot \mathbf{q}(t), t)$$에 대한 Functional이다.
+여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \mathbf{q}(t), t)$$에 대한 Functional이다.
 
 ## Lagrangian의 특징
 
