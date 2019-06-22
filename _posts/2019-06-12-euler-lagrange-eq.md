@@ -53,13 +53,42 @@ $$
 
 라그랑주 역학에서 최소로 유지되는 어떤 물리량을 Action이라고 정의한다. 즉, 이 Action을 최소로 유지하며 운동이 이루어진다는 원리를 Principle of Least Action, 또는 Hamilton's Principle라고 한다.
 
-Action은 다음과 같이 정의한다.
+$$t_1$$에서 $$t_2$$까지의 Action은 다음과 같이 정의한다.
 
 $$
-S(\mathbf{q}(t)) = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) dt
+S[\mathbf{q}(t)] = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) dt
 $$
 
-여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \dot{\mathbf{q}}(t), t)$$에 대한 Functional이다.
+여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \dot{\mathbf{q}}(t), t)$$에 대한 Functional이다. 이제 Principle of Least Action을 만족하기 위해서는 이 물리량 $$L$$이 어떤 성질을 만족해야만 하는지 확인해야 할 것이다.
+
+Principle of Least Action을 따른다는 것은 Action $$S[\mathbf{q}(t)]$$가 $$\mathbf{q}(t)$$에서 극값을 갖는다는 의미이다. 즉, 아주 작은 변화에 대해서 그 변화량이 없다는 의미가 될 것이다.
+
+$$
+S[\mathbf{q}(t)+\delta \mathbf{q}(t)] - S[\mathbf{q}(t)] = 0
+$$
+
+여기서 우리는 $$\mathbf{q}(t)$$의 변화량 $$\delta \mathbf{q}(t)$$를 임의의 벡터 $$\mathbf{u}(t)$$와 매우 작은 상수 $$\epsilon$$을 이용하여 다음과 같이 쓸 수 있다.
+
+$$
+\delta \mathbf{q}(t) = \epsilon \mathbf{u}(t)
+$$
+
+$$\mathbf{u}(t)$$를 임의의 벡터라고 가정했지만 몇 가지 추가적인 조건이 붙게 된다. 우리가 여기서 기술하고 싶은 운동은 시간 $$t_1$$과 $$\t_2$$사이의 운동 경로 변화이며 따라서 시간 $$t_1$$과 $$\t_2$$에서의 $$\mathbf{q}$$값은 변화에 의한 변화가 일어나지 않기를 원한다. 즉, 다음과 같은 조건이 추가적으로 붙게 될 것이다.
+
+$$
+\mathbf{u}(t_1) = \mathbf{u}(t_2) = \mathbf{0}
+$$
+
+이제 이 가정들을 바탕으로 $$S[\mathbf{q}(t)+\delta \mathbf{q}(t)]$$를 구해보도록 하자. $$S[\mathbf{q}(t)+\delta \mathbf{q}(t)]$$는 Taylor Expansion을 통해서 다음과 같이 쓸 수 있다.
+
+$$
+\begin{align*}
+S[\mathbf{q}(t)+\delta \mathbf{q}(t)]
+& = S[\mathbf{q}(t) + \epsilon \mathbf{u}(t)] \\
+& = \int_{t_1}^{t_2} L(\mathbf{q}(t) + \epsilon \mathbf{u}(t), \dot{\mathbf{q}}(t) + \epsilon \dot{\mathbf{u}}(t), t) dt \\
+& = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) + \epsilon \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \epsilon \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) + O(\epsilon^2) dt
+\end{align*}
+$$
 
 ## Lagrangian의 특징
 
