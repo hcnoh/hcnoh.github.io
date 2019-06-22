@@ -22,7 +22,7 @@ Galilean Transformation의 종류는 아래와 같다:
 - Rotational Translation: $$\mathbf{r} \rightarrow \mathcal{R}\mathbf{r}, \ \mathcal{R}\in \mathcal{O}(3)$$
 - Galilean Boost: $$\mathbf{r} \rightarrow \mathbf{r} + \mathbf{v} t$$
 
-여기서 각각의 변수는
+여기서 각각의 변수는 아래와 같다:
 - $$t$$: 시간
 - $$\mathbf{r}$$: 위치 벡터, $$\mathbf{r} \in \mathbb{R}$$
 - $$\mathbf{v}$$: 속도 벡터
@@ -59,7 +59,7 @@ $$
 S(\mathbf{q}(t)) = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) dt
 $$
 
-여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \mathbf{q}(t), t)$$에 대한 Functional이다.
+여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \dot{\mathbf{q}}(t), t)$$에 대한 Functional이다.
 
 ## Lagrangian의 특징
 
