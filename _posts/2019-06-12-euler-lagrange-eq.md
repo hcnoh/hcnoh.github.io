@@ -28,9 +28,14 @@ Galilean Transformation의 종류는 아래와 같다:
 - $$\mathbf{v}$$: 속도 벡터
 
 ## Generalized Coordinates
-앞으로 Generalized Coordinates $$\mathbf{q}$$를 자주 보게 될 것이다. Generalized Coordinates의 정의는 시간에 따른 System의 위치를 Unique하게 나타낼 수 있는 독립적인 물리량들을 말한다.
+`뉴턴 역학`에서는 외부에서 물체에 미치는 `힘`에 관심을 가지고 그 힘을 기술하기 위해서 `벡터량`들을 주로 다루게 된다. 따라서 벡터를 표현하기에 유용한 Cartesian Coordinate와 같은 좌표계를 사용하게 된다. 하지만 앞으로 다루려는 Lagrangian은 `라그랑주 역학`의 관점에서 다루게 되는 물리량이며 라구랑주 역학은 물체의 Kinetic Energy나 Potential Energy와 같은 `스칼라량`들에 관심을 가지게 된다. 이러한 스칼라량에 관한 분석을 용이하게 하기 위하여 라그랑주 역학은 Generalized Coordinate를 사용하게 된다.
 
-예를 들면 어떤 회전하는 물체는 Cartesian Coordinate에서는 $$x, y, z$$로 위치를 나타낼 수 있으며 Cylinderical Coordinate에서는 $$r, \theta, z$$로 위치를 나타낼 수 있다. 따라서 이러한 $$x, y, z$$의 변수들 한 묶음은 Generalized Coordinates를 구성하게 되며 마찬가지로 $$r, \theta, z$$의 변수들 한 묶음도 또 다른 Generalized Coordinates를 구성하게 된다.
+Generalized Coordinates의 정의는 시간에 따른 System의 위치를 Unique하게 나타낼 수 있는 독립적인 물리량들을 좌표계로 구성하는 것을 말한다. 따라서 Generalized Coordinates $$\mathbf{q}$$의 차원(좌표의 개수)은 운동의 자유도와 일치하게 된다. 일반적으로 운동을 스칼라량으로 기술하기 위하여 Generalized Coordinates를 사용하게 된다.
+
+![](/assets/img/2019-06-12-euler-lagrange-eq/2019-06-12-euler-lagrange-eq_2019-06-23-00-08-42.png)
+(출처: [Wikipedia](https://ko.wikipedia.org/wiki/%EC%9D%BC%EB%B0%98%ED%99%94_%EC%A2%8C%ED%91%9C))
+
+예를 들어보자. 위의 그림은 평면 위에서 운동하는 이중진자의 예시를 설명하는 그림이다. 위의 운동을 Cartesian Coordinate로 기술하면 $$(x_1, y_1, x_2, y_2)$$의 4개의 좌표를 사용해야 한다. 하지만 이 운동의 자유도는 2이기 때문에 2개의 좌표 $$(\theta_1, \theta_2 )$$로 이 운동을 기술할 수 있을 것이다. 따라서 여기서 사용되는 Generalized Coordinates $$\mathbf{q}$$는 $$\mathbf{q}=(\theta_1, \theta_2 )$$를 만족하게 된다.
 
 ## Principle of Least Action (Hamilton's Principle)
 
