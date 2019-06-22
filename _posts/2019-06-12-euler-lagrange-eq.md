@@ -56,7 +56,7 @@ $$
 Action은 다음과 같이 정의한다.
 
 $$
-S(\mathbf{q}(t)) = \int_{t_1}^{t_2} L(\mathbf{q}(t), \mathbf{q}(t), t) dt
+S(\mathbf{q}(t)) = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) dt
 $$
 
 여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \mathbf{q}(t), t)$$에 대한 Functional이다.
