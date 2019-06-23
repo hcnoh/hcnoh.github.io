@@ -119,12 +119,12 @@ Lagrangian은 위에서 예로 들었던 $$L=T-V$$ 뿐 아니라 다양한 값�
 
 $$
 \begin{align*}
-L_1(\mathbf{q}, \dot}\mathbf{q}}, t)
+L_1(\mathbf{q}, \dot{\mathbf{q}}, t)
 & = L_2(\mathbf{q}, \dot}\mathbf{q}}, t) + \frac{d}{dt}f(\mathbf{q}, \dot{\mathbf{q}}, t)
 \end{align*}
 $$
 
-즉, 어떤 특정 Lagrangian $$L_1$$에 대하여 위의 관계를 만족하는 Functional f(\mathbf{q}, \dot{\mathbf{q}}, t)가 존재한다면, Functional $$L_2$$는 Lagrangian $$L_1$$와 마찬가지로 현재의 Point $$(\mathbf{q}, \dot{\mathbf{w}}, t)$$에서 최소의 Action을 갖게 되며 따라서 물리량 $$L_2$$ 역시 Lagrangian이다.
+즉, 어떤 특정 Lagrangian $$L_1$$에 대하여 위의 관계를 만족하는 Functional $$f(\mathbf{q}, \dot{\mathbf{q}}, t)$$가 존재한다면, Functional $$L_2$$는 Lagrangian $$L_1$$와 마찬가지로 현재의 Point $$(\mathbf{q}, \dot{\mathbf{q}}, t)$$에서 최소의 Action을 갖게 되며 따라서 물리량 $$L_2$$ 역시 Lagrangian이다.
 
 증명은 다음과 같다.
 
@@ -137,5 +137,5 @@ S_1 = \int_{t_1}^{t_2}L_1 dt
 \end{align*}
 $$
 
-여기서 $$f(\mathbf{q}(t_2), \dot{\mathbf{q}}(t_2), t_2) - f(\mathbf{q}(t_1), \dot{\mathbf{q}}(t_1), t_1)$$은 Action의 Spatial Variation ($$\mathbf{q} \rightarrow \mathbf{q} + \epsilon \mathbf{u}$$)에 영향을 주지 않게 되어 Euler-Lagrange Equation을 유도하는 과정에서 상수로 취급되어 사라지게 된다. 즉 $$L_1$$과 $$L_2$$는 Point $$(\mathbf{q}, \dot{\mathbf{w}}, t)$$에서 최소의 Action을 갖게 된다.
+여기서 $$f(\mathbf{q}(t_2), \dot{\mathbf{q}}(t_2), t_2) - f(\mathbf{q}(t_1), \dot{\mathbf{q}}(t_1), t_1)$$은 Action의 Spatial Variation ($$\mathbf{q} \rightarrow \mathbf{q} + \epsilon \mathbf{u}$$)에 영향을 주지 않게 되어 Euler-Lagrange Equation을 유도하는 과정에서 상수로 취급되어 사라지게 된다. 즉 $$L_1$$과 $$L_2$$는 Point $$(\mathbf{q}, \dot{\mathbf{q}}, t)$$에서 최소의 Action을 갖게 된다.
 
