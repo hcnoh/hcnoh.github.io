@@ -110,6 +110,8 @@ $$
 \frac{\partial L}{\partial \mathbf{q}} - \left( \frac{d}{dt} \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) = 0
 $$
 
+이 결과가 바로 Euler-Lagrange Equation이다. 이 Euler-Lagrange Equation을 만족하는 물리량은 Principle of Least Action을 따르는 물리량이며 Lagrangian이라고 정의한다. 이러한 Lagrangian의 대표적인 예로 Kinetic Energy $$T$$와 Potential Energy $$V$$의 차인 $$L=T-V$$가 있다.
+
 ## Lagrangian의 특징
 
 
