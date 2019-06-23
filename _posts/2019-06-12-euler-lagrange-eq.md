@@ -86,7 +86,17 @@ $$
 S[\mathbf{q}(t)+\delta \mathbf{q}(t)]
 & = S[\mathbf{q}(t) + \epsilon \mathbf{u}(t)] \\
 & = \int_{t_1}^{t_2} L(\mathbf{q}(t) + \epsilon \mathbf{u}(t), \dot{\mathbf{q}}(t) + \epsilon \dot{\mathbf{u}}(t), t) dt \\
-& = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) + \epsilon \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \epsilon \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) + O(\epsilon^2) dt
+& = \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) + \epsilon \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \epsilon \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) + O(\epsilon^2) dt \\
+& \approx \int_{t_1}^{t_2} L(\mathbf{q}(t), \dot{\mathbf{q}}(t), t) + \epsilon \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \epsilon \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) dt
+\end{align*}
+$$
+
+마지막 등식은 $$\epsilon$$이 매우 작기때문에 1차항만을 남기고 모두 소거하여 Approximation하는 과정을 나타낸다. 따라서 $$S[\mathbf{q}(t)+\delta \mathbf{q}(t)] - S[\mathbf{q}(t)]$$는 다음과 같다.
+
+$$
+\begin{align*}
+S[\mathbf{q}(t)+\delta \mathbf{q}(t)] - S[\mathbf{q}(t)]
+& \approx \epsilon \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) dt
 \end{align*}
 $$
 
