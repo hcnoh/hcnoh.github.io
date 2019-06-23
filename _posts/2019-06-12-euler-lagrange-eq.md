@@ -73,7 +73,7 @@ $$
 \delta \mathbf{q}(t) = \epsilon \mathbf{u}(t)
 $$
 
-$$\mathbf{u}(t)$$를 임의의 벡터라고 가정했지만 몇 가지 추가적인 조건이 붙게 된다. 우리가 여기서 기술하고 싶은 운동은 시간 $$t_1$$과 $$t_2$$사이의 운동 경로 변화이며 따라서 시간 $$t_1$$과 $$t_2$$에서의 $$\mathbf{q}$$값은 변화에 의한 변화가 일어나지 않기를 원한다. 즉, 다음과 같은 조건이 추가적으로 붙게 될 것이다.
+$$\mathbf{u}(t)$$를 임의의 벡터라고 가정했지만 몇 가지 추가적인 조건이 붙게 된다. 우리가 여기서 기술하고 싶은 운동은 시간 $$t_1$$과 $$t_2$$사이의 운동 경로 변화이며 따라서 시간 $$t_1$$과 $$t_2$$에서의 $$\mathbf{q}$$값은 변화에 의한 변화가 일어나지 않기를 원한다. 즉, 다음과 같은 Boundary Condition이 추가적으로 붙게 될 것이다.
 
 $$
 \mathbf{u}(t_1) = \mathbf{u}(t_2) = \mathbf{0}
@@ -97,8 +97,17 @@ $$
 \begin{align*}
 S[\mathbf{q}(t)+\delta \mathbf{q}(t)] - S[\mathbf{q}(t)]
 & \approx \epsilon \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) dt \\
-& = \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \left( \frac{d}{dt} \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) \cdot \mathbf{u}(t) dt + \epsilon \left[ \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \mathbf{u}(t) \right]_{t=t_1}^{t=t_2}
+& = \epsilon \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) - \left( \frac{d}{dt} \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) \cdot \mathbf{u}(t) dt + \epsilon \left[ \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \mathbf{u}(t) \right]_{t=t_1}^{t=t_2} \\
+& = \epsilon \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) - \left( \frac{d}{dt} \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) \cdot \mathbf{u}(t) dt \\
+& = \epsilon \int_{t_1}^{t_2} \left[ \frac{\partial L}{\partial \mathbf{q}} - \left( \frac{d}{dt} \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) \right] \cdot \mathbf{u}(t) dt \\
+& = 0
 \end{align*}
+$$
+
+두 번째 등식은 Partial Integral을 수행한 것이고 세 번째 등식은 Boundary Condition $$\mathbf{u}(t_1)=\mathbf{u}(t_2)=\mathbf{0}$$으로부터 나온 것이다. 네 번째 등식 및 $$\mathbf{u}(t)$$가 임의의 벡터라는 조건에 의하여 다음과 같은 결과를 도출할 수 있다.
+
+$$
+\frac{\partial L}{\partial \mathbf{q}} - \left( \frac{d}{dt} \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) = 0
 $$
 
 ## Lagrangian의 특징
