@@ -97,8 +97,8 @@ $$
 \begin{align*}
 S[\mathbf{q}(t)+\delta \mathbf{q}(t)] - S[\mathbf{q}(t)]
 & \approx \epsilon \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \dot{\mathbf{u}}(t) dt \\
-& = 
-\end{align*} \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \frac{d}{dt}\frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \mathbf{u}(t) dt + \epsilon \left[ \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \mathbf{u}(t) \right]_{t=t_1}^{t=t_2}
+& = \int_{t_1}^{t_2} \frac{\partial L}{\partial \mathbf{q}} \cdot \mathbf{u}(t) + \frac{d}{dt}\frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \mathbf{u}(t) dt + \epsilon \left[ \frac{\partial L}{\partial \dot{\mathbf{q}}} \cdot \mathbf{u}(t) \right]_{t=t_1}^{t=t_2}
+\end{align*}
 $$
 
 ## Lagrangian의 특징
