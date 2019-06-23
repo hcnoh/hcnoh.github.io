@@ -120,7 +120,7 @@ Lagrangian은 위에서 예로 들었던 $$L=T-V$$ 뿐 아니라 다양한 값�
 $$
 \begin{align*}
 L_1(\mathbf{q}, \dot{\mathbf{q}}, t)
-& = L_2(\mathbf{q}, \dot}\mathbf{q}}, t) + \frac{d}{dt}f(\mathbf{q}, \dot{\mathbf{q}}, t)
+& = L_2(\mathbf{q}, \dot{\mathbf{q}}, t) + \frac{d}{dt}f(\mathbf{q}, \dot{\mathbf{q}}, t)
 \end{align*}
 $$
 
