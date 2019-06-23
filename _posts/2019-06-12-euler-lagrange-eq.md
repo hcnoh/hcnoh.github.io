@@ -61,7 +61,7 @@ $$
 
 여기서 $$L$$은 Principle of Least Action을 만족하는 어떤 물리량이며 $$(\mathbf{q}(t), \dot{\mathbf{q}}(t), t)$$에 대한 Functional이다. 이제 Principle of Least Action을 만족하기 위해서는 이 물리량 $$L$$이 어떤 성질을 만족해야만 하는지 확인해야 할 것이다.
 
-Principle of Least Action을 따른다는 것은 Action $$S[\mathbf{q}(t)]$$가 $$\mathbf{q}(t)$$에서 극값을 갖는다는 의미이다. 즉, 아주 작은 변화에 대해서 그 변화량이 없다는 의미가 될 것이다.
+Principle of Least Action을 따른다는 것은 Action $$S[\mathbf{q}(t)]$$가 $$\mathbf{q}(t)$$에서 극값을 갖는다는 의미이다. 즉, 아주 작은 Spatial Variation ($$\mathbf{q} \rightarrow \mathbf{q} + \epsilon \mathbf{u}$$)에 대해서 그 변화량이 없다는 의미가 될 것이다.
 
 $$
 S[\mathbf{q}(t)+\delta \mathbf{q}(t)] - S[\mathbf{q}(t)] = 0
@@ -112,6 +112,30 @@ $$
 
 이 결과가 바로 Euler-Lagrange Equation이다. 이 Euler-Lagrange Equation을 만족하는 물리량은 Principle of Least Action을 따르는 물리량이며 Lagrangian이라고 정의한다. 이러한 Lagrangian의 대표적인 예로 Kinetic Energy $$T$$와 Potential Energy $$V$$의 차인 $$L=T-V$$가 있다.
 
-## Lagrangian의 특징
+추가적으로 라그랑주 역학에서 Euler-Lagrange Equation은 뉴턴 역학에서의 Equation of Motion과 동치이다.
 
+## Lagrangian의 특징
+Lagrangian은 위에서 예로 들었던 $$L=T-V$$ 뿐 아니라 다양한 값이 될 수 있다. 하지만 이러한 다양한 Lagrangian들 사이에는 어떤 중요한 관계가 존재한다. 그 관계는 아래와 같다.
+
+$$
+\begin{align*}
+L_1(\mathbf{q}, \dot}\mathbf{q}}, t)
+& = L_2(\mathbf{q}, \dot}\mathbf{q}}, t) + \frac{d}{dt}f(\mathbf{q}, \dot{\mathbf{q}}, t)
+\end{align*}
+$$
+
+즉, 어떤 특정 Lagrangian $$L_1$$에 대하여 위의 관계를 만족하는 Functional f(\mathbf{q}, \dot{\mathbf{q}}, t)가 존재한다면, Functional $$L_2$$는 Lagrangian $$L_1$$와 마찬가지로 현재의 Point $$(\mathbf{q}, \dot{\mathbf{w}}, t)$$에서 최소의 Action을 갖게 되며 따라서 물리량 $$L_2$$ 역시 Lagrangian이다.
+
+증명은 다음과 같다.
+
+$$
+\begin{align*}
+S_1 = \int_{t_1}^{t_2}L_1 dt
+& = \int_{t_1}^{t_2}L_2 + \frac{d}{dt}f(\mathbf{q}, \dot{\mathbf{q}}, t) dt \\
+& = S_2 + \left[ f(\mathbf{q}, \dot{\mathbf{q}}, t) \right]_{t_1}^{t_2} \\
+& = S_2 + f(\mathbf{q}(t_2), \dot{\mathbf{q}}(t_2), t_2) - f(\mathbf{q}(t_1), \dot{\mathbf{q}}(t_1), t_1)
+\end{align*}
+$$
+
+여기서 $$f(\mathbf{q}(t_2), \dot{\mathbf{q}}(t_2), t_2) - f(\mathbf{q}(t_1), \dot{\mathbf{q}}(t_1), t_1)$$은 Action의 Spatial Variation ($$\mathbf{q} \rightarrow \mathbf{q} + \epsilon \mathbf{u}$$)에 영향을 주지 않게 되어 Euler-Lagrange Equation을 유도하는 과정에서 상수로 취급되어 사라지게 된다. 즉 $$L_1$$과 $$L_2$$는 Point $$(\mathbf{q}, \dot{\mathbf{w}}, t)$$에서 최소의 Action을 갖게 된다.
 
