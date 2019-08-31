@@ -66,7 +66,7 @@ permalink: /2019-08-31-dkvmn-tensorflow
    데이터 전처리는 `main.py`를 실행하면 자동으로 수행되게 됩니다.
 
    ```bash
-   $ python train.py
+   $ python main.py
    ```
 
 ## Results
