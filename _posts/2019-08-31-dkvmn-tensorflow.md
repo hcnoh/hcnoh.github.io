@@ -58,6 +58,7 @@ permalink: /2019-08-31-dkvmn-tensorflow
    dataset
    └── assistments
        └── skill_builder_data.csv
+   ```
 
 3. **`main.py`의 스크립트 상단에서 Training을 위한 데이터 세트 Path 및 Hyperparameter들을 수정하여 줍니다.**
 
