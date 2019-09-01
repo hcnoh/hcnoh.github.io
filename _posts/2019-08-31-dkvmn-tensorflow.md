@@ -60,9 +60,11 @@ permalink: /2019-08-31-dkvmn-tensorflow
        └── skill_builder_data.csv
 
 3. **`main.py`의 스크립트 상단에서 Training을 위한 데이터 세트 Path 및 Hyperparameter들을 수정하여 줍니다.**
+
    `DATASET_DIR`같은 경우는 `assistments` 디렉토리까지 명시해줘야 합니다.
 
 4. **`main.py`를 실행하여 모델 Training을 수행합니다.**
+
    데이터 전처리는 `main.py`를 실행하면 자동으로 수행되게 됩니다.
 
    ```bash
