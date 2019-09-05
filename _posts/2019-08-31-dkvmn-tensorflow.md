@@ -73,7 +73,22 @@ permalink: /2019-08-31-dkvmn-tensorflow
    ```
 
 ## Results
-향후 업데이트 예정
+
+Training Results (DKVMN vs DKT):
+- Training Loss
+![](/assets/img/2019-08-31-dkvmn-tensorflow/2019-08-31-dkvmn-tensorflow_2019-09-05-19-44-03.png)
+- Mean Training Loss per 1 Epoch
+![](/assets/img/2019-08-31-dkvmn-tensorflow/2019-08-31-dkvmn-tensorflow_2019-09-05-19-44-19.png)
+- Mean Test Loss per 1 Epoch
+![](/assets/img/2019-08-31-dkvmn-tensorflow/2019-08-31-dkvmn-tensorflow_2019-09-05-19-44-32.png)
+- Test ACC
+![](/assets/img/2019-08-31-dkvmn-tensorflow/2019-08-31-dkvmn-tensorflow_2019-09-05-19-44-45.png)
+- Test AUC
+![](/assets/img/2019-08-31-dkvmn-tensorflow/2019-08-31-dkvmn-tensorflow_2019-09-05-19-45-06.png)
+
+Problem Clustering Results:
+- ASSISTmentsData with DKVMN
+![](/assets/img/2019-08-31-dkvmn-tensorflow/2019-08-31-dkvmn-tensorflow_2019-09-05-19-46-03.png)
 
 ## Recent Updates
 1. 전처리 코드 수정
