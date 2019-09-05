@@ -9,24 +9,28 @@ permalink: /about
 잡다한 지식들을 정리해놓는 것을 즐기는 머신러닝 엔지니어입니다 :)
 
 ## Employment and Career
-- 전) TmaxData에서 AI 대화형 시스템의 음성 합성(Text-to-Speech) 모듈 개발 (병역특례) - ~ 2019. 3
-- 현) TmaxData에서 추천 시스템 연구 및 개발 (병역특례) - 2019. 4 ~
+- Before)
+    - Research and Development on NLP in TmaxData as a military service (2018. 2 ~ 2018. 9)
+    - Research and Development on Speech Synthesis in TmaxData as a military service (2018. 9 ~ 2019. 4)
+- Now)
+    - Research and Development on Recommender System in TmaxData as a military service (2019. 4 ~ Now)
 
 ## Education
-- 연세대학교 전기전자공학부 학사졸 - 2016. 2
-- KAIST 전기 및 전자공학부 석사졸 - 2018. 2
-  - 세부전공: 머신러닝 및 강화학습
+- Yonsei University, B.S. in Electrical and Electronic Engineering (2016. 2)
+- KAIST, M.S. in Electrical Engineering (2018. 2)
+  - Research on Machine Learning and Reinforcement Learning
 
 ## Interests
 - Machine Learning, Deep Learning
-- Data Analysis
 - Statistical Mechanics
+- Information Physics
+- Data Analysis
 
 ## Skills
 - Languages: Korean, English
 - Programming Languages: Python, C++(Novice), Java(Novice), MATLAB, LaTex
 - Deep Learning Frameworks: TensorFlow, Keras, DL4J(Novice)
-- Data Analysis: Numpy
+- Data Analysis: Numpy, Pandas
 - Speech Signal Processing: Librosa, Kaldi(Novice)
 - Natural Language Processing: KoNLPy, Mecab
 - Other Tools: Linux, Git, Jekyll(Novice)
@@ -35,7 +39,7 @@ permalink: /about
 - [Projects List](https://hcnoh.github.io/projects)
 
 ## Contact
-- email: rhc0624@gmail.com
+- E-mail: rhc0624@gmail.com
 - [GitHub](https://github.com/hcnoh)
 - [Facebook](https://www.facebook.com/profile.php?id=100002031927279)
 - [Linkedin](https://www.linkedin.com/in/hyungcheol-noh-a9aa58142/)
