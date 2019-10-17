@@ -23,7 +23,7 @@ permalink: /about
 ## Interests
 - Machine Learning, Deep Learning
 - Statistical Mechanics
-- Information Physics
+- Information Theory
 - Data Analysis
 
 ## Skills
