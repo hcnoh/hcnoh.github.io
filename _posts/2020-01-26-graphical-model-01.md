@@ -92,7 +92,7 @@ $$
 이제 Bayes 규칙을 이용하여 결합분포를 추론해보자.
 
 $$
-\begin{array}{ll}
+\begin{array}{rl}
 P(X_1, X_2, X_3, X_4)
 & = P(X_4|X_1, X_2, X_3)\cdot P(X_1, X_2, X_3) \\
 & = P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_1, X_2) \\
@@ -124,7 +124,7 @@ $$X_1$$과 $$X_3$$은 부모 Node가 없기 때문에 단독으로 분포를 쓸
 최종적으로 위의 결과들을 바탕으로 주변분포를 추론해보도록 하자.
 
 $$
-\begin{array}{ll}
+\begin{array}{rl}
 P(X_4)
 & = \sum_{X_1, X_2, X_3} P(X_1, X_2, X_3, X_4) \\
 & = \sum_{X_3} \sum_{X_2} P(X_4 | X_2, X_3) \cdot P(X_3) \sum_{X_1} P(X_2 | X_1) \cdot P(X_1) \\
@@ -136,7 +136,7 @@ P(X_4)
 &  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
 & = 0.02 \cdot P(X_4 | X_2=1, X_3=1) +
 0.08 \cdot P(X_4 | X_2=1, X_3=0) \\
-\ \ \ \ + 0.18 \cdot P(X_4 | X_2=0, X_3=1) + 
+& \ \ \ \ + 0.18 \cdot P(X_4 | X_2=0, X_3=1) + 
 0.72 \cdot P(X_4 | X_2=0, X_3=0)
 \end{array}
 $$
