@@ -36,3 +36,39 @@ Bayesian Network가 DAC였던 것과는 다르게 Markov Random Field는 Undirec
 즉, Potential 에너지가 가장 작은 전하 배치가 가장 안정적인 전하 배치가 될 것이다.
 
 ## Gibbs Measure
+여기서 시스템의 안정성을 확률분포의 개념과 연결짓기 위해서 Gibbs Measure라는 개념을 도입하게 된다. Gibbs Measure는 어떤 시스템 $$X$$가 $$x$$라는 상태를 가지게 될 확률을 아래와 같이 정의한다:
+
+$$
+P(X = x) = \frac{1}{Z} \exp(-\beta E(X)).
+$$
+
+여기서 $$Z$$는 Normalization 상수이며, $$\beta$$ 역시 상수이다. 통계물리에서는 Canonical Ensemble이라는 개념을 이용하여 Gibbs Measure를 유도하는데 나중에 기회가 되면 다뤄보도록 하고 여기서는 그냥 넘어가도록 하겠다.
+
+이러한 Gibbs Measure를 전하 모델에 적용하여 쓰면 다음과 같은 결합분포를 쓸 수 있다.
+
+![](/assets/img/2020-01-26-graphical-model-02/2020-01-26-graphical-model-02_2020-01-26-10-58-56.png)
+
+$$
+\begin{array}{rl}
+P(X=x)
+& \approx \exp(-\beta E(x)) \\
+& = \exp(-\beta (H_1(x) + H_2(x) + H_3(x))) \\
+& = \exp(-\beta (H_1(x))) \cdot \exp(-\beta (H_2(x))) \cdot \exp(-\beta (H_3(x))) \\
+& = \phi_1(x) \cdot \phi_2(x) \cdot \phi_3(x)
+\end{array}
+$$
+
+즉, 하나의 Fully-connected Graph로 이루어진 시스템에 대한 확률분포는 각각의 Fully-connected Subgraph에 대한 분포들의 곱으로 쓸 수 있다. 이러한 Fully-connected Subgraph를 Clique라고 부른다.
+
+## Clique Factorization
+위와 같은 방식의 Factorization 방식을 Clique Factorization이라고 한다. 즉, Clique에 대한 Factor들의 곱으로 결합분포를 Parameterization하겠다는 의도이다.
+
+![](/assets/img/2020-01-26-graphical-model-02/2020-01-26-graphical-model-02_2020-01-26-11-02-11.png)
+
+Clique Factorization의 정의는 다음과 같다:
+- 주어진 Markov Random Field $$H$$에 대하여 찾을 수 있는 모든 Clique들이 $$\{ \mathbf{C}_1, \cdots, \mathbf{C}_k\}$$일 때, $$H$$에 대한 결합분포 $$P$$는 다음과 같이 Parameterization될 수 있다:
+
+$$
+P(X_1, \cdots, X_n) = \prod_{i=1}^k \Phi_i (\mathbf{C}_i)
+$$
+
