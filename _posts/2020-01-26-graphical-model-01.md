@@ -73,12 +73,47 @@ $$
 
 $$
 P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
-
-P(X_2|X_1) = \left\{ \begin{array}{ll} 0.3 & \text{if} \ X_1=0, X_2=0, \\ 0.7 & \text{if} \ X_1=0, X_2=1, \\ 0.9 & \text{if} \ X_1=1, X_2=0, \\ 0.1 & \text{if} \ X_1=1, X_2=1. \end{array} \right.
-
-P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
-
-P(X_4|X_2,X_3) = \left\{ \begin{array}{ll}
-0.1 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=1, X_3=1, X_4=1, \\  \end{array} \right.
 $$
 
+$$
+P(X_2|X_1) = \left\{ \begin{array}{ll} 0.3 & \text{if} \ X_1=0, X_2=0, \\ 0.7 & \text{if} \ X_1=0, X_2=1, \\ 0.9 & \text{if} \ X_1=1, X_2=0, \\ 0.1 & \text{if} \ X_1=1, X_2=1. \end{array} \right.
+$$
+
+$$
+P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
+$$
+
+$$
+P(X_4|X_2,X_3) = \left\{ \begin{array}{ll}
+0.1 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=1, X_3=1, X_4=1. \\  \end{array} \right.
+$$
+
+이제 Bayes 규칙을 이용하여 결합분포를 추론해보자.
+
+$$
+\begin{array}{ll}
+P(X_1, X_2, X_3, X_4)
+& = P(X_4|X_1, X_2, X_3)\cdot P(X_1, X_2, X_3) \\
+& = P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_1, X_2) \\
+& = P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_2 | X_1) \cdot P(X_1) \\
+& = P(X_4 | X_2, X_3) \cdot P(X_3) \cdot P(X_2 | X_1) \cdot P(X_1)
+\end{array}
+$$
+
+특히 여기서 마지막 두 줄은 Bayesian Network를 다룰때 활용되는 중요한 가정인 Local Markov Assumption을 사용하는 부분이다. 이것은 잠시 후에 다뤄볼 것이다.
+
+$$
+P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_2 | X_1) \cdot P(X_1) = P(X_4 | X_2, X_3) \cdot P(X_3) \cdot P(X_2 | X_1) \cdot P(X_1)
+$$
+
+어쨌든 최종적으로 구한 결합분포는 아래와 같다.
+
+$$
+P(X_1, X_2, X_3, X_4) = P(X_4 | X_2, X_3) \cdot P(X_3) \cdot P(X_2 | X_1) \cdot P(X_1)
+$$
+
+이런 방식으로 결합분포를 각 확률변수에 대한 조건부분포들에 대한 곱으로 써놓는 것을 Factorization이라고 정의한다. 이것을 Bayesian Network의 관점에서 다시 정의하면 다음과 같다:
+
+$$
+P(X_1, \cdots, X_n) = \prod_{i=1}^n P(X_i | \mathbf{Pa}(X_i))
+$$
