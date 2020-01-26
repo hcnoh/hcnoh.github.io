@@ -72,7 +72,7 @@ $$
 또한 가정을 바탕으로 Edge 값인 조건부 확률분포들을 아래와 같이 정의할 수 있다.
 
 $$
-P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
+P(X_1) = \left\{ \begin{array}{ll} 0.9 & \text{if} \ X_3=1, \\ 0.1 & \text{otherwise}. \end{array} \right.
 $$
 
 $$
@@ -88,6 +88,7 @@ P(X_4|X_2,X_3) = \left\{ \begin{array}{ll}
 0.1 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=1, X_3=1, X_4=1. \\  \end{array} \right.
 $$
 
+## Factorization
 이제 Bayes 규칙을 이용하여 결합분포를 추론해보자.
 
 $$
@@ -117,3 +118,58 @@ $$
 $$
 P(X_1, \cdots, X_n) = \prod_{i=1}^n P(X_i | \mathbf{Pa}(X_i))
 $$
+
+$$X_1$$과 $$X_3$$은 부모 Node가 없기 때문에 단독으로 분포를 쓸 수 있고 ($$P(X_1), P(X_3)$$), $$X_2$$의 부모 Node는 $$X_1$$, $$X_4$$의 부모 Node는 $$X_2, X_3$$이므로 $$P(X_2 | X_1)$$, $$P(X_4 | X_2, X_3)$$로 쓴 것을 확인할 수 있다.
+
+최종적으로 위의 결과들을 바탕으로 주변분포를 추론해보도록 하자.
+
+$$
+\begin{array}{ll}
+P(X_4)
+& = \sum_{X_1, X_2, X_3} P(X_1, X_2, X_3, X_4) \\
+& = \sum_{X_3} \sum_{X_2} P(X_4 | X_2, X_3) \cdot P(X_3) \sum_{X_1} P(X_2 | X_1) \cdot P(X_1) \\
+& = \sum_{X_3} \sum_{X_2} P(X_4 | X_2, X_3) \cdot P(X_3) \cdot \left[0.9 \cdot P(X_2 | X_1=1) + 0.1 \cdot P(X_2 | X_1=0) \right] \\
+& = 0.9 \cdot \left[ 0.2 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
+& \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
+
+& \ \ \ \ + 0.1 \cdot \left[ 0.2 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
+&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right]
+& = 0.02 \cdot P(X_4 | X_2=1, X_3=1) +
+0.08 \cdot P(X_4 | X_2=1, X_3=0) \\
+\ \ \ \ + 0.18 \cdot P(X_4 | X_2=0, X_3=1) + 
+0.72 \cdot P(X_4 | X_2=0, X_3=0)
+\end{array}
+$$
+
+따라서 최종적인 주변분포는:
+
+$$
+P(X_4) = \left\{
+\begin{array}{ll}
+0.02 \cdot 0.8 + 0.08 \cdot 0.9 + 0.18 \cdot 0.2 + 0.72 \cdot 0.7 = 0.628 
+& \text{if} \ X_4=1, \\
+0.02 \cdot 0.2 + 0.08 \cdot 0.1 + 0.18 \cdot  0.8 + 0.72 \cdot 0.3 = 0.372
+& \text{otherwise}.
+\end{array}
+\right.
+$$
+
+즉, Bayesian 관점에서 지각을 할 것이냐에 대한 나의 믿음은 0.628이므로 이 내기는 내가 불리하기 때문에 내기를 안하는 것이 이득이라고 결론을 내리게 된다.
+
+## Local Markov Assumption
+지금까지의 과정에서 몇 가지 의문점이 생길 수 있다. 먼저 같은 구조의 Bayesian Network는 항상 같은 Factorization 결과를 도출할 것인가? 또는 반대로 같은 Factorization 결과를 가지는 Bayesian Network들은 모두 같은 구조를 가지게 될까?
+
+이러한 의문점들을 해소할 수 있는 가정, 또는 성질이 Local Markov Assumption이다.
+
+Local Markov Assumption은 다음과 같이 정의된다. 주어진 Bayesian Network에서 Node에 해당하는 확률변수는 자신의 부모 Node가 관찰이 된다면 자신의 자식 Node가 아닌 확률변수들과 독립 관계를 가지게 된다. 즉, 모든 확률변수들은 자신의 부모 Node가 주어졌을 때 자신의 자식 Node들을 제외한 모든 확률변수들과 조건부 독립 관계를 갖는다. 이것을 수식으로 표현하면 다음과 같다:
+
+$$(X_i \perp \mathbf{NonDescendants}(X_i) | \mathbf{Pa}(X_i))$$
+
+이러한 Local Markov Assumption과 관련된 Theorem이 있다. 증명은 여기에 따로 소개하지는 않겠다.
+
+- $$G$$가 확률변수들의 집합 $$\{X_i \}_{i=1}^n$$에 대한 Bayesian Network Graph이고, $$P$$가 그 확률변수들에 대한 결합분포이다. 이 경우 $$G$$에 대한 모든 Local Markov Assumption이 만족한다면 $$P$$는 $$G$$에 대해서 Factorization이 될 수 있다.
+- 또한 이 명제는 역이 성립한다.
+
+이 Theorem이 하고자하는 말은 Bayesian Network와 그에 대한 Factorization 결과는 서로 동치라는 점이다.
+
+![](/assets/img/2020-01-26-graphical-model-01/2020-01-26-graphical-model-01_2020-01-26-09-49-44.png)
