@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "[Graphical Model Tutorial] Chap 1. Markov Random Field"
+title: "[Graphical Model Tutorial] Chap 2. Markov Random Field"
 date: 2020-01-26 10:19:09
 tagline: "Markov Random Field에 대한 전반적인 소개 및 예시"
 categories:
