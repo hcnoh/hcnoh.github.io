@@ -64,3 +64,21 @@ $$
     - 늦잠을 안자고 1호선이 제떄 안오면 0.7
     - 늦잠을 자고 1호선이 제때 오면 0.8
     - 늦잠을 자고 1호선이 제때 안오면 0.9
+
+이러한 가정들을 바탕으로 다음과 같은 Bayesian Network를 그릴 수 있다.
+
+![](/assets/img/2020-01-26-graphical-model-01/2020-01-26-graphical-model-01_2020-01-26-09-12-52.png)
+
+또한 가정을 바탕으로 Edge 값인 조건부 확률분포들을 아래와 같이 정의할 수 있다.
+
+$$
+P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
+
+P(X_2|X_1) = \left\{ \begin{array}{ll} 0.3 & \text{if} \ X_1=0, X_2=0, \\ 0.7 & \text{if} \ X_1=0, X_2=1, \\ 0.9 & \text{if} \ X_1=1, X_2=0, \\ 0.1 & \text{if} \ X_1=1, X_2=1. \end{array} \right.
+
+P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
+
+P(X_4|X_2,X_3) = \left\{ \begin{array}{ll}
+0.1 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=1, X_3=1, X_4=1, \\  \end{array} \right.
+$$
+
