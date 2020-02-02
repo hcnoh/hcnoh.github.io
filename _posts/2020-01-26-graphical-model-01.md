@@ -133,7 +133,12 @@ P(X_4)
 & \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
 
 & \ \ \ \ + 0.1 \cdot \left[ 0.2 \cdot 0.7 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.7 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
-&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=0) \right]
+&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
+
+& = 0.032 \cdot P(X_4 | X_2=1, X_3=1) +
+0.128 \cdot P(X_4 | X_2=1, X_3=0) \\
+& \ \ \ \ + 0.168 \cdot P(X_4 | X_2=0, X_3=1) + 
+0.672 \cdot P(X_4 | X_2=0, X_3=0)
 \end{array}
 $$
 
@@ -142,9 +147,9 @@ $$
 $$
 P(X_4) = \left\{
 \begin{array}{ll}
-0.02 \cdot 0.8 + 0.08 \cdot 0.9 + 0.18 \cdot 0.2 + 0.72 \cdot 0.7 = 0.628 
+0.032 \cdot 0.8 + 0.128 \cdot 0.9 + 0.168 \cdot 0.2 + 0.672 \cdot 0.7 = 0.628 
 & \text{if} \ X_4=1, \\
-0.02 \cdot 0.2 + 0.08 \cdot 0.1 + 0.18 \cdot  0.8 + 0.72 \cdot 0.3 = 0.372
+0.032 \cdot 0.2 + 0.128 \cdot 0.1 + 0.168 \cdot  0.8 + 0.672 \cdot 0.3 = 0.372
 & \text{otherwise}.
 \end{array}
 \right.
