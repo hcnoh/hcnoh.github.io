@@ -69,6 +69,30 @@ Clique Factorization의 정의는 다음과 같다:
 - 주어진 Markov Random Field $$H$$에 대하여 찾을 수 있는 모든 Clique들이 $$\{ \mathbf{C}_1, \cdots, \mathbf{C}_k\}$$일 때, $$H$$에 대한 결합분포 $$P$$는 다음과 같이 Parameterization될 수 있다:
 
 $$
-P(X_1, \cdots, X_n) = \prod_{i=1}^k \Phi_i (\mathbf{C}_i)
+P(X_1, \cdots, X_n) = \prod_{i=1}^k \phi_i (\mathbf{C}_i)
 $$
 
+이 정의를 바탕으로 전하 모델을 Factorization하여 써보면 다음과 같다:
+
+$$
+\begin{array}{rl}
+P(X_1=x_1, X_2=x_2, X_3=x_3)
+& \approx \exp(-\beta H_1(x_1, x_2)) \cdot \exp(-\beta H_1(x_2, x_3)) \cdot \exp(-\beta H_1(x_3, x_1)) \\
+& = \phi_1(x_1, x_2) \cdot \phi_2(x_2, x_3) \cdot \phi_3(x_3, x_1)
+\end{array}
+$$
+
+물론 모델이 주어져있는 상태라면 주어진 Factor를 이용하여 Factorization을 하면 상관없지만, 모델을 추정하기를 원하던가 모델을 정확히 알 수 없는 상황이라면 Clique Factorization은 좋은 Factorization 방법이 될 수 있다.
+
+모델을 추정하기 위해서 Clique Factorization을 수행하는 경우에는 Maximal Clique만을 사용할 것인지 주어진 모든 Clique를 다 사용할 것인지 잘 선택해야 할 것이다.
+
+## Factor Graph
+위에서 Factor 및 Factorization에 대한 이야기를 잠깐 하였다. 그렇다면 Factorization은 정확히 어떤 것일까?
+
+먼저 Factor를 정의하자. Factor는 확률변수들의 집합의 Value에 대한 함수로 정의된다:
+
+$$
+phi: \text{Val}(X) \rightarrow \mathbb{R}^+.
+$$
+
+여기서 $$X=\{X_1, \cdots, X_N\}$$은 확률변수들의 집합이다.
