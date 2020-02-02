@@ -147,9 +147,9 @@ $$
 $$
 P(X_4) = \left\{
 \begin{array}{ll}
-0.032 \cdot 0.8 + 0.128 \cdot 0.9 + 0.168 \cdot 0.2 + 0.672 \cdot 0.7 = 0.628 
+0.032 \cdot 0.8 + 0.128 \cdot 0.9 + 0.168 \cdot 0.2 + 0.672 \cdot 0.7 = 0.6448 
 & \text{if} \ X_4=1, \\
-0.032 \cdot 0.2 + 0.128 \cdot 0.1 + 0.168 \cdot  0.8 + 0.672 \cdot 0.3 = 0.372
+0.032 \cdot 0.2 + 0.128 \cdot 0.1 + 0.168 \cdot  0.8 + 0.672 \cdot 0.3 = 0.3552
 & \text{otherwise}.
 \end{array}
 \right.
