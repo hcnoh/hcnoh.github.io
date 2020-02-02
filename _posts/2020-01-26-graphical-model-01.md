@@ -85,11 +85,11 @@ $$
 
 $$
 P(X_4|X_2,X_3) = \left\{ \begin{array}{ll}
-0.1 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.1 & \text{if} \ X_2=1, X_3=1, X_4=1. \\  \end{array} \right.
+0.3 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.7 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.8 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.2 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.9 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.2 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.8 & \text{if} \ X_2=1, X_3=1, X_4=1, \\  \end{array} \right.
 $$
 
 ## Factorization
-이제 Bayes 규칙을 이용하여 결합분포를 추론해보자.
+이제 Bayes 규칙을 이용하여 결합분포를 추론해보자. 우리의 목적은 $$X_4$$에 대해서 확률분포를 쓰는 것이기 때문에 다음과 같은 방식으로 결합분포를 써보는 것을 시도한다.
 
 $$
 \begin{array}{rl}
@@ -124,7 +124,7 @@ $$X_1$$과 $$X_3$$은 부모 Node가 없기 때문에 단독으로 분포를 쓸
 최종적으로 위의 결과들을 바탕으로 주변분포를 추론해보도록 하자.
 
 $$
-\begin{array}{rl}
+\begin{array}{ll}
 P(X_4)
 & = \sum_{X_1, X_2, X_3} P(X_1, X_2, X_3, X_4) \\
 & = \sum_{X_3} \sum_{X_2} P(X_4 | X_2, X_3) \cdot P(X_3) \sum_{X_1} P(X_2 | X_1) \cdot P(X_1) \\
@@ -132,12 +132,8 @@ P(X_4)
 & = 0.9 \cdot \left[ 0.2 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
 & \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
 
-& \ \ \ \ + 0.1 \cdot \left[ 0.2 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
-&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
-& = 0.02 \cdot P(X_4 | X_2=1, X_3=1) +
-0.08 \cdot P(X_4 | X_2=1, X_3=0) \\
-& \ \ \ \ + 0.18 \cdot P(X_4 | X_2=0, X_3=1) + 
-0.72 \cdot P(X_4 | X_2=0, X_3=0)
+& \ \ \ \ + 0.1 \cdot \left[ 0.2 \cdot 0.7 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.7 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
+&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=0) \right]
 \end{array}
 $$
 
@@ -154,7 +150,7 @@ P(X_4) = \left\{
 \right.
 $$
 
-즉, Bayesian 관점에서 지각을 할 것이냐에 대한 나의 믿음은 0.628이므로 이 내기는 내가 불리하기 때문에 내기를 안하는 것이 이득이라고 결론을 내리게 된다.
+즉, Bayesian 관점에서 지각을 할 것이냐에 대한 나의 믿음은 0.6448이므로 이 내기는 내가 불리하기 때문에 내기를 안하는 것이 이득이라고 결론을 내리게 된다.
 
 ## Local Markov Assumption
 지금까지의 과정에서 몇 가지 의문점이 생길 수 있다. 먼저 같은 구조의 Bayesian Network는 항상 같은 Factorization 결과를 도출할 것인가? 또는 반대로 같은 Factorization 결과를 가지는 Bayesian Network들은 모두 같은 구조를 가지게 될까?
