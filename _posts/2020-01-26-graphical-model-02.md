@@ -92,7 +92,7 @@ $$
 먼저 Factor를 정의하자. Factor는 확률변수들의 집합의 Value에 대한 함수로 정의된다:
 
 $$
-phi: \text{Val}(X) \rightarrow \mathbb{R}^+.
+\phi: \text{Val}(X) \rightarrow \mathbb{R}^+.
 $$
 
 여기서 $$X=\{X_1, \cdots, X_N\}$$은 확률변수들의 집합이다.
