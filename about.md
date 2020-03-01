@@ -5,8 +5,6 @@ tagline: This is some description about Hyungcheol Noh.
 permalink: /about
 ---
 
-![](/assets/img/about/about_2020-03-01-22-44-36.png)
-
 ## About Me
 머신러닝 과학자를 지향하는 머신러닝 엔지니어입니다 :)
 
