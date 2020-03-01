@@ -5,8 +5,12 @@ tagline: This is some description about Hyungcheol Noh.
 permalink: /about
 ---
 
+![](/assets/img/about/about_2020-03-01-22-44-36.png)
+
 ## About Me
-잡다한 지식들을 정리해놓는 것을 즐기는 머신러닝 엔지니어입니다 :)
+머신러닝 과학자를 지향하는 머신러닝 엔지니어입니다 :)
+
+통계 관련 이론에 환장하는 편이며 수학, 물리학, 그리고 코딩을 취미로 즐기고 있습니다.
 
 ## Employment and Career
 - Before)
@@ -22,15 +26,17 @@ permalink: /about
 
 ## Interests
 - Machine Learning, Deep Learning
+- Statistical Learning, Inference
+- Stochastic Process Modeling
 - Statistical Mechanics
 - Information Theory
-- Data Analysis
+- Data Science
 
 ## Skills
 - Languages: Korean, English
 - Programming Languages: Python, C++(Novice), Java(Novice), MATLAB, LaTex
 - Deep Learning Frameworks: TensorFlow2, TensorFlow, Keras, DL4J(Novice)
-- Data Analysis: Numpy, Pandas
+- Data Processing: Numpy, Pandas
 - Speech Signal Processing: Librosa, Kaldi(Novice)
 - Natural Language Processing: KoNLPy, Mecab
 - Other Tools: Linux, Git, Jekyll(Novice)
