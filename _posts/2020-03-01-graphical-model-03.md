@@ -38,7 +38,7 @@ $$
 P(X)
 & \propto \exp(-\beta E(X)) \\
 & \propto \exp(-\beta (H_1(X) + H_2(X) + H_3(X))) \\
-& \propto \exp(-\beta \sum_{i<j}x_i x_j)
+& \propto \exp(-\beta \sum_{i<j}x_i x_j).
 \end{array}
 $$
 
@@ -53,6 +53,7 @@ $$
 \phi_1(X) & = \exp(-\beta H_1(X)), \\
 \phi_2(X) & = \exp(-\beta H_2(X)), \\
 \phi_3(X) & = \exp(-\beta H_3(X)). \\
+\end{array}
 $$
 
 이 경우 분해된 $$P(X)$$를 깁스 분포(Gibbs Distribution)라고 한다. 참고로 클리크는 그래프의 완전 연결된 부분그래프(Fully-connected Subgraph)로 정의된다.
