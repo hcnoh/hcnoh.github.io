@@ -70,7 +70,7 @@ $$
 P_X(\mathbf{x};\Phi) \propto \prod_{c \in C_G} \phi_c (\mathbf{x}_c).
 $$
 
-    여기서 $$\mathbf{x}_c$$는 클리크 $$c$$에 대한 짜임새(Configuration)이다.
+- 여기서 $$\mathbf{x}_c$$는 클리크 $$c$$에 대한 짜임새(Configuration)이다.
 
 물론 모형이 주어져있는 상태라면 주어진 인수를 이용하여 결합 분포를 분해하면 상관없지만, 모형을 추정하기를 원하던가 모형을 정확히 알 수 없는 상황이라면 클리크 분해는 좋은 분해 방법이 될 수 있다.
 
