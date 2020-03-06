@@ -48,10 +48,10 @@ permalink: /2020-01-26-graphical-model-01
 우리는 이 세 가지 랜덤 변수를 바탕으로 네 번째 랜덤 변수 $$X_4$$ (지각을 하였는가? Yes/No)에 대한 주변 분포를 추론하고자 한다.
 
 $$
-P(X_4) = \sum_{X_1, X_2, X_3} P(X_1, X_2, X_3, X_4)
+P_{X_4}(x_4) = \sum_{x_1, x_2, x_3} P_{X_1, X_2, X_3, X_4}(x_1, x_2, x_3, x_4)
 $$
 
-이러한 주변화 계산을 위해서는 결합 분포 $$P(X_1, X_2, X_3, X_4)$$에 대한 추론이 선행되어야 할 것이다. 이를 위해서는 각각의 랜덤 변수에 대한 가정이 필요하다. 베이지안 관점에서 나의 가정들은 아래와 같다:
+이러한 주변화 계산을 위해서는 결합 분포 $$P_{X_1, X_2, X_3, X_4}$$에 대한 추론이 선행되어야 할 것이다. 이를 위해서는 각각의 랜덤 변수에 대한 가정이 필요하다. 베이지안 관점에서 나의 가정들은 아래와 같다:
 - 알람과 1호선은 서로 독립적인 사건:
     - 알람이 제대로 울릴 것인가에 대한 나의 믿음: 0.9
     - 1호선이 제때 올 것인가에 대한 나의 믿음: 0.2
@@ -67,25 +67,50 @@ $$
 
 이러한 가정들을 바탕으로 다음과 같은 베이지안 네트워크를 그릴 수 있다.
 
-![](/assets/img/2020-01-26-graphical-model-01/2020-01-26-graphical-model-01_2020-01-26-09-12-52.png)
+![](/assets/img/2020-01-26-graphical-model-01/2020-01-26-graphical-model-01_2020-01-26-08-38-02.png)
 
 또한 가정을 바탕으로 엣지 값인 조건부 확률 분포들을 아래와 같이 정의할 수 있다.
 
 $$
-P(X_1) = \left\{ \begin{array}{ll} 0.9 & \text{if} \ X_3=1, \\ 0.1 & \text{otherwise}. \end{array} \right.
+P_{X_1}(x_1) = \left\{
+\begin{array}{ll}
+0.9 & \text{if} \ x_1=1, \\
+0.1 & \text{otherwise}.
+\end{array}
+\right.
 $$
 
 $$
-P(X_2|X_1) = \left\{ \begin{array}{ll} 0.3 & \text{if} \ X_1=0, X_2=0, \\ 0.7 & \text{if} \ X_1=0, X_2=1, \\ 0.9 & \text{if} \ X_1=1, X_2=0, \\ 0.1 & \text{if} \ X_1=1, X_2=1. \end{array} \right.
+P_{X_2|X_1}(x_2|x_1) = \left\{
+\begin{array}{ll}
+0.3 & \text{if} \ x_1=0, x_2=0, \\
+0.7 & \text{if} \ x_1=0, x_2=1, \\
+0.9 & \text{if} \ x_1=1, x_2=0, \\
+0.1 & \text{if} \ x_1=1, x_2=1.
+\end{array} \right.
 $$
 
 $$
-P(X_3) = \left\{ \begin{array}{ll} 0.2 & \text{if} \ X_3=1, \\ 0.8 & \text{otherwise}. \end{array} \right.
+P_{X_3}(x_3) = \left\{
+\begin{array}{ll}
+0.2 & \text{if} \ x_3=1, \\
+0.8 & \text{otherwise}.
+\end{array} \right.
 $$
 
 $$
-P(X_4|X_2,X_3) = \left\{ \begin{array}{ll}
-0.3 & \text{if} \ X_2=0, X_3=0, X_4=0, \\  0.7 & \text{if} \ X_2=0, X_3=0, X_4=1, \\  0.8 & \text{if} \ X_2=0, X_3=1, X_4=0, \\ 0.2 & \text{if} \ X_2=0, X_3=1, X_4=1, \\  0.1 & \text{if} \ X_2=1, X_3=0, X_4=0, \\  0.9 & \text{if} \ X_2=1, X_3=0, X_4=1, \\  0.2 & \text{if} \ X_2=1, X_3=1, X_4=0, \\ 0.8 & \text{if} \ X_2=1, X_3=1, X_4=1. \\  \end{array} \right.
+P_{X_4|X_2,X_3}(x_4|x_2,x_3) =
+\left\{
+\begin{array}{ll}
+0.3 & \text{if} \ x_2=0, x_3=0, x_4=0, \\ 
+0.7 & \text{if} \ x_2=0, x_3=0, x_4=1, \\ 
+0.8 & \text{if} \ x_2=0, x_3=1, x_4=0, \\
+0.2 & \text{if} \ x_2=0, x_3=1, x_4=1, \\ 
+0.1 & \text{if} \ x_2=1, x_3=0, x_4=0, \\ 
+0.9 & \text{if} \ x_2=1, x_3=0, x_4=1, \\ 
+0.2 & \text{if} \ x_2=1, x_3=1, x_4=0, \\
+0.8 & \text{if} \ x_2=1, x_3=1, x_4=1. \\
+\end{array} \right.
 $$
 
 ## Factorization
@@ -93,62 +118,62 @@ $$
 
 $$
 \begin{array}{rl}
-P(X_1, X_2, X_3, X_4)
-& = P(X_4|X_1, X_2, X_3)\cdot P(X_1, X_2, X_3) \\
-& = P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_1, X_2) \\
-& = P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_2 | X_1) \cdot P(X_1) \\
-& = P(X_4 | X_2, X_3) \cdot P(X_3) \cdot P(X_2 | X_1) \cdot P(X_1)
+P_{X_1, X_2, X_3, X_4}(x_1, x_2, x_3, x_4)
+& = P_{X_4|X_1, X_2, X_3}(x_4|x_1, x_2, x_3)\cdot P_{X_1, X_2, X_3}(x_1, x_2, x_3) \\
+& = P_{X_4|X_1, X_2, X_3}(x_4|x_1, x_2, x_3)\cdot P_{X_3|X_1, X_2}(x_3|x_1, x_2) \cdot P_{X_1, X_2}(x_1, x_2) \\
+& = P_{X_4|X_1, X_2, X_3}(x_4|x_1, x_2, x_3)\cdot P_{X_3|X_1, X_2}(x_3|x_1, x_2) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1) \\
+& = P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1)
 \end{array}
 $$
 
 특히 여기서 마지막 두 줄은 베이지안 네트워크를 다룰때 활용되는 중요한 가정인 로컬 마르코프 가정 (Local Markov Assumption)을 사용하는 부분이다. 이것은 잠시 후에 다뤄볼 것이다.
 
 $$
-P(X_4|X_1, X_2, X_3)\cdot P(X_3 | X_1, X_2) \cdot P(X_2 | X_1) \cdot P(X_1) = P(X_4 | X_2, X_3) \cdot P(X_3) \cdot P(X_2 | X_1) \cdot P(X_1)
+P_{X_4|X_1, X_2, X_3}(x_4|x_1, x_2, x_3)\cdot P_{X_3|X_1, X_2}(x_3|x_1, x_2) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1) = P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1)
 $$
 
 어쨌든 최종적으로 구한 결합 분포는 아래와 같다.
 
 $$
-P(X_1, X_2, X_3, X_4) = P(X_4 | X_2, X_3) \cdot P(X_3) \cdot P(X_2 | X_1) \cdot P(X_1)
+P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1)
 $$
 
 이런 방식으로 결합 분포를 각 랜덤 변수에 대한 조건부분포들에 대한 곱으로 써놓는 것을 분해(Factorization)라고 정의한다. 이것을 베이지안 네트워크의 관점에서 다시 정의하면 다음과 같다:
 
 $$
-P(X_1, \cdots, X_n) = \prod_{i=1}^n P(X_i | \mathbf{Pa}(X_i))
+P_{X_1, \cdots, X_n} = \prod_{i=1}^n P_{X_i|\mathbf{Pa}(X_i)}
 $$
 
-$$X_1$$과 $$X_3$$은 부모 노드가 없기 때문에 단독으로 분포를 쓸 수 있고 ($$P(X_1), P(X_3)$$), $$X_2$$의 부모 노드는 $$X_1$$, $$X_4$$의 부모 노드는 $$X_2, X_3$$이므로 $$P(X_2 \vert X_1)$$, $$P(X_4 \vert X_2, X_3)$$로 쓴 것을 확인할 수 있다.
+$$X_1$$과 $$X_3$$은 부모 노드가 없기 때문에 단독으로 분포를 쓸 수 있고 ($$P_{X_1}, P_{X_3}$$), $$X_2$$의 부모 노드는 $$X_1$$, $$X_4$$의 부모 노드는 $$X_2, X_3$$이므로 $$P_{X_2 \vert X_1}$$, $$P_{X_4 \vert X_2, X_3}$$로 쓴 것을 확인할 수 있다.
 
 최종적으로 위의 결과들을 바탕으로 주변 분포를 추론해보도록 하자.
 
 $$
 \begin{array}{ll}
-P(X_4)
-& = \sum_{X_1, X_2, X_3} P(X_1, X_2, X_3, X_4) \\
-& = \sum_{X_3} \sum_{X_2} P(X_4 | X_2, X_3) \cdot P(X_3) \sum_{X_1} P(X_2 | X_1) \cdot P(X_1) \\
-& = \sum_{X_3} \sum_{X_2} P(X_4 | X_2, X_3) \cdot P(X_3) \cdot \left[0.9 \cdot P(X_2 | X_1=1) + 0.1 \cdot P(X_2 | X_1=0) \right] \\
-& = 0.9 \cdot \left[ 0.2 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.1 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
-& \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.9 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
+P_{X_4}(x_4)
+& = \sum_{x_1, x_2, x_3} P_{X_1, X_2, X_3, X_4}(x_1, x_2, x_3, x_4) \\
+& = \sum_{x_3} \sum_{x_2} P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \sum_{x_1} P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1) \\
+& = \sum_{x_3} \sum_{x_2} P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot \left[0.9 \cdot P_{X_2|X_1=1}(x_2) + 0.1 \cdot P_{X_2|X_1=0)(x_2) \right] \\
+& = 0.9 \cdot \left[ 0.2 \cdot 0.1 \cdot P_{X_4|X_2=1, X_3=1}(x_4) + 0.8 \cdot 0.1 \cdot P_{X_4|X_2=1, X_3=0}(x_4) \right. \\
+& \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P_{X_4|X_2=0, X_3=1}(x_4) + 0.8 \cdot 0.9 \cdot P_{X_4|X_2=0, X_3=0}(x_4) \right] \\
 
-& \ \ \ \ + 0.1 \cdot \left[ 0.2 \cdot 0.7 \cdot P(X_4 | X_2=1, X_3=1) + 0.8 \cdot 0.7 \cdot P(X_4 | X_2=1, X_3=0) \right. \\
-&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=1) + 0.8 \cdot 0.3 \cdot P(X_4 | X_2=0, X_3=0) \right] \\
+& \ \ \ \ + 0.1 \cdot \left[ 0.2 \cdot 0.7 \cdot P_{X_4|X_2=1, X_3=1}(x_4) + 0.8 \cdot 0.7 \cdot P_{X_4|X_2=1, X_3=0}(x_4) \right. \\
+&  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.3 \cdot P_{X_4|X_2=0, X_3=1}(x_4) + 0.8 \cdot 0.3 \cdot P_{X_4|X_2=0, X_3=0}(x_4) \right] \\
 
-& = 0.032 \cdot P(X_4 | X_2=1, X_3=1) +
-0.128 \cdot P(X_4 | X_2=1, X_3=0) \\
-& \ \ \ \ + 0.168 \cdot P(X_4 | X_2=0, X_3=1) + 
-0.672 \cdot P(X_4 | X_2=0, X_3=0)
+& = 0.032 \cdot P_{X_4|X_2=1, X_3=1}(x_4) +
+0.128 \cdot P_{X_4|X_2=1, X_3=0}(x_4) \\
+& \ \ \ \ + 0.168 \cdot P_{X_4|X_2=0, X_3=1}(x_4) + 
+0.672 \cdot P_{X_4|X_2=0, X_3=0}(x_4)
 \end{array}
 $$
 
 따라서 최종적인 주변 분포는:
 
 $$
-P(X_4) = \left\{
+P_{X_4}(x_4) = \left\{
 \begin{array}{ll}
 0.032 \cdot 0.8 + 0.128 \cdot 0.9 + 0.168 \cdot 0.2 + 0.672 \cdot 0.7 = 0.6448 
-& \text{if} \ X_4=1, \\
+& \text{if} \ x_4=1, \\
 0.032 \cdot 0.2 + 0.128 \cdot 0.1 + 0.168 \cdot  0.8 + 0.672 \cdot 0.3 = 0.3552
 & \text{otherwise}.
 \end{array}
@@ -168,10 +193,10 @@ $$(X_i \perp \mathbf{NonDescendants}(X_i) | \mathbf{Pa}(X_i))$$
 
 이러한 로컬 마르코프 가정과 관련된 중요한 정리가 있다. 증명은 여기에 따로 소개하지는 않겠다.
 
-- $$G$$가 랜덤 변수들의 집합 $$\{X_i \}_{i=1}^n$$에 대한 베이지안 네트워크 그래프이고, $$P$$가 그 랜덤 변수들에 대한 결합 분포이다. 이 경우 $$G$$에 대한 모든 로컬 마르코프 가정이 만족한다면 $$P$$는 $$G$$에 대해서 분해가 될 수 있다.
+- $$G$$가 랜덤 변수들의 집합 $$\{X_i \}_{i=1}^n$$에 대한 베이지안 네트워크 그래프이고, $$P_{X_1, \cdots, X_n}$$가 그 랜덤 변수들에 대한 결합 분포이다. 이 경우 $$G$$에 대한 모든 로컬 마르코프 가정이 만족한다면 $$P_{X_1, \cdots, X_n}$$는 $$G$$에 대해서 분해가 될 수 있다.
 - 또한 이 명제는 역이 성립한다.
 
-이 정리가 하고자하는 말은 제이지안 네트워크와 그에 대한 분해 결과는 서로 동치라는 점이다.
+이 정리가 하고자하는 말은 로컬 마르코프 가정을 만족하는 경우에는 베이지안 네트워크와 그에 대한 분해 결과는 서로 동치라는 점이다.
 
 ![](/assets/img/2020-01-26-graphical-model-01/2020-01-26-graphical-model-01_2020-01-26-09-49-44.png)
 
