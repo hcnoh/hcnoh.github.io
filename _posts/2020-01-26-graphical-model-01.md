@@ -129,7 +129,10 @@ $$
 특히 여기서 마지막 두 줄은 베이지안 네트워크를 다룰때 활용되는 중요한 가정인 로컬 마르코프 가정 (Local Markov Assumption)을 사용하는 부분이다. 이것은 잠시 후에 다뤄볼 것이다.
 
 $$
-P_{X_4|X_1, X_2, X_3}(x_4|x_1, x_2, x_3)\cdot P_{X_3|X_1, X_2}(x_3|x_1, x_2) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1) = P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1)
+\begin{array}{l}
+P_{X_4|X_1, X_2, X_3}(x_4|x_1, x_2, x_3)\cdot P_{X_3|X_1, X_2}(x_3|x_1, x_2) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1) \\
+\ \ \ \ = P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1)
+\end{array}
 $$
 
 어쨌든 최종적으로 구한 결합 분포는 아래와 같다.
@@ -153,7 +156,7 @@ $$
 P_{X_4}(x_4)
 & = \sum_{x_1, x_2, x_3} P_{X_1, X_2, X_3, X_4}(x_1, x_2, x_3, x_4) \\
 & = \sum_{x_3} \sum_{x_2} P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \sum_{x_1} P_{X_2|X_1}(x_2|x_1) \cdot P_{X_1}(x_1) \\
-& = \sum_{x_3} \sum_{x_2} P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot \left[0.9 \cdot P_{X_2|X_1=1}(x_2) + 0.1 \cdot P_{X_2|X_1=0)(x_2) \right] \\
+& = \sum_{x_3} \sum_{x_2} P_{X_4|X_2, X_3}(x_4|x_2, x_3) \cdot P_{X_3}(x_3) \cdot \left[0.9 \cdot P_{X_2|X_1=1}(x_2) + 0.1 \cdot P_{X_2|X_1=0}(x_2) \right] \\
 & = 0.9 \cdot \left[ 0.2 \cdot 0.1 \cdot P_{X_4|X_2=1, X_3=1}(x_4) + 0.8 \cdot 0.1 \cdot P_{X_4|X_2=1, X_3=0}(x_4) \right. \\
 & \ \ \ \ \ \ \ \ \ \ \ \ + \left. 0.2 \cdot 0.9 \cdot P_{X_4|X_2=0, X_3=1}(x_4) + 0.8 \cdot 0.9 \cdot P_{X_4|X_2=0, X_3=0}(x_4) \right] \\
 
