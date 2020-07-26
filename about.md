@@ -14,8 +14,8 @@ permalink: /about
 - Before)
     - Research and Development on NLP in TmaxData as a military service (2018. 2 ~ 2018. 9)
     - Research and Development on Speech Synthesis in TmaxData as a military service (2018. 9 ~ 2019. 4)
-- Now)
     - Research and Development on Recommendation System for Math Education Platform in TmaxData as a military service (2019. 4 ~ 2019. 12)
+- Now)
     - Research and Development on Automated Knowledge Base Construction in TmaxAI as a military service (2020. 1 ~ Now)
 
 ## Education
