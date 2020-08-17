@@ -5,7 +5,7 @@ title: "[Graphical Model Tutorial] Chap 1. Graphical Model & Bayesian Network"
 date: 2020-01-26 08:12:09
 tagline: "그래프 및 그래프 모형에 대한 전반적인 소개와 베이지안 네트워크에 대한 소개"
 categories:
-- Graphical Model
+- Machine Learning
 tags:
 - graphical model
 - statistics

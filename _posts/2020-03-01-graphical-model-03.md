@@ -5,7 +5,7 @@ title: "[Graphical Model Tutorial] Chap 3. Markov Random Field: Factorization"
 date: 2020-03-01 21:30:00
 tagline: "마르코프 랜덤 필드에서 분해 및 깁스 분포에 대한 소개"
 categories:
-- Graphical Model
+- Machine Learning
 tags:
 - graphical model
 - statistics

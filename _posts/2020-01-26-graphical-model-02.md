@@ -5,7 +5,7 @@ title: "[Graphical Model Tutorial] Chap 2. Markov Random Field: Introduction"
 date: 2020-01-26 10:19:09
 tagline: "마르코프 랜덤 필드에 대한 전반적인 소개 및 이징 모형을 통한 예시"
 categories:
-- Graphical Model
+- Machine Learning
 tags:
 - graphical model
 - statistics

@@ -5,7 +5,7 @@ title: "[Graphical Model Tutorial] Chap 4. Markov Random Field: Factor Graph"
 date: 2020-03-01 22:15:00
 tagline: "마르코프 랜덤 필드를 다루기 위한 인수 그래프 및 베이지안 네트워크에서의 적용 방법 소개"
 categories:
-- Graphical Model
+- Machine Learning
 tags:
 - graphical model
 - statistics

@@ -1,11 +1,11 @@
 ---
 layout: post
 use_math: true
-title: "[Optimization] Gradient Descent에 대한 기본적인 내용 정리"
+title: "[Machine Learning] Gradient Descent에 대한 기본적인 내용 정리"
 date: 2019-06-06 00:15:10
 tagline: "머신 러닝 및 딥러닝에서 파라미터를 업데이트하는 경우에 가장 많이 사용되는 Optimization 방법인 Gradient Descent에 대한 기본적인 내용 정리"
 categories:
-- Optimization
+- Machine Learning
 tags:
 - optimization
 - machine learning
