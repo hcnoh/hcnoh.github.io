@@ -5,7 +5,7 @@ title: "[Deep Learning] Batch Normalization 개념 정리"
 date: 2018-11-27 19:54:59
 tagline: "딥러닝에서 자주 쓰이는 Regularization 방법인 Batch Normalization에 대한 논문을 읽고 개념을 정리"
 categories:
-- Deep Learning
+- Deep Learning Memo
 tags:
 - deep learning
 image: /thumbnail-mobile.png

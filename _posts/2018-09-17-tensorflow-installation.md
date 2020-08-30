@@ -4,7 +4,7 @@ title: "[TensorFlow] 설치 방법 정리"
 date: 2018-09-17 1:28:2
 tagline: "Virtualenv를 이용하여 TensorFlow 설치하는 방법 정리"
 categories:
-- TensorFlow
+- Development Memo
 tags:
 - tensorflow
 - virtualenv

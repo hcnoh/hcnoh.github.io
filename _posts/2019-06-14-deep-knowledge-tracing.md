@@ -5,7 +5,7 @@ title: "[Knowledge Tracing] Deep Knowledge Tracing 논문 정리"
 date: 2019-06-14 16:04:32
 tagline: "교육용 어플리케이션에서 문제 추천을 위한 학습자 수준 진단 모델인 Deep Knowledge Tracing을 스터디하여 정리"
 categories:
-- Deep Learning
+- Paper Review
 tags:
 - knowledge tracing
 - deep learning
