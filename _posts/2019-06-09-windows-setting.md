@@ -5,7 +5,7 @@ title: "[Windows 10] 개발 환경 세팅"
 date: 2019-06-09 19:03:05
 tagline: "Windows 10에서 데이터 분석을 위한 개발 환경 세팅 방법 정리"
 categories:
-- Windows
+- Development Memo
 tags:
 - windows
 - python

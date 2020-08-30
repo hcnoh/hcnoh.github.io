@@ -5,7 +5,7 @@ title: "[Windows] Python Virtualenv 사용법 정리"
 date: 2019-06-19 09:41:09
 tagline: "파이썬의 Virtualenv 패키지를 이용한 pip 패키지 관리 방법 정리 (Windows)"
 categories:
-- Windows
+- Development Memo
 tags:
 - virtualenv
 - windows

@@ -5,7 +5,7 @@ title: "[Machine Learning] Logistic Regression 및 Naive Bayes 정리"
 date: 2019-04-25 11:04:33
 tagline: "머신 러닝의 가장 기초적인 개념인 Logistic Regression 및 Naive Bayes 방법 정리"
 categories:
-- Machine Learning
+- Machine Learning Study
 tags:
 - machine learning
 - statistics
