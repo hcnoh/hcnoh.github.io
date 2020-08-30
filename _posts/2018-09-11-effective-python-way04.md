@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 4. 복잡한 표현식 대신 헬퍼 함수를 �
 date: 2018-09-11 16:14:35
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

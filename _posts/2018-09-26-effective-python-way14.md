@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 14. None을 반환하기보다는 예외를 일�
 date: 2018-09-26 17:39:13
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

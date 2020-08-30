@@ -4,7 +4,7 @@ title: "[Python] Argparse 모듈 정리"
 date: 2018-09-04 22:47:51
 tagline: "파이썬의 Argparse 모듈의 간단한 예제를 통한 기능 정리"
 categories:
-- Python
+- Development Memo
 tags:
 - python
 image: /thumbnail-mobile.png

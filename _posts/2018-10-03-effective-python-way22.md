@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 22. 딕셔너리와 튜플보다는 헬퍼 클래
 date: 2018-10-03 22:42:58
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

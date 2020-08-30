@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 32. 지연 속성에는 __getattr__, __getattribu
 date: 2018-10-17 13:08:31
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

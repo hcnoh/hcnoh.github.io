@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 54. 배포 환경을 구성하는 데는 모듈 �
 date: 2018-11-01 16:35:36
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

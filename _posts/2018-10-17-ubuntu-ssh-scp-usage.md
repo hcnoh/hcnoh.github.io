@@ -4,7 +4,7 @@ title: "[Ubuntu] SSH 및 SCP 사용 방법 정리"
 date: 2018-10-17 13:43:08
 tagline: "Ubuntu에서 네트워크 접속 및 파일 전송 방법인 SSH 및 SCP 사용법 정리"
 categories:
-- Ubuntu
+- Development Memo
 tags:
 - linux
 image: /thumbnail-mobile.png

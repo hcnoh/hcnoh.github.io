@@ -4,7 +4,7 @@ title: "[Git] 기본 사용법"
 date: 2018-08-20 19:7:44
 tagline: "Git을 사용하기 위한 기초개념 및 사용법 정리"
 categories:
-- Git
+- Development Memo
 tags:
 - git
 - linux

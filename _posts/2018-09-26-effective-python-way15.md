@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 15. 클로저가 변수 스코프와 상호 작�
 date: 2018-09-26 19:17:19
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

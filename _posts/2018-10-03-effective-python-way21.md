@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 21. 키워드 전용 인수로 명료성을 강�
 date: 2018-10-03 08:58:14
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

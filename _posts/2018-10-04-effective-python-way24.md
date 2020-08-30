@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 24. 객체를 범용으로 생성하려면 @class
 date: 2018-10-04 17:31:32
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

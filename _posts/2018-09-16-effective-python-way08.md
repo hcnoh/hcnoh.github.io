@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 8. 리스트 컴프리헨션에서 표현식을 �
 date: 2018-09-16 22:58:3
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png

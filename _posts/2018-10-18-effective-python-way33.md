@@ -4,7 +4,7 @@ title: "[Effective Python] WAY 33. 메타클래스로 서브클래스를 검증�
 date: 2018-10-18 13:38:15
 tagline: "이펙티브 파이썬 코딩의 기술 책 스터디 정리"
 categories:
-- Effective Python
+- Development Study
 tags:
 - python
 image: /thumbnail-mobile.png
