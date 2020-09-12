@@ -1,7 +1,7 @@
 ---
 layout: post
 use_math: true
-title: "[Graphical Model Tutorial] 3. Markov Random Field: Factorization"
+title: "[Graphical Model] 3. Markov Random Field: Factorization"
 date: 2020-03-01 21:30:00
 tagline: "Markov Random Field에서 Factorization 및 Gibbs 분포에 대한 소개"
 categories:
