@@ -24,7 +24,7 @@ permalink: /2020-09-06-statistical-learning-01
 최근의 기계 학습은 이러한 거대한 데이터를 바탕으로 Model을 획득하는 방법으로 활용이 이루어지고 있다.
 
 ## Data
-이번 포스트를 진행하는데에 있어서 우리는 데이터의 중요성을 이해하고 그 특징을 정리하고 넘어갈 필요가 있다. 먼저 우리에게 시스템이 주어졌을 때, 시스템의 변수 집합 $$X=\{ X_1, \cdots, X_N \}$$에 대해서 생각할 수 있을 것이다. 데이터는 이러한 시스템의 변수 집합 $$X$$의 모든 가능태들인 Data Instance $$\mathbf{x}^{j}$$들의 뭉치로 이해할 수 있을 것이다:
+이번 포스트를 진행하는데에 있어서 우리는 데이터의 중요성을 이해하고 그 특징을 정리하고 넘어갈 필요가 있다. 먼저 우리에게 시스템이 주어졌을 때, 시스템의 변수 집합 $$X=\{ X_1, \cdots, X_N \}$$에 대해서 생각할 수 있을 것이다. 데이터는 이러한 시스템의 변수 집합 $$X$$의 모든 가능태들인 Data Instance $$\mathbf{x}^{(j)}$$들의 뭉치로 이해할 수 있을 것이다:
 
 $$
 \mathcal{D} = \{ \mathbf{x}^{(1)}, \cdots, \mathbf{x}^{(M)} \}.
@@ -33,7 +33,7 @@ $$
 대부분의 기계 학습의 논의에서는 이러한 Data Instance들이 i.i.d.(Independent and Identically Distributed)로 생성되었다는 가정을 가지고 진행되게 된다:
 
 $$
-\mathbf{x}^{j} \sim P^*_X \ \text{for} \ j = 1, \cdots, M.
+\mathbf{x}^{(j)} \sim P^*_X \ \text{for} \ j = 1, \cdots, M.
 $$
 
 여기서 $$X=\{ X_1, \cdots, X_N \}$$은 Random Variable의 집합이다. 이러한 데이터는 편하게 i.i.d.로 생성된 데이터라고 말한다.
