@@ -8,6 +8,7 @@ categories:
 - Machine Learning Study
 tags:
 - statistical learning
+- statistical inference
 - statistics
 - machine learning
 image: /thumbnail-mobile.png
@@ -24,7 +25,7 @@ permalink: /2020-09-06-statistical-learning-01
 최근의 기계 학습은 이러한 거대한 데이터를 바탕으로 Model을 획득하는 방법으로 활용이 이루어지고 있다.
 
 ## Data
-이번 포스트를 진행하는데에 있어서 우리는 데이터의 중요성을 이해하고 그 특징을 정리하고 넘어갈 필요가 있다. 먼저 우리에게 시스템이 주어졌을 때, 시스템의 변수 집합 $$X=\{ X_1, \cdots, X_N \}$$에 대해서 생각할 수 있을 것이다. 데이터는 이러한 시스템의 변수 집합 $$X$$의 모든 가능태들인 Data Instance $$\mathbf{x}^{(j)}$$들의 뭉치로 이해할 수 있을 것이다:
+이번 포스트를 진행하는데에 있어서 우리는 데이터의 중요성을 이해하고 그 특징을 정리하고 넘어갈 필요가 있다. 먼저 우리에게 시스템이 주어졌을 때, 시스템의 변수 집합 $$X=\{ X_1, \cdots, X_N \}$$에 대해서 생각할 수 있을 것이다. 데이터는 이러한 시스템의 변수 집합 $$X$$의 모든 가능태들인 Data Instance $$\mathbf{x}^{(j)} = [x_1^{(j), \cdots, x_N^{(j)}}]^T$$들의 뭉치로 이해할 수 있을 것이다:
 
 $$
 \mathcal{D} = \{ \mathbf{x}^{(1)}, \cdots, \mathbf{x}^{(M)} \}.
@@ -33,10 +34,10 @@ $$
 대부분의 기계 학습의 논의에서는 이러한 Data Instance들이 i.i.d.(Independent and Identically Distributed)로 생성되었다는 가정을 가지고 진행되게 된다:
 
 $$
-\mathbf{x}^{(j)} \sim P^*_X \ \text{for} \ j = 1, \cdots, M.
+\mathbf{x}^{(j)} \sim P^*_X \ \ \text{for} \ j = 1, \cdots, M.
 $$
 
-여기서 $$X=\{ X_1, \cdots, X_N \}$$은 Random Variable의 집합이다. 이러한 데이터는 편하게 i.i.d.로 생성된 데이터라고 말한다.
+이러한 데이터는 편하게 i.i.d.로 생성된 데이터라고 말한다.
 
 이러한 데이터는 또한 시스템의 변수 집합 $$X$$에 대한 모든 가능태들이 등장하였는지 여부에 따라서 두 가지로 분류될 수 있다.
 
@@ -47,4 +48,33 @@ $$
 
 이러한 확률 분포를 추정하는 것을 Density Estimation이라고 한다. Density Estimation은 관찰된 데이터를 통해서 관찰되지 않은 확률 분포를 추정하는 것이라고 정의할 수 있다. 즉, $$P^*_X$$와 최대한 가까운 $$\tilde{P}_X$$를 찾는 과정이라고 볼 수 있다.
 
-그렇다면 최대한 가깝다는 것은 어떻게 정의할 수 있을까? 가깝다고 말하기 위한 기준이되는 Measure를 선택하고 그것을 통해서 가장 가까운 분포를 찾아내는 일련의 과정이 필요하게 될 것이다. 이 과정이 바로 Statistical Learning이 된다.
+그렇다면 최대한 가깝다는 것은 어떻게 정의할 수 있을까? 가깝다고 말하기 위한 기준이되는 Measure를 선택하고 그것을 통해서 가장 가까운 분포를 찾아내는 일련의 과정이 필요하게 될 것이다. 이 과정이 바로 Statistical Learning이다.
+
+## Statistical Model
+$$P^*_X$$와 최대한 가까운 $$\tilde{P}_X$$를 찾기 위해서 또 필요한 것은 $$\tilde{P}_X$$가 될 수 있는 후보군들이 어떻게 되느냐가 될 것이다. $$\tilde{P}_X$$는 함수이므로(확률 분포 함수), 어떤 함수 공간 내에서 가장 적절한 함수 $$\tilde{P}_X$$를 찾는 문제가 될 것이다.
+
+이 함수 공간을 조금 더 구체화할 수 있는데 이 과정에서 Statistical Model에 대한 정의가 나오게 된다.
+
+Statistical Model의 정의:
+- Statistical Model은 어떤 표본 공간에 대한 확률 분포들의 집합으로 정의한다:
+
+    $$
+    \mathcal{p} = \{ P_X(\mathbf{x};\boldsymbol{\theta}):\boldsymbol{\theta}\in \Theta \}.
+    $$
+
+    이때 $$\Theta$$는 매개변수 공간이다.
+
+특히 이러한 Statistical Model의 매개변수 공간이 유한 차원의 실수 공간의 부분집합이라면, 즉 $$\Theta \subseteq \mathbb{R}^k, \ \ k < \infty$$라면 특별하게 이 Statistical Model은 Parametric Model로 정의한다. 뉴럴 네트워크도 Parametric Model로 분류할 수 있다.
+
+대표적인 Parametric Model의 예시로는 Gaussian Model을 들 수 있다:
+
+$$
+P_X(x;\mu, \sigma) = \frac{1}{\sqrt{2\pi \sigma^2}}\cdot \exp \left[ (x-\mu)^2 / 2\sigma^2 \right]
+$$
+
+여기서 매개변수 공간은 $$\Theta = \mathcal{R} \times \mathcal{R}^{+}$$이므로 정의에 따라서 Parametric Model인 것을 확인할 수 있다.
+
+## Statistical Learning
+이제 Statistical Learning은 일반적으로(항상 그런것은 아니지만) 주어진 데이터는 어떤 확률 분포 $$P_X^*$$를 통해서 i.i.d.로 생성되었고, 우리는 특정 Parametric Model을 가정하여 그 확률 분포와 가장 가까운 $$\tilde{P}_X$$를 찾는 문제로 귀결된다는 것을 확인할 수 있었다.
+
+이러한 상황은 주어진 데이터를 통해서 모집단의 특정 Measure를 최소화하는 분포를 추론하는 것으로 정리할 수 있다. 이것을 수행하는 방법은 Statistical Inference이며, 대표적인 방법은 Maximum Likelihood Estimation (MLE)이다. MLE는 Likelihood Function을 최소화하는 확률 분포를 찾는 방법이다.
