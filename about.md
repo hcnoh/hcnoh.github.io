@@ -8,8 +8,6 @@ permalink: /about
 ## About Me
 머신러닝 과학자를 지향하는 머신러닝 엔지니어입니다 :)
 
-통계 관련 이론을 선호하며, 수학, 물리학, 그리고 코딩을 취미로 즐기고 있습니다.
-
 ## Employment and Career
 - Before)
     - Research and Development on NLP in TmaxData as a military service (2018. 2 ~ 2018. 9)
@@ -25,21 +23,19 @@ permalink: /about
 
 ## Interests
 - Machine Learning, Deep Learning
-- Statistical Learning, Inference
-- Stochastic Process Modeling
-- Statistical Mechanics
+- Statistical Learning, Statistical Inference
 - Information Theory
-- Morphological Analysis and Semantic Parsing for Korean
-- Data Science
+- Reinforcement Learning
+- Recommender Systems, Data Science
 
 ## Skills
 - Languages: Korean, English
-- Programming Languages: Python, JavaScript, C++(Novice), Java(Novice), MATLAB, LaTex
-- Deep Learning Frameworks: TensorFlow2, TensorFlow, Keras, DL4J(Novice)
+- Programming Languages: Python, JavaScript(Novice), C++(Novice), Java(Novice), MATLAB, LaTex
+- Deep Learning Frameworks: PyTorch, TensorFlow, Keras, DL4J(Novice)
 - Data Processing and Visualization: Numpy, Pandas, Matplotlib
 - Speech Signal Processing: Librosa, Kaldi(Novice)
 - Natural Language Processing: KoNLPy, Stanza, Mecab
-- Simple Web Page Development: HTML, jQuery, vis.js
+- Simple Web Page Development (Novice): HTML, jQuery, vis.js
 - Other Tools: Linux, Git, Jekyll(Novice)
 
 ## Projects
