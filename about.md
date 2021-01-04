@@ -10,11 +10,11 @@ permalink: /about
 
 ## Employment and Career
 - Before)
-    - Research and Development on NLP in TmaxData as a military service (2018. 2 ~ 2018. 9)
+    - Research and Development on Natural Language Processing in TmaxData as a military service (2018. 2 ~ 2018. 9)
     - Research and Development on Speech Synthesis in TmaxData as a military service (2018. 9 ~ 2019. 4)
-    - Research and Development on Recommendation System for Math Education Platform in TmaxData as a military service (2019. 4 ~ 2019. 12)
+    - Research and Development on Knowledge Tracing in TmaxData as a military service (2019. 4 ~ 2019. 12)
 - Now)
-    - Research and Development on Automated Knowledge Base Construction in TmaxAI as a military service (2020. 1 ~ Now)
+    - Research and Development on Knowledge Graph in TmaxAI as a military service (2020. 1 ~ Now)
 
 ## Education
 - Yonsei University, B.S. in Electrical and Electronic Engineering (2016. 2)
@@ -22,11 +22,11 @@ permalink: /about
   - Research on Machine Learning and Reinforcement Learning
 
 ## Interests
+- Reinforcement Learning, Imitation Learning
+- Recommender Systems
 - Machine Learning, Deep Learning
 - Statistical Learning, Statistical Inference
 - Information Theory
-- Reinforcement Learning
-- Recommender Systems, Data Science
 
 ## Skills
 - Languages: Korean, English
