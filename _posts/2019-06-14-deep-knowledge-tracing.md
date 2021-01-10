@@ -122,7 +122,7 @@ $$
 J_{ij} = \frac{y(i \vert j)}{\sum_{k}y(j \vert k)}
 $$
 
-여기서 $$y(i \vert j)$$는 $$j$$번 문제를 맞췄을 떄 다음 Time Step에서 $$i$$번 문제를 맞출 확률로 정의한다. 다음 그림을 통해서 $$y(i \vert j)$$의 정의를 좀 더 쉽게 이해할 수 있을 것이다.
+여기서 $$y(i \vert j)$$는 $$j$$번 문제를 맞췄을 때 다음 Time Step에서 $$i$$번 문제를 맞출 확률로 정의한다. 다음 그림을 통해서 $$y(i \vert j)$$의 정의를 좀 더 쉽게 이해할 수 있을 것이다.
 
 ![](/assets/img/2019-06-14-deep-knowledge-tracing/2019-06-14-deep-knowledge-tracing_2019-06-16-00-56-20.png)
 
