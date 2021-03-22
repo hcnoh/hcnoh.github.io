@@ -7,6 +7,7 @@ tagline: "A TensorFlow implementation of Dynamic Key-Value Memory Networks"
 categories:
 - Project
 tags:
+- knowledge tracing
 - deep learning
 - tensorflow
 - python
