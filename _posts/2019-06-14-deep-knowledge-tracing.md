@@ -151,7 +151,7 @@ $$
 
 ## 기타 참고 자료
 - PyTorch로 구현한 Deep Knowledge Tracing (by Hyungcheol Noh): [Knowledge Tracing Collection with PyTorch](https://github.com/hcnoh/knowledge-tracing-collection-pytorch)
-- Dynamic Key-Value Memory Networks for Knowledge Tracing 논문에 대한 정리: 
+- [Dynamic Key-Value Memory Networks for Knowledge Tracing 논문 정리](https://hcnoh.github.io/2021-04-17-dkvmn)
 
 ## 수정 사항
 - 2021.03.30
