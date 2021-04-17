@@ -82,7 +82,7 @@ $$
 L = \sum_t l(\mathbf{y}^{\text{T}} \delta(q_{t+1}), a_{t+1})
 $$
 
-여기서 $$l$$은 Binary Cross-Entropy이며 $$\delta$$는  다음 Time Step에서 푼 문제만을 고려하여 학습의 Label로 사용하기 위한 기법이다. $$\delta$$는 One-hot 벡터이며 다음 Time Step에서 풀었던 문제의 인덱스를 표시하고 있다. 따라서 출력 $$\mathbf{y}$$와 내적을 수행하면 다음 Time Step에서 푼 문제에 대해서만 Back Propagation을 수행하게 되며 결과적으로 다음 Time Step에서 푼 문제만을 고려하여 학습이 수행되게 된다.
+여기서 $$l$$은 Binary Cross-Entropy이며 $$\delta$$는  다음 Time Step에서 푼 문제만을 고려하여 학습의 Label로 사용하기 위한 기법이다. $$\delta$$는 One-hot 벡터이며 다음 Time Step에서 풀었던 문제의 인덱스를 표시하고 있다. 따라서 출력 $$\mathbf{y}$$와 내적을 수행하면 다음 Time Step에서 푼 문제에 대해서만 Backpropagation을 수행하게 되며 결과적으로 다음 Time Step에서 푼 문제만을 고려하여 학습이 수행되게 된다.
 
 좀 더 자세한 이해가 필요하다면 [링크](https://github.com/hcnoh/knowledge-tracing-collection-pytorch)를 통해 확인할 수 있는 DKT 코드를 살펴보면 도움이 될 것이다.
 
@@ -151,6 +151,7 @@ $$
 
 ## 기타 참고 자료
 - PyTorch로 구현한 Deep Knowledge Tracing (by Hyungcheol Noh): [Knowledge Tracing Collection with PyTorch](https://github.com/hcnoh/knowledge-tracing-collection-pytorch)
+- Dynamic Key-Value Memory Networks for Knowledge Tracing 논문에 대한 정리: 
 
 ## 수정 사항
 - 2021.03.30
