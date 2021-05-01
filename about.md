@@ -30,13 +30,9 @@ permalink: /about
 
 ## Skills
 - Languages: Korean, English
-- Programming Languages: Python, JavaScript(Novice), C++(Novice), Java(Novice), MATLAB, LaTex
+- Programming Languages: Python, JavaScript(Novice), MATLAB, LaTex
 - Deep Learning Frameworks: PyTorch, TensorFlow, Keras, DL4J(Novice)
-- Data Processing and Visualization: Numpy, Pandas, Matplotlib
-- Speech Signal Processing: Librosa, Kaldi(Novice)
-- Natural Language Processing: KoNLPy, Stanza, Mecab
-- Simple Web Page Development (Novice): HTML, jQuery, vis.js
-- Other Tools: Linux, Git, Jekyll(Novice)
+- Other Tools: Linux, Git
 
 ## Projects
 - [Projects List](https://hcnoh.github.io/projects)
