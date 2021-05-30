@@ -6,33 +6,33 @@ permalink: /about
 ---
 
 ## About Me
-머신러닝 과학자를 지향하는 머신러닝 엔지니어입니다 :)
+I am a machine learning scientist currently working in the AI Lab of [Wonriedu](http://www.wonriedu.com/), which is the largest mathematics textbook publisher in Rep. of Korea. I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow. The current main research topics of mine are informationtheoretic approaches for deep learning modeling.
 
-## Employment and Career
-- Before)
-    - Research and Development on Natural Language Processing in TmaxData as a military service (2018. 2 ~ 2018. 9)
-    - Research and Development on Speech Synthesis in TmaxData as a military service (2018. 9 ~ 2019. 4)
-    - Research and Development on Knowledge Tracing in TmaxData as a military service (2019. 4 ~ 2019. 12)
-- Now)
-    - Research and Development on Knowledge Graph in TmaxAI as a military service (2020. 1 ~ Now)
-
-## Education
-- Yonsei University, B.S. in Electrical and Electronic Engineering (2016. 2)
-- KAIST, M.S. in Electrical Engineering (2018. 2)
-  - Research on Machine Learning and Reinforcement Learning
-
-## Interests
-- Reinforcement Learning, Imitation Learning
-- Recommender Systems
+## Research Interests
 - Machine Learning, Deep Learning
+- Recommender Systems
 - Statistical Learning, Statistical Inference
 - Information Theory
 
-## Skills
-- Languages: Korean, English
-- Programming Languages: Python, JavaScript(Novice), MATLAB, LaTex
-- Deep Learning Frameworks: PyTorch, TensorFlow, Keras, DL4J(Novice)
-- Other Tools: Linux, Git
+## Education
+- University of Seoul (Mar 2011 - Feb 2013)
+  - Majored in Electrical and Computer Engineering
+  - Transferred to Yonsei University after the 4th semester
+- Yonsei University (Mar 2013 - Feb 2016)
+  - B.S. in Electrical and Electronic Engineering
+- KAIST (Mar 2016 - Feb 2018)
+  - M.S. in Electrical Engineering
+  - Research on Machine Learning and Reinforcement Learning
+
+## Work Experience
+- Tmax Data (Feb 2018 - Dec 2019)
+  - Research Engineer
+  - Worked for Tmax Data as a military service
+- Tmax AI (Jan 2020 - Jun 2021)
+  - Research Engineer
+  - Worked for Tmax AI as a military service
+- Wonriedu AI Lab (Jan 2021 - Present)
+  - Research Scientist
 
 ## Projects
 - [Projects List](https://hcnoh.github.io/projects)
