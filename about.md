@@ -31,7 +31,7 @@ I am a machine learning scientist currently working in the AI Lab of [Wonriedu](
 - Tmax AI (Jan 2020 - Jun 2021)
   - Research Engineer
   - Worked for Tmax AI as a military service
-- Wonriedu AI Lab (Jan 2021 - Present)
+- Wonriedu AI Lab (Jun 2021 - Present)
   - Research Scientist
 
 ## Projects
