@@ -6,7 +6,7 @@ permalink: /about
 ---
 
 ## About Me
-I am a machine learning scientist currently working in the AI Lab of [Wonriedu](http://www.wonriedu.com/), which is the largest mathematics textbook publisher in Rep. of Korea. I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow. The current main research topics of mine are information-theoretic approaches for deep learning modeling.
+I am a machine learning scientist currently working in the AI Research of [Wonriedu](http://www.wonriedu.com/), which is the most popular mathematics textbook publisher in Rep. of Korea. I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow. The current main research topics of mine are information-theoretic approaches for deep learning modeling.
 
 ## Research Interests
 - Machine Learning, Deep Learning
