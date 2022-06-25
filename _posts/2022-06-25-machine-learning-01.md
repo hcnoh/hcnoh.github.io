@@ -3,7 +3,7 @@ layout: post
 use_math: true
 title: "[Machine Learning] 1. Probability"
 date: 2022-06-25 00:00:00
-tagline: "Markov Random Field를 구성하는 Random Variable들과 Markov Random Field의 Factor Graph의 관계에 대한 정리"
+tagline: "머신 러닝의 기본 토대가 되는 확률 및 통계 개념들에 대해서 간단히 정리"
 categories:
 - Machine Learning Study
 tags:
