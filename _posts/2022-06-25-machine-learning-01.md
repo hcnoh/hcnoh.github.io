@@ -5,7 +5,7 @@ title: "[Machine Learning] 1. Probability"
 date: 2022-06-25 00:00:00
 tagline: "Markov Random Field를 구성하는 Random Variable들과 Markov Random Field의 Factor Graph의 관계에 대한 정리"
 categories:
-- Machile Learning Study
+- Machine Learning Study
 tags:
 - probability
 - statistics
