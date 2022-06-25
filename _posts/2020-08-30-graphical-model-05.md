@@ -5,7 +5,7 @@ title: "[Graphical Model] 5. Markov Random Field: Hammersley-Clifford Theorem"
 date: 2020-08-30 20:16:00
 tagline: "Markov Random Field를 구성하는 Random Variable들과 Markov Random Field의 Factor Graph의 관계에 대한 정리"
 categories:
-- Machine Learning Study
+- Graphical Model Study
 tags:
 - graphical model
 - statistics

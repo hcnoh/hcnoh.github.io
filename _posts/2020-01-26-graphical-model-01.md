@@ -5,7 +5,7 @@ title: "[Graphical Model] 1. Graphical Model & Bayesian Network"
 date: 2020-01-26 08:12:09
 tagline: "Graph 및 Graphical Model에 대한 전반적인 소개와 Bayesian Network에 대한 소개"
 categories:
-- Machine Learning Study
+- Graphical Model Study
 tags:
 - graphical model
 - statistics

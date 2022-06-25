@@ -5,7 +5,7 @@ title: "[Graphical Model] 4. Markov Random Field: Factor Graph"
 date: 2020-03-01 22:15:00
 tagline: "Markov Random Field를 다루기 위한 Factorization 및 Bayesian Netwnro에서의 적용 방법 소개"
 categories:
-- Machine Learning Study
+- Graphical Model Study
 tags:
 - graphical model
 - statistics

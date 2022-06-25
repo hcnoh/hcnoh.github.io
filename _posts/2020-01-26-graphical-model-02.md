@@ -5,7 +5,7 @@ title: "[Graphical Model] 2. Markov Random Field: Introduction"
 date: 2020-01-26 10:19:09
 tagline: "Markov Random Field에 대한 전반적인 소개 및 Ising Model을 통한 예시"
 categories:
-- Machine Learning Study
+- Graphical Model Study
 tags:
 - graphical model
 - statistics
