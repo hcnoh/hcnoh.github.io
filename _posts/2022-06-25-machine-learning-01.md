@@ -32,7 +32,7 @@ permalink: /2022-06-25-machine-learning-01
 ## 이산 확률 변수
 이진 사건은 이산 확률 변수 $$X$$를 정의함으로 그 표현이 확장될 수 있다. 이산 확률 변수 $$X$$는 유한한, 또는 셀수 있는 무한한 집합 $$\mathcal{X}$$로부터 그 값을 가질 수 있다. 여기서 $$\mathcal{X}$$는 상태 공간 (State Space)라고 한다.
 
-사건 $$X=x$$일 확률을 $$p(X=x)$$, 또는 간단히 $$p(x)$$라고 나타낸다. 여기서 $$p()$$는 확률 질량 함수 (Probability Mass Function, PMF)라고 부른다. PMF는 다음과 같은 성질을 갖고 있다:
+사건 $$X=x$$의 확률을 $$p(X=x)$$, 또는 간단히 $$p(x)$$라고 나타낸다. 여기서 $$p()$$는 확률 질량 함수 (Probability Mass Function, PMF)라고 부른다. PMF는 다음과 같은 성질을 갖고 있다:
 - $$0 \leq p(x) \leq 1$$.
 - $$\sum_{x \in \mathcal{X}} p(x) = 1$$.
 
