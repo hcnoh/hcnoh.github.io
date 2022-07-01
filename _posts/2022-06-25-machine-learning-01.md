@@ -37,6 +37,14 @@ permalink: /2022-06-25-machine-learning-01
 - $$\sum_{x \in \mathcal{X}} p(x) = 1$$.
 
 ## 다양한 확률 연산
+사건 $$A$$, $$B$$에 대해서 사건 $$A$$가 참이거나 사건 $$B$$가 참인 사건을 논리식의 형식으로 $$A \or B$$로 나타낼 수 있다. 이를 사건 $$A$$와 $$B$$의 Union Event라고 한다. 사건 $$A$$와 $$B$$의 Union Event $$A \or B$$가 참일 확률 $$p(A \or B)$$는 각 사건이 참일 확률 $$p(A)$$, $$p(B)$$를 이용하여 다음과 같이 연산이 가능하다:
+
+$$
+\begin{array}{rl}
+p(A \or B)
+& = p(A) + p(B) - p(A \and B).
+\end{array}
+$$
 
 ## Generative Classifier
 
