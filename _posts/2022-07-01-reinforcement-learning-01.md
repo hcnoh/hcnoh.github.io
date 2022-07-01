@@ -13,7 +13,7 @@ tags:
 - reinforcement learning
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
-permalink: /2022-07-01-machine-learning-01
+permalink: /2022-07-01-reinforcement-learning-01
 ---
 
 강화 학습에 대해서 스터디를 진행하였고, 스터디 내용을 정리하여 연재를 진행하려고 한다. 주된 참고 자료는 강화 학습의 중요 알고리즘에 대한 논문 및 발표 자료들을 직접 활용하였다.
