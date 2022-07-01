@@ -59,8 +59,8 @@ $$
 $$
 \begin{array}{rl}
 \mathbb{E}_{a_t \sim \pi(\cdot \vert s_t)}\left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:
-\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right]
-& = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right]
+\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right] \\
+\ \ \ \ \ \ \ \ = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right]
 & = V_\pi(s_t). \ \ \ \ \text{Q.E.D}
 \end{array}
 $$
