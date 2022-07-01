@@ -35,10 +35,35 @@ Agent가 어떤 순간에 자신이 관찰한 현재의 상태와 그에 따른 
 따라서 상태와 행동에 대한 값어치는 장기적으로 고려해야 할 필요가 있다. 현재 상태에 대한 값어치를 매기기 위해서 Value Function이라는 것을 다음과 같이 정의한다:
 
 $$
-v_\pi(s_t) = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
+V_\pi(s_t) = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
 $$
 
 여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim \Pr[\cdot \vert s_t, a_t]$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포, $$\Pr[\cdot \vert s_t, a_t]$$은 환경의 상태 변화를 위한 모델 확률 분포이다.
+
+비슷하게 현재 상태, 행동에 대한 값어치를 동시에 매기기 위한 State-action Value Function을 정의한다:
+
+$$
+Q_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
+$$
+
+여기서의 Sampling Distribution도 Value Function의 경우와 동일하다.
+
+여기서 두 Value Function $$V_\pi$$ 및 $$Q_{\pi}$$의 관계에 대한 간단하지만 중요한 Lemma가 존재한다:
+
+$$
+\mathbb{E}_{a_t \sim \pi(\cdot \vert s_t)}\left[ Q_{\pi}(s_t, a_t) \right] = V_{\pi}(s_t).
+$$
+
+증명은 다음과 같다:
+
+$$
+\begin{array}{rl}
+\mathbb{E}_{a_t \sim \pi(\cdot \vert s_t)}\left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:
+\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right]
+& = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right]
+& = V_\pi(s_t). \ \ \ \ \text{Q.E.D}
+\end{array}
+$$
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
