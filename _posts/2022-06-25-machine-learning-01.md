@@ -52,6 +52,7 @@ $$
 \begin{array}{rl}
 p(A \lor B)
 & = p(A) + p(B).
+\end{array}
 $$
 
 ## Generative Classifier
