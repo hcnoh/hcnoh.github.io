@@ -74,6 +74,41 @@ $$
 
 Advantage Function이라고 부르는 이유는 현재 상태의 값어치인 $$V_\pi$$ 대비 행동 $$a_t$$를 취했을 경우 얻는 값어치 $$Q_\pi$$가 얼마나 Advantage가 있는 것이냐를 표현하는 것이기 때문이다.
 
+Advantage Function은 다음과 같은 중요한 성질을 갖고 있다:
+
+$$
+A_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]} \left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right].
+$$
+
+이 성질을 증명하기 위해서는 먼저 아래의 Lemma를 증명해야 한다:
+
+$$
+Q_\pi(s_t, a_t) = r(s_t, a_t) + \mathbb{E}_{s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]} \left[ \gamma V_\pi(s_{t+1}) \right].
+$$
+
+증명은 다음과 같다:
+
+$$
+\begin{array}{l}
+Q_\pi(s_t, a_t) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]}\left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim \Pr[\cdot \vert s_t, a_t]}} \left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \gamma \sum_{k=1}^\infty \gamma^{k - 1}r(s_{t+k}, a_{t+k}) \right] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1\sim \Pr[\cdot \vert s_t, a_t]}}\left[ \gamma V_\pi(s_{t+1}) \right]. \ \ \ \ \text{Q.E.D.}
+\end{array}
+$$
+
+이 Lemma를 이용하여 위의 성질을 다시 증명해보면:
+
+$$
+\begin{array}{l}
+A_\pi(s_t, a_t) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = Q_\pi(s_t, a_t) - V_\pi(s_t, a_t) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim \Pr[\cdot \vert s_t, a_t]}}\left[ \gamma V_\pi(s_{t+1}) \right] - V_\pi(s_t) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1 \sim \Pr[\cdot \vert s_t, a_t]}}\left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right]. \ \ \ \ \text{Q.E.D.}
+\end{array}
+$$
+
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
 
