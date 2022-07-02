@@ -55,6 +55,22 @@ p(A \lor B)
 \end{array}
 $$
 
+위에서 등장한 Joint Event $$A \land B$$의 확률 $$p(A, B) = p(A \land B)$$는 결합 확률(Joint Distribution)이라고 정의한다. 조건부 확률(Conditional Distribution) $$p(A \vert B)$$를 통해서 다음과 같이 쓸 수 있다:
+
+$$
+p(A, B) = p(A \land B) = p(A \vert B) p(B).
+$$
+
+이러한 계산 방식을 확률의 곱셈 규칙(Product Rule)이라고 한다.
+
+방금 언급한 조건부 확률의 경우는 다음과 같이 정의한다. 조건부 확률 $$p(A \vert B)$$는 사건 $$B$$가 참인 것을 이미 관찰한 상황에서의 사건 $$A$$가 참인 상황에 대한 확률로 정의한다. 이는 다음과 같이 계산이 가능하다:
+
+$$
+p(A \vert B) = \frac{p(A, B)}{p(B)}.
+$$
+
+물론 여기에는 $$p(B)$$는 $$0$$이 아니어야 된다는 조건이 추가된다.
+
 ## Generative Classifier
 
 ## 독립

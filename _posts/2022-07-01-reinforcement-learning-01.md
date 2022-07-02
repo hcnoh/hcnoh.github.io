@@ -61,9 +61,18 @@ $$
 \mathbb{E}_{a_t \sim \pi(\cdot \vert s_t)}\left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:
 \infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right] \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ = V_\pi(s_t). \ \ \ \ \text{Q.E.D}
+\ \ \ \  \ \ \ \  \ \ \ \ = V_\pi(s_t). \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
+
+## Advantage Function
+주어진 정책 $$\pi$$에 대한 Advantage Function $$A_\pi$$는 다음과 같이 정의한다:
+
+$$
+A_\pi(s_t, a_t) = Q_\pi(s_t, a_t) - V_\pi(s_t).
+$$
+
+Advantage Function이라고 부르는 이유는 현재 상태의 값어치인 $$V_\pi$$ 대비 행동 $$a_t$$를 취했을 경우 얻는 값어치 $$Q_\pi$$가 얼마나 Advantage가 있는 것이냐를 표현하는 것이기 때문이다.
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
