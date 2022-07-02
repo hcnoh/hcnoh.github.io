@@ -13,7 +13,7 @@ tags:
 - reinforcement learning
 image: /thumbnail-mobile.png
 author: "Hyungcheol Noh"
-permalink: /2022-07-02-reinforcement-learning-01
+permalink: /2022-07-02-reinforcement-learning-02
 ---
 
 ## 강화 학습의 목적
