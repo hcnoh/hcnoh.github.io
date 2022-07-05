@@ -31,6 +31,8 @@ $$
 \mathbb{E}_{\tau \sim \pi}[R_t] = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}[R_t] = Q_\pi(s_t, a_t).
 $$
 
+여기서 $\tau$는 
+
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
 
