@@ -53,7 +53,7 @@ $$
 Expected Return $$\eta(\pi)$$의 의미는 정책 $$\pi$$를 통해서 획득할 수 있는 누적 보상의 기대값이다. 즉, 이를 통해서 우리는 강화 학습의 목적을 다음과 같이 형식화할 수 있을 것이다:
 
 $$
-\argmax_\pi \eta(\pi).
+\arg \max_\pi \eta(\pi).
 $$
 
 즉, 강화 학습의 목적은 누적 보상의 기대값인 Expected Return $$\eta(\pi)$$를 최대화하는 정책 $$\pi$$를 찾는 것이다.
@@ -64,7 +64,13 @@ $$
 $$\eta(\pi)$$는 어찌됐든 $$\pi$$에 대한 함수이며 $$\pi$$에 대해서 미분을 시도해볼 수 있을 것이다.
 
 $$
-\frac{\nabla \eta(\pi)}{\nabla \pi}.
+\frac{\partial \eta(\pi)}{\partial \pi}.
+$$
+
+하지만 이보다는 정책 $$\pi$$를 매개변수화하는 매개변수 $$\theta$$를 고려하여 $$\theta$$에 대한 미분을 생각해보는 것이 더 좋을 것 같다.
+
+$$
+\nabla_\theta \eta(\pi_\theta).
 $$
 
 ## 참고 자료
