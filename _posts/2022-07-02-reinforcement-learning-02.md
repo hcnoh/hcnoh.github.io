@@ -73,6 +73,8 @@ $$
 \nabla_\theta \eta(\pi_\theta).
 $$
 
+이를 직접 계산해보려는 경우 한 가지 문제가 발생한다. 일단 기대값을 계산하고자 하는 $$V_{\pi_\theta}(s_0)$$의 경우는 어떤 방식으로든 $$\theta$$에 대해서 미분이 가능하다고 하더라도 $$\eta(\pi_\theta)$$를 계산하기 위한 Sampling Distribution이 $$\pi_\theta$$인 이상 이를 위한 최적화가 불가능해 진다.
+
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
 
