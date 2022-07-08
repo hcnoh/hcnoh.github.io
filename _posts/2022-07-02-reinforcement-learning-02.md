@@ -31,7 +31,11 @@ $$
 \mathbb{E}_{\tau \sim \pi}[R_t] = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}[R_t] = Q_\pi(s_t, a_t).
 $$
 
-여기서 $$\tau$$는 Agent가 생성하는 궤적 $$s_t, a_t, s_{t+1}, a_{t+1}, \cdots$$이며 $$\tau \sim \pi$$는 궤적 $$\tau$$의 Sampling Distribution이 정책 $$\pi$$라는 의미이다. 다시 말하면 $$\pi$$의 정책을 가지는 Agent가 궤적 $$\tau$$를 생성한다는 의미이다.
+여기서 $$\tau$$는 Agent가 생성하는 궤적 $$s_{t+1}, a_{t+1}, s_{t+2}, a_{t+2}, \cdots$$이며 $$\tau \sim \pi$$는 궤적 $$\tau$$의 Sampling Distribution이 정책 $$\pi$$라는 의미이다. 다시 말하면 $$\pi$$의 정책을 가지는 Agent가 궤적 $$\tau$$를 생성한다는 의미이며 이 경우에는 이를 다음과 같이 표현할 수 있다:
+
+$$
+\tau \sim \pi : s_{t'} \sim \Pr[\cdot \vert s_{t'-1}, a_{t'-1}], a_{t'} \sim \pi(\cdot \vert s_{t'}) \ \ \text{for} \ t'=t+1, t+2, \cdots
+$$
 
 여기서 우리는 정책 $$\pi$$에 대한 Expected Return을 생각해볼 수 있다. 정책 $$\pi$$에 대한 Expected Return $$\eta(\pi)$$는 다음과 같이 정의한다:
 
@@ -56,24 +60,24 @@ $$
 \arg \max_\pi \eta(\pi).
 $$
 
-즉, 강화 학습의 목적은 누적 보상의 기대값인 Expected Return $$\eta(\pi)$$를 최대화하는 정책 $$\pi$$를 찾는 것이다.
+즉, 강화 학습의 목적은 누적 보상의 기대값인 Expected Return $$\eta(\pi)$$를 최대화하는 정책 $$\pi$$를 찾는 것이다. 따라서 우리는 앞으로 주어진 정책 $$\pi$$의 Expected Return $$\eta(\pi)$$를 `목적 함수`라고 부르기로 한다.
 
 ## Policy Gradient Theorem
-위에서 우리는 강화 학습의 목적은 Expected Return을 최대화하는 정책을 찾는 것이라고 정리했다. 이를 어떻게 접근할지 고민해보기 위하여 Expected Return $$\eta(\pi)$$를 다시 한 번 자세히 살펴보도록 하자.
-
-$$\eta(\pi)$$는 어찌됐든 $$\pi$$에 대한 함수이며 $$\pi$$에 대해서 미분을 시도해볼 수 있을 것이다.
+위에서 우리는 강화 학습이란 목적 함수를 최대화하는 정책을 찾는 것이라고 정리했다. 이 문제를 어떻게 접근할지에 대해서 고민하기에 앞서 우리는 정책을 특정 매개변수 $$\theta$$로 매개변수화된 확률 분포 $$\pi_\theta$$라고 가정하자. 이렇게 된다면 우리는 목적 함수를 최대화하는 정책을 매개변수화하는 $$\theta$$를 찾으면 되는 것이다. 즉, 우리는 다음과 같은 반복적인 알고리즘을 통해 최적의 $$\theta$$를 찾고자 시도해볼 수 있다:
 
 $$
-\frac{\partial \eta(\pi)}{\partial \pi}.
+\theta = \theta_{\text{old}} + \left. \nabla_\theta \eta(\pi_\theta)\right\vert_{\theta_{\text{old}}}.
 $$
 
-하지만 이보다는 정책 $$\pi$$를 매개변수화하는 매개변수 $$\theta$$를 고려하여 $$\theta$$에 대한 미분을 생각해보는 것이 더 좋을 것 같다.
+여기서 $$\nabla_\theta \eta(\pi_\theta)$$를 Policy Gradient라고 정의한다.
+
+Policy Gradient Theorem은 Policy Gradient에 대한 계산 결과를 제시한다. Policy Gradient Theorem에서 제시한 Policy Gradient의 결과는 다음과 같다:
 
 $$
-\nabla_\theta \eta(\pi_\theta).
+\nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
 $$
 
-이를 직접 계산해보려는 경우 한 가지 문제가 발생한다. 일단 기대값을 계산하고자 하는 $$V_{\pi_\theta}(s_0)$$의 경우는 어떤 방식으로든 $$\theta$$에 대해서 미분이 가능하다고 하더라도 $$\eta(\pi_\theta)$$를 계산하기 위한 Sampling Distribution이 $$\pi_\theta$$인 이상 이를 위한 최적화가 불가능해 진다.
+이를 증명해보자.
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)

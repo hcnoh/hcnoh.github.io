@@ -55,7 +55,7 @@ p(A \lor B)
 \end{array}
 $$
 
-위에서 등장한 Joint Event $$A \land B$$의 확률 $$p(A, B) = p(A \land B)$$는 결합 확률(Joint Distribution)이라고 정의한다. 조건부 확률(Conditional Distribution) $$p(A \vert B)$$를 통해서 다음과 같이 쓸 수 있다:
+위에서 등장한 Joint Event $$A \land B$$의 확률 $$p(A, B) = p(A \land B)$$는 결합 확률(Joint Probability)이라고 정의한다. 조건부 확률(Conditional Probability) $$p(A \vert B)$$를 통해서 다음과 같이 쓸 수 있다:
 
 $$
 p(A, B) = p(A \land B) = p(A \vert B) p(B).
