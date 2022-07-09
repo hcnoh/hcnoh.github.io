@@ -78,6 +78,21 @@ p(A \vert B) = \frac{p(B \vert A) p(A)}{p(B)}.
 $$
 
 ## Generative Classifier
+분류 문제는 주어진 Feature Vector $$\mathbf{x}$$가 어떤 분류 $$c$$로 분류될지를 찾는 문제를 말한다. 분류 문제를 논하기 위해서는 주어진 분류 $$y=c$$에 대해서 Feature Vector $$\mathbf{x}$$에 대한 확률 밀도 $$p(\mathbf{x} \vert y=c)$$를 고려하게 된다. 이를 Class-conditional Density라고 정의한다.
+
+Class-conditional Density $$p(\mathbf{x} \vert y=c)$$를 살펴보면 이 밀도 함수를 통해 분류 $$c$$가 주어지면 Class-conditional Density를 Sampling Distribusion으로 활용하여 분류 $$c$$에 해당하는 Feature Vector들을 생성해 낼 수 있다는 점을 알 수 있다.
+
+여기서 Bayes Rule 및 Class-conditional Density를 활용하여 Generative Classifier를 정의할 수 있다:
+
+$$
+p(y=c \vert \mathbf{x} ; \boldsymbol{\theta}) = \frac{p(y=c ; \boldsymbol{\theta}) p(\mathbf{x} \vert y=c ; \boldsymbol{\theta})}{\sum_{c'} p(y=c' ; \boldsymbol{\theta}) p(\mathbf{x} \vert y=c' ; \boldsymbol{\theta})}.
+$$
+
+여기서 $$\boldsymbol{\theta}$$는 분류기를 매개변수화하는 매개변수 벡터이다. 이 분류기는 주어진 Feature Vector에 대해서 특정 분류 $$c$$에 속할 확률에 대한 확률 질량 함수를 제시한다.
+
+이 분류기가 Generative Classifier라고 불리는 이유는 Class-conditional Density 및 Class Prior $$p(y=c)$$를 활용하여 데이터를 생성하는 방법을 기술하기 때문이다. 즉, 데이터가 어떻게 생성될지를 고려하여 데이터의 분류를 수행한다.
+
+Generative Classifier를 활용하는 경우에서 가장 키포인트는 각 분류 기준에서 우리가 기대하는 데이터가 어떤 종류일지를 정의해주는 Class-conditional Density의 형태를 잘 찾는 것이 중요하다는 점이다.
 
 ## 독립
 
@@ -99,3 +114,5 @@ $$
     - 이산 확률 변수 내용 정리
 - 2022.07.01
     - 다양한 확률 연산 내용 정리
+- 2022.07.09
+    - Generative Classifier 내용 정리
