@@ -34,7 +34,7 @@ $$
 여기서 $$\tau$$는 Agent가 생성하는 궤적 $$s_{t+1}, a_{t+1}, s_{t+2}, a_{t+2}, \cdots$$이며 $$\tau \sim \pi$$는 궤적 $$\tau$$의 Sampling Distribution이 정책 $$\pi$$라는 의미이다. 다시 말하면 $$\pi$$의 정책을 가지는 Agent가 궤적 $$\tau$$를 생성한다는 의미이며 이 경우에는 이를 다음과 같이 표현할 수 있다:
 
 $$
-\tau \sim \pi : s_{t'} \sim \Pr[\cdot \vert s_{t'-1}, a_{t'-1}], a_{t'} \sim \pi(\cdot \vert s_{t'}) \ \ \text{for} \ t'=t+1, t+2, \cdots
+\tau \sim \pi : s_{t'} \sim \Pr[\cdot \vert s_{t'-1}, a_{t'-1}], a_{t'} \sim \pi(\cdot \vert s_{t'}) \ \ \text{for} \ t'=t+1, t+2, \cdots.
 $$
 
 여기서 우리는 정책 $$\pi$$에 대한 Expected Return을 생각해볼 수 있다. 정책 $$\pi$$에 대한 Expected Return $$\eta(\pi)$$는 다음과 같이 정의한다:
@@ -77,7 +77,31 @@ $$
 \nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
 $$
 
-이를 증명해보자.
+이를 증명해보자. 먼저 목적 함수 $$\eta(\pi_\theta)$$를 살펴보면 다음과 같다:
+
+$$
+\eta(\pi_\theta) = \mathbb{E}_{s_0 \sim \rho_0}\left[ V_{\pi_\theta}(s_0) \right].
+$$
+
+여기서 Value Function $$V_{\pi_\theta}(s_0)$$는 다음과 같이 표현된다:
+
+$$
+V_{\pi_\theta}(s_0) = \sum_{a_0}\pi_\theta(a_0 \vert s_0)Q_{\pi_\theta}(s_0, a_0).
+$$
+
+이를 바탕으로 Policy Gradient $$\nabla_\theta \eta(\pi_\theta)$$를 계산해보면:
+
+$$
+\begin{array}{l}
+\nabla_\theta \eta(\pi_\theta) \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ V_{\pi_\theta}(s_0) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta \left( \sum_{a_0}\pi_\theta(a_0 \vert s_0) Q_{\pi_\theta}(s_0, a_0) \right) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta Q_{\pi_\theta}(s_0, a_0) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( r(s_0, a_0) + \gamma \sum_{s_1}\Pr[s_1 \vert s_0, a_0] V_{\pi_\theta}(s_1) \right) \right]
+\end{array}
+$$
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)

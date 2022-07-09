@@ -71,6 +71,12 @@ $$
 
 물론 여기에는 $$p(B)$$는 $$0$$이 아니어야 된다는 조건이 추가된다.
 
+위에서 정의한 결합 확률, 조건부 확률을 바탕으로 유명한 정리인 Bayes Rule을 확인할 수 있다:
+
+$$
+p(A \vert B) = \frac{p(B \vert A) p(A)}{p(B)}.
+$$
+
 ## Generative Classifier
 
 ## 독립
