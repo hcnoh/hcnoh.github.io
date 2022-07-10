@@ -38,7 +38,7 @@ $$
 V_\pi(s_t) = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
 $$
 
-여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim \Pr[\cdot \vert s_t, a_t]$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포, $$\Pr[\cdot \vert s_t, a_t]$$은 환경의 상태 변화를 위한 모델 확률 분포이다.
+여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim p(\cdot \vert s_t, a_t)$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포, $$p(\cdot \vert s_t, a_t)$$은 환경의 상태 변화를 위한 모델 확률 분포이다.
 
 비슷하게 현재 상태, 행동에 대한 값어치를 동시에 매기기 위한 State-action Value Function을 정의한다:
 
@@ -77,13 +77,13 @@ Advantage Function이라고 부르는 이유는 현재 상태의 값어치인 $$
 Advantage Function은 다음과 같은 중요한 성질을 갖고 있다:
 
 $$
-A_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]} \left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right].
+A_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)} \left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right].
 $$
 
 이 성질을 증명하기 위해서는 먼저 아래의 Lemma를 증명해야 한다:
 
 $$
-Q_\pi(s_t, a_t) = r(s_t, a_t) + \mathbb{E}_{s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]} \left[ \gamma V_\pi(s_{t+1}) \right].
+Q_\pi(s_t, a_t) = r(s_t, a_t) + \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)} \left[ \gamma V_\pi(s_{t+1}) \right].
 $$
 
 증명은 다음과 같다:
@@ -92,9 +92,9 @@ $$
 \begin{array}{l}
 Q_\pi(s_t, a_t) \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]}\left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim \Pr[\cdot \vert s_t, a_t]}} \left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \gamma \sum_{k=1}^\infty \gamma^{k - 1}r(s_{t+k}, a_{t+k}) \right] \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1\sim \Pr[\cdot \vert s_t, a_t]}}\left[ \gamma V_\pi(s_{t+1}) \right]. \ \ \ \ \text{Q.E.D.}
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)}\left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim p(\cdot \vert s_t, a_t)}} \left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \gamma \sum_{k=1}^\infty \gamma^{k - 1}r(s_{t+k}, a_{t+k}) \right] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1\sim p(\cdot \vert s_t, a_t)}}\left[ \gamma V_\pi(s_{t+1}) \right]. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
@@ -104,8 +104,8 @@ $$
 \begin{array}{l}
 A_\pi(s_t, a_t) \\
 \ \ \ \  \ \ \ \  \ \ \ \ = Q_\pi(s_t, a_t) - V_\pi(s_t, a_t) \\
-\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim \Pr[\cdot \vert s_t, a_t]}}\left[ \gamma V_\pi(s_{t+1}) \right] - V_\pi(s_t) \\
-\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1 \sim \Pr[\cdot \vert s_t, a_t]}}\left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right]. \ \ \ \ \text{Q.E.D.}
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim p(\cdot \vert s_t, a_t)}}\left[ \gamma V_\pi(s_{t+1}) \right] - V_\pi(s_t) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1 \sim p(\cdot \vert s_t, a_t)}}\left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right]. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
@@ -115,3 +115,5 @@ $$
 ## 수정 사항
 - 2022.07.01
     - 최초 게제
+- 2022.07.10
+    - Notation 수정

@@ -34,22 +34,22 @@ $$
 여기서 $$\tau$$는 Agent가 생성하는 궤적 $$s_{t+1}, a_{t+1}, s_{t+2}, a_{t+2}, \cdots$$이며 $$\tau \sim \pi$$는 궤적 $$\tau$$의 Sampling Distribution이 정책 $$\pi$$라는 의미이다. 다시 말하면 $$\pi$$의 정책을 가지는 Agent가 궤적 $$\tau$$를 생성한다는 의미이며 이 경우에는 이를 다음과 같이 표현할 수 있다:
 
 $$
-\tau \sim \pi : s_{t'} \sim \Pr[\cdot \vert s_{t'-1}, a_{t'-1}], a_{t'} \sim \pi(\cdot \vert s_{t'}) \ \ \text{for} \ t'=t+1, t+2, \cdots.
+\tau \sim \pi : s_{t'} \sim p(\cdot \vert s_{t'-1}, a_{t'-1}), a_{t'} \sim \pi(\cdot \vert s_{t'}) \ \ \text{for} \ t'=t+1, t+2, \cdots.
 $$
 
 여기서 우리는 정책 $$\pi$$에 대한 Expected Return을 생각해볼 수 있다. 정책 $$\pi$$에 대한 Expected Return $$\eta(\pi)$$는 다음과 같이 정의한다:
 
 $$
-\eta(\pi) = \mathbb{E}_{\tau \sim \pi}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right].
+\eta(\pi) = \mathbb{E}_{\tau \sim \pi}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right],
 $$
 
-이는 다음과 같이 표현될 수 있다:
+여기서 $$\rho_0$$는 최초 상태 $$s_0$$의 분포이다. 이 결과는 다음과 같이 표현될 수 있다:
 
 $$
 \begin{array}{rl}
 \eta(\pi)
 & = \mathbb{E}_{\tau \sim \pi}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right] \\
-& = \mathbb{E}_{s_0 \sim \rho_0}\left[ \mathbb{E}_{a_t \sim \pi(\cdot \vert s_t), s_{t+1}\sim \Pr[\cdot \vert s_t, a_t]}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right] \right] \\
+& = \mathbb{E}_{s_0 \sim \rho_0}\left[ \mathbb{E}_{a_t \sim \pi(\cdot \vert s_t), s_{t+1}\sim p(\cdot \vert s_t, a_t)}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right] \right] \\
 & = \mathbb{E}_{s_0 \sim \rho_0}\left[ V_\pi(s_0) \right].
 \end{array}
 $$
@@ -77,7 +77,10 @@ $$
 \nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
 $$
 
-이를 증명해보자. 먼저 목적 함수 $$\eta(\pi_\theta)$$를 살펴보면 다음과 같다:
+## Proof of Policy Gradient Theorem
+Policy Gradient Theorem을 증명해보는 섹션이다. 내용이 좀 복잡하여 처음 강화 학습을 접하는 사람들은 넘어가도 좋을 것 같다.
+
+Policy Gradient Theorem을 증명하기 위해서 먼저 목적 함수 $$\eta(\pi_\theta)$$를 살펴보면 다음과 같다:
 
 $$
 \eta(\pi_\theta) = \mathbb{E}_{s_0 \sim \rho_0}\left[ V_{\pi_\theta}(s_0) \right].
@@ -95,11 +98,77 @@ $$
 \begin{array}{l}
 \nabla_\theta \eta(\pi_\theta) \\
 = \mathbb{E}_{s_0 \sim \rho_0}\left[ V_{\pi_\theta}(s_0) \right] \\
-= \mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta \left( \sum_{a_0}\pi_\theta(a_0 \vert s_0) Q_{\pi_\theta}(s_0, a_0) \right) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta \left( \sum_{a_0}\pi_\theta(a_0 \vert s_0) Q_{\pi_\theta}(s_0, a_0) \right) \right].
+\end{array}
+$$
+
+여기서 Gradient 연산 $$\nabla_\theta$$는 선형 연산이므로 $$\sum_{a_0}$$로 들어갈 수 있고, 미분 연산의 법칙인 $$(fg)'=f'g + fg'$$을 활용하면:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta \left( \sum_{a_0}\pi_\theta(a_0 \vert s_0) Q_{\pi_\theta}(s_0, a_0) \right) \right] \\
 = \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta Q_{\pi_\theta}(s_0, a_0) \right]. \\
+\end{array}
+$$
+
+여기서 다시 Lemma $$Q_{\pi_\theta}(s_0, a_0) = r(s_0, a_0) + \gamma \sum_{s_{1}}p\left( s_1 \vert s_0, a_0  \right)\gamma V_{\pi_\theta}(s_1)$$을 활용하면:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
 \ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta Q_{\pi_\theta}(s_0, a_0) \right] \\
 = \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
-\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( r(s_0, a_0) + \gamma \sum_{s_1}\Pr[s_1 \vert s_0, a_0] V_{\pi_\theta}(s_1) \right) \right]
+\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( r(s_0, a_0) + \gamma \sum_{s_1}p(s_1 \vert s_0, a_0) V_{\pi_\theta}(s_1) \right) \right] \\
+ = \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( \gamma \sum_{s_1}p(s_1 \vert s_0, a_0) V_{\pi_\theta}(s_1) \right) \right]
+\end{array}
+$$
+
+여기서는 추가적으로 $$r(s_0, a_0)$$는 $$\theta$$와 관계가 없는 함수라는 사실을 활용하여 정리하였다. 위 결과를 다시 깔끔하게 정리하면 다음과 같다.
+
+$$
+\begin{array}{l}
+\nabla_\theta \eta(\pi_\theta) \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0}(\nabla_\theta \pi_\theta(a_0 \vert s_0)) Q_{\pi_\theta}(s_0, a_0) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \mathbb{E}_{s_0 \sim \rho_0, a_0 \sim \pi_\theta(\cdot \vert s_0), s_1 \sim p(\cdot \vert s_0, a_0)}\left[ \gamma \nabla_\theta V_{\pi_\theta}(s_1) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0}(\nabla_\theta \pi_\theta(a_0 \vert s_0)) Q_{\pi_\theta}(s_0, a_0) \right] + \gamma \mathbb{E}_{s_1 \sim \rho_1}\left[ \nabla_\theta V_{\pi_\theta}(s_1) \right].
+\end{array}
+$$
+
+여기서 $$\rho_1$$은 주어진 정책 $$\pi_{\theta}$$에 대한 상태 $$s_1$$의 분포이다. 다시 말하면 상태, 행동 궤적의 Sampling Distribution이 정책 $$\pi_\theta$$인 경우 시간 단계 $$t=1$$에서의 상태 $$s_1$$의 분포를 말한다:
+
+$$
+\rho_1(s_1) = \sum_{s_0, a_0}\rho_0(s_0) \cdot \pi_\theta(a_0 \vert s_0) \cdot p(s_1 \vert s_0, a_0).
+$$
+
+비슷하게 $$\pi_\theta$$에 대한 상태 분포 $$\rho_k$$를 다음과 같이 정의할 수 있다:
+
+$$
+\rho_k(s_k) = \sum_{s_{k-1}, a_{k-1}}\rho_{k-1}(s_{k-1}) \cdot \pi_\theta(a_{k-1} \vert s_{k-1}) \cdot p(s_k \vert s_{k-1}, a_{k-1}).
+$$
+
+이 정의를 활용하면 다음의 관계를 확인할 수 있다:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{s_k \sim \rho_k}\left[ V_{\pi_\theta}(s_k) \right] \\
+= \mathbb{E}_{s_k \sim \rho_k}\left[ \sum_{a_k}\left( \nabla_\theta \pi_\theta(a_k \vert s_k) \right) Q_{\pi_\theta}(s_k, a_k) \right] + \gamma \mathbb{E}_{s_{k+1 \sim \rho_{k+1}}} \left[ \nabla_\theta V_{\pi_\theta}(s_{k+1}) \right].
+\end{array}
+$$
+
+이 관계를 활용하면 Policy Gradient를 다음과 같이 계산할 수 있다:
+
+$$
+\begin{array}{l}
+\nabla_\theta \eta(\pi_\theta) \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta V_{\pi_\theta}(s_0) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right] + \gamma \mathbb{E}_{s_1 \sim \rho_1}\left[ \nabla_\theta V_{\pi_\theta}(s_1) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \gamma \mathbb{E}_{s_1 \sim \rho_1}\left[ \sum_{a_1} \left( \nabla_\theta \pi_\theta(a_1 \vert s_1) \right) Q_{\pi_\theta}(s_1, a_1) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ + \gamma^2\mathbb{E}_{s_2 \sim \rho_2}\left[ \nabla_\theta V_{\pi_\theta}(s_2) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ \vdots \\
+= \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \sum_{a_t}\left( \sum_{a_t}\nabla_\theta \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
 \end{array}
 $$
 
@@ -109,3 +178,5 @@ $$
 ## 수정 사항
 - 2022.07.02
     - 최초 게제
+- 2022.07.10
+    - Notation 수정
