@@ -168,7 +168,42 @@ $$
 \ \ \ \  \ \ \ \  \ \ \ \ + \gamma \mathbb{E}_{s_1 \sim \rho_1}\left[ \sum_{a_1} \left( \nabla_\theta \pi_\theta(a_1 \vert s_1) \right) Q_{\pi_\theta}(s_1, a_1) \right] \\
 \ \ \ \  \ \ \ \  \ \ \ \ + \gamma^2\mathbb{E}_{s_2 \sim \rho_2}\left[ \nabla_\theta V_{\pi_\theta}(s_2) \right] \\
 \ \ \ \  \ \ \ \  \ \ \ \ \vdots \\
-= \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \sum_{a_t}\left( \sum_{a_t}\nabla_\theta \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
+= \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \sum_{a_t}\left( \nabla_\theta \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
+\end{array}
+$$
+
+여기서 감쇄 상수 $$\gamma$$의 값이 $$0 \leq \gamma \leq 1$$의 값을 가지기 때문에 뒤에 붙는 Value Function에 대한 부분은 $$0$$으로 수렴하게 된다. (증명 필요):
+
+$$
+\gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \nabla_\theta V_{\pi_\theta}(s_t) \right] \longrightarrow 0.
+$$
+
+여기서 다음의 관계를 활용할 수 있다:
+
+$$
+\nabla_\theta \log \pi_\theta(a_t \vert s_t) = \frac{\nabla \pi_\theta(a_t \vert s_t)}{\pi_\theta(a_t \vert s_t)}.
+$$
+
+이 관계를 통해 $$\nabla_\theta \pi_\theta(a_r \vert s_t)$$를 $$\pi_\theta(a_t \vert s_t) \nabla_\theta \log \pi_\theta(a_t \vert s_t)$$로 대체하면:
+
+$$
+\begin{array}{l}
+\nabla_\theta \eta(\pi_\theta) \\
+= \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \sum_{a_t}\left( \nabla_\theta \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right] \\
+= \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \sum_{a_t} \pi_\theta(a_t \vert s_t) \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right] \\
+= \sum_{t=0}^\infty \mathbb{E}_{s_t \sim \rho_t, a_t \sim \pi_\theta(\cdot \vert s_t)} \left[ \gamma^t  \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right] \\
+= \sum_{t=0}^\infty \mathbb{E}_{(s_t, a_t) \sim \pi_\theta} \left[ \gamma^t  \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
+\end{array}
+$$
+
+이는 확률의 곱의 법칙에 의하여 다음과 같이 쓸 수 있다:
+
+$$
+\begin{array}{l}
+\nabla_\theta \eta(\pi_\theta) \\
+= \sum_{t=0}^\infty \mathbb{E}_{(s_{0:\infty}, a_{0:\infty}) \sim \pi_\theta} \left[ \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right] \\
+= \sum_{t=0}^\infty \mathbb{E}_{\tau \sim \pi_\theta} \left[ \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right] \\
+= \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right]. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
@@ -180,3 +215,4 @@ $$
     - 최초 게제
 - 2022.07.10
     - Notation 수정
+    - Policy Gradient Theorem 증명 부분 추가

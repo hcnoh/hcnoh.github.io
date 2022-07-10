@@ -38,7 +38,7 @@ $$
 V_\pi(s_t) = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
 $$
 
-여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim p(\cdot \vert s_t, a_t)$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포, $$p(\cdot \vert s_t, a_t)$$은 환경의 상태 변화를 위한 모델 확률 분포이다.
+여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim p(\cdot \vert s_t, a_t)$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포, $$p(\cdot \vert s_t, a_t)$$은 환경의 상태 변화를 위한 모델 확률 분포이다. 또한 여기서 $$\gamma$$는 감쇄 상수이며 먼 미래로 갈 수록 누적되는 보상을 감쇄시키고자 하는 의도로 곱하게 된다. 먼 미래보다는 가까운 미래를 좀 더 고려하고자 하는 의도가 있기 때문이다. 감쇄 상수는 $$0 \leq \gamma \leq 1$$의 값을 갖는다.
 
 비슷하게 현재 상태, 행동에 대한 값어치를 동시에 매기기 위한 State-action Value Function을 정의한다:
 
