@@ -207,6 +207,31 @@ $$
 \end{array}
 $$
 
+## REINFORCE Algorithm
+REINFORCE 알고리즘은 Monte Carlo Method 기반의 Policy Gradient 방법이다. 앞에서 Policy Gradient Theorem으로부터 우리는 다음의 결과를 활용할 수 있게 됐다:
+
+$$
+\nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta (a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
+$$
+
+이를 통해, 주어진 에피소드 $$s_{0:\infty}, a_{0:\infty}$$에 대해서 시간 단계 $$t$$에서의 Policy Gradient의 Monte Carlo Estimator는 다음과 같이 표현될 수 있다:
+
+$$
+\nabla_\theta \eta(\pi_\theta) \approx \gamma^t \left( \nabla_\theta \log \pi_\theta (a_t \vert s_t) \right) Q_{\pi_\theta}(a_t, a_t).
+$$
+
+여기서 $$Q_{\pi_\theta}(s_t, a_t)$$의 Unbiased Estimator로 대신 $$R_t$$를 사용할 수 있다:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{\tau \sim \pi_\theta} \left[ \left( \gamma^t \nabla_\theta \log \pi_\theta (a_t \vert s_t) \right) R_t \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_t, a_t}\left[ \gamma^t \nabla_\theta \log \pi_\theta (s_t \vert s_t) \mathbb{E}_{s_{t+1}, a_{t+1}, \cdots} [R_t] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_t, a_t}\left[ \gamma^t \left(\nabla_\theta \log \pi_\theta (s_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
+\end{array}
+$$
+
+$$\therefore \ \nabla_\theta \eta(\pi_\theta) \approx \gamma^t \nabla_\theta \log \pi_\theta(a_t \vert s_t) R_t.$$
+
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
 
