@@ -40,19 +40,13 @@ permalink: /2022-06-25-machine-learning-01
 사건 $$A$$, $$B$$에 대해서 사건 $$A$$가 참이거나 사건 $$B$$가 참인 사건을 논리식의 형식으로 $$A \lor B$$로 나타낼 수 있다. 이를 사건 $$A$$와 $$B$$의 Union Event라고 한다. 사건 $$A$$와 $$B$$의 Union Event $$A \lor B$$가 참일 확률 $$p(A \lor B)$$는 각 사건이 참일 확률 $$p(A)$$, $$p(B)$$를 이용하여 다음과 같이 연산이 가능하다:
 
 $$
-\begin{array}{rl}
-p(A \lor B)
-& = p(A) + p(B) - p(A \land B).
-\end{array}
+p(A \lor B) = p(A) + p(B) - p(A \land B).
 $$
 
 여기서 $$A \land B$$는 사건 $$A$$와 $$B$$의 Joint Event이며 사건 $$A$$와 사건 $$B$$가 둘다 참인 사건을 말한다. 만약 $$A$$와 $$B$$가 둘 다 참인 경우가 존재하지 않는 경우, 즉 두 사건이 Mutually Exclusive한 경우는 다음과 같이 $$p(A \lor B)$$를 계산할 수 있다:
 
 $$
-\begin{array}{rl}
-p(A \lor B)
-& = p(A) + p(B).
-\end{array}
+p(A \lor B) = p(A) + p(B).
 $$
 
 위에서 등장한 Joint Event $$A \land B$$의 확률 $$p(A, B) = p(A \land B)$$는 결합 확률(Joint Probability)이라고 정의한다. 조건부 확률(Conditional Probability) $$p(A \vert B)$$를 통해서 다음과 같이 쓸 수 있다:
