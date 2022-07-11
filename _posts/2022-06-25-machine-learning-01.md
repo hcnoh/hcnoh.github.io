@@ -85,6 +85,15 @@ $$
 
 이 정의는 또한 확률의 덧셈 법칙, 또는 전체 확률의 법칙(Law of Total Probability)이라고 부른다.
 
+확률의 덧셈 법칙을 확장하여 확률의 연쇄 법칙을 확인할 수 있다:
+
+$$
+\begin{array}{rl}
+p(X_{1:D}) & = p(X_D \vert X_{1:D-1})p(X_{D-1} \vert X_{1:D-2}) \cdots p(X_2 \vert X_1) p(X_1) \\
+& = \prod_{i=1}^D p(X_i \vert X_{1:i-1}).
+\end{array}
+$$
+
 ## Generative Classifier
 분류 문제는 주어진 Feature Vector $$\mathbf{x}$$가 어떤 분류 $$c$$로 분류될지를 찾는 문제를 말한다. 분류 문제를 논하기 위해서는 주어진 분류 $$y=c$$에 대해서 Feature Vector $$\mathbf{x}$$에 대한 확률 밀도 $$p(\mathbf{x} \vert y=c)$$를 고려하게 된다. 이를 Class-conditional Density라고 정의한다.
 
@@ -102,7 +111,7 @@ $$
 
 Generative Classifier를 활용하는 경우에서 가장 키포인트는 각 분류 기준에서 우리가 기대하는 데이터가 어떤 종류일지를 정의해주는 Class-conditional Density의 형태를 잘 찾는 것이 중요하다는 점이다.
 
-## 독립
+## 사건의 독립
 만약 어떤 사건 $$X, Y$$의 결합 분포가 다음을 만족한다면:
 
 $$
@@ -110,6 +119,64 @@ p(X, Y) = p(X)p(Y),
 $$
 
 두 사건은 독립 사건이라고 하고 $$X \perp Y$$라고 표현한다.
+
+또한 조건부 독립도 정의할 수 있다. 특정 사건 $$Z$$가 관찰된 경우에는 $$X, Y$$가 서로 독립인 경우를 조건부 독립이라고 정의한다. 즉 다음을 만족하는 경우를 조건부 독립이라고 한다:
+
+$$
+p(X, Y \vert Z) = p(X \vert Z) p(Y \vert Z)
+$$
+
+조건부 독립은 $$X \perp Y \vert Z$$로 표현한다.
+
+조건부 독립에서는 다음과 같은 중요한 정리를 확인할 수 있다. 만약 $$X \perp Y \vert Z$$이면 $$p(z) > 0$$를 만족하는 모든 $$x, y, z$$에 대해서 $$p(x, y \vert z) = g(x, z)h(y, z)$$를 성립하는 함수 $$g, h$$가 존재하며, 이 명제의 역도 성립한다.
+
+이를 증명해보자. 먼저 $$\Longrightarrow$$ 방향을 증명한다. $$X \perp Y \vert Z$$인 경우 $$p(x, y \vert z) = p(x \vert z) p(y \vert z)$$이므로 우리는 $$g(x, z)=p(x \vert z)$$, $$h(y, z) = p(y \vert z)$$로 선택할 수 있다.
+
+그 다음으로 $$\Longleftarrow$$ 방향을 증명해보자.
+
+$$
+p(x, y \vert z) = \frac{p(x, y, z)}{p(z)} = g(x, z)h(y, z)
+$$
+
+라고 할 수 있다. 이 때 WLOG 모든 $$x, y$$에 대해서 $$g(x, z) \geq 0, h(y, z) \geq 0$$라고 가정하자. 그리고 추가적으로:
+
+$$
+\sum_x g(x, z) = \tilde{g}(z), \ \ \ \ \sum_y h(y, z) = \tilde(h)(z)
+$$
+
+라고 정의하자. 그러면 우리는 다음과 같이 선택할 수 있다:
+
+$$
+p(x \vert z) = \frac{g(x, z)}{\tilde{g}(z)}, \ \ \ \ p(y \vert z) = \frac{h(y, z)}{\tilde{h}(z)}.
+$$
+
+이는 다음의 관계들이 만족하기 때문에 가능한 선택이다:
+
+$$
+\sum_x \frac{g(x, z)}{\tilde{g}(z)} = 1, \ \ \ \ \sum_y \frac{h(y, z)}{\tilde{h}(z)} = 1, \\ 0 \leq \frac{g(x, z)}{\tilde{g}(z)}, \frac{h(y, z)}{\tilde{h}(z)} \leq 1.
+$$
+
+또한 추가로 아래의 관계를 만족한다:
+
+$$
+\begin{array}{rl}
+\sum_x p(x, y \vert z) & = p(y \vert z) = \frac{h(y, z)}{\tilde{h}(z)} \\
+& = \sum_x g(x, z) h(y, z) \\
+& = \tilde{g}(z) h(y, z) \\
+& \Longrightarrow \tilde{g}(z)\tilde{h}(z) = 1.
+\end{array}
+$$
+
+따라서:
+
+$$
+\begin{array}{rl}
+p(x, y \vert z)
+& = g(x, z)h(y, z) \\
+& = \tilde{g}(z)\tilde{h}(z) p(x \vert z) p(y \vert z) \\
+& = p(x \vert z) p(y \vert z). \ \ \ \ \text{Q.E.D.}
+\end{array}
+$$
 
 ## 연속 확률 변수
 
@@ -131,3 +198,5 @@ $$
     - 다양한 확률 연산 내용 정리
 - 2022.07.09
     - Generative Classifier 내용 정리
+- 2022.07.11
+    - 사건의 독립 내용 정리
