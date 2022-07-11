@@ -77,6 +77,14 @@ $$
 p(A \vert B) = \frac{p(B \vert A) p(A)}{p(B)}.
 $$
 
+추가적으로 주변 분포(Marginal Distribution)는 다음과 같이 정의한다:
+
+$$
+p(A) = \sum_b p(A, B) = \sum_b p(A \vert B=b)p(B = b).
+$$
+
+이 정의는 또한 확률의 덧셈 법칙, 또는 전체 확률의 법칙(Law of Total Probability)이라고 부른다.
+
 ## Generative Classifier
 분류 문제는 주어진 Feature Vector $$\mathbf{x}$$가 어떤 분류 $$c$$로 분류될지를 찾는 문제를 말한다. 분류 문제를 논하기 위해서는 주어진 분류 $$y=c$$에 대해서 Feature Vector $$\mathbf{x}$$에 대한 확률 밀도 $$p(\mathbf{x} \vert y=c)$$를 고려하게 된다. 이를 Class-conditional Density라고 정의한다.
 
@@ -95,6 +103,13 @@ $$
 Generative Classifier를 활용하는 경우에서 가장 키포인트는 각 분류 기준에서 우리가 기대하는 데이터가 어떤 종류일지를 정의해주는 Class-conditional Density의 형태를 잘 찾는 것이 중요하다는 점이다.
 
 ## 독립
+만약 어떤 사건 $$X, Y$$의 결합 분포가 다음을 만족한다면:
+
+$$
+p(X, Y) = p(X)p(Y),
+$$
+
+두 사건은 독립 사건이라고 하고 $$X \perp Y$$라고 표현한다.
 
 ## 연속 확률 변수
 
