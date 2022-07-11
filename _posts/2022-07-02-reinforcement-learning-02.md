@@ -240,8 +240,8 @@ $$\therefore \ \nabla_\theta \eta(\pi_\theta) \approx \gamma^t \nabla_\theta \lo
     - 반복:
         - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성
         - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
-            - $$R_t$$에 단계 $$t$$에서의 Return 대입
-            - $$\theta \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta (a_t \vert s_t) R_t$$
+            - $$R_t \longleftarrow $$ 단계 $$t$$에서의 Return.
+            - $$\theta \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta (a_t \vert s_t) R_t$$.
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
