@@ -232,9 +232,9 @@ $$
 
 $$\therefore \ \nabla_\theta \eta(\pi_\theta) \approx \gamma^t \nabla_\theta \log \pi_\theta(a_t \vert s_t) R_t.$$
 
-다음은 REINFORCEMENT 알고리즘을 정리한 것이다:
+다음은 REINFORCE 알고리즘을 정리한 것이다:
 
-- REINFORCEMENT 알고리즘
+- REINFORCE 알고리즘
     - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, Learning Rate $$\alpha$$
     - 정책 매개변수 $$\theta$$ 초기화
     - 반복:
