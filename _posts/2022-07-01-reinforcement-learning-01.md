@@ -93,8 +93,8 @@ $$
 Q_\pi(s_t, a_t) \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)}\left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim p(\cdot \vert s_t, a_t)}} \left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \gamma \sum_{k=1}^\infty \gamma^{k - 1}r(s_{t+k}, a_{t+k}) \right] \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1\sim p(\cdot \vert s_t, a_t)}}\left[ \gamma V_\pi(s_{t+1}) \right]. \ \ \ \ \text{Q.E.D.}
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1} \sim p(\cdot \vert s_t, a_t)} \left[ \mathbb{E}_{a_{t+1:\infty}, s_{t+2:\infty}} \left[ \gamma \sum_{k=1}^\infty \gamma^{k - 1}r(s_{t+k}, a_{t+k}) \right] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1} \sim p(\cdot \vert s_t, a_t)}\left[ \gamma V_\pi(s_{t+1}) \right]. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
@@ -104,8 +104,8 @@ $$
 \begin{array}{l}
 A_\pi(s_t, a_t) \\
 \ \ \ \  \ \ \ \  \ \ \ \ = Q_\pi(s_t, a_t) - V_\pi(s_t, a_t) \\
-\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1 \sim p(\cdot \vert s_t, a_t)}}\left[ \gamma V_\pi(s_{t+1}) \right] - V_\pi(s_t) \\
-\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1 \sim p(\cdot \vert s_t, a_t)}}\left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right]. \ \ \ \ \text{Q.E.D.}
+\ \ \ \  \ \ \ \  \ \ \ \ = r(s_t, a_t) + \mathbb{E}_{s_{t+1} \sim p(\cdot \vert s_t, a_t)}\left[ \gamma V_\pi(s_{t+1}) \right] - V_\pi(s_t) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{s_{t+1} \sim p(\cdot \vert s_t, a_t)}\left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right]. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 

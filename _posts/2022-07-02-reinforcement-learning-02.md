@@ -121,7 +121,7 @@ $$
 = \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
 \ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( r(s_0, a_0) + \gamma \sum_{s_1}p(s_1 \vert s_0, a_0) V_{\pi_\theta}(s_1) \right) \right] \\
  = \mathbb{E}_{s_0 \sim \rho_0}\left[ \sum_{a_0} \left( \nabla_\theta \pi_\theta(a_0 \vert s_0) \right) Q_{\pi_\theta}(s_0, a_0) \right. \\
-\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( \gamma \sum_{s_1}p(s_1 \vert s_0, a_0) V_{\pi_\theta}(s_1) \right) \right]
+\ \ \ \  \ \ \ \  \ \ \ \ + \left. \sum_{a_0}\pi_\theta(a_0 \vert s_0) \nabla_\theta \left( \gamma \sum_{s_1}p(s_1 \vert s_0, a_0) V_{\pi_\theta}(s_1) \right) \right].
 \end{array}
 $$
 
@@ -152,8 +152,8 @@ $$
 
 $$
 \begin{array}{l}
-\mathbb{E}_{s_k \sim \rho_k}\left[ V_{\pi_\theta}(s_k) \right] \\
-= \mathbb{E}_{s_k \sim \rho_k}\left[ \sum_{a_k}\left( \nabla_\theta \pi_\theta(a_k \vert s_k) \right) Q_{\pi_\theta}(s_k, a_k) \right] + \gamma \mathbb{E}_{s_{k+1 \sim \rho_{k+1}}} \left[ \nabla_\theta V_{\pi_\theta}(s_{k+1}) \right].
+\mathbb{E}_{s_k \sim \rho_k}\left[ \nabla_\theta V_{\pi_\theta}(s_k) \right] \\
+= \mathbb{E}_{s_k \sim \rho_k}\left[ \sum_{a_k}\left( \nabla_\theta \pi_\theta(a_k \vert s_k) \right) Q_{\pi_\theta}(s_k, a_k) \right] + \gamma \mathbb{E}_{s_{k+1} \sim \rho_{k+1}} \left[ \nabla_\theta V_{\pi_\theta}(s_{k+1}) \right].
 \end{array}
 $$
 
@@ -235,13 +235,50 @@ $$\therefore \ \nabla_\theta \eta(\pi_\theta) \approx \gamma^t \nabla_\theta \lo
 다음은 REINFORCE 알고리즘을 정리한 것이다:
 
 - REINFORCE 알고리즘
-    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, Learning Rate $$\alpha$$
-    - 정책 매개변수 $$\theta$$ 초기화
+    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, Learning Rate $$\alpha$$.
+    - 정책 매개변수 $$\theta$$ 초기화.
     - 반복:
-        - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성
+        - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
         - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
             - $$R_t \longleftarrow $$ 단계 $$t$$에서의 Return.
             - $$\theta \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta (a_t \vert s_t) R_t$$.
+
+## Gaussian Policy
+이번 섹션에서는 행동 공간이 Continuous한 공간인 경우에 가장 많이 사용되는 정책인 Gaussian Policy를 다뤄보면서 REINFORCE 알고리즘을 실제로 어떻게 구현하는지 확인해보려고 한다.
+
+일단 먼저 Gaussian Policy $$\pi_\theta$$는 다음과 같이 쓴다:
+
+$$
+\pi_\theta(\mathbf{a} \vert \mathbf{s}) = \mathcal{N}(\boldsymbol{\mu}_\theta(s), \boldsymbol{\Sigma}).
+$$
+
+여기서 우리는 $$\nabla_\theta \log \pi_\theta(\mathbf{a} \vert \mathbf{s})$$를 다음과 같이 계산할 수 있다:
+
+$$
+\log \pi_\theta(\mathbf{a} \vert \mathbf{s}) = -\frac{1}{2}(a - \boldsymbol{\mu}_\theta(\mathbf{s}))^\text{T}\boldsymbol{\Sigma}^{-1}(\mathbf{a} - \boldsymbol{\mu}_\theta(\mathbf{s})) + \text{const}.
+$$
+
+$$
+\Longrightarrow \nabla_\theta \log \pi_\theta(\mathbf{a} \vert \mathbf{s}) = -(\mathbf{a} - \boldsymbol{\mu}_\theta(\mathbf{s}))^\text{T}\boldsymbol{\Sigma}^{-1}\nabla_\theta \boldsymbol{\mu}_\theta(\mathbf{s}).
+$$
+
+여기서 다음과 같이 더 일반적인 표현으로 Gaussian Policy를 나타낼 수 있다:
+
+$$
+\pi_\theta(\mathbf{a} \vert \mathbf{s}) = \mathcal{N}(\boldsymbol{\mu}_\theta(\mathbf{s}), \boldsymbol{\Sigma}_\theta(\mathbf{s})).
+$$
+
+여기서 일반적으로 $$\boldsymbol{\Sigma}_\theta$$를 나타내는 두 가지 방법이 있을 수 있다. 첫 번째 방법으로는 $$\log \boldsymbol{\Sigma}_\theta(\mathbf{s})$$를 하나의 학습 가능한 매개변수 벡터로 표현하는 방법이다:
+
+$$
+\log \boldsymbol{\Sigma}_\theta = \text{diag}(\alpha_1, \alpha_2, \cdots).
+$$
+
+두 번쨰 방법은 $$\log \boldsymbol{\Sigma}_\theta(\mathbf{s})$$를 $$\boldsymbol{\mu}_\theta(\mathbf{s})$$와 매개변수를 공유하는 뉴럴 네트워크로 표현하는 방법이다:
+
+$$
+\left[ \boldsymbol{\mu}_\theta(\mathbf{s}), \log \boldsymbol{\Sigma}_\theta(\mathbf{s}) \right] = \text{NN}_\theta(\mathbf{s}).
+$$
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
@@ -252,5 +289,7 @@ $$\therefore \ \nabla_\theta \eta(\pi_\theta) \approx \gamma^t \nabla_\theta \lo
 - 2022.07.10
     - Notation 수정
     - Policy Gradient Theorem 증명 부분 추가
-- 2022.071.11
+- 2022.07.11
     - REINFORCE 알고리즘 추가
+- 2022.07.13
+    - Gaussian Policy 내용 추가
