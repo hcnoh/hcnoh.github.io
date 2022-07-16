@@ -30,9 +30,9 @@ permalink: /2022-06-25-machine-learning-01
 - 앞으로는 이진 사건 (Binary Event)의 형식으로 사건을 다룰 예정이며, $$A=1$$은 $$A$$가 참, $$A=0$$는 $$A$$가 거짓을 나타낸다.
 
 ## 이산 확률 변수
-이진 사건은 이산 확률 변수 $$X$$를 정의함으로 그 표현이 확장될 수 있다. 이산 확률 변수 $$X$$는 유한한, 또는 셀수 있는 무한한 집합 $$\mathcal{X}$$로부터 그 값을 가질 수 있다. 여기서 $$\mathcal{X}$$는 상태 공간 (State Space)라고 한다.
+이진 사건은 이산 확률 변수 $$X$$를 정의함으로 그 표현이 확장될 수 있다. 이산 확률 변수 $$X$$는 유한한, 또는 셀수 있는 무한한 집합 $$\mathcal{X}$$로부터 그 값을 가질 수 있다. 여기서 $$\mathcal{X}$$는 `상태 공간` (State Space)라고 한다.
 
-사건 $$X=x$$의 확률을 $$p(X=x)$$, 또는 간단히 $$p(x)$$라고 나타낸다. 여기서 $$p()$$는 확률 질량 함수 (Probability Mass Function, PMF)라고 부른다. PMF는 다음과 같은 성질을 갖고 있다:
+사건 $$X=x$$의 확률을 $$p(X=x)$$, 또는 간단히 $$p(x)$$라고 나타낸다. 여기서 $$p()$$는 `확률 질량 함수` (Probability Mass Function, PMF)라고 부른다. PMF는 다음과 같은 성질을 갖고 있다:
 - $$0 \leq p(x) \leq 1$$.
 - $$\sum_{x \in \mathcal{X}} p(x) = 1$$.
 
@@ -43,21 +43,21 @@ $$
 p(A \lor B) = p(A) + p(B) - p(A \land B).
 $$
 
-여기서 $$A \land B$$는 사건 $$A$$와 $$B$$의 Joint Event이며 사건 $$A$$와 사건 $$B$$가 둘다 참인 사건을 말한다. 만약 $$A$$와 $$B$$가 둘 다 참인 경우가 존재하지 않는 경우, 즉 두 사건이 Mutually Exclusive한 경우는 다음과 같이 $$p(A \lor B)$$를 계산할 수 있다:
+여기서 $$A \land B$$는 사건 $$A$$와 $$B$$의 Joint Event이며 사건 $$A$$와 사건 $$B$$가 둘다 참인 사건을 말한다. 만약 $$A$$와 $$B$$가 둘 다 참인 경우가 존재하지 않는 경우, 즉 두 사건이 `상호 배타적`(Mutually Exclusive)인 경우는 다음과 같이 $$p(A \lor B)$$를 계산할 수 있다:
 
 $$
 p(A \lor B) = p(A) + p(B).
 $$
 
-위에서 등장한 Joint Event $$A \land B$$의 확률 $$p(A, B) = p(A \land B)$$는 결합 확률(Joint Probability)이라고 정의한다. 조건부 확률(Conditional Probability) $$p(A \vert B)$$를 통해서 다음과 같이 쓸 수 있다:
+위에서 등장한 Joint Event $$A \land B$$의 확률 $$p(A, B) = p(A \land B)$$는 `결합 확률`(Joint Probability)이라고 정의한다. 조건부 확률(Conditional Probability) $$p(A \vert B)$$를 통해서 다음과 같이 쓸 수 있다:
 
 $$
 p(A, B) = p(A \land B) = p(A \vert B) p(B).
 $$
 
-이러한 계산 방식을 확률의 곱셈 규칙(Product Rule)이라고 한다.
+이러한 계산 방식을 확률의 `곱셈 규칙`(Product Rule)이라고 한다.
 
-방금 언급한 조건부 확률의 경우는 다음과 같이 정의한다. 조건부 확률 $$p(A \vert B)$$는 사건 $$B$$가 참인 것을 이미 관찰한 상황에서의 사건 $$A$$가 참인 상황에 대한 확률로 정의한다. 이는 다음과 같이 계산이 가능하다:
+방금 언급한 조건부 확률의 경우는 다음과 같이 정의한다. `조건부 확률` $$p(A \vert B)$$는 사건 $$B$$가 참인 것을 이미 관찰한 상황에서의 사건 $$A$$가 참인 상황에 대한 확률로 정의한다. 이는 다음과 같이 계산이 가능하다:
 
 $$
 p(A \vert B) = \frac{p(A, B)}{p(B)}.
@@ -65,21 +65,21 @@ $$
 
 물론 여기에는 $$p(B)$$는 $$0$$이 아니어야 된다는 조건이 추가된다.
 
-위에서 정의한 결합 확률, 조건부 확률을 바탕으로 유명한 정리인 Bayes Rule을 확인할 수 있다:
+위에서 정의한 결합 확률, 조건부 확률을 바탕으로 유명한 정리인 `Bayes Rule`을 확인할 수 있다:
 
 $$
 p(A \vert B) = \frac{p(B \vert A) p(A)}{p(B)}.
 $$
 
-추가적으로 주변 분포(Marginal Distribution)는 다음과 같이 정의한다:
+추가적으로 `주변 분포`(Marginal Distribution)는 다음과 같이 정의한다:
 
 $$
 p(A) = \sum_b p(A, B) = \sum_b p(A \vert B=b)p(B = b).
 $$
 
-이 정의는 또한 확률의 덧셈 법칙, 또는 전체 확률의 법칙(Law of Total Probability)이라고 부른다.
+이 정의는 또한 확률의 `덧셈 법칙`, 또는 `전체 확률의 법칙`(Law of Total Probability)이라고 부른다.
 
-확률의 덧셈 법칙을 확장하여 확률의 연쇄 법칙을 확인할 수 있다:
+확률의 덧셈 법칙을 확장하여 확률의 `연쇄 법칙`을 확인할 수 있다:
 
 $$
 \begin{array}{rl}
@@ -89,11 +89,11 @@ p(X_{1:D}) & = p(X_D \vert X_{1:D-1})p(X_{D-1} \vert X_{1:D-2}) \cdots p(X_2 \ve
 $$
 
 ## Generative Classifier
-분류 문제는 주어진 Feature Vector $$\mathbf{x}$$가 어떤 분류 $$c$$로 분류될지를 찾는 문제를 말한다. 분류 문제를 논하기 위해서는 주어진 분류 $$y=c$$에 대해서 Feature Vector $$\mathbf{x}$$에 대한 확률 밀도 $$p(\mathbf{x} \vert y=c)$$를 고려하게 된다. 이를 Class-conditional Density라고 정의한다.
+분류 문제는 주어진 Feature Vector $$\mathbf{x}$$가 어떤 분류 $$c$$로 분류될지를 찾는 문제를 말한다. 분류 문제를 논하기 위해서는 주어진 분류 $$y=c$$에 대해서 Feature Vector $$\mathbf{x}$$에 대한 확률 밀도 $$p(\mathbf{x} \vert y=c)$$를 고려하게 된다. 이를 `Class-conditional Density`라고 정의한다.
 
 Class-conditional Density $$p(\mathbf{x} \vert y=c)$$를 살펴보면 이 밀도 함수를 통해 분류 $$c$$가 주어지면 Class-conditional Density를 Sampling Distribusion으로 활용하여 분류 $$c$$에 해당하는 Feature Vector들을 생성해 낼 수 있다는 점을 알 수 있다.
 
-여기서 Bayes Rule 및 Class-conditional Density를 활용하여 Generative Classifier를 정의할 수 있다:
+여기서 Bayes Rule 및 Class-conditional Density를 활용하여 `Generative Classifier`를 정의할 수 있다:
 
 $$
 p(y=c \vert \mathbf{x} ; \boldsymbol{\theta}) = \frac{p(y=c ; \boldsymbol{\theta}) p(\mathbf{x} \vert y=c ; \boldsymbol{\theta})}{\sum_{c'} p(y=c' ; \boldsymbol{\theta}) p(\mathbf{x} \vert y=c' ; \boldsymbol{\theta})}.
@@ -112,9 +112,9 @@ $$
 p(X, Y) = p(X)p(Y),
 $$
 
-두 사건은 독립 사건이라고 하고 $$X \perp Y$$라고 표현한다.
+두 사건은 `독립 사건`이라고 하고 $$X \perp Y$$라고 표현한다.
 
-또한 조건부 독립도 정의할 수 있다. 특정 사건 $$Z$$가 관찰된 경우에는 $$X, Y$$가 서로 독립인 경우를 조건부 독립이라고 정의한다. 즉 다음을 만족하는 경우를 조건부 독립이라고 한다:
+또한 조건부 독립도 정의할 수 있다. 특정 사건 $$Z$$가 관찰된 경우에는 $$X, Y$$가 서로 독립인 경우를 `조건부 독립`이라고 정의한다. 즉 다음을 만족하는 경우를 조건부 독립이라고 한다:
 
 $$
 p(X, Y \vert Z) = p(X \vert Z) p(Y \vert Z)
@@ -173,6 +173,34 @@ p(x, y \vert z)
 $$
 
 ## 연속 확률 변수
+어떤 변수 $$X$$가 불분명한 연속적인 크기를 가진다고 가정하자. 이 때 $$X$$가 어떤 구간 $$a \leq X \leq b$$에 속할 확률은 다음과 같이 계산할 수 있다:
+- 사건 $$A$$를 $$A=(X \leq a)$$, 사건 $$B$$를 $$B=(X \leq b)$$, 사건 $$W$$를 $$W=(a < X \leq b)$$라고 정의하자.
+- 그렇다면, $$B = A \lor B$$인 것을 확인할 수 있다.
+- 만약 $$A$$와 $$W$$가 상호 배타적이라면:
+
+$$
+p(B) = p(A) + p(W) \ \Longrightarrow p(W) = p(B) - p(A).
+$$
+
+여기서 함수 $$F(q)$$를 $$F(q) \triangleq p(X \leq q)$$로 정의하자. 이 함수를 $$X$$의 `Cumulative Distribution Function`, CDF라고 한다. CDF를 활용하면 $$p(a < X \leq b>)$$를 다음과 같이 쓸 수 있다:
+
+$$
+p(a < X \leq b) = F(b) - F(a).
+$$
+
+추가적으로 CDF $$F$$가 `단조 증가 함수`(Monotonically Increasing Function)인 것에 주의하자. 이에 따라 $$F^{-1}$$이 존재하는 것도 추가적으로 확인할 수 있다.
+
+만약 CDF $$F$$가 존재한다면 다음과 같은 함수를 정의할 수 있다:
+
+$$
+f(x) = \frac{d}{dx}F(x).
+$$
+
+이 함수를 `확률 밀도 함수`(Probability Density Function, PDF)라고 부른다. PDF를 통해서 $$p(a < X \leq b)$$를 다음과 같이 쓸 수 있다:
+
+$$
+p(a < X \leq b) = \int_a^b f(x) dx.
+$$
 
 ## 평균, 분산, 공분산, 상관관계
 
@@ -194,3 +222,5 @@ $$
     - Generative Classifier 내용 정리
 - 2022.07.11
     - 사건의 독립 내용 정리
+- 2022.07.17
+    - 연속 확률 변수 내용 정리

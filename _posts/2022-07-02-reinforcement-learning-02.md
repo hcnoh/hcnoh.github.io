@@ -274,7 +274,7 @@ $$
 \log \boldsymbol{\Sigma}_\theta = \text{diag}(\alpha_1, \alpha_2, \cdots).
 $$
 
-두 번쨰 방법은 $$\log \boldsymbol{\Sigma}_\theta(\mathbf{s})$$를 $$\boldsymbol{\mu}_\theta(\mathbf{s})$$와 매개변수를 공유하는 뉴럴 네트워크로 표현하는 방법이다:
+두 번째 방법은 $$\log \boldsymbol{\Sigma}_\theta(\mathbf{s})$$를 $$\boldsymbol{\mu}_\theta(\mathbf{s})$$와 매개변수를 공유하는 뉴럴 네트워크로 표현하는 방법이다:
 
 $$
 \left[ \boldsymbol{\mu}_\theta(\mathbf{s}), \log \boldsymbol{\Sigma}_\theta(\mathbf{s}) \right] = \text{NN}_\theta(\mathbf{s}).
