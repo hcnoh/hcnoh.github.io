@@ -220,7 +220,7 @@ $$
 만약 $$X$$가 연속 확률 변수이고 PDF $$p(x)$$라고 한다면 기대값은 다음과 같다:
 
 $$
-\mathbb{E}\left[ X \right] = \mu_X \triangleq \int_{x\in \mathcal{X}}x p(x) dx.
+\mathbb{E}\left[ X \right] = \mu_X \triangleq \int_{\mathcal{X}}x p(x) dx.
 $$
 
 기대값은 `모 평균`(Population Mean)이라고 부르기도 하며, 확률 변수에 대한 관찰 기대값이라고 생각할 수 있다. 또한 표본의 크기가 무한히 증가한다면 표본 평균은 점차 기대값으로 수렴한다.
@@ -274,9 +274,100 @@ $$
 [\mathbf{R}]_{i,j} = \rho_{X_i, X_j}.
 $$
 
-## Change of Variables
+## 변수의 변환
+확률 변수의 분포를 다루다보면 `변수의 변환`에 대한 분포가 어떻게 될지에 대해서 고민하게 될 수 있다. 즉, 주어진 확률 벡터 $$\mathbf{x}$$에 대해서 $$f(\mathbf{x})$$의 분포가 어떻게 될지에 대해서이다.
 
-## Monte Carlo Approximation
+가장 기본적인 변환으로는 `선형 변환`(Linear Transformation)을 들 수 있다. 주어진 확률 벡터 $$\mathbf{x}$$가 $$\mathbb{E}[\mathbf{x}]=\boldsymbol{\mu}, \ \text{Cov}[\mathbf{x}]=\boldsymbol{\Sigma}$$를 만족할 때 임의의 선형 변환 $$\mathbf{y}=\mathbf{Ax} + \mathbf{b}$$를 고려하자. 이 경우 다음을 만족한다:
+
+$$
+\begin{array}{rl}
+\mathbb{E}[\mathbf{y}] & = \mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \\
+\text{Cov}[\mathbf{y}] & = \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^{\text{T}}.
+\end{array}
+$$
+
+만약 $$f()$$가 다음과 같은 Scalar-valued Function이라면:
+
+$$
+y = f(\mathbf{x}) = \mathbf{a}^{\text{T}}\boldsymbol{\mu} + b,
+$$
+
+다음을 만족한다:
+
+$$
+\begin{array}{rl}
+\mathbb{E}[y] & = \mathbf{a}^\text{T}\boldsymbol{\mu} + b, \\
+\text{Var}[y] & = \mathbf{a}^\text{T}\boldsymbol{\Sigma}\mathbf{a}.
+\end{array}
+$$
+
+그렇다면 선형 변환이 아닌 `일반적인 변환`(General Transformation)에 대해서는 어떨까? 만약 확률 변수 $$X$$가 이산 확률 변수라면 우리는 변환 $$y=f(x)$$에 대한 PMF를 다음과 같이 간단하게 쓸 수 있을 것이다:
+
+$$
+p_y(y) = \sum_{x:f(x)=y}p_x(x).
+$$
+
+즉 $$f(x)=y$$를 만족하는 모든 $$x$$에 대해서 확률 질량에 대한 총 합으로 나타낼 수 있을 것이다.
+
+하지만 만약 $$X$$가 연속 확률 변수라면 PDF의 단순한 합계로 계산하는 것이 불가능할 것이다. 대신 CDF를 활용해볼 수 있다:
+
+$$
+P_y(y) \triangleq P_y(Y \leq y) = P(f(X) \leq y) = P(X \in \{ f(x) \leq y \}).
+$$
+
+만약 $$f$$가 `단조 증가 함수`라면 $$f^{-1}$$가 존재할 것이고 이를 통해:
+
+$$
+\begin{array}{rl}
+P_y(y) & = P(X \leq f^{-1}(y)) \\
+& = P_x(f^{-1}(y)).
+\end{array}
+$$
+
+위 결과를 미분하여 $$y$$의 PDF를 구할 수 있다:
+
+$$
+\begin{array}{rl}
+p_y(y) \triangleq \frac{d}{dy}P_y(y) & = \frac{d}{dy}P_x(f^{-1}(y)) \\
+& = \frac{df^{-1}(y)}{dy} \cdot \frac{d}{df^{-1}(y)}P_x(f^{-1}(y)) \\
+& = \frac{dx}{dy}\cdot \frac{d}{dx}P_x(x) \\
+& = \frac{dx}{dy}p_x(x).
+\end{array}
+$$
+
+만약 반대로 $$f$$가 `단조 감소 함수`라면:
+
+$$
+\begin{array}{rl}
+P_y(y) & = P(X \geq f^{-1}(y)) \\
+& = 1 - P_x(f^{-1}(y))
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\Longrightarrow p_y(y) = \frac{d}{dy}P_y(y) & = -\frac{d}{dy}P_x(f^{-1}(y)) \\
+& = -\frac{dx}{dy}p_x(x).
+\end{array}
+$$
+
+따라서, 만약 $$f$$가 `단조 함수`라면:
+
+$$
+p_y(y) = \left\vert \frac{dx}{dy} \right\vert p_x(x).
+$$
+
+이를 $$n$$차원 공간으로 확장하여 `Change of Variables Formula`를 유도할 수 있다. 만약 함수 $$f:\mathbb{R}^n \rightarrow \mathbb{R}^n$$가 $$f^{-1}$$이 존재한다면 $$\mathbf{y}=f(\mathbf{x})$$의 PDF는 다음과 같이 계산한다:
+
+$$
+p_y(\mathbf{y}) = p_x(x) \left\vert \text{det}\left( \frac{\partial x}{\partial y} \right) \right\vert = p_x(\mathbf{x}) \left\vert \text{det}J_{\mathbf{y} \rightarrow \mathbf{x}} \right\vert.
+$$
+
+여기서 $$\text{det}J_{\mathbf{y} \rightarrow \mathbf{x}}$$는 `Jacobian Matrix`이다.
+
+일반적으로 확률 변수의 변환에 대한 분포를 계산하는 과정에서 Change of Variable Formula를 사용하는 것은 상당히 어렵다. 이를 아주 간단하지만 강력한 수단을 통해서 대체가 가능한데 이 방법이 `Monte Carlo Approximation`이다.
+
+Monte Carlo Approximation을 사용하기 위해서는 먼저 $$S$$개의 표본 $$\{ x_1, \cdots, x_S \}$$을 추출한다. 이를 통해서 $$\{ f(x_s) \}_{s=1}^S$$의 `경험적 분포`(Empirical Distribution)를 활용하여 $$f(X)$$의 분포를 근사화한다.
 
 ## 참고 자료
 - [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
@@ -296,3 +387,4 @@ $$
 - 2022.07.17
     - 연속 확률 변수 내용 정리
     - 평균, 분산, 공분산, 상관 계수 내용 정리
+    - 변수의 변환 내용 정리
