@@ -18,9 +18,9 @@ permalink: /2022-06-25-machine-learning-01
 머신 러닝에 대해서 스터디를 진행하였고, 내용을 정리하여 연재를 진행하려고 한다. 주된 참고 자료로는 케빈 머피의 저서인 [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)을 활용하였다. 앞으로 꾸준히 스터디 자료를 업로드할 계획이다.
 
 ## 확률이란?
-확률(Probability)는 두 가지 관점으로 해석할 수 있다. 먼저 첫 번째는 Frequentist Interpretation이다. Frequentist Interpretation은 확률이 장기적으로 사건들의 발생 빈도를 나타낸다는 관점이다. 예를 들면, 만약 우리가 동전을 매우 많이 던진다면 우린 그 동전이 약 절반의 빈도수를 가지며 앞면을 나타낼 것이라고 기대할 수 있다.
+확률(Probability)는 두 가지 관점으로 해석할 수 있다. 먼저 첫 번째는 Frequentist Interpretation이다. `Frequentist Interpretation`은 확률이 장기적으로 사건들의 발생 빈도를 나타낸다는 관점이다. 예를 들면, 만약 우리가 동전을 매우 많이 던진다면 우린 그 동전이 약 절반의 빈도수를 가지며 앞면을 나타낼 것이라고 기대할 수 있다.
 
-그 다음으로는 Bayesian Interpretation이다. Bayesian Interpretation에서는 확률이 무언가에 대한 우리의 불확실성을 정량화하는데 활용된다고 여기게 된다. 즉, 확률은 근본적으로 반복되는 시도와 관계있다기 보다는 사건에 정보와 관련되어 있다고 생각하는 관점이다. 예를 들면, 우리가 동전을 던지는 경우 다음 시도에서 앞면과 뒷면이 같은 가능성을 가진다고 믿을 수 있다. 이러한 믿음을 나타내는 것이 확률이라는 관점이 바로 Bayesian Interpretation이다.
+그 다음으로는 `Bayesian Interpretation`이다. Bayesian Interpretation에서는 확률이 무언가에 대한 우리의 불확실성을 정량화하는데 활용된다고 여기게 된다. 즉, 확률은 근본적으로 반복되는 시도와 관계있다기 보다는 사건에 정보와 관련되어 있다고 생각하는 관점이다. 예를 들면, 우리가 동전을 던지는 경우 다음 시도에서 앞면과 뒷면이 같은 가능성을 가진다고 믿을 수 있다. 이러한 믿음을 나타내는 것이 확률이라는 관점이 바로 Bayesian Interpretation이다.
 
 확률을 표현하는 방식은 다음과 같이 정리할 수 있다:
 - $$p(A)$$: 사건 $$A$$가 참일 확률
@@ -182,7 +182,7 @@ $$
 p(B) = p(A) + p(W) \ \Longrightarrow p(W) = p(B) - p(A).
 $$
 
-여기서 함수 $$F(q)$$를 $$F(q) \triangleq p(X \leq q)$$로 정의하자. 이 함수를 $$X$$의 `Cumulative Distribution Function`, CDF라고 한다. CDF를 활용하면 $$p(a < X \leq b>)$$를 다음과 같이 쓸 수 있다:
+여기서 함수 $$F(q)$$를 $$F(q) \triangleq p(X \leq q)$$로 정의하자. 이 함수를 $$X$$의 `누적 분포 함수`(Cumulative Distribution Function, CDF)라고 한다. CDF를 활용하면 $$p(a < X \leq b>)$$를 다음과 같이 쓸 수 있다:
 
 $$
 p(a < X \leq b) = F(b) - F(a).
@@ -202,7 +202,77 @@ $$
 p(a < X \leq b) = \int_a^b f(x) dx.
 $$
 
-## 평균, 분산, 공분산, 상관관계
+## 평균, 분산, 공분산, 상관 계수
+일반적으로 `평균`으로 알려진 물리량은 여러 가지가 있다. 첫 번째로 `Mean`이 있다. Mean은 `표본 평균`(Sample Mean)의 줄임말이며 이에 따라 표본에 종속되는 물리량이다. 확률 변수 $$X$$의 관찰값들을 추출하여 구성한 표본 $$\{x_1, x_2, \cdots, x_N\}$$에 대한 표본 평균은 다음으로 정의된다:
+
+$$
+\overline{x} = \frac{1}{N}\sum_{i=1}^Nx_i.
+$$
+
+표본 평균은 표본에 대한 `산술 평균`(Arithmetic Mean)이라고도 부른다. 이는 또한 `Average`라고 부르기도 한다.
+
+그 다음으로는 `기대값`(Expectation)이다. 이산 확률 변수 $$X$$의 PMF를 $$p(x)$$라고 하면 $$X$$의 기대값은 다음과 같다:
+
+$$
+\mathbb{E}\left[ X \right] = \mu_X \triangleq \sum_{x\in \mathcal{X}}x p(x).
+$$
+
+만약 $$X$$가 연속 확률 변수이고 PDF $$p(x)$$라고 한다면 기대값은 다음과 같다:
+
+$$
+\mathbb{E}\left[ X \right] = \mu_X \triangleq \int_{x\in \mathcal{X}}x p(x) dx.
+$$
+
+기대값은 `모 평균`(Population Mean)이라고 부르기도 하며, 확률 변수에 대한 관찰 기대값이라고 생각할 수 있다. 또한 표본의 크기가 무한히 증가한다면 표본 평균은 점차 기대값으로 수렴한다.
+
+앞으로 분산, 공분산, 상관관계의 정의는 모두 연속 확률 변수인 경우에 대해서만 하도록 한다. 이산 확률 변수의 경우에는 적분 연산 대신 합 연산으로 대체하면 된다.
+
+`분산`(Variance)은 확률 변수의 분포가 기대값으로부터 얼마나 멀리 퍼져 있는지에 대한 물리량이다. 확률 변수 $$X$$의 분산은 $$X$$와 그 기대값 $$\mu_X$$ 사이의 차이의 제곱 $$(X - \mu_X)^2$$의 기대값으로 정의한다:
+
+$$
+\text{Var}\left[ X \right] = \sigma_X \triangleq \mathbb{E}\left[ (X - \mu_X)^2 \right].
+$$
+
+추가적으로 분산의 계산은 다음과 같은 변형이 가능하다:
+
+$$
+\begin{array}{rl}
+\sigma_X & = \mathbb{E}\left[ (X - \mu_X)^2 \right] \\
+& = \mathbb{E}\left[ X^2 - 2\mu_X X + \mu_X^2 \right] \\
+& = \mathbb{E}\left[ X^2 \right] - 2\mu_X \mathbb{E}\left[ X \right] + \mu_X^2 \\
+& = \mathbb{E}\left[ X^2 \right] - 2\mu_X^2 + \mu_X^2 \\
+& = \mathbb{E}\left[ X^2 \right] - \mu_X^2.
+\end{array}
+$$
+
+`공분산`(Covariance)이란 2개의 확률 변수 사이의 선형적인 관계를 측정하는 물리량이다. 두 확률 변수 $$X, Y$$ 사이의 공분산은 다음과 같이 정의한다:
+
+$$
+\begin{array}{rl}
+\text{Cov}\left[ X, Y \right] = \sigma_{X, Y} & \triangleq \mathbb{E}\left[ (X - \mu_X) (Y - \mu_Y) \right] \\
+& = \mathbb{E}\left[ XY \right] - \mu_X \mu_Y.
+\end{array}
+$$
+
+또한 이를 통해 주어진 $$d$$차원 `확률 벡터`(Random Vector) $$\mathbf{x} = \left[ X_1, \cdots, X_d \right]$$의 `공분산 행렬`(Covariance Matrix)는 다음과 같은 Positive Definite인 대칭 행렬(Symmetric Matrix)로 정의된다:
+
+$$
+\text{Cov}[\mathbf{x}] \triangleq \mathbb{E}\left[ (\mathbf{x} - \boldsymbol{\mu}_\mathbf{x}) (\mathbf{x} - \boldsymbol{\mu}_\mathbf{x})^\text{T} \right].
+$$
+
+공분산은 $$0$$과 무한대 사이의 값을 가지는 것을 우리는 확인할 수 있다. 하지만 몇몇의 경우 두 확률 변수 사이의 선형 관계성의 정도를 측정하기 위한 유한한 상한(Upper Bound)을 가지는 Normalized Measure가 필요한 경우가 있다. 이를 위하여 `상관 계수`(Correlation Coefficient)를 정의한다.
+
+두 확률 변수 $$X, Y$$의 상관 계수는 다음과 같이 정의한다:
+
+$$
+\text{Corr}[X, Y] = \rho_{X, Y} \triangleq \frac{\sigma_{X, Y}}{\sigma_X \sigma_Y}.
+$$
+
+물론 마찬가지로 확률 벡터 $$\mathbf{x} = \left[ X_1, \cdots, X_d \right]$$의 `상관 계수 행렬`(Correlation Matrix) $$\mathbf{R}$$도 정의할 수 있다:
+
+$$
+[\mathbf{R}]_{i,j} = \rho_{X_i, X_j}.
+$$
 
 ## Change of Variables
 
@@ -210,6 +280,7 @@ $$
 
 ## 참고 자료
 - [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
+- [https://m.blog.naver.com/sw4r/221010499304](https://m.blog.naver.com/sw4r/221010499304)
 
 ## 수정 사항
 - 2022.06.25
@@ -224,3 +295,4 @@ $$
     - 사건의 독립 내용 정리
 - 2022.07.17
     - 연속 확률 변수 내용 정리
+    - 평균, 분산, 공분산, 상관 계수 내용 정리
