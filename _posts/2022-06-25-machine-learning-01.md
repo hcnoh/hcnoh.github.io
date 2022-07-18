@@ -206,7 +206,7 @@ $$
 일반적으로 `평균`으로 알려진 물리량은 여러 가지가 있다. 첫 번째로 `Mean`이 있다. Mean은 `표본 평균`(Sample Mean)의 줄임말이며 이에 따라 표본에 종속되는 물리량이다. 확률 변수 $$X$$의 관찰값들을 추출하여 구성한 표본 $$\{x_1, x_2, \cdots, x_N\}$$에 대한 표본 평균은 다음으로 정의된다:
 
 $$
-\overline{x} = \frac{1}{N}\sum_{i=1}^Nx_i.
+\bar{x} = \frac{1}{N}\sum_{i=1}^Nx_i.
 $$
 
 표본 평균은 표본에 대한 `산술 평균`(Arithmetic Mean)이라고도 부른다. 이는 또한 `Average`라고 부르기도 한다.
@@ -268,7 +268,7 @@ $$
 \text{Corr}[X, Y] = \rho_{X, Y} \triangleq \frac{\sigma_{X, Y}}{\sigma_X \sigma_Y}.
 $$
 
-물론 마찬가지로 확률 벡터 $$\mathbf{x} = \left[ X_1, \cdots, X_d \right]$$의 `상관 계수 행렬`(Correlation Matrix) $$\mathbf{R}$$도 정의할 수 있다:
+물론 마찬가지로 확률 벡터 $$\mathbf{x} = \left[ X_1, \cdots, X_d \right]$$의 `상관 행렬`(Correlation Matrix) $$\mathbf{R}$$도 정의할 수 있다:
 
 $$
 [\mathbf{R}]_{i,j} = \rho_{X_i, X_j}.
