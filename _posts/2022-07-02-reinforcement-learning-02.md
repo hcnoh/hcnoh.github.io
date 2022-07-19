@@ -43,7 +43,7 @@ $$
 \eta(\pi) = \mathbb{E}_{\tau \sim \pi}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right],
 $$
 
-여기서 $$\rho_0$$는 최초 상태 $$s_0$$의 분포이다. 이 결과는 다음과 같이 표현될 수 있다:
+여기서 최초 상태 $$s_0$$의 분포 $$\rho_0$$를 활용하여 이 결과는 다음과 같이 표현될 수 있다:
 
 $$
 \begin{array}{rl}
@@ -97,7 +97,7 @@ $$
 $$
 \begin{array}{l}
 \nabla_\theta \eta(\pi_\theta) \\
-= \mathbb{E}_{s_0 \sim \rho_0}\left[ V_{\pi_\theta}(s_0) \right] \\
+= \mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta V_{\pi_\theta}(s_0) \right] \\
 = \mathbb{E}_{s_0 \sim \rho_0}\left[ \nabla_\theta \left( \sum_{a_0}\pi_\theta(a_0 \vert s_0) Q_{\pi_\theta}(s_0, a_0) \right) \right].
 \end{array}
 $$

@@ -354,7 +354,7 @@ $$
 따라서, 만약 $$f$$가 `단조 함수`라면:
 
 $$
-p_y(y) = \left\vert \frac{dx}{dy} \right\vert p_x(x).
+p_y(y) = \vert \frac{dx}{dy} \vert p_x(x).
 $$
 
 이를 $$n$$차원 공간으로 확장하여 `Change of Variables Formula`를 유도할 수 있다. 만약 함수 $$f:\mathbb{R}^n \rightarrow \mathbb{R}^n$$가 $$f^{-1}$$이 존재한다면 $$\mathbf{y}=f(\mathbf{x})$$의 PDF는 다음과 같이 계산한다:
