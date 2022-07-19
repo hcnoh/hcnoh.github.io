@@ -31,6 +31,14 @@ $$
 \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)).
 $$
 
+그러면 우리는 다음과 같은 결과를 유도할 수 있다:
+
+$$
+\begin{array}{rl}
+\mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right]
+\end{array}
+$$
+
 ## REINFORCE + Baseline Method
 
 ## Whitening (Return Normalization)
