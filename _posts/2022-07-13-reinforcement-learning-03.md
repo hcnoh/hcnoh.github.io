@@ -34,9 +34,19 @@ $$
 그러면 우리는 다음과 같은 결과를 유도할 수 있다:
 
 $$
-\begin{array}{rl}
-\mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right]
+\begin{array}{l}
+\mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right] - \mathbb{E}_{s_t}\left[ b(s_t)\mathbb{E}_{a_t}\left[ \nabla_\theta \log\pi_\theta(a_t \vert s_t) \right] \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log\pi_\theta(a_t \vert s_t)R_t \right] - \mathbb{E}_{s_t}\left[ b(s_t)\sum_{a_t}\nabla_\theta \pi_\theta(a_t \vert s_t) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log\pi_\theta(a_t \vert s_t)R_t \right] - \mathbb{E}_{s_t}\left[ b(s_t)\nabla_\theta \sum_{a_t} \pi_\theta(a_t \vert s_t) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log\pi_\theta(a_t \vert s_t)R_t \right].
 \end{array}
+$$
+
+여기서는 다음의 연산 결과를 사용했다:
+
+$$
+\nabla_\theta \sum_{a_t} \pi_\theta(a_t \vert s_t) = \nabla_\theta 1 = 0.
 $$
 
 ## REINFORCE + Baseline Method
