@@ -49,6 +49,40 @@ $$
 \nabla_\theta \sum_{a_t} \pi_\theta(a_t \vert s_t) = \nabla_\theta 1 = 0.
 $$
 
+즉, Baseline을 사용한 Estimator는 기존 Estimator와 마찬가지로 Policy Gradient에 대한 Unbiased Estimator인 것을 확인했다. 이 Estimator는 기존 Estimator의 분산을 줄여주는데 사용될 수 있다. 이는 다음의 연산 과정을 통해 확인할 수 있다:
+
+$$
+\begin{array}{l}
+\text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \\
+= \mathbb{E}_{\tau \sim \pi_\theta}\left[ \left( \nabla_\theta\log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right)^2 \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta\log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \right)^2 \\
+= \mathbb{E}_{\tau \sim \pi_\theta}\left[ \left( \nabla_\theta\log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right)^2 \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta\log\pi_\theta(a_t \vert s_t)R_t \right] \right)^2 \\
+= \mathbb{E}_{s_t, a_t}\left[ \left(\nabla_\theta\log\pi_\theta(a_t \vert s_t) \right)^2 \mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}}\left[(R_t - b(s_t))^2\right] \right] \\
+\ \ \ \ - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta\log\pi_\theta(a_t \vert s_t)R_t \right] \right)^2.
+\end{array}
+$$
+
+만약 우리가 $$b(s_t)$$로 하여금 다음을 만족하게끔 정의한다면:
+
+$$
+\mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}}\left[ \left( R_t - b(s_t) \right)^2 \right] \leq \mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}} \left[ R_t^2 \right],
+$$
+
+우리는 다음의 관계를 획득할 수 있다:
+
+$$
+\begin{array}{l}
+\text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ \leq \mathbb{E}_{s_t, a_t}\left[ \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right)^2 \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ R_t^2 \right] \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right] \right)^2 \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right].
+\end{array}
+$$
+
+즉, Baseline은 Estimator의 분산을 줄여주게 된다:
+
+$$
+\text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \leq \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right].
+$$
+
 ## REINFORCE + Baseline Method
 
 ## Whitening (Return Normalization)
