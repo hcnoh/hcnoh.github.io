@@ -45,8 +45,17 @@ $$
 
 여기서 확률 분포 $$p(\theta \vert \mathcal{D})$$ 및 $$p(\theta)$$를 할당하기 위해서는 빈도수로써의 확률 관점으로는 불가능하다. 대신 Bayesian 관점을 통해서 확률 분포 $$p(\theta \vert \mathcal{D})$$ 및 $$p(\theta)$$를 각각 믿음의 정도로 본다면 이 믿음의 정도를 할당하여 해당 계산을 수행할 수 있다.
 
+## Hypothesis Space
+대부분의 지도 학습 알고리즘들은 `Hypothesis Space`로부터 가능한 `Hypothesis`를 찾아내어 입력을 적절한 출력으로 매핑해주는 것을 주된 목표로 한다. 여기서 Hypothesis Space는 가능한 Hypothesis들의 집합으로 정의한다. Hypothesis란 지도 학습 알고리즘에서 주어진 증거를 묘사하는 함수이다.
+
+![](/assets/img/2022-07-17-machine-learning-02/2022-07-17-machine-learning-02_2022-07-23-09-57-27.png)
+
+위 그림에서는 양성 표본과 음성 표본을 분류하는 지도 학습을 수행하는 과정을 예시로 든다. 양성 표본과 음성 표본은 선형 분류 기준을 통해서 분류될 것이라고 생각할 수 있다. 이 경우 가능한 Hypothesis들은 그림에서 표시된 3가지를 들 수 있을 것이다. 이러한 Hypothesis들은 각각이 증거로 나타나는 표본들을 양성/음성으로 분류하여 묘사할 수 있는 함수로 생각할 수 있다.
+
 ## 참고 자료
 - [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
+- [Wikipedia](https://en.wikipedia.org/wiki/Bayesian_statistics)
+- [https://www.geeksforgeeks.org/ml-understanding-hypothesis/](https://www.geeksforgeeks.org/ml-understanding-hypothesis/)
 
 ## 수정 사항
 - 2022.07.17
