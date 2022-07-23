@@ -107,7 +107,7 @@ $$
 
 $$p(h \vert \mathcal{D}) \rightarrow \delta_{\hat{h}_{\text{MAP}}}(h).$$
 
-여기서 $$\hat{h}_{\text{MAP}} = \argmax_h p(h \vert \mathcal{D})$$는 `사후 최빈값`(Posterior Mode)이고 $$\delta$$는 `Dirac Measure`이다.
+여기서 $$\hat{h}_{\text{MAP}} = \arg \max_h p(h \vert \mathcal{D})$$는 `사후 최빈값`(Posterior Mode)이고 $$\delta$$는 `Dirac Measure`이다.
 
 ## 참고 자료
 - [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
