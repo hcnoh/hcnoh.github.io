@@ -52,6 +52,39 @@ $$
 
 위 그림에서는 양성 표본과 음성 표본을 분류하는 지도 학습을 수행하는 과정을 예시로 든다. 양성 표본과 음성 표본은 선형 분류 기준을 통해서 분류될 것이라고 생각할 수 있다. 이 경우 가능한 Hypothesis들은 그림에서 표시된 3가지를 들 수 있을 것이다. 이러한 Hypothesis들은 각각이 증거로 나타나는 표본들을 양성/음성으로 분류하여 묘사할 수 있는 함수로 생각할 수 있다.
 
+## Likelihood
+어떤 표본 $$\tilde{x}\in \{1, 2, \cdots, 100 \}$$가 개념 $$C$$에 속하는지를 분류하는 Concept Learning을 하나 생각해보자. 우리는 이경우 가능한 Hypothesis를 다음의 두 가지를 들 수 있다.
+
+$$
+\begin{array}{rl}
+h_{\text{two}} & \triangleq \text{"powers of two}, \\
+h_{\text{even}} & \triangleq \text{"even numbers}.
+\end{array}
+$$
+
+이후 어떤 증거 $$\mathcal{D}=\{16, 8, 2, 64 \}$$를 관찰했다고 해보자. 우리가 방금 생각한 두 가지 Hypothesis 모두 이 증거 $$\mathcal{D}$$를 잘 부합하는 것을 확인할 수 있다. Hypothesis를 고려했을때, 어떤 Hypothesis는 우연히 증거에 부합할 수도 있고, 어떤 Hypothesis는 자연스럽게 부합할 수 있을 것이다.
+
+예를 들어서 다음과 같은 새로운 Hypothesis를 생각해보자:
+
+$$
+h' \triangleq \{ 2, 8, 16, 31, 64 \}.
+$$
+
+이 Hypothesis는 물론 증거 $$\mathcal{D}$$에 부합하지만 우리는 직관적으로 $$h'$$은 상당히 우연적으로 부합하는 것으로 의심할 수 있다. 우리는 이러한 우연을 최대한 제거하여 Hypothesis를 선택하고 싶을 것이다.
+
+주어진 증거 $$\mathcal{D}$$ 및 Hypothesis $$h$$에 대한 `Likelihood`는 $$h$$를 통해서 증거 $$\mathcal{D}$$가 생성될 확률 분포 $$p(\mathcal{D} \vert h)$$로 정의한다. 이 정의를 바탕으로 위에서 정의했던 Hypothesis들인 $$h_{\text{two}}$$와 $$h_{\text{even}}$$에 대한 Likelihood는 각각 다음과 같이 계산될 수 있다:
+
+$$
+\begin{array}{rl}
+p(\mathcal{D} \vert h_{\text{two}}) & \triangleq (1/6)^4 = 7.7 \times 10^{-4}, \\
+p(\mathcal{D} \vert h_{\text{even}}) & \triangleq (1/50)^4 = 1.6 \times 10^{-7}.
+\end{array}
+$$
+
+이 결과를 통해 우리는 $$p(\mathcal{D} \vert h_{\text{two}})$$가 $$p(\mathcal{D} \vert h_{\text{even}})$$보다는 크다는 것을 확인할 수 있다. 즉, 모델은 $$h_{\text{two}}$$를 선호한다고 결론내릴 수 있을 것이다.
+
+두 Hypothesis들 중 $$h_{\text{two}}$$가 $$h_{\text{even}}$$보다 더 선호되는 이유는 무엇일까? `Occam's Razor`에서는 이를 모델은 데이터(증거)에 부합하는 Hypothesis들 중 가장 간단한(가장 작은) Hypothesis를 선호한다고 주장한다. 이 경우에는 $$h_{\text{two}}$$될 것이다.
+
 ## 참고 자료
 - [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
 - [Wikipedia](https://en.wikipedia.org/wiki/Bayesian_statistics)
@@ -60,3 +93,5 @@ $$
 ## 수정 사항
 - 2022.07.17
     - 최초 게제
+- 2022.07.23
+    - Concept Learning, Hypothesis Space, Likelihood 내용 정리
