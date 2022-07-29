@@ -221,3 +221,5 @@ print("Namespace:", globals()["__name__"])
 
 즉, 맨 처음 질문의 `if __name__ == '__main__':`을 해석하면 다음과 같다. 현재 모듈의 네임스페이스가 `__main__`에 해당한다면, 즉 현재 모듈이 `커맨드 라인 상에서 직접 실행되는 경우`에만 `if`문 이하를 실행하라는 의미이다.
 
+추가 읽기 -
+[https://www.scaler.com/topics/namespace-and-scope-in-python/](https://www.scaler.com/topics/namespace-and-scope-in-python/) : Python의 네임스페이스 및 범위 - 스케일러 주제
