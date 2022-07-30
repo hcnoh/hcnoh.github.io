@@ -61,7 +61,7 @@ $$
 \end{array}
 $$
 
-만약 우리가 $$b(s_t)$$로 하여금 다음을 만족하게끔 정의한다면:
+만약 우리가 $$b(s_t)$$로 하여금 다음을 만족하게끔 정의한다면(항상 만족할 수 있는지 증명 필요):
 
 $$
 \mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}}\left[ \left( R_t - b(s_t) \right)^2 \right] \leq \mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}} \left[ R_t^2 \right],
@@ -83,7 +83,31 @@ $$
 \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \leq \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right].
 $$
 
+미분 가능한 Baseline을 $$\hat{v}_w$$로 정의하자. 그러면 $$\hat{v}_w$$에 대한 Gradient는 다음과 같이 계산할 수 있다:
+
+$$
+\begin{array}{rl}
+-\nabla_w \mathbb{E}_{s_t:\infty, a_{t:\infty}}\left[ (R_t - \hat{v}_w)^2 \right] & = -\nabla_w \mathbb{E}_{\tau \sim \pi_\theta}\left[ (R_t - \hat{v}_w(s_t))^2 \right] \\
+& = -\mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_w (R_t - \hat{v}_w(s_t))^2 \right] \\
+& = \mathbb{E}_{\tau \sim \pi_\theta}\left[ 2(R_t - \hat{v}_w(s_t)) \nabla_w \hat{v}_w(s_t) \right] \\
+& \propto \mathbb{E}_{\tau \sim \pi_\theta}\left[ (R_t - \hat{v}_w(s_t)) \nabla_w \hat{v}_w(s_t) \right].
+\end{array}
+$$
+
 ## REINFORCE + Baseline Method
+위의 결과를 바탕으로 Baseline Method를 도입한 REINFORCE 알고리즘은 다음과 같이 정리될 수 있다:
+
+- REINFORCE + Baseline 알고리즘
+    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 미분 가능한 매개변수화된 State value $$\hat{v}_w(s)$$.
+    - 초매개변수: Learning Rate $$\alpha^\theta > 0, \alpha^w > 0$$.
+    - 정책 매개변수 $$\theta$$ 및 State Value 가중치 $$w$$ 초기화.
+    - 반복:
+        - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
+        - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
+            - $$R_t \longleftarrow $$ 단계 $$t$$에서의 Return.
+            - $$\delta \longleftarrow R_t - \hat{v}_w(s_t)$$.
+            - $$w \longleftarrow w + \alpha^w \gamma^t \delta \nabla_w \hat{v}_w(s_t)$$.
+            - $$\theta \longleftarrow \theta + \alpha^\theta \gamma^t \delta \nabla_\theta \log \pi_\theta(a_t \vert s_t)$$.
 
 ## Whitening (Return Normalization)
 
@@ -97,3 +121,5 @@ $$
 ## 수정 사항
 - 2022.07.14
     - 최초 게제
+- 2022.07.30
+    - REINFORCE + Baseline Method 내용 정리
