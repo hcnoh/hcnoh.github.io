@@ -104,10 +104,14 @@ $$
     - 반복:
         - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
         - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
-            - $$R_t \longleftarrow $$ 단계 $$t$$에서의 Return.
-            - $$\delta \longleftarrow R_t - \hat{v}_w(s_t)$$.
-            - $$w \longleftarrow w + \alpha^w \gamma^t \delta \nabla_w \hat{v}_w(s_t)$$.
-            - $$\theta \longleftarrow \theta + \alpha^\theta \gamma^t \delta \nabla_\theta \log \pi_\theta(a_t \vert s_t)$$.
+        $$
+        \begin{array}{rl}
+        R_t & \longleftarrow \text{Return from step $t$} \\
+        \delta & \longleftarrow R_t - \hat{v}_w(s_t) \\
+        w & \longleftarrow w + \alpha^w \gamma^t \delta \nabla_w \hat{v}_w(s_t) \\
+        \theta & \longleftarrow \theta + \alpha^\theta \gamma^t \delta \nabla_\theta \log \pi_\theta(a_t \vert s_t)
+        \end{array}
+        $$
 
 ## Whitening (Return Normalization)
 분산을 줄이는 또 다른 방법으로는 Whitening이 있다. Whitening은 Return을 정규화하는 방법을 말한다. 특정 에피소드를 진행하는 도중에서 발생한 모든 Return들의 평균 및 표준편차를 통해서 각각의 시간 단계의 Return $$R_t$$를 정규화하는 방식으로 Whitening을 수행할 수 있다:
@@ -117,6 +121,12 @@ $$
 R^*_t & \longleftarrow \frac{R_t - \bar{R}}{\sigma_R}, \\
 \theta & \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta(a_t \vert s_t) R^*_t.
 \end{array}
+$$
+
+이를 통해 Whitening이 분산을 줄이는데 도움이 되는 것을 확인할 수 있다:
+
+$$
+\text{Var}\left[ R^*_t \right] = \text{Var}\left[ \frac{R_t - \bar{R}}{\sigma_R} \right] = \frac{1}{\sigma_R^2} \text{Var}\left[ R_t \right].
 $$
 
 ## Actor-Critic Method
