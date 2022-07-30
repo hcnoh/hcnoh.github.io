@@ -110,6 +110,14 @@ $$
             - $$\theta \longleftarrow \theta + \alpha^\theta \gamma^t \delta \nabla_\theta \log \pi_\theta(a_t \vert s_t)$$.
 
 ## Whitening (Return Normalization)
+분산을 줄이는 또 다른 방법으로는 Whitening이 있다. Whitening은 Return을 정규화하는 방법을 말한다. 특정 에피소드를 진행하는 도중에서 발생한 모든 Return들의 평균 및 표준편차를 통해서 각각의 시간 단계의 Return $$R_t$$를 정규화하는 방식으로 Whitening을 수행할 수 있다:
+
+$$
+\begin{array}{rl}
+R^*_t & \longleftarrow \frac{R_t - \bar{R}}{\sigma_R}, \\
+\theta & \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta(a_t \vert s_t) R^*_t.
+\end{array}
+$$
 
 ## Actor-Critic Method
 
@@ -122,4 +130,4 @@ $$
 - 2022.07.14
     - 최초 게제
 - 2022.07.30
-    - REINFORCE + Baseline Method 내용 정리
+    - REINFORCE + Baseline Method 및 Whitening 내용 정리

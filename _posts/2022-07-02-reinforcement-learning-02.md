@@ -240,8 +240,12 @@ $$\therefore \ \nabla_\theta \eta(\pi_\theta) \approx \gamma^t \nabla_\theta \lo
     - 반복:
         - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
         - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
-            - $$R_t \longleftarrow $$ 단계 $$t$$에서의 Return.
-            - $$\theta \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta (a_t \vert s_t) R_t$$.
+        $$
+        \begin{array}{rl}
+        R_t & \longleftarrow \text{Return from step $t$} \\
+        \theta & \longleftarrow \theta + \alpha \gamma^t \nabla_\theta \log \pi_\theta (a_t \vert s_t) R_t
+        \end{array}
+        $$
 
 ## Gaussian Policy
 이번 섹션에서는 행동 공간이 Continuous한 공간인 경우에 가장 많이 사용되는 정책인 Gaussian Policy를 다뤄보면서 REINFORCE 알고리즘을 실제로 어떻게 구현하는지 확인해보려고 한다.
@@ -293,3 +297,5 @@ $$
     - REINFORCE 알고리즘 추가
 - 2022.07.13
     - Gaussian Policy 내용 추가
+- 2022.07.30
+    - REINFORCE 알고리즘 수정
