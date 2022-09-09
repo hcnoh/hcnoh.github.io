@@ -25,7 +25,7 @@ $$
 R_t = \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}).
 $$
 
-추가적으로 Return은 State-action Value Function $$Q_\pi$$의 Unbiased Estimator이기도 하다. 주어진 고정된 $$s_t, a_t$$에 대해서:
+추가적으로 Return은 상태-가치 함수 $$Q_\pi$$의 Unbiased Estimator이기도 하다. 주어진 고정된 $$s_t, a_t$$에 대하여 다음을 만족하기 때문이다:
 
 $$
 \mathbb{E}_{\tau \sim \pi}[R_t] = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}[R_t] = Q_\pi(s_t, a_t).
@@ -60,13 +60,13 @@ $$
 \arg \max_\pi \eta(\pi).
 $$
 
-즉, 강화 학습의 목적은 누적 보상의 기대값인 Expected Return $$\eta(\pi)$$를 최대화하는 정책 $$\pi$$를 찾는 것이다. 따라서 우리는 앞으로 주어진 정책 $$\pi$$의 Expected Return $$\eta(\pi)$$를 `목적 함수`라고 부르기로 한다.
+즉, 강화 학습의 목적은 누적 보상의 기대값인 Expected Return $$\eta(\pi)$$를 최대화하는 정책 $$\pi$$를 찾는 것이다. 따라서 우리는 앞으로 주어진 정책 $$\pi$$의 Expected Return $$\eta(\pi)$$를 `목적 함수`(Objective Function)라고 부르기로 한다.
 
 ## Policy Gradient Theorem
 위에서 우리는 강화 학습이란 목적 함수를 최대화하는 정책을 찾는 것이라고 정리했다. 이 문제를 어떻게 접근할지에 대해서 고민하기에 앞서 우리는 정책을 특정 매개변수 $$\theta$$로 매개변수화된 확률 분포 $$\pi_\theta$$라고 가정하자. 이렇게 된다면 우리는 목적 함수를 최대화하는 정책을 매개변수화하는 $$\theta$$를 찾으면 되는 것이다. 즉, 우리는 다음과 같은 반복적인 알고리즘을 통해 최적의 $$\theta$$를 찾고자 시도해볼 수 있다:
 
 $$
-\theta = \theta_{\text{old}} + \left. \nabla_\theta \eta(\pi_\theta)\right\vert_{\theta_{\text{old}}}.
+\theta = \theta_{\text{old}} + \alpha \left. \nabla_\theta \eta(\pi_\theta)\right\vert_{\theta_{\text{old}}}.
 $$
 
 여기서 $$\nabla_\theta \eta(\pi_\theta)$$를 Policy Gradient라고 정의한다.
@@ -78,7 +78,7 @@ $$
 $$
 
 ## Proof of Policy Gradient Theorem
-Policy Gradient Theorem을 증명해보는 섹션이다. 내용이 좀 복잡하여 처음 강화 학습을 접하는 사람들은 넘어가도 좋을 것 같다.
+Policy Gradient Theorem을 증명해보는 섹션이다. 내용이 좀 복잡하여 처음 강화 학습을 접하는 독자들은 넘어가도 좋을 것 같다.
 
 Policy Gradient Theorem을 증명하기 위해서 먼저 목적 함수 $$\eta(\pi_\theta)$$를 살펴보면 다음과 같다:
 
@@ -86,7 +86,7 @@ $$
 \eta(\pi_\theta) = \mathbb{E}_{s_0 \sim \rho_0}\left[ V_{\pi_\theta}(s_0) \right].
 $$
 
-여기서 Value Function $$V_{\pi_\theta}(s_0)$$는 다음과 같이 표현된다:
+여기서 가치 함수 $$V_{\pi_\theta}(s_0)$$는 다음과 같이 표현된다:
 
 $$
 V_{\pi_\theta}(s_0) = \sum_{a_0}\pi_\theta(a_0 \vert s_0)Q_{\pi_\theta}(s_0, a_0).
@@ -125,7 +125,7 @@ $$
 \end{array}
 $$
 
-여기서는 추가적으로 $$r(s_0, a_0)$$는 $$\theta$$와 관계가 없는 함수라는 사실을 활용하여 정리하였다. 위 결과를 다시 깔끔하게 정리하면 다음과 같다.
+여기서는 추가적으로 $$r(s_0, a_0)$$는 $$\theta$$와 관계가 없는 함수, 즉 $$\theta$$에 대한 상수라는 사실을 활용하여 정리하였다. 위 결과를 다시 깔끔하게 정리하면 다음과 같다.
 
 $$
 \begin{array}{l}
@@ -172,7 +172,7 @@ $$
 \end{array}
 $$
 
-여기서 감쇄 상수 $$\gamma$$의 값이 $$0 \leq \gamma \leq 1$$의 값을 가지기 때문에 뒤에 붙는 Value Function에 대한 부분은 $$0$$으로 수렴하게 된다. (증명 필요):
+여기서 감쇄 상수 $$\gamma$$의 값이 $$0 \leq \gamma \leq 1$$의 값을 가지기 때문에 뒤에 붙는 가치 함수에 대한 부분은 $$0$$으로 수렴하게 된다. (증명 필요):
 
 $$
 \gamma^t \mathbb{E}_{s_t \sim \rho_t}\left[ \nabla_\theta V_{\pi_\theta}(s_t) \right] \longrightarrow 0.
@@ -284,6 +284,8 @@ $$
 \left[ \boldsymbol{\mu}_\theta(\mathbf{s}), \log \boldsymbol{\Sigma}_\theta(\mathbf{s}) \right] = \text{NN}_\theta(\mathbf{s}).
 $$
 
+이 표현 방식은 `심층 강화 학습`(Deep Reinforcement Learning)에서의 표현 방식이다.
+
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
 
@@ -299,3 +301,5 @@ $$
     - Gaussian Policy 내용 추가
 - 2022.07.30
     - REINFORCE 알고리즘 수정
+- 2022.09.10
+    - Notation 수정
