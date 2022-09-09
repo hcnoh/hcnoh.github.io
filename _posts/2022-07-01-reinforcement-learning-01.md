@@ -32,23 +32,23 @@ Agent가 어떤 순간에 자신이 관찰한 현재의 상태와 그에 따른 
 
 하지만 단순하게 단기적인 보상만을 고려하는 경우에는 장기적으로 문제가 발생할 수 있다. 시험 공부를 해야하는 학생의 예시를 들어보자. 학생에게는 두 가지 선택이 있다. 지금 시험 공부를 할 것인가와 지금 게임을 할 것인가이다. 학생이 받을 수 있는 보상으로는 자신의 행복(물론 정량화하기 힘든 것이지만 여기서는 예시로 활용하기 위해서 그냥 넘어가기로 한다.)을 고려한다고 가정하자. 만약 지금 당장 게임을 한다면 당장의 행복감은 올라가지만 우리는 이 행동이 장기적으로는 좋은 선택지가 아님을 알 수 있다. 시험 공부를 함으로 성적이 잘 나오면 장기적으로는 더욱 행복할 수 있기 때문이다.
 
-따라서 상태와 행동에 대한 값어치는 장기적으로 고려해야 할 필요가 있다. 현재 상태에 대한 값어치를 매기기 위해서 Value Function이라는 것을 다음과 같이 정의한다:
+따라서 상태와 행동에 대한 값어치는 장기적으로 고려해야 할 필요가 있다. 현재 상태에 대한 값어치를 매기기 위해서 상태 가치 함수(State Value Function)라는 것을 다음과 같이 정의한다:
 
 $$
 V_\pi(s_t) = \mathbb{E}_{a_{t:\infty}, s_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
 $$
 
-여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim p(\cdot \vert s_t, a_t)$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포, $$p(\cdot \vert s_t, a_t)$$은 환경의 상태 변화를 위한 모델 확률 분포이다. 또한 여기서 $$\gamma$$는 감쇄 상수이며 먼 미래로 갈 수록 누적되는 보상을 감쇄시키고자 하는 의도로 곱하게 된다. 먼 미래보다는 가까운 미래를 좀 더 고려하고자 하는 의도가 있기 때문이다. 감쇄 상수는 $$0 \leq \gamma \leq 1$$의 값을 갖는다.
+여기서 $$s_t$$와 $$a_t$$는 각각 현재 시간 단계 $$t$$에서의 상태와 행동이다. 또한 위의 기대값을 계산하기 위한 Sampling Distribution은 $$a_t \sim \pi(\cdot \vert s_t)$$, $$s_{t+1} \sim p(\cdot \vert s_t, a_t)$$이며, 여기서 $$\pi$$는 정책의 행동 확률 분포이고, $$p(\cdot \vert s_t, a_t)$$은 환경의 상태 변화를 위한 모델 확률 분포이다. 또한 여기서 $$\gamma$$는 감쇄 상수이며 먼 미래로 갈 수록 누적되는 보상을 감쇄시키고자 하는 의도로 곱하게 된다. 먼 미래보다는 가까운 미래를 좀 더 고려하고자 하는 의도가 있기 때문이다. 감쇄 상수는 $$0 \leq \gamma \leq 1$$의 값을 갖는다.
 
-비슷하게 현재 상태, 행동에 대한 값어치를 동시에 매기기 위한 State-action Value Function을 정의한다:
+비슷하게 현재 상태, 행동에 대한 값어치를 동시에 매기기 위한 상태-행동 가치 함수(State-action Value Function)를 다음과 같이 정의한다:
 
 $$
 Q_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right].
 $$
 
-여기서의 Sampling Distribution도 Value Function의 경우와 동일하다.
+여기서의 Sampling Distribution도 가치 함수의 경우와 동일하다.
 
-여기서 두 Value Function $$V_\pi$$ 및 $$Q_{\pi}$$의 관계에 대한 간단하지만 중요한 Lemma가 존재한다:
+여기서 두 가치 함수 $$V_\pi$$ 및 $$Q_{\pi}$$의 관계에 대한 간단하지만 중요한 Lemma가 존재한다:
 
 $$
 \mathbb{E}_{a_t \sim \pi(\cdot \vert s_t)}\left[ Q_{\pi}(s_t, a_t) \right] = V_{\pi}(s_t).
@@ -66,15 +66,15 @@ $$
 $$
 
 ## Advantage Function
-주어진 정책 $$\pi$$에 대한 Advantage Function $$A_\pi$$는 다음과 같이 정의한다:
+주어진 정책 $$\pi$$에 대한 이득 함수(Advantage Function) $$A_\pi$$는 다음과 같이 정의한다:
 
 $$
 A_\pi(s_t, a_t) = Q_\pi(s_t, a_t) - V_\pi(s_t).
 $$
 
-Advantage Function이라고 부르는 이유는 현재 상태의 값어치인 $$V_\pi$$ 대비 행동 $$a_t$$를 취했을 경우 얻는 값어치 $$Q_\pi$$가 얼마나 Advantage가 있는 것이냐를 표현하는 것이기 때문이다.
+이득 함수라고 부르는 이유는 현재 상태의 값어치인 $$V_\pi$$ 대비 행동 $$a_t$$를 취했을 경우 얻는 값어치 $$Q_\pi$$가 얼마나 이득(Advantage)이 있는 것이냐를 표현하는 것이기 때문이다.
 
-Advantage Function은 다음과 같은 중요한 성질을 갖고 있다:
+이득 함수는 다음과 같은 중요한 성질을 갖고 있다:
 
 $$
 A_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)} \left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right].
@@ -116,4 +116,6 @@ $$
 - 2022.07.01
     - 최초 게제
 - 2022.07.10
+    - Notation 수정
+- 2022.09.10
     - Notation 수정

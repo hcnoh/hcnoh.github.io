@@ -98,7 +98,7 @@ $$
 위의 결과를 바탕으로 Baseline Method를 도입한 REINFORCE 알고리즘은 다음과 같이 정리될 수 있다:
 
 - REINFORCE + Baseline 알고리즘
-    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 미분 가능한 매개변수화된 State value $$\hat{v}_w(s)$$.
+    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 미분 가능한 매개변수화된 State Value $$\hat{v}_w(s)$$.
     - 초매개변수: Learning Rate $$\alpha^\theta > 0, \alpha^w > 0$$.
     - 정책 매개변수 $$\theta$$ 및 State Value 가중치 $$w$$ 초기화.
     - 반복:
