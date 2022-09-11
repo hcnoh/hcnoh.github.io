@@ -61,7 +61,7 @@ $$
 \end{array}
 $$
 
-만약 우리가 $$b(s_t)$$로 하여금 다음을 만족하게끔 정의한다면(항상 만족할 수 있는지 증명 필요):
+만약 우리가 $$b(s_t)$$로 하여금 다음을 만족하게끔 정의한다면:
 
 $$
 \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \left( R_t - b(s_t) \right)^2 \right] \leq \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}} \left[ R_t^2 \right],
@@ -83,14 +83,42 @@ $$
 \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \leq \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right].
 $$
 
-미분가능한 Baseline을 $$\hat{v}_w$$로 정의하자. 그러면 $$\hat{v}_w$$에 대한 Gradient는 다음과 같이 계산할 수 있다:
+미분가능한 Baseline을 $$\hat{v}_w$$로 정의하자. 또한 이를 통해 다음의 손실 함수(Loss Function)를 고려해보자:
 
 $$
-\begin{array}{rl}
--\nabla_w \mathbb{E}_{s_t:\infty, a_{t:\infty}}\left[ (R_t - \hat{v}_w)^2 \right] & = -\nabla_w \mathbb{E}_{\tau \sim \pi_\theta}\left[ (R_t - \hat{v}_w(s_t))^2 \right] \\
-& = -\mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_w (R_t - \hat{v}_w(s_t))^2 \right] \\
-& = \mathbb{E}_{\tau \sim \pi_\theta}\left[ 2(R_t - \hat{v}_w(s_t)) \nabla_w \hat{v}_w(s_t) \right] \\
-& \propto \mathbb{E}_{\tau \sim \pi_\theta}\left[ (R_t - \hat{v}_w(s_t)) \nabla_w \hat{v}_w(s_t) \right].
+\mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( R_t - \hat{v}_w(s_t) \right)^2 \right].
+$$
+
+이 손실 함수를 감소시키는 Gradient는 다음과 같이 계산될 수 있다:
+
+$$
+\begin{array}{l}
+-\nabla_w \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( R_t - \hat{v}_w(s_t) \right)^2 \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = -\mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \nabla_w \left( R_t - \hat{v}_w(s_t) \right)^2 \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \cdot 2(R_t - \hat{v}_w(s_t)) \nabla_w \hat{v}_w(s_t) \right] \\
+\ \ \ \  \ \ \ \  \ \ \ \ \propto\mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \cdot (R_t - \hat{v}_w(s_t)) \nabla_w \hat{v}_w(s_t) \right].
+\end{array}
+$$
+
+이 Gradient는 손실 함수를 감소시켜 다음의 상황을 유도하게 된다:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( R_t - \hat{v}_w(s_t) \right)^2 \right] \\
+= \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t, a_t} \left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}} \left[ \left( R_t - \hat{v}_w(s_t) \right)^2 \right] \right] \longrightarrow 0 \\
+\Longrightarrow \mathbb{E}_{s_t, a_t} \left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}} \left[ \left( R_t - \hat{v}_w(s_t) \right)^2 \right] \right] \longrightarrow 0 \\
+\ \ \ \  \ \ \ \  \ \ \ \ \leq \mathbb{E}_{s_t, a_t}\left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}} \left[ R_t \right]^2 \right].
+\end{array}
+$$
+
+따라서, 위의 Gradient는 원래 Estimator의 분산을 줄여주게끔 하는 $$\hat{v}_w$$를 찾게 된다. 또한 추가적으로 이 Gradient는 손실 함수를 최소화하며 $$\hat{v}_w$$로 하여금 상태 가치 함수 $$V_{\pi_\theta}$$를 근사화하도록 한다:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( R_t - \hat{v}_w(s_t) \right)^2 \right] = 0 \\
+\ \ \ \  \ \ \ \  \ \ \ \ \Longrightarrow \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( R_t - \hat{v}_w(s_t) \right) \right] = 0 \\
+\ \ \ \  \ \ \ \  \ \ \ \ \Longrightarrow \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t} \left[ \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}} \left[ R_t \right] - \hat{v}_w(s_t) \right] = 0 \\
+\ \ \ \  \ \ \ \  \ \ \ \ \Longrightarrow \sum_{t=0}^\infty \gamma^t \mathbb{E}_{s_t} \left[ V_{\pi_\theta}(s_t) - \hat{v}_w(s_t) \right] = 0.
 \end{array}
 $$
 
@@ -141,6 +169,6 @@ $$
     - 최초 게제
 - 2022.07.30
     - REINFORCE + Baseline Method 및 Whitening 내용 정리
-- 2022.09.10
+- 2022.09.11
     - Notation 수정
     - 
