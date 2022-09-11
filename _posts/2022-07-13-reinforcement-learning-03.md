@@ -158,8 +158,38 @@ $$
 $$
 
 ## Actor-Critic Method
+위에서 Baseline을 설명하면서 우리는 Baseline $$\hat{v}_w(s)$$가 상태 가치 함수 $$V_\pi(s)$$를 근사화하도록 시도한다는 사실을 확인할 수 있었다. 여기에 추가로 기존 Policy Gradient에서 Return $$R_t$$ 대신 $$r(s_t, a_t) + \gamma V_\pi(s_{t+1})$$을 활용하여도 Policy Gradient의 Unbiasness는 해치지 않는다는 것을 다음을 통해서 확인할 수 있다:
+
+$$
+\begin{array}{l}
+\mathbb{E}_{\tau \sim \pi_\theta} \left[ \nabla_\theta \log \pi_\theta (a_t \vert s_t) (r(s_t, a_t) + \gamma V_\pi(s_{t+1})) \right] \\
+= \mathbb{E}_{s_t, a_t}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) (r(s_t, a_t) + \gamma \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ V_\pi(s_{t+1}) \right]) \right] \\
+= \mathbb{E}_{s_t, a_t}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) (r(s_t, a_t) + \gamma \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \mathbb{E}_{s_{t+2:\infty}, a_{t+1:\infty}} \left[ R_{t+1} \right] \right]) \right] \\
+= \mathbb{E}_{s_t, a_t}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) (r(s_t, a_t) + \gamma \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ R_{t+1} \right]) \right] \\
+= \mathbb{E}_{\tau \sim \pi_\theta} \left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) (r(s_t, a_t) + \gamma R_{t+1}) \right] \\
+= \mathbb{E}_{\tau \sim \pi_\theta} \left[ \nabla_\theta \log \pi_\theta (a_t \vert s_t) R_t \right].
+\end{array}
+$$
+
+여기서 `Bootstrapping`이라는 방법을 통해서 $$V_\pi(s)$$ 대신 매개변수 $$w$$로 매개변수화된 함수 $$\hat{v}_w(s)$$를 활용하게 된다. Bootstrapping에 대해서는 다음 포스트에서 자세히 설명하도록 하겠다.
 
 ## Actor-Critic Algorithm
+다음은 Actor-Critic 알고리즘을 정리한 것이다:
+
+- REINFORCE + Baseline 알고리즘
+    - 입력: 미분가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 미분가능한 매개변수화된 상태 가치 $$\hat{v}_w(s)$$.
+    - 초매개변수: Learning Rate $$\alpha^\theta > 0, \alpha^w > 0$$.
+    - 정책 매개변수 $$\theta$$ 및 상태 가치 가중치 $$w$$ 초기화.
+    - 반복:
+        - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
+        - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
+        $$
+        \begin{array}{rl}
+        \delta & \longleftarrow r(s_t, a_t) + \gamma \hat{v}_w(s_{t+1}) - \hat{v}_w(s_t) \ \ (\hat{v}_w(s_T) = 0) \\
+        w & \longleftarrow w + \alpha^w \gamma^t \delta \nabla_w \hat{v}_w(s_t) \\
+        \theta & \longleftarrow \theta + \alpha^\theta \gamma^t \delta \nabla_\theta \log \pi_\theta(a_t \vert s_t)
+        \end{array}
+        $$
 
 ## 참고 자료
 - [Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning)
@@ -171,4 +201,4 @@ $$
     - REINFORCE + Baseline Method 및 Whitening 내용 정리
 - 2022.09.11
     - Notation 수정
-    - 
+    - Actor-Critic Method, Actor-Critic Algorithm 내용 정리
