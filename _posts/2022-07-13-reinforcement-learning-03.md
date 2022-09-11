@@ -56,7 +56,7 @@ $$
 \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \\
 = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \left( \nabla_\theta\log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right)^2 \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta\log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \right)^2 \\
 = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \left( \nabla_\theta\log\pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right)^2 \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta\log\pi_\theta(a_t \vert s_t)R_t \right] \right)^2 \\
-= \mathbb{E}_{s_t, a_t}\left[ \left(\nabla_\theta\log\pi_\theta(a_t \vert s_t) \right)^2 \mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}}\left[(R_t - b(s_t))^2\right] \right] \\
+= \mathbb{E}_{s_t, a_t}\left[ \left(\nabla_\theta\log\pi_\theta(a_t \vert s_t) \right)^2 \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[(R_t - b(s_t))^2\right] \right] \\
 \ \ \ \ - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta\log\pi_\theta(a_t \vert s_t)R_t \right] \right)^2.
 \end{array}
 $$
@@ -64,7 +64,7 @@ $$
 만약 우리가 $$b(s_t)$$로 하여금 다음을 만족하게끔 정의한다면(항상 만족할 수 있는지 증명 필요):
 
 $$
-\mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}}\left[ \left( R_t - b(s_t) \right)^2 \right] \leq \mathbb{E}_{s_{t+1:\infty, a_{t+1:\infty}}} \left[ R_t^2 \right],
+\mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ \left( R_t - b(s_t) \right)^2 \right] \leq \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}} \left[ R_t^2 \right],
 $$
 
 우리는 다음의 관계를 획득할 수 있다:
@@ -72,7 +72,7 @@ $$
 $$
 \begin{array}{l}
 \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ \leq \mathbb{E}_{s_t, a_t}\left[ \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right)^2 \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ R_t^2 \right] \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right] \right)^2 \\
+\ \ \ \  \ \ \ \  \ \ \ \ \leq \mathbb{E}_{s_t, a_t}\left[ \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right)^2 \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}\left[ R_t^2 \right] \right] - \left( \mathbb{E}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t) R_t \right] \right)^2 \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right].
 \end{array}
 $$
@@ -83,7 +83,7 @@ $$
 \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)(R_t - b(s_t)) \right] \leq \text{Var}_{\tau \sim \pi_\theta}\left[ \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t \right].
 $$
 
-미분 가능한 Baseline을 $$\hat{v}_w$$로 정의하자. 그러면 $$\hat{v}_w$$에 대한 Gradient는 다음과 같이 계산할 수 있다:
+미분가능한 Baseline을 $$\hat{v}_w$$로 정의하자. 그러면 $$\hat{v}_w$$에 대한 Gradient는 다음과 같이 계산할 수 있다:
 
 $$
 \begin{array}{rl}
@@ -98,9 +98,9 @@ $$
 위의 결과를 바탕으로 Baseline Method를 도입한 REINFORCE 알고리즘은 다음과 같이 정리될 수 있다:
 
 - REINFORCE + Baseline 알고리즘
-    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 미분 가능한 매개변수화된 State Value $$\hat{v}_w(s)$$.
+    - 입력: 미분가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 미분가능한 매개변수화된 상태 가치 $$\hat{v}_w(s)$$.
     - 초매개변수: Learning Rate $$\alpha^\theta > 0, \alpha^w > 0$$.
-    - 정책 매개변수 $$\theta$$ 및 State Value 가중치 $$w$$ 초기화.
+    - 정책 매개변수 $$\theta$$ 및 상태 가치 가중치 $$w$$ 초기화.
     - 반복:
         - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
         - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
@@ -123,7 +123,7 @@ R^*_t & \longleftarrow \frac{R_t - \bar{R}}{\sigma_R}, \\
 \end{array}
 $$
 
-이를 통해 Whitening이 분산을 줄이는데 도움이 되는 것을 확인할 수 있다:
+이를 통해 ($$\sigma_R > 1$$인 경우) Whitening이 분산을 줄이는데 도움이 되는 것을 확인할 수 있다:
 
 $$
 \text{Var}\left[ R^*_t \right] = \text{Var}\left[ \frac{R_t - \bar{R}}{\sigma_R} \right] = \frac{1}{\sigma_R^2} \text{Var}\left[ R_t \right].
@@ -141,3 +141,6 @@ $$
     - 최초 게제
 - 2022.07.30
     - REINFORCE + Baseline Method 및 Whitening 내용 정리
+- 2022.09.10
+    - Notation 수정
+    - 
