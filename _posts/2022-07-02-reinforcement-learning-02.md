@@ -19,13 +19,13 @@ permalink: /2022-07-02-reinforcement-learning-02
 이전 [포스트](https://hcnoh.github.io/2022-07-01-reinforcement-learning-01)에서는 강화 학습 알고리즘들을 기술하는데 필요한 용어들과 함수들, 그리고 그 함수들의 성질들에 관하여 간단히 정리하였다. 이번 포스트에서는 그러한 함수들과 관련된 추가적인 특징들과 강화 학습에서 가장 중요한 정리인 Policy Gradient Theorem을 다룰 것이다.
 
 ## 강화 학습의 목적
-강화 학습의 목적을 다시 형식적으로 기술해보자. 그 전에 Return에 대해서 먼저 정의한다. Return은 현재 시간 단계 $$t$$에서부터 미래까지의 누적 보상으로 정의한다:
+강화 학습의 목적을 다시 형식적으로 기술해보자. 그 전에 `Return`에 대해서 먼저 정의한다. Return은 현재 시간 단계 $$t$$에서부터 미래까지의 `누적 보상`으로 정의한다:
 
 $$
 R_t = \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}).
 $$
 
-추가적으로 Return은 상태-가치 함수 $$Q_\pi$$의 Unbiased Estimator이기도 하다. 주어진 고정된 $$s_t, a_t$$에 대하여 다음을 만족하기 때문이다:
+추가적으로 Return은 상태-가치 함수 $$Q_\pi$$의 `Unbiased Estimator`이기도 하다. 주어진 고정된 $$s_t, a_t$$에 대하여 다음을 만족하기 때문이다:
 
 $$
 \mathbb{E}_{\tau \sim \pi}[R_t] = \mathbb{E}_{s_{t+1:\infty}, a_{t+1:\infty}}[R_t] = Q_\pi(s_t, a_t).
@@ -37,7 +37,7 @@ $$
 \tau \sim \pi : s_{t'} \sim p(\cdot \vert s_{t'-1}, a_{t'-1}), a_{t'} \sim \pi(\cdot \vert s_{t'}) \ \ \text{for} \ t'=t+1, t+2, \cdots.
 $$
 
-여기서 우리는 정책 $$\pi$$에 대한 Expected Return을 생각해볼 수 있다. 정책 $$\pi$$에 대한 Expected Return $$\eta(\pi)$$는 다음과 같이 정의한다:
+여기서 우리는 정책 $$\pi$$에 대한 `Expected Return`을 생각해볼 수 있다. 정책 $$\pi$$에 대한 Expected Return $$\eta(\pi)$$는 다음과 같이 정의한다:
 
 $$
 \eta(\pi) = \mathbb{E}_{\tau \sim \pi}\left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right],
@@ -69,9 +69,9 @@ $$
 \theta = \theta_{\text{old}} + \alpha \left. \nabla_\theta \eta(\pi_\theta)\right\vert_{\theta_{\text{old}}}.
 $$
 
-여기서 $$\nabla_\theta \eta(\pi_\theta)$$를 Policy Gradient라고 정의한다.
+여기서 $$\nabla_\theta \eta(\pi_\theta)$$를 `Policy Gradient`라고 정의한다.
 
-Policy Gradient Theorem은 Policy Gradient에 대한 계산 결과를 제시한다. Policy Gradient Theorem에서 제시한 Policy Gradient의 결과는 다음과 같다:
+`Policy Gradient Theorem`은 Policy Gradient에 대한 계산 결과를 제시한다. Policy Gradient Theorem에서 제시한 Policy Gradient의 결과는 다음과 같다:
 
 $$
 \nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
@@ -208,7 +208,7 @@ $$
 $$
 
 ## REINFORCE Algorithm
-REINFORCE 알고리즘은 Monte Carlo Method 기반의 Policy Gradient 방법이다. 앞에서 Policy Gradient Theorem으로부터 우리는 다음의 결과를 활용할 수 있게 됐다:
+`REINFORCE 알고리즘`은 Monte Carlo Method 기반의 Policy Gradient 방법이다. 앞에서 Policy Gradient Theorem으로부터 우리는 다음의 결과를 활용할 수 있게 됐다:
 
 $$
 \nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta (a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
@@ -248,7 +248,7 @@ $$\therefore \ \left( \nabla_\theta \eta(\pi_\theta) \right)_t \approx \gamma^t 
         $$
 
 ## Gaussian Policy
-이번 섹션에서는 행동 공간이 Continuous한 공간인 경우에 가장 많이 사용되는 정책인 Gaussian Policy를 다뤄보면서 REINFORCE 알고리즘을 실제로 어떻게 구현하는지 확인해보려고 한다.
+이번 섹션에서는 행동 공간이 연속된 공간인 경우에 가장 많이 사용되는 정책인 `Gaussian Policy`를 다뤄보면서 REINFORCE 알고리즘을 실제로 어떻게 구현하는지 확인해보려고 한다.
 
 일단 먼저 Gaussian Policy $$\pi_\theta$$는 다음과 같이 쓴다:
 

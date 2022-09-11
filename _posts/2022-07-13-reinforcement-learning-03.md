@@ -19,7 +19,7 @@ permalink: /2022-07-13-reinforcement-learning-03
 이전 [포스트](https://hcnoh.github.io/2022-07-02-reinforcement-learning-02)에서는 강화 학습에서 가장 중요한 정리인 Policy Gradient Theorem을 중점적으로 다루었고 이를 바탕으로 기본적인 Policy Gradient 알고리즘인 REINFORCE 알고리즘과 이를 활용하기 위한 간단한 Gaussian Policy에 대한 내용을 다루었다. 이번 포스트에서는 이러한 Policy Gradient 방법들에서 사용하는 Estimator의 분산(Variance)을 줄여주는 방법들인 Baseline Method를 포함한 다양한 방법들을 알아보도록 한다.
 
 ## Baseline Method
-Baseline Method란 Policy Gradient $$\nabla_\theta \eta(\pi_\theta)$$에 대한 Estimator의 분산을 줄여주는 기본적인 방법이다. 이전 포스트에서 소개한 Policy Gradient Estimator는 다음과 같다:
+`Baseline Method`란 Policy Gradient $$\nabla_\theta \eta(\pi_\theta)$$에 대한 Estimator의 분산을 줄여주는 기본적인 방법이다. 이전 포스트에서 소개한 Policy Gradient Estimator는 다음과 같다:
 
 $$
 \nabla_\theta \log \pi_\theta(a_t \vert s_t)R_t.
@@ -142,7 +142,7 @@ $$
         $$
 
 ## Whitening (Return Normalization)
-분산을 줄이는 또 다른 방법으로는 Whitening이 있다. Whitening은 Return을 정규화하는 방법을 말한다. 특정 에피소드를 진행하는 도중에서 발생한 모든 Return들의 평균 및 표준편차를 통해서 각각의 시간 단계의 Return $$R_t$$를 정규화하는 방식으로 Whitening을 수행할 수 있다:
+분산을 줄이는 또 다른 방법으로는 `Whitening`이 있다. Whitening은 Return을 정규화하는 방법을 말한다. 특정 에피소드를 진행하는 도중에서 발생한 모든 Return들의 평균 및 표준편차를 통해서 각각의 시간 단계의 Return $$R_t$$를 정규화하는 방식으로 Whitening을 수행할 수 있다:
 
 $$
 \begin{array}{rl}
@@ -171,7 +171,7 @@ $$
 \end{array}
 $$
 
-여기서 `Bootstrapping`이라는 방법을 통해서 $$V_\pi(s)$$ 대신 매개변수 $$w$$로 매개변수화된 함수 $$\hat{v}_w(s)$$를 활용하게 된다. Bootstrapping에 대해서는 다음 포스트에서 자세히 설명하도록 하겠다.
+여기서 `Bootstrapping`이라는 방법을 통해서 $$V_\pi(s)$$ 대신 매개변수 $$w$$로 매개변수화된 함수 $$\hat{v}_w(s)$$를 활용하게 된다. Bootstrapping에 대해서는 다음 포스트에서 자세히 설명하도록 하겠다. 여기서 $$\hat{v}_w(s)$$는 실제 가치 함수 $$V_\pi(s)$$에 대한 `Critic`으로 정의한다. 이 알고리즘을 통해서 `Actor`의 역할을 하는 Agent의 행동을 평가하겠다는 의미이다. 이 알고리즘을 `Actor-Critic 알고리즘`으로 부르는 이유이다.
 
 ## Actor-Critic Algorithm
 다음은 Actor-Critic 알고리즘을 정리한 것이다:
