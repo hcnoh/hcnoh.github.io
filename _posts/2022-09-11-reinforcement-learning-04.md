@@ -27,7 +27,7 @@ $$
 
 즉, 매 갱신마다 $$\hat{v}_w(s_t)$$는 $$\text{Target}$$을 향해서 한 걸음씩 다가가게 되는 것이다. 이러한 $$\text{Target}$$을 어떻게 정의하냐에 따라서 방법론에 대한 정의가 달라진다. 만약 $$\text{Target}$$으로 Return $$R_t$$를 사용한다면 이 방법론은 `Monte Carlo`(MC) 방법이 될 것이다. 만약 $$\text{Target}$$으로 $$r(s_t + a_t) + \gamma \hat{v}_w(s_{t+1})$$을 사용한다면 이 방법론은 `Temporal Difference`(TD) 방법이 될 것이다. (두 방법에 대한 자세한 사항은 추후에 설명하도록 하겠다.)
 
-강화 학습에서의 `편향-분산 Tradeoff` (Bias-Variance Tradeoff)는 MC와 TD 방법의 차이로부터 확인할 수 있다. 강화 학습의 관점에서 MC 또는 TD 방법의 편향과 분산은 그들의 $$\text{Target}$$d에 대한 편향과 분산으로 계산될 수 있다:
+강화 학습에서의 `편향-분산 Tradeoff` (Bias-Variance Tradeoff)는 MC와 TD 방법의 차이로부터 확인할 수 있다. 강화 학습의 관점에서 MC 또는 TD 방법의 편향과 분산은 그들의 $$\text{Target}$$에 대한 편향과 분산으로 계산될 수 있다:
 
 $$
 \begin{array}{rl}
