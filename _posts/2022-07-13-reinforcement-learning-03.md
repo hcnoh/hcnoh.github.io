@@ -171,7 +171,7 @@ $$
 \end{array}
 $$
 
-여기서 `Bootstrapping`이라는 방법을 통해서 $$V_\pi(s)$$ 대신 매개변수 $$w$$로 매개변수화된 함수 $$\hat{v}_w(s)$$를 활용하게 된다. Bootstrapping에 대해서는 다음 포스트에서 자세히 설명하도록 하겠다. 여기서 $$\hat{v}_w(s)$$는 실제 가치 함수 $$V_\pi(s)$$에 대한 `Critic`으로 정의한다. 이 알고리즘을 통해서 `Actor`의 역할을 하는 Agent의 행동을 평가하겠다는 의미이다. 이 알고리즘을 `Actor-Critic 알고리즘`으로 부르는 이유이다.
+여기서 $$R_t$$ 대신 $$r(s_t, a_t) + \gamma V_\pi(s_{t+1})$$을 활용하는 방법을 `Bootstrapping`이라고 한다. Bootstrapping에 대해서는 다음 포스트에서 자세히 설명하도록 하겠다. 추가로 $$V_\pi(s)$$ 대신 매개변수 $$w$$로 매개변수화된 함수 $$\hat{v}_w(s)$$를 활용하게 된다. 여기서 $$\hat{v}_w(s)$$는 실제 가치 함수 $$V_\pi(s)$$에 대한 `Critic`으로 정의한다. 이 알고리즘을 통해서 `Actor`의 역할을 하는 Agent의 행동을 평가하겠다는 의미이다. 이 알고리즘을 `Actor-Critic 알고리즘`으로 부르는 이유이다.
 
 ## Actor-Critic Algorithm
 다음은 Actor-Critic 알고리즘을 정리한 것이다:
