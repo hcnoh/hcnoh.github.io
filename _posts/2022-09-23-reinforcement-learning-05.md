@@ -93,7 +93,7 @@ $$
 
 이러한 정책 변화에 따른 목적 함수의 변화에 대한 정리를 통해서 우리는 다음과 같은 사항을 확인할 수 있다. 만약 우리가 새로운 정책 $$\tilde{\pi}$$를 $$A_{\pi_\text{old}}(s_t, \cdot) \geq 0$$를 만족하게끔 선택한다면, $$\pi_\text{old}$$에 비해서 $$\tilde{\pi}$$가 더 개선되도록 보장할 수 있다.
 
-## 목적 함수의 근사화
+## Trust Region
 하지만 궤적 $$\tau$$의 $$\pi_\text{old}$$에 대한 의존성은 이 정리를 통한 최적화 작업을 어렵게 만든다. 따라서 이를 대신하기 위하여 $$\eta(\tilde{\pi})$$에 대한 `지역 근사`(Local Approximation)를 다음과 같이 정의한다:
 
 $$
@@ -106,7 +106,7 @@ $$
 L_{\pi_\text{old}}(\tilde{\pi}) = \eta(\pi_\text{old}) + \sum_s \rho_{\pi_\text{old}}(s) \bar{A}(s).
 $$
 
-`Trust Region Policy Optimization` (TRPO)는 이 지역 근사를 통해서 $$\pi_\text{old}$$로부터 새로운 정책 $$\tilde{\pi}$$로 갱신을 시도한다. 즉, 지역 근사로부터 갱신 작업을 진행하며 성능이 개선이 됨을 보장하기 위해서 $$\pi_\text{old}$$로부터 너무 급격하게 변화하지 않으려고 한다. 즉 $$\pi_\text{old}$$ 근처의 `Trust Region`에서는 $$L_{\pi_\text{old}}$$가 충분히 $$\eta(\tilde{\pi})$$와 근접하게 하도록 하는 `Trust Region`을 찾아서 그 안에서만 갱신을 시도하도록 한다.
+`Trust Region Policy Optimization` (TRPO)는 이 지역 근사를 통해서 $$\pi_\text{old}$$로부터 새로운 정책 $$\tilde{\pi}$$로 갱신을 시도한다. 즉, 지역 근사로부터 갱신 작업을 진행하며 성능이 개선이 됨을 보장하기 위해서 $$\pi_\text{old}$$로부터 너무 급격하게 변화하지 않으려고 한다. 따라서 TRPO는 $$\pi_\text{old}$$ 근처의 `Trust Region`에서는 $$L_{\pi_\text{old}}$$가 충분히 $$\eta(\tilde{\pi})$$와 근접하게 하도록 하는 `Trust Region`을 찾아서 그 안에서만 정책 갱신을 시도하도록 한다.
 
 ## 참고 자료
 - [Wikipedia: Reinforcementa Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
