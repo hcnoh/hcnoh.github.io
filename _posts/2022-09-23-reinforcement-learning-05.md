@@ -16,6 +16,8 @@ author: "Hyungcheol Noh"
 permalink: /2022-09-23-reinforcement-learning-05
 ---
 
+이번 포스트부터 시작하여 향후 포스트들은 강화 학습에서 중요한 알고리즘들 중 하나인 `Trust Region Policy Optimization` (TRPO)에 대해서 다루게 된다. TRPO는 Policy Gradient 계열의 알고리즘들이 가지게 되는 기존 정책을 통한 Sampling 문제를 제시하고 이를 개선하기 위한 방법으로 `Trust Region` 방법을 제안한 연구이다. 향후 내용들이 조금 복잡하여 처음 강화 학습을 접하는 독자들은 증명 부분은 생략하고 큰 흐름만 파악하여 내용을 이해해도 좋을 것 같다.
+
 ## 정책 변화에 따른 목적 함수의 변화
 [강화 학습 2편 포스트](https://hcnoh.github.io/2022-07-02-reinforcement-learning-02)에서 강화 학습의 `목적 함수`(Objective Function) $$\eta(\pi)$$를 우리는 Expected Return으로 정의하기로 했었다:
 
