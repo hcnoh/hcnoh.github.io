@@ -84,7 +84,7 @@ $$
 이를 통해서 $$\eta(\tilde{\pi})$$는 다음과 같이 정리할 수 있다:
 
 $$
-\eta(\tilde{\pi}) = \eta(\pi_\text{old}) + \sum_s \rho_{\tilde{\pi}}(s) \sum_a \tilde{\pi}(s \vert s) A_{\pi_\text{old}}(s, a).
+\eta(\tilde{\pi}) = \eta(\pi_\text{old}) + \sum_s \rho_{\tilde{\pi}}(s) \sum_a \tilde{\pi}(a \vert s) A_{\pi_\text{old}}(s, a).
 $$
 
 이는 또한 $$\bar{A} = \sum_a \tilde{\pi}(a \vert s) A_{\pi_\text{old}}(s, a)$$를 통해서 다음과 같이 정리할 수도 있다:
