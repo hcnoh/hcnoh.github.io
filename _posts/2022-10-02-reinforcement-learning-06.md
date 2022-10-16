@@ -70,7 +70,7 @@ $$
 
 위의 증명 과정을 통해서 다음의 결과도 자연스레 유도할 수 있다:
 
-**Remark**
+**Remark)**
 
 $$
 D_{\text{TV}}(p \Vert q) = \sum_{x \in \mathcal{X}: p(x) \geq q(x)} \left[ p(x) - q(x) \right].
