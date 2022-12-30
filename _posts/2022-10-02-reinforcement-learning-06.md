@@ -23,6 +23,61 @@ $$
 \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) = p(a \neq \tilde{a} \vert \pi, \tilde{\pi}, s) \leq \alpha.
 $$
 
+연관된 정책 짝의 개념을 통해서 우리는 모든 상태 $$s$$에 대해서 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$에 대해 다음의 정리가 만족됨을 보이고자 한다.
+
+**Theorem 1)**
+
+$$
+\left\vert \mathbb{E}_{s_t \sim \tilde{\pi}} \left[ \bar{A}(s_t) \right] - \mathbb{E}_{s_t \sim \pi} \left[ \bar{A}(s_t) \right] \right\vert \leq 4\alpha\left( 1 - \left( 1 - \alpha \right)^t \right) \max_{s, a} \left\vert A_\pi(s, a) \right\vert.
+$$
+
+이를 증명하기 위해서는 먼저 다음의 Lemma를 증명해야 한다.
+
+**Lemma 1)**
+주어진 $$\alpha$$로 연관된 정책 쌍 $$\pi, \tilde{\pi}$$는 다음을 만족한다:
+
+$$
+\left\vert \bar{A}(s) \right\vert \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.
+$$
+
+Lemma 1의 증명은 다음과 같다:
+
+$$
+\begin{array}{rl}
+\left\vert \bar{A}(s) \right\vert
+& = \left\vert \sum_a \tilde{\pi}(a \vert s) A_\pi (s, a) \right\vert \\
+& = \left\vert \sum_a \left( \tilde{\pi}(a \vert s) A_\pi (s, a) - \pi(a \vert s) A_\pi (s, a) \right) \right\vert \\
+& = \left\vert \sum_{\tilde{a}} \tilde{\pi}(\tilde{a} \vert s) A_\pi (s, \tilde{a}) - \sum_{a} \pi(a \vert s) A_\pi (s, a) \right\vert.
+\end{array}
+$$
+
+여기서는 다음의 관계를 사용하였다:
+
+$$
+\begin{array}{rl}
+\sum_a \pi(a \vert s) A_\pi(s, a)
+& = \sum_a \pi(a \vert s) (Q_\pi (s, a) - V_\pi(s)) \\
+& = \sum_a \pi(a \vert s)Q_\pi(s, a) - V_\pi(s) \\
+& = 0.
+\end{array}
+$$
+
+따라서 $$\left\vert \bar{A}(s) \right\vert$$는 다음과 같이 정리할 수 있다:
+
+$$
+\begin{array}{rl}
+\left\vert \bar{A}(s) \right\vert
+& = \left\vert \sum_{a, \tilde{a}} \pi(a \vert s) \cdot \pi(\tilde{a} \vert s) \cdot A_\pi(s, \tilde{a}) \right. \\
+& \ \ \ \  \ \ \ \ - \left. \sum_{a, \tilde{a}} \pi(a \vert s) \cdot \tilde{\pi}(\tilde{a} \vert s) \cdot A_\pi(s, a) \right\vert \\
+& = \left\vert \sum_{a, \tilde{a}} \pi(a \vert s) \tilde{\pi}(a \vert s) \left( A_\pi(s, \tilde{a}) - A_\pi(s, a) \right) \right\vert \\
+& = \left\vert \sum_{a, \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \left( A_\pi(s, \tilde{a}) - A_\pi(s, a) \right) \right\vert \\
+& = \left\vert \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \left( A_\pi(s, \tilde{a}) - A_\pi(s, a) \right) \right\vert \\
+& \leq \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \left\vert A_\pi(s, \tilde{a}) - A_\pi(s, a) \right\vert \\
+& \leq \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \cdot 2\max_{s, a} \left\vert A_\pi(s, a) \right\vert \\
+& \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.  \ \ \ \ \text{Q.E.D.}
+\end{array}
+$$
+
 ## Total Variation Distance (TV Distance)
 집합 $$\mathcal{X}$$에 정의된 두 분포 $$p$$와 $$q$$에 대한 `Total Variation Distance` (TV Distance)는 다음과 같이 정의한다:
 
