@@ -34,7 +34,7 @@ $$
 이를 증명하기 위해서는 먼저 다음의 Lemma를 증명해야 한다.
 
 **Lemma 1)**
-주어진 $$\alpha$$로 연관된 정책 쌍 $$\pi, \tilde{\pi}$$는 다음을 만족한다:
+주어진 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$는 다음을 만족한다:
 
 $$
 \left\vert \bar{A}(s) \right\vert \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.
@@ -75,6 +75,15 @@ $$
 & \leq \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \left\vert A_\pi(s, \tilde{a}) - A_\pi(s, a) \right\vert \\
 & \leq \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \cdot 2\max_{s, a} \left\vert A_\pi(s, a) \right\vert \\
 & \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.  \ \ \ \ \text{Q.E.D.}
+\end{array}
+$$
+
+이제 Theorem 1을 증명해보도록 하자. 먼저 주어진 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$에 대해서 $$n_t$$를 시간 단계 $$t$$ 이전까지 정책 $$\pi$$와 $$\tilde{\pi}$$가 행동이 동일하지 않은 횟수로 정의하자. 그러면 이 정의를 통해 다음의 관계를 생각해볼 수 있다:
+
+$$
+\begin{array}{rl}
+\mathbb{E}_{s_t \sim \tilde{\pi}} \left[ \bar{A}(s_t) \right] & = p(n_t = 0) \cdot \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t = 0} \left[ \bar{A}(s_t) \right] \\
+& \ \ \ \  \ \ \ \ + p(n_t > 0) \cdot \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t > 0} \left[ \bar{A}(s_t) \right].
 \end{array}
 $$
 
