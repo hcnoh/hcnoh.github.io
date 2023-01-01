@@ -16,6 +16,8 @@ author: "Hyungcheol Noh"
 permalink: /2022-10-02-reinforcement-learning-06
 ---
 
+이번 포스트에서는 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 몇 가지 이론적 배경들인 `연관된 정책 짝` 및 `Total Variation Distance`(TV Distance)에 대해서 정리하도록 한다.
+
 ## 연관된 정책 짝 (Coupled Policy Pair)
 두 정책 $$(\pi, \tilde{\pi})$$에 대해서 만약 주어진 어떤 상태에 대한 두 정책이 생성한 행동이 일치하지 않을 확률이 $$\alpha$$보다 작거나 같은 경우 두 정책 $$(\pi, \tilde{\pi})$$을 $$\alpha$$로 `연관된 정책 짝`($$\alpha$$-coupled Policy Pair)이라고 정의한다. 이를 식으로 정리하면 다음과 같다:
 
@@ -128,13 +130,13 @@ $$
 
 이는 다음과 같이도 쓸 수 있다.
 
-**Theorem 1)**
+**Theorem 2)**
 
 $$
 D_{\text{TV}}(p \Vert q) = \frac{1}{2}\sum_{x \in \mathcal{X}} \left\vert p(x) - q(x) \right\vert.
 $$
 
-Theorem 1의 증명은 다음과 같다. 먼저 집합 $$B$$를 다음과 같이 정의한다:
+Theorem 2의 증명은 다음과 같다. 먼저 집합 $$B$$를 다음과 같이 정의한다:
 
 $$
 B = \left\{ x \in \mathcal{X}: p(x) \geq q(x) \right\}.
