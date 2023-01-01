@@ -34,7 +34,7 @@ $$
 이를 증명하기 위해서는 먼저 다음의 Lemma를 증명해야 한다.
 
 **Lemma 1)**
-주어진 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$는 다음을 만족한다:
+주어진 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$는 모든 상태 $$s$$에 대해서 다음을 만족한다:
 
 $$
 \left\vert \bar{A}(s) \right\vert \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.
@@ -74,7 +74,7 @@ $$
 & = \left\vert \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \left( A_\pi(s, \tilde{a}) - A_\pi(s, a) \right) \right\vert \\
 & \leq \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \left\vert A_\pi(s, \tilde{a}) - A_\pi(s, a) \right\vert \\
 & \leq \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) \cdot 2\max_{s, a} \left\vert A_\pi(s, a) \right\vert \\
-& \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.  \ \ \ \ \text{Q.E.D.}
+& \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
@@ -84,6 +84,38 @@ $$
 \begin{array}{rl}
 \mathbb{E}_{s_t \sim \tilde{\pi}} \left[ \bar{A}(s_t) \right] & = p(n_t = 0) \cdot \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t = 0} \left[ \bar{A}(s_t) \right] \\
 & \ \ \ \  \ \ \ \ + p(n_t > 0) \cdot \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t > 0} \left[ \bar{A}(s_t) \right].
+\end{array}
+$$
+
+여기서 동일한 상태-행동 짝 $$(s_{t - 1}, a_{t - 1})$$에 대해서 확률값 $$p(s_t \vert s_{t - 1}, a_{t - 1})$$이 동일하기 때문에 다음의 관계를 자연스럽게 확인할 수 있다:
+
+$$
+\mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t = 0} \left[ \bar{A}(s_t) \right] = \mathbb{E}_{s_t \sim \pi \vert n_t = 0} \left[ \bar{A}(s_t) \right].
+$$
+
+또한 $$n_t$$의 정의에 의하여 다음을 확인할 수 있다:
+
+$$
+\begin{array}{rl}
+p(n_t = 0)
+& = \sum_{a_0 = \tilde{a}_0} p(a_0, \tilde{a}_0 \vert \pi, \tilde{\pi}, s_0) \cdots \sum_{a_{t - 1}, \tilde{a}_{t - 1}} p(a_{t - 1}, \tilde{a}_{t - 1} \vert \pi, \tilde{\pi}, s_{t - 1}) \\
+& = (1 - \alpha)^t.
+\end{array}
+$$
+
+$$
+\therefore \ p(n_t > 0) = 1 - p(n_t = 0) = 1 - (1 - \alpha)^t.
+$$
+
+따라서 다음을 유도할 수 있다:
+
+$$
+\begin{array}{l}
+\left\vert \mathbb{E}_{s_t \sim \tilde{\pi}} \left[ \bar{A}(s_t) \right] - \mathbb{E}_{s_t \sim \pi} \left[ \bar{A}(s_t) \right] \right\vert \\
+\ \ \ \ = p(n_t > 0) \left\vert \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t > 0} \left[ \bar{A}(s_t) \right] - \mathbb{E}_{s_t \sim \pi \vert n_t > 0} \left[ \bar{A}(s_t) \right] \right\vert \\
+\ \ \ \ \leq \left( 1 - (1 - \alpha)^t \right) \left\{ \left\vert \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t > 0} \left[ \bar{A}(s_t) \right] \right\vert + \left\vert \mathbb{E}_{s_t \sim \pi \vert n_t > 0} \left[ \bar{A}(s_t) \right] \right\vert \right\} \\
+\ \ \ \  \ \ \ \ \leq \left( 1 - (1 - \alpha)^t \right) \left( 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert + 2\alpha \max_{s, a}\left\vert A_\pi(s, a) \right\vert \right) \\
+\ \ \ \  \ \ \ \  \ \ \ \ = 4\alpha \left( 1 - (1 - \alpha)^t \max_{s, a} \left\vert A_\pi(s, a) \right\vert \right). \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
