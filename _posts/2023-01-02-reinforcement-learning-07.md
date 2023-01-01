@@ -16,7 +16,7 @@ author: "Hyungcheol Noh"
 permalink: /2023-01-02-reinforcement-learning-07
 ---
 
-
+이번 포스트에서는 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 이론적 배경으로 `Pinsker's Inequality`를 정리하도록 한다.
 
 ## 참고 자료
 - [Wikipedia: Reinforcementa Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
