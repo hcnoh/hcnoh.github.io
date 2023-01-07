@@ -93,6 +93,44 @@ $$
 
 이 때, 두 분포 $$p, q$$로 생성되는 랜덤 변수 $$X, Y$$에 대해서 $$X = Y$$일 확률이 $$1 - \alpha$$인 $$(X, Y)$$에 대한 결합 분포가 존재한다.
 
+증명은 다음과 같다. 먼저 다음을 살펴보자:
+
+$$
+\begin{array}{rl}
+\alpha = D_{\text{TV}}(p \Vert q)
+& = \sum_{x:p(x) \geq q(x)} \left[ p(x) - q(x) \right] \\
+& = \sum_{x:p(x) < q(x)} \left[ q(x) - p(x) \right].
+\end{array}
+$$
+
+또한 다음의 분포들을 고려해보자:
+
+$$
+\begin{array}{rl}
+f_1(x)
+& = \left\{
+\begin{array}{ll}
+\frac{p(x) - q(x)}{\alpha} & \text{if} \ p(x) \geq q(x) \\
+0 & \text{otherwise}
+\end{array},
+\right. \\
+f_2(x)
+& = \left\{
+\begin{array}{ll}
+0 & \text{if} \ p(x) \geq q(x) \\
+\frac{q(x) - p(x)}{\alpha} & \text{otherwise}
+\end{array},
+\right. \\
+f_3(x)
+& = \left\{
+\begin{array}{ll}
+\frac{q(x)}{1 - \alpha} & \text{if} \ p(x) \geq q(x) \\
+\frac{p(x)}{1 - \alpha} & \text{otherwise}
+\end{array}.
+\right.
+\end{array}
+$$
+
 ## Pinsker's Inequality
 `Pinsker's Inequality`는 `Kullback-Leibler Divergence`(KL Divergence)와 `TV Distance` 사이의 관계에 대한 부등식이다. Pinsker's Inequality를 기술하면 다음과 같다:
 

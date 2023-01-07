@@ -138,27 +138,23 @@ $$
 \sum_x g(x, z) = \tilde{g}(z), \ \ \ \ \sum_y h(y, z) = \tilde(h)(z)
 $$
 
-라고 정의하자. 그러면 우리는 다음과 같이 선택할 수 있다:
-
-$$
-p(x \vert z) = \frac{g(x, z)}{\tilde{g}(z)}, \ \ \ \ p(y \vert z) = \frac{h(y, z)}{\tilde{h}(z)}.
-$$
-
-이는 다음의 관계들이 만족하기 때문에 가능한 선택이다:
-
-$$
-\sum_x \frac{g(x, z)}{\tilde{g}(z)} = 1, \ \ \ \ \sum_y \frac{h(y, z)}{\tilde{h}(z)} = 1, \\ 0 \leq \frac{g(x, z)}{\tilde{g}(z)}, \frac{h(y, z)}{\tilde{h}(z)} \leq 1.
-$$
-
-또한 추가로 아래의 관계를 만족한다:
+라고 정의하자. 그러면 다음을 확인할 수 있다:
 
 $$
 \begin{array}{rl}
-\sum_x p(x, y \vert z) & = p(y \vert z) = \frac{h(y, z)}{\tilde{h}(z)} \\
-& = \sum_x g(x, z) h(y, z) \\
-& = \tilde{g}(z) h(y, z) \\
-& \Longrightarrow \tilde{g}(z)\tilde{h}(z) = 1.
+p(x \vert z) = \sum_y p(x, y \vert z)
+& = \sum_y g(x, z)h(y, z) \\
+& = \tilde{h}(z) g(x, z). \\
+p(y \vert z) = \sum_x p(x, y \vert z)
+& = \sum_x g(x, z)h(y, z) \\
+& = \tilde{g}(z)h(y, z).
 \end{array}
+$$
+
+또한 다음도 마찬가지로 확인할 수 있다:
+
+$$
+\sum_x p(x \vert z) = \sum_x \tilde{h}(z)g(x, z) = \tilde{g}(z)\tilde{h}(z) = 1.
 $$
 
 따라서:
@@ -388,3 +384,5 @@ Monte Carlo Approximation을 사용하기 위해서는 먼저 $$S$$개의 표본
     - 연속 확률 변수 내용 정리
     - 평균, 분산, 공분산, 상관 계수 내용 정리
     - 변수의 변환 내용 정리
+- 2023.01.07
+    - 조건부 독립 정리 증명 잘못된 부분 수정
