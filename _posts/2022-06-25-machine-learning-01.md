@@ -135,7 +135,7 @@ $$
 라고 할 수 있다. 이 때 WLOG 모든 $$x, y$$에 대해서 $$g(x, z) \geq 0, h(y, z) \geq 0$$라고 가정하자. 그리고 추가적으로:
 
 $$
-\sum_x g(x, z) = \tilde{g}(z), \ \ \ \ \sum_y h(y, z) = \tilde(h)(z)
+\sum_x g(x, z) = \tilde{g}(z), \ \ \ \ \sum_y h(y, z) = \tilde{h}(z)
 $$
 
 라고 정의하자. 그러면 다음을 확인할 수 있다:
@@ -163,7 +163,7 @@ $$
 \begin{array}{rl}
 p(x, y \vert z)
 & = g(x, z)h(y, z) \\
-& = \tilde{g}(z)\tilde{h}(z) p(x \vert z) p(y \vert z) \\
+& = \frac{p(x \vert z) p(y \vert z)}{\tilde{g}(z)\tilde{h}(z)} \\
 & = p(x \vert z) p(y \vert z). \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
