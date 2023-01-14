@@ -162,7 +162,7 @@ p(z)
 \end{array}
 $$
 
-이를 바탕으로 다음과 같은 샘플링 과정(Sampling Process)을 고려해보자. 만약 $$Z = 1$$이라면 $$X$$를 $$f_3$$로 부터 생성하고 $$Y$$는 $$Y = X$$로 선택한다. 그리고 만약 $$Z = 0$$이라면 $$X$$는 f_1으로부터 생성하고 $$Y$$는 $$f_2$$로부터 생성한다.
+이를 바탕으로 다음과 같은 샘플링 과정(Sampling Process)을 고려해보자. 만약 $$Z = 1$$이라면 $$X$$를 $$f_3$$로 부터 생성하고 $$Y$$는 $$Y = X$$로 선택한다. 그리고 만약 $$Z = 0$$이라면 $$X$$는 $$f_1$$으로부터 생성하고 $$Y$$는 $$f_2$$로부터 생성한다.
 
 이 과정으로부터 다음을 확인할 수 있다:
 
@@ -176,6 +176,8 @@ q(x)
 & = (1 - \alpha) f_3(x) + \alpha f_2(x). \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
+
+Lemma 1과 Lemma 2를 통해서 우리는 두 분포 $$p, q$$로 생성되는 샘플 $$X \sim p, Y \sim q$$가 일치하지 않을 확률값 $$p(X \neq Y)$$가 TV Distance $$D_{\text{TV}}(p \Vert q)$$와 일치하는 결합 분포가 항상 존재하며, 따라서 TV Distance는 두 분포로 생성되는 샘플이 일치하지 않을 확률값이 가질 수 있는 최소값이라는 것을 알 수 있다.
 
 ## Pinsker's Inequality
 `Pinsker's Inequality`는 `Kullback-Leibler Divergence`(KL Divergence)와 `TV Distance` 사이의 관계에 대한 부등식이다. Pinsker's Inequality를 기술하면 다음과 같다:
