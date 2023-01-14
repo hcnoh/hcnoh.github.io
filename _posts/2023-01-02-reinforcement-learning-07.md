@@ -131,6 +131,52 @@ f_3(x)
 \end{array}
 $$
 
+그러면 다음을 확인할 수 있다:
+
+$$
+\begin{array}{rl}
+\sum_x f_1(x)
+& = \sum_{x: p(x) \geq q(x)} f_1(x) = 1, \\
+\sum_x f_2(x)
+& = \sum_{x: p(x) < q(x)} f_2(x) = 1, \\
+\sum_x f_3(x)
+& = \frac{1}{1 - \alpha} \left[ \sum_{x: p(x) \geq q(x)} q(x) + \sum_{x: p(x) < q(x)} p(x) \right] \\
+& = \frac{1}{1 - \alpha} \left[ \sum_{x: p(x) \geq q(x)} q(x) + 1 - \sum_{x: p(x) \geq q(x)} p(x) \right] \\
+& = \frac{1}{1 - \alpha} \left( 1 - \sum_{x: p(x) \geq q(x)} \left[ p(x) - q(x) \right] \right) \\
+& = \frac{1 - \alpha}{1 - \alpha} = 1.
+\end{array}
+$$
+
+즉, $$f_1, f_2, f_3$$는 확률 분포라는 것을 확인할 수 있다. 또한 다음의 확률 분포를 가지는 랜덤 변수 $$Z$$를 고려하자:
+
+$$
+\begin{array}{rl}
+p(z)
+& = \left\{
+    \begin{array}{ll}
+        1 - \alpha & \text{if} \ z = 1, \\
+        \alpha & \text{if} \ z = 0, \\
+        0 & \text{otherwise}.
+    \end{array}
+\right.
+\end{array}
+$$
+
+이를 바탕으로 다음과 같은 샘플링 과정(Sampling Process)을 고려해보자. 만약 $$Z = 1$$이라면 $$X$$를 $$f_3$$로 부터 생성하고 $$Y$$는 $$Y = X$$로 선택한다. 그리고 만약 $$Z = 0$$이라면 $$X$$는 f_1으로부터 생성하고 $$Y$$는 $$f_2$$로부터 생성한다.
+
+이 과정으로부터 다음을 확인할 수 있다:
+
+$$
+\begin{array}{rl}
+p(X = Y)
+& = 1 - \alpha, \\
+p(x)
+& = (1 - \alpha) f_3(x) + \alpha f_1(x), \\
+q(x)
+& = (1 - \alpha) f_3(x) + \alpha f_2(x). \ \ \ \ \text{Q.E.D.}
+\end{array}
+$$
+
 ## Pinsker's Inequality
 `Pinsker's Inequality`는 `Kullback-Leibler Divergence`(KL Divergence)와 `TV Distance` 사이의 관계에 대한 부등식이다. Pinsker's Inequality를 기술하면 다음과 같다:
 
@@ -150,3 +196,5 @@ $$
 ## 수정 사항
 - 2023.01.02
     - 최초 게제
+- 2023.01.14
+    - 증명 정리
