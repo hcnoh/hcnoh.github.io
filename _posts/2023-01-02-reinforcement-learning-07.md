@@ -189,6 +189,104 @@ $$
 D_{\text{TV}} (p \Vert q) \leq \sqrt{\frac{1}{2} D_{\text{KL}}(p \Vert q)}.
 $$
 
+이를 증명해보자. 먼저 다음과 같은 특수한 상황을 고려해보자:
+
+$$
+\begin{array}{rl}
+p(x)
+& = \left\{
+    \begin{array}{ll}
+    p & \text{if} \ x = 1, \\
+    1 - p & \text{if} \ x = 0, \\
+    0 & \text{otherwise}.
+    \end{array}
+\right. \\
+q(x)
+& = \left\{
+    \begin{array}{ll}
+    q & \text{if} \ x = 1, \\
+    1 - q & \text{if} \ x = 0, \\
+    0 & \text{otherwise}.
+    \end{array}
+\right.
+\end{array}
+$$
+
+추가적으로 다음의 함수를 고려하자:
+
+$$
+f(p, q) = p \log \frac{p}{q} + (1 - p) \log \frac{1 - p}{1 - q} - 2(p - q)^2.
+$$
+
+만약 $$p = q$$라면 $$f = 0$$일 것이다. 그리고:
+
+$$
+\begin{array}{rl}
+\frac{\partial f}{\partial q}
+& = -\frac{p}{q} - \frac{1 - p}{1 - q} \cdot (-1) - 2 \cdot 2 \cdot (p - q) \cdot (-1) \\
+& = \frac{-p(1 - q) + q(1 - q)}{q(1 - q)} + 4(p - q) \\
+& (p - q) \left[ 4 - \frac{1}{q(1 - q)} \right].
+\end{array}
+$$
+
+우리는 다음을 확인할 수 있다:
+
+$$
+q + (1 - q) = 1 \geq 2 \sqrt{q(1 - q)} \ (\because \ 0 \leq q \leq 1). \\
+\Longrightarrow q(1 - q) \leq \frac{1}{4}.
+$$
+
+따라서 $$p \geq q$$일 때는 $$\frac{\partial f}{\partial q} \leq 0$$이고, $$p \leq q$$일 때는 $$\frac{\partial f}{\partial q} \geq 0$$이다.
+
+이를 통해서 $$f(p, q)$$는 $$p = q$$인 지점에서 최소인 포물선 형태의 함수일 것이고 항상 다음과 같은 결과를 만족할 것이다:
+
+$$
+f(p, q) \geq 0 \Longrightarrow D_\text{TV}(p \Vert q) \leq \sqrt{\frac{1}{2} D_\text{KL}(p \Vert q)}.
+$$
+
+이를 통해 우리는 특수한 상황인 $$f(p, q)$$에 대해서 Pinsker's Theorem을 증명하였다. 이제 일반적인 상황을 고려해보자.
+
+공간 $$\mathcal{X}$$에서 정의된 분포 $$p, q$$에 대하여 부분집합 $$A \subseteq X$$를 다음과 같이 정의하자:
+
+$$
+A = \left\{ x: p(x) \geq q(x) \right\}.
+$$
+
+또한 분포 $$p_A$$와 $$q_A$$를 다음과 같이 정의하자:
+
+$$
+\begin{array}{rl}
+p_A(y)
+& = \left\{
+    \begin{array}{ll}
+        p(A) & \text{if} \ y = 1, \\
+        p(\bar{A}) & \text{otherwise}.
+    \end{array}
+\right. \\
+q_A(y)
+& = \left\{
+    \begin{array}{ll}
+        q(A) & \text{if} \ y = 1, \\
+        q(\bar{A}) & \text{otherwise}.
+    \end{array}
+\right. \\
+\end{array}
+$$
+
+여기서 $$y$$는 다음과 같다:
+
+$$
+\begin{array}{rl}
+y
+& = \left\{
+    \begin{array}{ll}
+        1 & \text{if} \ x \isin A, \\
+        0 & \text{otherwise}.
+    \end{array}
+\right.
+\end{array}
+$$
+
 ## 참고 자료
 - [Wikipedia: Reinforcementa Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
 - [Trust Region Policy Optimization](https://arxiv.org/pdf/1502.05477.pdf)
