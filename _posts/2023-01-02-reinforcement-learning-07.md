@@ -232,7 +232,10 @@ $$
 우리는 다음을 확인할 수 있다:
 
 $$
-q + (1 - q) = 1 \geq 2 \sqrt{q(1 - q)} \ (\because \ 0 \leq q \leq 1). \\
+q + (1 - q) = 1 \geq 2 \sqrt{q(1 - q)} \ (\because \ 0 \leq q \leq 1).
+$$
+
+$$
 \Longrightarrow q(1 - q) \leq \frac{1}{4}.
 $$
 
@@ -280,10 +283,98 @@ $$
 y
 & = \left\{
     \begin{array}{ll}
-        1 & \text{if} \ x \isin A, \\
+        1 & \text{if} \ x \in A, \\
         0 & \text{otherwise}.
     \end{array}
 \right.
+\end{array}
+$$
+
+이를 통해 다음을 유도할 수 있다:
+
+$$
+\begin{array}{rl}
+D_\text{TV}(p \Vert q)
+& = \sum_{x \in A} \left[ p(x) - q(x) \right] = p(A) - q(A) \\
+& = \sum_{y \in \left\{ 1 \right\}} \left[ p_A(y) - q_A(y) \right] = D_\text{TV} \left( p_A \Vert q_A \right).
+\end{array}
+$$
+
+이제 KL Divergence를 살펴보자:
+
+$$
+\begin{array}{rl}
+D_\text{KL}(p_A \Vert q_A)
+& = -H(p_A) + p_A(1) \log \frac{1}{q_A(1)} + p_A(0) \log \frac{1}{q_A(0)} \\
+& = -H(p_A) + \sum_{x \in A} p(x) \log \frac{1}{\sum_{x \in A} q(x)} \\
+& \ \ \ \ + \sum_{x \in \bar{A}} p(x) \log \frac{1}{\sum_{x \in \bar{A}} q(x)}.
+\end{array}
+$$
+
+우리는 여기서 다음을 확인할 수 있다:
+
+$$
+q(x') \leq \sum_{x \in B} q(x) \ \text{for some} \ x' \in B.
+$$
+
+$$
+\Longrightarrow \log \frac{1}{q(x')} \geq \log \frac{1}{\sum_{x \in B} q(x)} \ \text{for some} \ x' \in B.
+$$
+
+따라서:
+
+$$
+\begin{array}{rl}
+D_\text{KL} (p_A \Vert q_A)
+& \leq -H(p_A) + \sum_{x \in A} p(x) \log \frac{1}{q(x)} + \sum_{x \in \bar{A}} p(x) \log \frac{1}{q(x)} \\
+& = -H(p_A) + \sum_{x \in \mathcal{X}} p(x) \log \frac{1}{q(x)}.
+\end{array}
+$$
+
+또한:
+
+$$
+\begin{array}{rl}
+-H(p_A)
+& = p_A(1) \log p_A(1) + p_A(0) \log p_A(0) \\
+& = \left( \sum_{x \in A} p(x) \right) \log \left(  \sum_{x \in A} p(x) \right) + \left( \sum_{x \in \bar{A}} p(x) \right) \log \left( \sum_{x \in \bar{A}} p(x) \right).
+\end{array}
+$$
+
+`Jansen's Inequality`를 이용하여 다음을 확인할 수 있다:
+
+$$
+g(z) = z \log z \Longrightarrow g''(z) = \frac{1}{z} > 0 \ (z > 0).
+$$
+
+$$
+\Longrightarrow \left( \sum_{x \in B} p(x) \right) \log \left( \sum_{x \in B} p(x) \right) \leq \sum_{x \in B} p(x) \log p(x).
+$$
+
+그러므로:
+
+$$
+\begin{array}{rl}
+-H(p_A)
+& \leq \sum_{x \in A} p(x)\log p(x) + \sum_{x \in \bar{A}} p(x) \log p(x) \\
+& = \sum_{x \in \mathcal{X}} p(x)\log p(x) \\
+& = -H(p).
+\end{array}
+$$
+
+$$
+\begin{array}{lrl}
+\Longrightarrow
+& D_\text{KL}(p_A \Vert q_A)
+& \leq -H(p) + \sum_{x \in \mathcal{X}} p(x) \log \frac{1}{q(x)} \\
+& & = D_\text{KL}(p \Vert q) \\
+\Longrightarrow
+& D_\text{KL}(p \Vert q)
+& \geq D_\text{KL}(p_A \Vert q_A) \\
+& & \geq 2 D_\text{TV}^2 (p_A \Vert q_A) \ \text{(Special Case)} \\
+& & = 2 D_\text{TV}^2 (p \Vert q). \\
+\Longrightarrow
+& D_\text{TV}(p \Vert q) & \leq \sqrt{\frac{1}{2}D_\text{KL}(p \Vert q)}. \ \ \ \ \text{Q.E.D.}
 \end{array}
 $$
 
@@ -298,3 +389,5 @@ $$
     - 최초 게제
 - 2023.01.14
     - 증명 정리
+- 2023.01.15
+    - Pinsker's Inequality 증명 정리 완료
