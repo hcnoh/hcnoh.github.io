@@ -182,7 +182,7 @@ Lemma 1과 Lemma 2를 통해서 우리는 두 분포 $$p, q$$로 생성되는 �
 위의 Lemma 1과 Lemma 2를 통해서 이제 `연관된 정책 짝`과 `TV Distance` 사이의 관계를 생각해보자. 먼저 주어진 정책 $$\pi, \tilde{\pi}$$에 대해서 다음의 정의를 살펴보자:
 
 $$
-D_\text{TV}^\text{max}(\pi, \tilde{\pi}) \coloneqq \max_s D_\text{TV}\left( \pi(\cdot \vert s) \Vert \tilde{\pi}(\cdot \vert s) \right) = \alpha.
+D_\text{TV}^\text{max}(\pi, \tilde{\pi}) := \max_s D_\text{TV}\left( \pi(\cdot \vert s) \Vert \tilde{\pi}(\cdot \vert s) \right) = \alpha.
 $$
 
 이 정의와 Lemma 2를 통해서 적절한 결합 분포 $$p(a, \tilde{a} \vert \pi, \tilde{\pi})$$를 선택하여 항상 다음을 만족하도록 할 수 있다는 것을 확인할 수 있다:
