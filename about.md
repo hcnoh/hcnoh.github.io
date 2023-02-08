@@ -6,7 +6,7 @@ permalink: /about
 ---
 
 ## About Me
-I am a machine learning scientist currently working in the AI Research of [Wonriedu](http://www.wonriedu.com/), which is the most popular mathematics textbook publisher in Rep. of Korea. I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow. The current main research topics of mine are information-theoretic approaches for deep learning modeling.
+I am a machine learning research engineer currently working in the AI Research of the new growth business division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current VMS(Video Management System) solution by applying deep learning techniques and develop a new AI platform. I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow. My current research interests are information-theoretic approaches for deep learning modeling, computer vision for VMS, and natural language processing for advancing VMS.
 
 ## Research Interests
 - Machine Learning, Deep Learning
