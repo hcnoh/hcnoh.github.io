@@ -31,8 +31,10 @@ I am a machine learning research engineer currently working in the AI Research o
 - Tmax AI (Jan 2020 - Jun 2021)
   - Research Engineer
   - Worked for Tmax AI as a military service
-- Wonriedu AI Research (Jun 2021 - Present)
+- Wonriedu AI Research (Jun 2021 - Jan 2023)
   - Research Scientist
+- Innodep (Feb 2023 - Present)
+  - Research Engineer
 
 ## Projects
 - [Projects List](https://hcnoh.github.io/projects)
