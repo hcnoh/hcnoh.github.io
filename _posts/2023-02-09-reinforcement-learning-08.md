@@ -22,6 +22,7 @@ permalink: /2023-02-09-reinforcement-learning-08
 먼저 다음의 정리를 살펴보자.
 
 **Theorem 1)**
+
 $$
 \eta(\tilde{\pi}) \geq L_{\pi_\text{old}}(\tilde{\pi}) - CD_\text{KL}^\text{max}(\pi_\text{old}, \tilde{\pi}).
 $$
