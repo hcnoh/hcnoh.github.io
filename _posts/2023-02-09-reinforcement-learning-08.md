@@ -18,7 +18,7 @@ permalink: /2023-02-09-reinforcement-learning-08
 
 이번 포스트에서는 이전 포스트와 마찬가지로 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 이론적 배경들을 설명하도록 한다. 이전 포스트에서 다루었던 Lemma들과 `Pinsker's Inequality`를 바탕으로 이번 포스트에서는 TRPO의 중요한 정리를 먼저 다루고 이 정리를 바탕으로 `Minorization-maximization`(MM) 알고리즘을 정리하여 TRPO의 기본적인 형태를 다루게 된다.
 
-## Minorization-maximization 알고리즘을 위한 정리
+## Minorization-maximization 알고리즘
 먼저 다음의 정리를 살펴보자.
 
 **Theorem 1)**
@@ -95,6 +95,25 @@ L_{\pi_\text{old}}(\tilde{\pi}) - \eta(\tilde{\pi}) \leq CD_\text{KL}^\text{max}
 \end{array}
 $$
 
+위의 정리를 통해서 우리는 `Minorization-maximization`(MM) 알고리즘을 획득하여 `단조롭게`(Monotonically) 정책을 개선할 수 있다. 이는 아래의 최적화 과정을 통해서 수행된다:
+
+$$
+\pi = \arg \max_\pi \left[ L_{\pi_\text{old}}(\pi) - CD_\text{KL}^\text{max}(\pi_\text{old}, \pi) \right].
+$$
+
+이 최적화 문제의 목적 함수는 `Surrogate 함수`라고 부른다. 좌우지간 이 최적화 과정을 통해서 단조롭게 정책을 개선하여 Expected Return $$\eta$$가 감소되지 않는 것을 보장하며 반복 알고리즘을 다음과 같이 수행할 수 있다:
+
+- Expected Return $$\eta$$가 감소되지 않는 것을 보장하는 정책 반복 알고리즘
+    - 정책 $$\pi_0$$ 초기화
+    - 각 단계 $$i = 0, 1, 2, \cdots$$에 대해서 수렴할때까지 반복:
+        - 모든 이득 함수 값들 $$A_{\pi_i}(s, a)$$을 계산한다.
+        - 다음과 같은 제한된 최적화 문제를 푼다:
+        $$
+        \pi_{i + 1} = \arg \max_\pi \left[ L_{\pi_i}(\pi) - CD_\text{KL}^\text{max}(\pi_i, \pi) \right].
+        $$
+
+위의 알고리즘을 통해 Surrogate 함수를 최대화하는 정책을 계속 선택하면 그 정책에 의한 Expected Return 역시 최대화가 되게끔 계속 정책을 개선할 수 있게 된다.
+
 ## 참고 자료
 - [Wikipedia: Reinforcementa Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
 - [Trust Region Policy Optimization](https://arxiv.org/pdf/1502.05477.pdf)
@@ -104,4 +123,4 @@ $$
 - 2023.02.09
     - 최초 게제
 - 2023.02.10
-    - 증명 정리
+    - MM 알고리즘 정리
