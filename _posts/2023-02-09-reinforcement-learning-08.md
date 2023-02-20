@@ -107,12 +107,33 @@ $$
     - 정책 $$\pi_0$$ 초기화
     - 각 단계 $$i = 0, 1, 2, \cdots$$에 대해서 수렴할때까지 반복:
         - 모든 이득 함수 값들 $$A_{\pi_i}(s, a)$$을 계산한다.
-        - 다음과 같은 제한된 최적화 문제를 푼다:
+        - 다음과 같은 최적화 문제를 푼다:
+
         $$
         \pi_{i + 1} = \arg \max_\pi \left[ L_{\pi_i}(\pi) - CD_\text{KL}^\text{max}(\pi_i, \pi) \right].
         $$
 
 위의 알고리즘을 통해 Surrogate 함수를 최대화하는 정책을 계속 선택하면 그 정책에 의한 Expected Return 역시 최대화가 되게끔 계속 정책을 개선할 수 있게 된다.
+
+## 제한된 최적화 문제
+우리는 강화 학습에 인공 신경망 모델을 활용하여 정책망(Policy Network)을 훈련시키는 방식으로 적용을 할 것이다. 따라서 정책은 매개변수 $$\theta$$로 매개변수화되어 $$\pi_\theta$$라고 쓰게 된다. 이에따라 Surrogate 함수는 다음과 같이 쓰여지게 된다:
+
+$$
+L_{\theta_\text{old}}(\theta) - CD_\text{KL}^\text{max}(\theta_\text{old}, \theta).
+$$
+
+만약 우리가 Penalty 상수 $$C$$를 위의 정리에서 제안한 수치를 활용한다면 최적화 단계에 따른 Step Size가 매우 작을 것이다. 이는 훈련의 진행을 매우 더디게 만드는 원인이 된다. 따라서 더 큰 Step Size를 취하여 좀 더 거친 방법으로 훈련을 진행해야 할 것이다. 이를 위한 최적화 문제는 다음과 같이 수정될 수 있다:
+
+$$
+\begin{array}{l}
+\text{maximize} \ L_{\theta_\text{old}}(\theta) \\
+\text{subject to} \ D_\text{KL}^\text{max}(\theta_\text{old}, \theta) \leq \delta.
+\end{array}
+$$
+
+즉 $$\pi_{\theta_\text{old}}$$와 $$\pi_\theta$$ 사이의 KL Divergence 영역을 특정 $$\delta$$값으로 제한하여 좀 더 큰 Step Size로 거칠게 훈련을 진행할 수 있게 된다. 여기서 물론 $$\delta$$를 적절히 잘 설정하는 것이 중요할 것이고 잘 선택된 $$\delta$$ 영역을 Trust Region이라고 말한다. 이 때문에 이 알고리즘을 우리가 TRPO라고 부르는 것이다.
+
+좌우지간 이러한 Trust Region이라는 제한조건을 두고 최적화 문제를 풀어가는 것은 제한조건의 수가 증가할수록 상당히 실용적이지 못하다. 이 말을 좀 더 풀어서 설명하면 $$D_\text{KL}^\text{max}$$를 계산하는 과정에서 모든 가능한 상태 $$s$$를 고려하고 그 중 최대값을 찾아야하는 어려움이 있을 수 있다. 또한 추가적으로 최대값을 고르는 과정에서는 `Monte Carlo` 시뮬레이션이 불가능하다.
 
 ## 참고 자료
 - [Wikipedia: Reinforcementa Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
