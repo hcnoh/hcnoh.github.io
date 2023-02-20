@@ -135,6 +135,54 @@ $$
 
 좌우지간 이러한 Trust Region이라는 제한조건을 두고 최적화 문제를 풀어가는 것은 제한조건의 수가 증가할수록 상당히 실용적이지 못하다. 이 말을 좀 더 풀어서 설명하면 $$D_\text{KL}^\text{max}$$를 계산하는 과정에서 모든 가능한 상태 $$s$$를 고려하고 그 중 최대값을 찾아야하는 어려움이 있을 수 있다. 또한 추가적으로 최대값을 고르는 과정에서는 `Monte Carlo` 시뮬레이션이 불가능하다.
 
+따라서 좀 더 효율적인 방법을 통해서 해당 최적화 작업을 진행하게 된다. 정책을 통해서 샘플링된 상태들에 대해서 KL Divergence의 평균을 최적화하는 방식이다:
+
+$$
+\begin{array}{rl}
+\bar{D}_\text{KL}^\pi(\theta_1, \theta_2)
+& = \sum_s p(s \vert \pi) D_\text{KL}\left( \pi_{\theta_1}(\cdot \vert s) \Vert \pi_{\theta_2}(\cdot \vert s) \right) \\
+& = \mathbb{E}_{s \sim \pi} \left[ D_\text{KL} \left( \pi_{\theta_1}(\cdot \vert s) \Vert \pi_{\theta_2}(\cdot \vert s) \right) \right].
+\end{array}
+$$
+
+여기서:
+
+$$
+p(s \vert \pi) = \sum_{t = 0}^\infty p(s_t = s \vert \pi)
+$$
+
+이다. 따라서 이를 통한 최적화 문제는 다음과 같이 기술된다:
+
+$$
+\begin{array}{rl}
+\text{maximize}_\theta & L_{\theta_\text{old}}(\theta) \\
+\text{subject to} & \bar{D}_\text{KL}^{\pi_{\theta_\text{old}}}(\theta_\text{old}, \theta) \leq \delta.
+\end{array}
+$$
+
+이 최적화 문제는 KL Divergence의 최대값에 대한 제한조건이 걸린 기존의 최적화 문제와 성능이 매우 비슷한 수준이라고 알려져 있다. 결과는 실험을 통해서 확인할 수 있다고 한다.
+
+한편 $$L_{\theta_\text{old}}(\theta)$$를 다시 쓰면 다음과 같다:
+
+$$
+L_{\theta_\text{old}}(\theta) = \eta(\pi_{\theta_\text{old}}) + \sum_s \rho_{\pi_\text{old}}(s) \sum_a \pi_\theta (a \vert s) A_{\theta_\text{old}}(s, a).
+$$
+
+여기서 $$\eta(\pi_{\theta_\text{old}})$$의 경우 $$\theta$$와는 관계없는 부분이기 때문에 최종적인 최적화 문제의 형태는 다음과 같다:
+
+$$
+\begin{array}{rl}
+\text{maximize}_\theta & \sum_s \rho_{\pi_\text{old}}(s) \sum_a \pi_\theta (a \vert s) A_{\theta_\text{old}}(s, a) \\
+\text{subject to} & \bar{D}_\text{KL}^{\pi_{\theta_\text{old}}}(\theta_\text{old}, \theta) \leq \delta.
+\end{array}
+$$
+
+또한 이는 목적 함수의 형태로 다음과 같이 표현될 수 있다:
+
+$$
+J = \sum_a \pi_\theta (a \vert s) A_{\theta_\text{old}}(s, a) - \frac{c}{2} \bar{D}_\text{KL}^{\pi_{\theta_\text{old}}}(\theta_\text{old}, \theta).
+$$
+
 ## 참고 자료
 - [Wikipedia: Reinforcementa Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)
 - [Trust Region Policy Optimization](https://arxiv.org/pdf/1502.05477.pdf)
@@ -145,3 +193,5 @@ $$
     - 최초 게제
 - 2023.02.10
     - MM 알고리즘 정리
+- 2023.02.20
+    - 제한된 최적화 문제 내용 정리
