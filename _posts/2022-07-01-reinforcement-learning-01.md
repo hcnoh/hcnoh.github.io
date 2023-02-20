@@ -21,7 +21,7 @@ permalink: /2022-07-01-reinforcement-learning-01
 본 포스트 및 향후 업로드될 시리즈에서는 강화 학습의 내용을 기술해 나감에 있어서 Policy Gradient 위주로 내용 정리를 해나갈 계획이며, 이에 따라 Policy Gradient 계열의 중요 알고리즘인 TRPO, PPO 등을 자세히 다루게 될 것이다.
 
 ## 강화 학습이란?
-`강화 학습`(Reinforcement Learning, RL)은 머신 러닝의 한 분야이며 `환경`(Environment) 내부에서 `Agent`의 최적의 `정책`(Policy)을 찾는 것을 목표로 한다. 여기서 Agent와 환경의 관계에 대해서 정리하고 넘어가도록 한다.
+`강화 학습`(Reinforcement Learning, RL)은 기계 학습의 한 분야이며 `환경`(Environment) 내부에서 `Agent`의 최적의 `정책`(Policy)을 찾는 것을 목표로 한다. 여기서 Agent와 환경의 관계에 대해서 정리하고 넘어가도록 한다.
 - Agent는 현재 환경의 `상태`(State)를 관찰하고, 그에 따른 `행동`(Action)을 수행한다.
 - 환경은 Agent의 행동을 받아서 그에 따른 결과로 상태의 변화를 일으키며, 추가적으로 행동에 따른 `보상`(Reward)을 Agent에게 되돌려준다.
 

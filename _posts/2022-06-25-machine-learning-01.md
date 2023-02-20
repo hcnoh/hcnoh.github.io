@@ -3,7 +3,7 @@ layout: post
 use_math: true
 title: "[Machine Learning] 1. Probability"
 date: 2022-06-25 00:00:00
-tagline: "머신 러닝의 기본 토대가 되는 확률 및 통계 개념들에 대해서 간단히 정리"
+tagline: "기계 학습의 기본 토대가 되는 확률 및 통계 개념들에 대해서 간단히 정리"
 categories:
 - Machine Learning Study
 tags:
@@ -15,7 +15,7 @@ author: "Hyungcheol Noh"
 permalink: /2022-06-25-machine-learning-01
 ---
 
-머신 러닝에 대해서 스터디를 진행하였고, 내용을 정리하여 연재를 진행하려고 한다. 주된 참고 자료로는 케빈 머피의 저서인 [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)을 활용하였다. 앞으로 꾸준히 스터디 자료를 업로드할 계획이다.
+기계 학습에 대해서 스터디를 진행하였고, 내용을 정리하여 연재를 진행하려고 한다. 주된 참고 자료로는 케빈 머피의 저서인 [Machine Learning: A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)을 활용하였다. 앞으로 꾸준히 스터디 자료를 업로드할 계획이다.
 
 ## 확률이란?
 확률(Probability)는 두 가지 관점으로 해석할 수 있다. 먼저 첫 번째는 Frequentist Interpretation이다. `Frequentist Interpretation`은 확률이 장기적으로 사건들의 발생 빈도를 나타낸다는 관점이다. 예를 들면, 만약 우리가 동전을 매우 많이 던진다면 우린 그 동전이 약 절반의 빈도수를 가지며 앞면을 나타낼 것이라고 기대할 수 있다.

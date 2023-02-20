@@ -3,7 +3,7 @@ layout: post
 use_math: true
 title: "[Machine Learning] Cross-Entropy의 통계적인 의미"
 date: 2019-04-25 11:04:33
-tagline: "머신 러닝 및 딥러닝에서 Loss Function으로 자주 사용되는 Cross-Entropy의 유도 과정 및 통계적인 의미 정리"
+tagline: "기계 학습 및 딥러닝에서 Loss Function으로 자주 사용되는 Cross-Entropy의 유도 과정 및 통계적인 의미 정리"
 categories:
 - Machine Learning Memo
 tags:
