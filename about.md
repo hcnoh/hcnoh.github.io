@@ -6,7 +6,7 @@ permalink: /about
 ---
 
 ## About Me
-I am a machine learning research engineer currently working in the AI Research of the new growth business division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current smart monitoring solution and develop a new AI-based smart security platform.
+I am a machine learning research engineer currently working in the AI Research of New Innovative R&D division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current smart monitoring solution and develop a new AI-based smart security platform.
 
 I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow.
 
@@ -41,12 +41,12 @@ My current research interests are information-theoretic approaches for deep lear
   - Research Engineer
   - Worked for Tmax AI as a military service
 - Wonriedu AI Research (Jun 2021 - Jan 2023)
-  - Research Scientist
+  - AI Research Director
 - Innodep (Feb 2023 - Present)
   - Research Engineer
 
-## Projects
-- [Projects List](https://hcnoh.github.io/projects)
+<!-- ## Projects
+- [Projects List](https://hcnoh.github.io/projects) -->
 
 ## Contact
 - E-mail: rhc0624@gmail.com
