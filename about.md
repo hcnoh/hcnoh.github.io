@@ -10,9 +10,9 @@ I am a machine learning research engineer currently working in the AI Research o
 
 I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow.
 
-My current research interests are information-theoretic approaches for deep learning modeling, object detection for smart monitoring, and natural language-based image information analysis.
+My current research interests are information-theoretic approaches for deep learning modeling, computer vision for smart monitoring, and vision-language models for image information analysis.
 
-- 6 years of work experience: 2018 ~ 2023
+- 7 years of work experience: 2018 ~ 2024
 - Industries: Software (2018 ~ 2021), Edutech (2021 ~ 2023), Physical Security (2023 ~ Present)
 
 ## Research Interests
