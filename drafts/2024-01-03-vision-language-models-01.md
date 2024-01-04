@@ -20,6 +20,8 @@ permalink: /2024-01-03-vision-language-models-01
 
 ## 목차
 - [비전-언어 모델 소개](#비전-언어-모델-소개)
+- [학습 전략](#학습-전략)
+    - [Contrastive Learning](#constrastive-learning)
 - [참고 자료](#참고-자료)
 - [수정 사항](#수정-사항)
 
@@ -56,8 +58,47 @@ permalink: /2024-01-03-vision-language-models-01
 - **MLM / ITM**: 마스크 언어 모델 및 이미지-텍스트 매칭 방식을 활용하여 이미지 일부를 텍스트와 결합하는 방법론
 - **No Tranining**: 각각의 비전 모델과 언어 모델을 따로 사용하여 반복적인 최적화를 수행하는 방법론
 
+여기 나와있는 목록은 현재 존재하는 모든 방법론을 나열한 것이 아니라 빠진 것이 있을 수 있으니 더 자세한 사항은 [링크](https://arxiv.org/abs/2210.09263)를 참고하면 좋다.
+
+### Constrastive Learning
+
+![](assets/img/2024-01-03-vision-language-models-01/contrastive-learning.png)
+
+*(출처: [https://openai.com/research/clip](https://openai.com/research/clip))*
+
+`Constrastive Learning`은 컴퓨터 비전 분야에서 널리 사용되었던 사전 학습 방법론이며 또한 비전-언어 모델의 사전 학습에도 매우 효과적이라는 것이 증명된 방법론이다. 최근 연구들인 [CLIP](https://arxiv.org/abs/2103.00020), [CLOOB](https://arxiv.org/abs/2110.11316), [ALIGN](https://arxiv.org/abs/2102.05918), [DeCLIP](https://arxiv.org/abs/2110.05208) 등은 이미지 인코더와 텍스트 인코더를 거대 데이터와 Constrastive 손실 함수를 통해서 통합적으로 학습하여 비전과 언어 양상 사이를 연결하였다. 여기서 사용된 거대 데이터는 (이미지, 설명문) 쌍으로 구성된다. Constrastive Learning은 입력 이미지와 입력 텍스트를 동일한 특징 공간으로 매핑하고 둘이 매치가 된다면 거리를 가깝게, 그렇지 않다면 거리를 멀게끔 학습시키는 방법론이다.
+
+CLIP에서는 특징 공간에서의 거리를 두 임베딩 사이의 코사인 유사도로 정의하였고 ALIGN이나 DeCLIP 등의 연구는 잡음이 섞인 데이터셋을 고려하여 자신들만의 메트릭을 따로 정의하였다.
+
+[LiT](https://arxiv.org/abs/2111.07991)라는 또다른 연구는 사전 학습된 CLIP의 이미지와 텍스트 인코더를 활용하여 이미지 인코더는 그대로 둔 채로 텍스트 인코더만을 파인 튜닝하는 간단한 방법을 제안했다. 저자들은 이 아이디어를 다음과 같이 해석한다: *텍스트 인코더로 하여금 이미지 인코더로부터의 이미지 임베딩을 더 잘 읽을 수 있도록 하는 방법이다.* 이 접근은 CLIP에 비해서 더 효과적이고 데이터 효율성이 좋다는 것이 증명됐다.
+
+[FLAVA](https://arxiv.org/abs/2112.04482) 등의 다른 연구들은 Contrastive Learning과 다른 사전 학습 방법론들을 조합하여 비전 및 언어 임베딩을 획득하는 방법론을 제안했다.
+
+### PrefixLM
+
+![](assets/img/2024-01-03-vision-language-models-01/prefixLM.png)
+
+*(출처: [https://arxiv.org/abs/2108.10904](https://arxiv.org/abs/2108.10904))*
+
+그 다음 비전-언어 모델 학습 방법론은 `PrefixLM` 방법론이다.
+
+**Frozen PrefixLM**
+
+![](assets/img/2024-01-03-vision-language-models-01/frozen-prefixLM.png)
+
+*(출처: [https://huggingface.co/blog/vision_language_pretraining](https://huggingface.co/blog/vision_language_pretraining))*
+
 ## 참고 자료
 - [https://huggingface.co/blog/vision_language_pretraining](https://huggingface.co/blog/vision_language_pretraining)
+- [Vision-Language Pre-training: Basics, Recent Advances, and Future Trends](https://arxiv.org/abs/2210.09263)
+- [CLIP: Connecting text and images](https://openai.com/research/clip)
+- [Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/abs/2103.00020)
+- [CLOOB: Modern Hopfield Networks with InfoLOOB Outperform CLIP](https://arxiv.org/abs/2110.11316)
+- [Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision](https://arxiv.org/abs/2102.05918)
+- [Supervision Exists Everywhere: A Data Efficient Contrastive Language-Image Pre-training Paradigm](https://arxiv.org/abs/2110.05208)
+- [LiT: Zero-Shot Transfer with Locked-image text Tuning](https://arxiv.org/abs/2111.07991)
+- [FLAVA: A Foundational Language And Vision Alignment Model](https://arxiv.org/abs/2112.04482)
+- [SimVLM: Simple Visual Language Model Pretraining with Weak Supervision](https://arxiv.org/abs/2108.10904)
 
 ## 수정 사항
 - 2024.01.02
