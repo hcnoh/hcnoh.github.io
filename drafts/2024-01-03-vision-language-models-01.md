@@ -80,7 +80,9 @@ CLIP에서는 특징 공간에서의 거리를 두 임베딩 사이의 코사인
 
 *(출처: [https://arxiv.org/abs/2108.10904](https://arxiv.org/abs/2108.10904))*
 
-그 다음 비전-언어 모델 학습 방법론은 `PrefixLM` 방법론이다.
+그 다음 비전-언어 모델 학습 방법론은 `PrefixLM` 방법론이다. [SimVLM](https://arxiv.org/abs/2108.10904), [VirTex](https://arxiv.org/abs/2006.06666v3) 등의 모델들이 PrefixLM 방법론을 적용한 모델들이다. 이 모델들은 Transformer 인코더, Transformer 디코더로 구성된 통합된 멀티모달 구조를 가지고 있으며 Autoregressive 언어 모델의 형태와 매우 유사하다.
+
+조금 더 자세히 살펴보도록 하자. Prefix를 다루는 언어 모델들은 보통 주어진 입력 문장을 Prefix로 하여 그 다음 토큰을 예측하도록 학습된다. 예를 들면, "A man is standing at the corner"라는 문장이 주어졌을 때 "A man is standing at the"를 Prefix로 삼고 모델로 하여금 "Corner" 등과 같은 토큰 에측을 통해 주어진 Prefix에 대해서 합당한 다음 문장을 생성하도록 학습시킨다.
 
 **Frozen PrefixLM**
 
@@ -99,6 +101,7 @@ CLIP에서는 특징 공간에서의 거리를 두 임베딩 사이의 코사인
 - [LiT: Zero-Shot Transfer with Locked-image text Tuning](https://arxiv.org/abs/2111.07991)
 - [FLAVA: A Foundational Language And Vision Alignment Model](https://arxiv.org/abs/2112.04482)
 - [SimVLM: Simple Visual Language Model Pretraining with Weak Supervision](https://arxiv.org/abs/2108.10904)
+- [VirTex: Learning Visual Representations from Textual Annotations](https://arxiv.org/abs/2006.06666v3)
 
 ## 수정 사항
 - 2024.01.02
