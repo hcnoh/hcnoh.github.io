@@ -22,6 +22,8 @@ permalink: /2024-01-03-vision-language-models-01
 - [비전-언어 모델 소개](#비전-언어-모델-소개)
 - [학습 전략](#학습-전략)
     - [Contrastive Learning](#constrastive-learning)
+    - [PrefixLM](#prefixlm)
+    - [Cross Attention을 통한 멀티모달 결합](#cross-attention을-통한-멀티모달-결합)
 - [참고 자료](#참고-자료)
 - [수정 사항](#수정-사항)
 
@@ -82,7 +84,11 @@ CLIP에서는 특징 공간에서의 거리를 두 임베딩 사이의 코사인
 
 그 다음 비전-언어 모델 학습 방법론은 `PrefixLM` 방법론이다. [SimVLM](https://arxiv.org/abs/2108.10904), [VirTex](https://arxiv.org/abs/2006.06666v3) 등의 모델들이 PrefixLM 방법론을 적용한 모델들이다. 이 모델들은 Transformer 인코더, Transformer 디코더로 구성된 통합된 멀티모달 구조를 가지고 있으며 Autoregressive 언어 모델의 형태와 매우 유사하다.
 
-조금 더 자세히 살펴보도록 하자. Prefix를 다루는 언어 모델들은 보통 주어진 입력 문장을 Prefix로 하여 그 다음 토큰을 예측하도록 학습된다. 예를 들면, "A man is standing at the corner"라는 문장이 주어졌을 때 "A man is standing at the"를 Prefix로 삼고 모델로 하여금 "Corner" 등과 같은 토큰 에측을 통해 주어진 Prefix에 대해서 합당한 다음 문장을 생성하도록 학습시킨다.
+조금 더 자세히 살펴보도록 하자. PrefixLM 방법론에서 언어 모델들은 보통 주어진 입력 문장을 Prefix로 하여 그 다음 토큰을 예측하도록 학습된다. 예를 들면, "A man is standing at the corner"라는 문장이 주어졌을 때 "A man is standing at the"를 Prefix로 삼고 모델로 하여금 "Corner" 등과 같은 토큰 에측을 통해 주어진 Prefix에 대해서 합당한 다음 문장을 생성하도록 학습시킨다.
+
+`Visual Transformer`(ViT)는 이미지는 여러개의 패치로 나눠서 패치들을 순차적으로 입력받아 처리하는 모델이다. 이 모델을 활용하여 SimVLM은 Prefix로 이미지 패치 시퀀스와 Prefix에 해당하는 텍스트 시퀀스를 연결하여 인코더에 입력하고 디코더는 이 입력을 바탕으로 이어지는 텍스트를 생성하도록 한다. 위의 그림은 이 방법론을 설명하기 위한 그림이다. SimVLM은 이미지 패치 없이 텍스트만으로 구성된 데이터셋을 통해서 사전 훈련되고 이후에 이미지-텍스트 데이터셋을 통해 파인 튜닝이 수행된다. 이 모델들은 이미지 캡셔닝, VQA 등의 태스크에 활용된다.
+
+비전 정보를 언어 모델에 결합한 형태의 통합 멀티모달 구조를 활용하는 모델들은 이미지를 처리하는 태스크에 매우 우수한 성능을 보인다. 하지만 PrefixLM 방법론을 활용하는 모델들은 그 활용이 이미지 캡셔닝과 관련된 태스크에 한정된다는 단점이 있다.
 
 **Frozen PrefixLM**
 
@@ -90,8 +96,27 @@ CLIP에서는 특징 공간에서의 거리를 두 임베딩 사이의 코사인
 
 *(출처: [https://huggingface.co/blog/vision_language_pretraining](https://huggingface.co/blog/vision_language_pretraining))*
 
+비전 정보를 언어 모델에 결합하는 것은 효율적이지만 사전 훈련된 언어 모델을 파인 튜닝 없이 활용하는 것이 더 좋은 성능을 가질 수도 있다. 이러한 방식으로 언어 모델을 고정하고 그에 맞는 이미지 임베딩을 학습하는 방법론도 있다. 이 방법론을 `Frozen PrefixLM`이라고 한다.
+
+[Frozen](https://arxiv.org/abs/2106.13884), [ClipCap](https://arxiv.org/abs/2111.09734)은 이러한 Frozen PrefixLM 방법론을 활용하는 대표적인 모델이다. 이들은 오직 이미지 인코더의 파라미터만을 학습하여 고정된 언어 모델의 Prefix로 활용될 수 있는 이미지 임베딩을 생성하도록 학습된다. Frozen과 ClipCap 두 모델 모두 이미지-텍스트(설명문) 데이터셋에 학습되어 주어진 이미지 임베딩과 Prefix 텍스트에 대해 설명문의 다음 토큰을 예측하도록 학습한다.
+
+![](assets/img/2024-01-03-vision-language-models-01/flamingo.png)
+
+[MAPL](https://arxiv.org/abs/2210.07179), [Flamingo](https://arxiv.org/abs/2204.14198)는 사전 훈련된 비전 인코더와 언어 모델을 모두 고정한다. Flamingo는 Perceiver Resampler 모듈을 사전 훈련된 모델의 상단에 추가하고, 새로운 Cross-Attention 계층을 사전 훈련된 언어 모델의 계층 사이사이에 집어넣어서 비전 조건을 언어 모델에 부여한다. 위 그림은 Flamingo에 대한 설명을 나타내는 그림이다.
+
+Frozen PrefixLM 방법론의 장점은 멀티모달 데이터셋을 활용하기 어려운 특히 유용하다는 점이다.
+
+### Cross Attention을 통한 멀티모달 결합
+
+![](assets/img/2024-01-03-vision-language-models-01/cross-attn.png)
+
+*(출처: [https://lilianweng.github.io/posts/2022-06-09-vlm/](https://lilianweng.github.io/posts/2022-06-09-vlm/))*
+
+멀티모달 태스크에 사전 학습된 언어 모델을 활용하는 또 다른 접근은 직접적으로 비전 데이터를 언어 모델 디코더에 `Cross Attention`을 활용하여 직접 시각 정보를 결합하는 것이다. [VisualGPT](https://arxiv.org/abs/2102.10407), [VC-GPT](https://arxiv.org/abs/2201.12723)
+
 ## 참고 자료
 - [https://huggingface.co/blog/vision_language_pretraining](https://huggingface.co/blog/vision_language_pretraining)
+- [https://lilianweng.github.io/posts/2022-06-09-vlm/](https://lilianweng.github.io/posts/2022-06-09-vlm/)
 - [Vision-Language Pre-training: Basics, Recent Advances, and Future Trends](https://arxiv.org/abs/2210.09263)
 - [CLIP: Connecting text and images](https://openai.com/research/clip)
 - [Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/abs/2103.00020)
@@ -102,6 +127,12 @@ CLIP에서는 특징 공간에서의 거리를 두 임베딩 사이의 코사인
 - [FLAVA: A Foundational Language And Vision Alignment Model](https://arxiv.org/abs/2112.04482)
 - [SimVLM: Simple Visual Language Model Pretraining with Weak Supervision](https://arxiv.org/abs/2108.10904)
 - [VirTex: Learning Visual Representations from Textual Annotations](https://arxiv.org/abs/2006.06666v3)
+- [Multimodal Few-Shot Learning with Frozen Language Models](https://arxiv.org/abs/2106.13884)
+- [ClipCap: CLIP Prefix for Image Captioning](https://arxiv.org/abs/2111.09734)
+- [MAPL: Parameter-Efficient Adaptation of Unimodal Pre-Trained Models for Vision-Language Few-Shot Prompting](https://arxiv.org/abs/2210.07179)
+- [Flamingo: a Visual Language Model for Few-Shot Learning](https://arxiv.org/abs/2204.14198)
+- [VisualGPT: Data-efficient Adaptation of Pretrained Language Models for Image Captioning](https://arxiv.org/abs/2102.10407)
+- [A Frustratingly Simple Approach for End-to-End Image Captioning](https://arxiv.org/abs/2201.12723)
 
 ## 수정 사항
 - 2024.01.02
