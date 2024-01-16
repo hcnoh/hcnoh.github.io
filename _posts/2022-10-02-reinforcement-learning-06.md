@@ -1,11 +1,11 @@
 ---
 layout: post
 use_math: true
-title: "[Reinforcement Learning] 6. Trust Region Policy Optimization (2)"
+title: "[강화 학습] 6. Trust Region Policy Optimization (2)"
 date: 2022-10-02 00:00:00
 tagline: "Trust Region 방법을 이용하여 Policy Gradient의 성능을 향상시킨 알고리즘인 Trust Region Policy Optimization에 대해서 정리"
 categories:
-- Reinforcement Learning Study
+- 강화 학습 스터디
 tags:
 - probability
 - statistics

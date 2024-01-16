@@ -1,11 +1,11 @@
 ---
 layout: post
 use_math: true
-title: "[Reinforcement Learning] 1. 강화 학습 소개"
+title: "[강화 학습] 1. 강화 학습 소개"
 date: 2022-07-01 00:00:00
 tagline: "강화 학습의 소개 및 강화 학습 내용을 기술하기 위한 기초적인 내용들 정리"
 categories:
-- Reinforcement Learning Study
+- 강화 학습 스터디
 tags:
 - probability
 - statistics

@@ -1,11 +1,11 @@
 ---
 layout: post
 use_math: true
-title: "[Reinforcement Learning] 4. Bootstrapping과 불확실성의 전파"
+title: "[강화 학습] 4. Bootstrapping과 불확실성의 전파"
 date: 2022-09-11 00:00:00
 tagline: "Policy Gradient의 성능 향상을 위해서 사용되는 Bootstrapping 방법과 그 효과를 유발하는 원리를 불확실성의 전파를 통해서 기술"
 categories:
-- Reinforcement Learning Study
+- 강화 학습 스터디
 tags:
 - probability
 - statistics

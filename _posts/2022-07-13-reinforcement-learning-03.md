@@ -1,11 +1,11 @@
 ---
 layout: post
 use_math: true
-title: "[Reinforcement Learning] 3. Baseline Method & Actor-Critic Method"
+title: "[강화 학습] 3. Baseline Method & Actor-Critic Method"
 date: 2022-07-13 00:00:00
 tagline: "Policy Gradient의 성능 향상을 위해서 Baseline Method를 포함한 기본적인 방법론들을 다루고 이를 바탕으로 Actor-Critic Method에 대해서 기술"
 categories:
-- Reinforcement Learning Study
+- 강화 학습 스터디
 tags:
 - probability
 - statistics
