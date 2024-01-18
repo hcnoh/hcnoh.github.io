@@ -6,7 +6,7 @@ permalink: /about
 ---
 
 ## About Me
-I am a machine learning research engineer currently working in the AI Research of New Innovative R&D division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current smart monitoring solution and develop a new AI-based smart security platform.
+I am an AI research engineer currently working in the AI Research of New Innovative R&D division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current smart monitoring solution and develop a new AI-based smart security platform.
 
 I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow.
 
