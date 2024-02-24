@@ -48,7 +48,9 @@ $$
 
 여기서의 Sampling Distribution도 가치 함수의 경우와 동일하다.
 
-여기서 두 가치 함수 $$V_\pi$$ 및 $$Q_{\pi}$$의 관계에 대한 간단하지만 중요한 Lemma가 존재한다:
+여기서 두 가치 함수 $$V_\pi$$ 및 $$Q_{\pi}$$의 관계에 대한 간단하지만 중요한 Lemma가 존재한다.
+
+**Lemma 1)**
 
 $$
 \mathbb{E}_{a_t \sim \pi(\cdot \vert s_t)}\left[ Q_{\pi}(s_t, a_t) \right] = V_{\pi}(s_t).
@@ -74,13 +76,17 @@ $$
 
 이득 함수라고 부르는 이유는 현재 상태의 값어치인 $$V_\pi$$ 대비 행동 $$a_t$$를 취했을 경우 얻는 값어치 $$Q_\pi$$가 얼마나 이득(Advantage)이 있는 것이냐를 표현하는 것이기 때문이다.
 
-이득 함수는 다음과 같은 중요한 성질을 갖고 있다:
+이득 함수는 다음과 같은 중요한 성질을 갖고 있다.
+
+**Lemma 2)**
 
 $$
 A_\pi(s_t, a_t) = \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)} \left[ r(s_t, a_t) + \gamma V_\pi(s_{t+1}) - V_\pi(s_t) \right].
 $$
 
-이 성질을 증명하기 위해서는 먼저 아래의 Lemma를 증명해야 한다:
+이 Lemma 2의 성질을 증명하기 위해서는 먼저 아래의 Lemma 3를 증명해야 한다.
+
+**Lemma 3)**
 
 $$
 Q_\pi(s_t, a_t) = r(s_t, a_t) + \mathbb{E}_{s_{t+1}\sim p(\cdot \vert s_t, a_t)} \left[ \gamma V_\pi(s_{t+1}) \right].
@@ -98,7 +104,7 @@ Q_\pi(s_t, a_t) \\
 \end{array}
 $$
 
-이 Lemma를 이용하여 위의 성질을 다시 증명해보면:
+Lemma 3를 이용하여 Lemma 2를 다시 증명해보면:
 
 $$
 \begin{array}{l}
@@ -119,3 +125,6 @@ $$
     - Notation 수정
 - 2022.09.10
     - Notation 수정
+- 2024.02.24
+    - 오타 수정
+    - Lemma 표시 추가
