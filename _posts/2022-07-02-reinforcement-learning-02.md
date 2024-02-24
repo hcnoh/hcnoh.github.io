@@ -71,7 +71,9 @@ $$
 
 여기서 $$\nabla_\theta \eta(\pi_\theta)$$를 `Policy Gradient`라고 정의한다.
 
-`Policy Gradient Theorem`은 Policy Gradient에 대한 계산 결과를 제시한다. Policy Gradient Theorem에서 제시한 Policy Gradient의 결과는 다음과 같다:
+`Policy Gradient Theorem`은 Policy Gradient에 대한 계산 결과를 제시한다. Policy Gradient Theorem에서 제시한 Policy Gradient의 결과는 다음과 같다.
+
+**Theorem 1)** Policy Gradient Theorem
 
 $$
 \nabla_\theta \eta(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^\infty \gamma^t \left( \nabla_\theta \log \pi_\theta(a_t \vert s_t) \right) Q_{\pi_\theta}(s_t, a_t) \right].
@@ -303,3 +305,5 @@ $$
     - REINFORCE 알고리즘 수정
 - 2022.09.11
     - Notation 수정
+- 2023.02.24
+    - Theorem 표시
