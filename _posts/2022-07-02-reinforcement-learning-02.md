@@ -114,7 +114,11 @@ $$
 \end{array}
 $$
 
-여기서 다시 Lemma $$Q_{\pi_\theta}(s_0, a_0) = r(s_0, a_0) + \gamma \sum_{s_{1}}p\left( s_1 \vert s_0, a_0  \right)\gamma V_{\pi_\theta}(s_1)$$을 활용하면:
+여기서 다시 [이전 포스트](https://hcnoh.github.io/2022-07-01-reinforcement-learning-01)의 Lemma 3, 즉 아래의 관계를 활용할 수 있다:
+
+$$Q_{\pi_\theta}(s_0, a_0) = r(s_0, a_0) + \gamma \sum_{s_{1}}p\left( s_1 \vert s_0, a_0  \right)\gamma V_{\pi_\theta}(s_1)$$
+
+이를 활용하여 다시 정리하면:
 
 $$
 \begin{array}{l}
@@ -307,3 +311,4 @@ $$
     - Notation 수정
 - 2023.02.24
     - Theorem 표시
+    - Policy Gradient Theorem 증명 내용 수정
