@@ -190,7 +190,7 @@ $$
 \nabla_\theta \log \pi_\theta(a_t \vert s_t) = \frac{\nabla \pi_\theta(a_t \vert s_t)}{\pi_\theta(a_t \vert s_t)}.
 $$
 
-이 관계를 통해 $$\nabla_\theta \pi_\theta(a_r \vert s_t)$$를 $$\pi_\theta(a_t \vert s_t) \nabla_\theta \log \pi_\theta(a_t \vert s_t)$$로 대체하면:
+이 관계를 통해 $$\nabla_\theta \pi_\theta(a_t \vert s_t)$$를 $$\pi_\theta(a_t \vert s_t) \nabla_\theta \log \pi_\theta(a_t \vert s_t)$$로 대체하면:
 
 $$
 \begin{array}{l}
