@@ -241,11 +241,12 @@ $$\therefore \ \left( \nabla_\theta \eta(\pi_\theta) \right)_t \approx \gamma^t 
 다음은 REINFORCE 알고리즘을 정리한 것이다:
 
 - REINFORCE 알고리즘
-    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, Learning Rate $$\alpha$$.
+    - 입력: 미분 가능한 매개변수화된 정책 $$\pi_\theta(a \vert s)$$, 학습률 $$\alpha$$.
     - 정책 매개변수 $$\theta$$ 초기화.
     - 반복:
         - 정책 $$\pi_\theta$$를 따르며 에피소드 $$\tau=(s_0, a_0, s_1, a_1, \cdots)$$ 생성.
-        - 에피소드의 각 단계 $$t=0,1,\cdots, T-1$$에 대해서:
+        - 에피소드의 각 단계 $$t=0, 1,\cdots, T-1$$에 대해서:
+
         $$
         \begin{array}{rl}
         R_t & \longleftarrow \text{Return from step $t$} \\
