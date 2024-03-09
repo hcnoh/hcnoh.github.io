@@ -71,7 +71,7 @@ $$
 \text{Var}_{\tau \sim \pi} \left[ R_t \right] \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \text{Var}_{\tau \sim \pi} \left[ \sum_{k=0}^\infty \gamma^k r(s_{t+k}, a_{t+k}) \right] \\
 \ \ \ \  \ \ \ \  \ \ \ \ = \sum_{k=0}^\infty \gamma^{2k} \text{Var}_{\tau \sim \pi} \left[ r(s_{t+k}, a_{t+k}) \right] \\
-\ \ \ \  \ \ \ \  \ \ \ \ \approx \sum_{k=0}^\infty \gamma^{2k} \left[ \left( \frac{\partial r}{\partial s_{t+k}} \right)^2 \sigma_{s_{t+k}}^2 + \left( \frac{\partial r}{\partial a_{t+k}} \right)^2 \sigma_{a_{t+k}}^2 \right].
+\ \ \ \  \ \ \ \  \ \ \ \ \approx \sum_{k=0}^\infty \gamma^{2k} \left[ \left( \left. \frac{\partial r}{\partial s_{t+k}} \right|_{s_{t+k}, a_{t+k}} \right)^2 \sigma_{s_{t+k}}^2 + \left( \left. \frac{\partial r}{\partial a_{t+k}} \right|_{s_{t+k}, a_{t+k}} \right)^2 \sigma_{a_{t+k}}^2 \right].
 \end{array}
 $$
 
@@ -164,3 +164,5 @@ $$
     - 불확실성의 전파 내용 정리
 - 2022.09.15
     - Bootstrapping 내용 정리
+- 2024.03.10
+    - Lemma 1 증명 수식에서 누락된 부분 추가
