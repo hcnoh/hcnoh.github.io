@@ -25,7 +25,9 @@ $$
 \eta(\pi) = \mathbb{E}_{\tau \sim \pi} \left[ \sum_{t=0}^\infty \gamma^t r(s_t, a_t) \right].
 $$
 
-여기서 기존 정책인 $$\pi_\text{old}$$가 $$\tilde{\pi}$$로 변화하였을 경우 목적 함수는 어떻게 될지에 대해서 생각해보자. 즉, $$\eta(\pi_\text{old})$$와 $$\eta(\pi_\text{old})$$ 사이에는 어떤 차이가 있을까? 아래의 정리는 $$\eta(\tilde{\pi})$$를 $$\eta(\pi_\text{old})$$로 표현한 정리이다:
+여기서 기존 정책인 $$\pi_\text{old}$$가 $$\tilde{\pi}$$로 변화하였을 경우 목적 함수는 어떻게 될지에 대해서 생각해보자. 즉, $$\eta(\pi_\text{old})$$와 $$\eta(\tilde{\pi})$$ 사이에는 어떤 차이가 있을까? 아래의 정리는 $$\eta(\tilde{\pi})$$를 $$\eta(\pi_\text{old})$$로 표현한 정리이다.
+
+**Theorem 1)**
 
 $$
 \eta(\tilde{\pi}) = \eta(\pi_\text{old}) + \mathbb{E}_{\tau \sim \tilde{\pi}} \left[ \sum_{t=0}^\infty \gamma^t A_{\pi_\text{old}}(s_t, a_t) \right].
@@ -75,7 +77,7 @@ $$
 \end{array}
 $$
 
-이 정리에서 새로운 정책 $$\tilde{\pi}$$의 목적 함수 $$\eta(\tilde{\pi})$$는 `할인된 방문 빈도`(Discounted Visitation Frequency)라는 개념을 활용하여 다르게 표현될 수 있다. 먼저 $$\tilde{\pi}$$의 할인된 방문 빈도 $$\rho_{\tilde{\pi}}(s)$$는 다음과 같이 정의한다:
+이 정리에서 새로운 정책 $$\tilde{\pi}$$의 목적 함수 $$\eta(\tilde{\pi})$$는     `Discounted Visitation Frequency`라는 개념을 활용하여 다르게 표현될 수 있다. 먼저 $$\tilde{\pi}$$의 Discounted Visitation Frequency $$\rho_{\tilde{\pi}}(s)$$는 다음과 같이 정의한다:
 
 $$
 \rho_{\tilde{\pi}}(s) = \sum_{t=0}^\infty \gamma^t p(s_t=s \vert \tilde{\pi}).
@@ -117,3 +119,5 @@ $$
 ## 수정 사항
 - 2022.09.23
     - 최초 게제
+- 2024.03.14
+    - 오타 수정
