@@ -16,16 +16,16 @@ author: "Hyungcheol Noh"
 permalink: /2022-10-02-reinforcement-learning-06
 ---
 
-이번 포스트에서는 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 몇 가지 이론적 배경들인 `연관된 정책 짝` 및 `Total Variation Distance`(TV Distance)에 대해서 정리하도록 한다.
+이번 포스트에서는 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 몇 가지 이론적 배경들인 `Coupled Policy Pair` 및 `Total Variation Distance`(TV Distance)에 대해서 정리하도록 한다.
 
-## 연관된 정책 짝 (Coupled Policy Pair)
-두 정책 $$(\pi, \tilde{\pi})$$에 대해서 만약 주어진 어떤 상태에 대한 두 정책이 생성한 행동이 일치하지 않을 확률이 $$\alpha$$보다 작거나 같은 경우 두 정책 $$(\pi, \tilde{\pi})$$을 $$\alpha$$로 `연관된 정책 짝`($$\alpha$$-coupled Policy Pair)이라고 정의한다. 이를 식으로 정리하면 다음과 같다:
+## Coupled Policy Pair
+두 정책 $$(\pi, \tilde{\pi})$$에 대해서 만약 주어진 어떤 상태에 대한 두 정책이 생성한 행동이 일치하지 않을 확률이 $$\alpha$$보다 작거나 같은 경우 두 정책 $$(\pi, \tilde{\pi})$$을 $$\alpha$$-`coupled Policy Pair`라고 정의한다. 이를 식으로 정리하면 다음과 같다:
 
 $$
 \sum_{a \neq \tilde{a}} p(a, \tilde{a} \vert \pi, \tilde{\pi}, s) = p(a \neq \tilde{a} \vert \pi, \tilde{\pi}, s) \leq \alpha.
 $$
 
-연관된 정책 짝의 개념을 통해서 우리는 모든 상태 $$s$$에 대해서 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$에 대해 다음의 정리가 만족됨을 보이고자 한다.
+Coupled Policy Pair의 개념을 통해서 우리는 모든 상태 $$s$$에 대해서 $$\alpha$$-coupled Policy Pair $$\pi, \tilde{\pi}$$에 대해 다음의 정리가 만족됨을 보이고자 한다.
 
 **Theorem 1)**
 
@@ -36,7 +36,7 @@ $$
 이를 증명하기 위해서는 먼저 다음의 Lemma를 증명해야 한다.
 
 **Lemma 1)**
-주어진 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$는 모든 상태 $$s$$에 대해서 다음을 만족한다:
+주어진 $$\alpha$$-coupled Policy Pair $$\pi, \tilde{\pi}$$는 모든 상태 $$s$$에 대해서 다음을 만족한다:
 
 $$
 \left\vert \bar{A}(s) \right\vert \leq 2\alpha \max_{s, a} \left\vert A_\pi(s, a) \right\vert.
@@ -80,7 +80,7 @@ $$
 \end{array}
 $$
 
-이제 Theorem 1을 증명해보도록 하자. 먼저 주어진 $$\alpha$$로 연관된 정책 짝 $$\pi, \tilde{\pi}$$에 대해서 $$n_t$$를 시간 단계 $$t$$ 이전까지 정책 $$\pi$$와 $$\tilde{\pi}$$가 행동이 동일하지 않은 횟수로 정의하자. 그러면 이 정의를 통해 다음의 관계를 생각해볼 수 있다:
+이제 Theorem 1을 증명해보도록 하자. 먼저 주어진 $$\alpha$$-coupled Policy Pair $$\pi, \tilde{\pi}$$에 대해서 $$n_t$$를 시간 단계 $$t$$ 이전까지 정책 $$\pi$$와 $$\tilde{\pi}$$가 행동이 동일하지 않은 횟수로 정의하자. 그러면 이 정의를 통해 다음의 관계를 생각해볼 수 있다:
 
 $$
 \begin{array}{rl}
@@ -89,7 +89,7 @@ $$
 \end{array}
 $$
 
-여기서 동일한 상태-행동 짝 $$(s_{t - 1}, a_{t - 1})$$에 대해서 확률값 $$p(s_t \vert s_{t - 1}, a_{t - 1})$$이 동일하기 때문에 다음의 관계를 자연스럽게 확인할 수 있다:
+여기서 동일한 상태-행동 쌍 $$(s_{t - 1}, a_{t - 1})$$에 대해서 확률값 $$p(s_t \vert s_{t - 1}, a_{t - 1})$$이 동일하기 때문에 다음의 관계를 자연스럽게 확인할 수 있다:
 
 $$
 \mathbb{E}_{s_t \sim \tilde{\pi} \vert n_t = 0} \left[ \bar{A}(s_t) \right] = \mathbb{E}_{s_t \sim \pi \vert n_t = 0} \left[ \bar{A}(s_t) \right].
@@ -184,4 +184,6 @@ $$
 - 2022.09.23
     - 최초 게제
 - 2022.10.16
-    - 연관된 정책 짝, TV Distance 내용 추가
+    - Coupled Policy Pair, TV Distance 내용 추가
+- 2024.03.14
+    - 몇몇 명칭 수정 및 오타 수정
