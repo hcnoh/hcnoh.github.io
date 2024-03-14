@@ -16,9 +16,9 @@ author: "Hyungcheol Noh"
 permalink: /2023-01-02-reinforcement-learning-07
 ---
 
-이번 포스트에서는 이전 포스트와 마찬가지로 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 이론적 배경들을 설명하도록 한다. 먼저 이전 포스트에서 다루었던 `연관된 정책 짝`과 `TV Distance` 사이의 관계를 먼저 정리하고 이어서 TV Distance의 중요한 성질인 `Pinsker's Inequality`를 정리하도록 한다.
+이번 포스트에서는 이전 포스트와 마찬가지로 `Trust Region Policy Optimization`(TRPO)를 설명하기 위한 이론적 배경들을 설명하도록 한다. 먼저 이전 포스트에서 다루었던 `Coupled Policy Pair`와 `TV Distance` 사이의 관계를 먼저 정리하고 이어서 TV Distance의 중요한 성질인 `Pinsker's Inequality`를 정리하도록 한다.
 
-## 연관된 정책 짝과 TV Distance 사이의 관계
+## Coupled Policy Pair와 TV Distance 사이의 관계
 먼저 다음의 Lemma를 살펴보도록 하자.
 
 **Lemma 1)**
@@ -179,7 +179,7 @@ $$
 
 Lemma 1과 Lemma 2를 통해서 우리는 두 분포 $$p, q$$로 생성되는 샘플 $$X \sim p, Y \sim q$$가 일치하지 않을 확률값 $$p(X \neq Y)$$가 TV Distance $$D_{\text{TV}}(p \Vert q)$$와 일치하는 결합 분포가 항상 존재하며, 따라서 TV Distance는 두 분포로 생성되는 샘플이 일치하지 않을 확률값이 가질 수 있는 최소값이라는 것을 알 수 있다.
 
-위의 Lemma 1과 Lemma 2를 통해서 이제 `연관된 정책 짝`과 `TV Distance` 사이의 관계를 생각해보자. 먼저 주어진 정책 $$\pi, \tilde{\pi}$$에 대해서 다음의 정의를 살펴보자:
+위의 Lemma 1과 Lemma 2를 통해서 이제 `Coupled Policy Pair`와 `TV Distance` 사이의 관계를 생각해보자. 먼저 주어진 정책 $$\pi, \tilde{\pi}$$에 대해서 다음의 정의를 살펴보자:
 
 $$
 D_\text{TV}^\text{max}(\pi, \tilde{\pi}) := \max_s D_\text{TV}\left( \pi(\cdot \vert s) \Vert \tilde{\pi}(\cdot \vert s) \right) = \alpha.
@@ -191,10 +191,10 @@ $$
 \alpha = \max_s p(a \neq \tilde{a} \vert \pi, \tilde{\pi}, s).
 $$
 
-즉, 적절한 결합 분포만 잘 설정하여 준다면 임의로 주어진 정책 $$\pi, \tilde{\pi}$$는 항상 $$D_\text{TV}^\text{max}(\pi, \tilde{\pi}) = \alpha$$에 대해서 $$\alpha$$로 연관된 정책 짝이 된다는 것을 최종적으로 확인할 수 있다.
+즉, 적절한 결합 분포만 잘 설정하여 준다면 임의로 주어진 정책 $$\pi, \tilde{\pi}$$는 항상 $$D_\text{TV}^\text{max}(\pi, \tilde{\pi}) = \alpha$$에 대해서 $$\alpha$$-coupled Policy Pair가 된다는 것을 최종적으로 확인할 수 있다.
 
 ### 개인적인 의견
-위에서 설명한 `연관된 정책 짝`과 `TV Distance` 사이의 관계는 향후 `TRPO`를 설명하는 중요한 정리를 증명하는데 활용되게 된다. 하지만 위의 설명 자체는 상당한 억지가 존재한다.
+위에서 설명한 `Coupled Policy Pair`와 `TV Distance` 사이의 관계는 향후 `TRPO`를 설명하는 중요한 정리를 증명하는데 활용되게 된다. 하지만 위의 설명 자체는 상당한 억지가 존재한다.
 
 먼저 주어진 두 정책 $$\pi, \tilde{\pi}$$에 대한 결합 분포는 기본적으로 두 정책의 곱으로 결정되게 될 것이다. 만약 그렇지 않다면 두 정책의 행동이 서로 독립적이지 않다는 이야기인데 $$\pi$$에서 새로운 정책 $$\tilde{\pi}$$로 갱신을 시도한다는 관점에서 두 정책의 행동이 서로 종속적이라는 이야기는 어폐가 있다. 즉 두 정책에 대한 결합 분포는 다음과 같이 계산한다:
 
@@ -204,7 +204,7 @@ $$
 
 즉, Lemma 2가 적용이 되기 위한 결합 분포의 선택의 자유가 이 상황에서는 존재하지 않는다. 여기서 결합 분포를 결정하는 요소는 결국 현재 상태 $$s$$만이 존재할 뿐일 것이다.
 
-따라서 적절한 결합 분포를 잘 선택하면 임의로 주어진 정책 $$\pi, \tilde{\pi}$$는 항상 $$D_\text{TV}^\text{max}(\pi, \tilde{\pi}) = \alpha$$에 대해서 $$\alpha$$로 연관된 정책 짝이 된다는 명제는 상태 $$s$$를 잘 선택한다면 $$D_\text{TV}^\text{max}(\pi, \tilde{\pi})$$와 $$\max_s p(a \neq \tilde{a} \vert \pi, \tilde{\pi}, s)$$가 동일하다는 명제로 바꿔서 말할 수 있을 것이지만 당연하게도 이는 상당한 억지이다.
+따라서 적절한 결합 분포를 잘 선택하면 임의로 주어진 정책 $$\pi, \tilde{\pi}$$는 항상 $$D_\text{TV}^\text{max}(\pi, \tilde{\pi}) = \alpha$$에 대해서 $$\alpha$$-coupled Policy Pair가 된다는 명제는 상태 $$s$$를 잘 선택한다면 $$D_\text{TV}^\text{max}(\pi, \tilde{\pi})$$와 $$\max_s p(a \neq \tilde{a} \vert \pi, \tilde{\pi}, s)$$가 동일하다는 명제로 바꿔서 말할 수 있을 것이지만 당연하게도 이는 상당한 억지이다.
 
 좌우지간 향후 포스트에서는 이 개인적인 의견은 잠시 뒤로 미루고 논문에서 주장하는 바에 대해서만 작성을 진행하도록 하겠다.
 
@@ -421,4 +421,6 @@ $$
 - 2023.01.15
     - Pinsker's Inequality 증명 정리 완료
 - 2023.02.09
-    - 연관된 정책 짝과 TV Distance 사이의 관계에 대해 정리 완료
+    - Coupled Policy Pair와 TV Distance 사이의 관계에 대해 정리 완료
+- 2024.03.14
+    - 몇몇 명칭 수정 및 오타 수정
