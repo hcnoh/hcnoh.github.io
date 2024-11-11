@@ -6,11 +6,11 @@ permalink: /about
 ---
 
 ## About Me
-I am an AI research engineer currently working in the AI Research of New Innovative R&D division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current smart monitoring solution and develop a new AI-based smart security platform.
+I am an AI research engineer currently working in the AI Research of New Innovation R&D division of [Innodep](https://innodep.co.kr/renew/eng/). I am working for Innodep to advance their current smart surveillance solution and develop a new AI-based smart security platform.
 
-I am familiar with probability and statistics, and I am also good at dealing with deep learning frameworks like PyTorch and TensorFlow.
+I am familiar with probability theory and statistics, and I am also an experienced Python developer. I am good at dealing with the following Python frameworks: Deep learning frameworks (e.g. PyTorch, TensorFlow), Data manipulation libraries (e.g. Numpy, Pandas), Backend frameworks (e.g. FastAPI)
 
-My current research interests are information-theoretic approaches for deep learning modeling, computer vision for smart monitoring, and vision-language models for image information analysis.
+My current research interests are information-theoretic approaches for deep learning modeling, computer vision for smart surveillance, and vision-language models for image information analysis.
 
 - 7 years of work experience: 2018 ~ 2024
 - Industries: Software (2018 ~ 2021), Edutech (2021 ~ 2023), Physical Security (2023 ~ Present)
